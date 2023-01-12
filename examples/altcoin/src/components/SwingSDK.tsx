@@ -1,6 +1,6 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SwingSDK, { TransferStatus } from "@swing.xyz/sdk";
+import SwingSDK, { Components, TransferStatus } from "@swing.xyz/sdk";
 import clsx from "clsx";
 import { useState } from "react";
 import { Button } from "./Button";
@@ -11,9 +11,65 @@ const Swap = () => {
   const [status, setStatus] = useState<TransferStatus | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  if (typeof window !== "undefined") {
-    console.log(window.ethereum);
-  }
+  const swapToAltcoin = async () => {
+    setIsLoading(true);
+
+    const swingSDK = new SwingSDK({});
+
+    swingSDK.on("TRANSFER", (transferStatus) => {
+      setStatus(transferStatus);
+    });
+
+    const metmask = (window.ethereum as any)?.providers.find(
+      (p: any) => p.isMetaMask
+    );
+
+    if (!metmask) {
+      setError("Metamask not connected. Do you have it installed?");
+      setIsLoading(false);
+      return;
+    }
+
+    await metmask.request({
+      method: "eth_requestAccounts",
+    });
+
+    const fromUserAddress = await swingSDK.wallet.connect(metmask, "ethereum");
+
+    const quotes = await swingSDK.getQuote({
+      amount: String(amount),
+      fromChain: "ethereum",
+      fromToken: "USDC",
+      toChain: "polygon",
+      toToken: "ALTCOIN" as Components.Schemas.TokenSymbol,
+      fromUserAddress,
+      toUserAddress: fromUserAddress,
+    });
+
+    if (!quotes.routes.length) {
+      setError("No routes found");
+      setIsLoading(false);
+      return;
+    }
+
+    const route = quotes.routes[0];
+
+    try {
+      await swingSDK.transfer(route, {
+        amount: String(amount),
+        fromChain: "ethereum",
+        fromToken: "USDC",
+        toChain: "polygon",
+        toToken: "USDC",
+        fromUserAddress,
+        toUserAddress: fromUserAddress,
+      });
+    } catch (error: any) {
+      setError(error.message);
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <div
@@ -49,67 +105,7 @@ const Swap = () => {
             "opacity-60": isLoading,
           })}
           disabled={isLoading}
-          onClick={async () => {
-            setIsLoading(true);
-
-            const swingSDK = new SwingSDK({});
-
-            swingSDK.on("TRANSFER", (transferStatus) => {
-              setStatus(transferStatus);
-            });
-
-            const metmask = (window.ethereum as any)?.providers.find(
-              (p: any) => p.isMetaMask
-            );
-            if (!metmask) {
-              setError("Metamask not connected. Do you have it installed?");
-              setIsLoading(false);
-              return;
-            }
-
-            await metmask.request({
-              method: "eth_requestAccounts",
-            });
-
-            const fromUserAddress = await swingSDK.wallet.connect(
-              metmask,
-              "ethereum"
-            );
-
-            const quotes = await swingSDK.getQuote({
-              amount: String(amount),
-              fromChain: "ethereum",
-              fromToken: "USDC",
-              toChain: "polygon",
-              toToken: "USDC",
-              fromUserAddress,
-              toUserAddress: fromUserAddress,
-            });
-
-            if (!quotes.routes.length) {
-              setError("No routes found");
-              setIsLoading(false);
-              return;
-            }
-
-            const route = quotes.routes[0];
-
-            try {
-              await swingSDK.transfer(route, {
-                amount: String(amount),
-                fromChain: "ethereum",
-                fromToken: "USDC",
-                toChain: "polygon",
-                toToken: "USDC",
-                fromUserAddress,
-                toUserAddress: fromUserAddress,
-              });
-            } catch (error: any) {
-              setError(error.message);
-            }
-
-            setIsLoading(false);
-          }}
+          onClick={() => swapToAltcoin()}
         >
           Swap for $ALTCOIN
           {isLoading && (
