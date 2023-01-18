@@ -1,16 +1,23 @@
-import Link from 'next/link'
-import { Popover } from '@headlessui/react'
-import { AnimatePresence, motion } from 'framer-motion'
+import Link from "next/link";
+import { Popover } from "@headlessui/react";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { Button } from './Button'
-import { Container } from './Container'
-import { Logo } from './Logo'
-import { NavLinks } from './NavLinks'
-import React from 'react'
+import { Button } from "./Button";
+import { Container } from "./Container";
+import { Logo } from "./Logo";
+import { NavLinks } from "./NavLinks";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function MenuIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
       <path
         d="M5 6h14M5 18h14M5 12h14"
         strokeWidth={2}
@@ -18,12 +25,17 @@ function MenuIcon({ className }: { className?: string }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 function ChevronUpIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
       <path
         d="M17 14l-5-5-5 5"
         strokeWidth={2}
@@ -31,10 +43,16 @@ function ChevronUpIcon({ className }: { className?: string }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-function MobileNavLink({ children, href }: { children: React.ReactNode, href: string }) {
+function MobileNavLink({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) {
   return (
     <Popover.Button
       as={Link}
@@ -43,7 +61,7 @@ function MobileNavLink({ children, href }: { children: React.ReactNode, href: st
     >
       {children}
     </Popover.Button>
-  )
+  );
 }
 
 export function Header() {
@@ -53,7 +71,7 @@ export function Header() {
         <Container className="relative z-50 flex justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
             <Link href="/" aria-label="Home">
-              <Logo className="h-10 w-auto" />
+              <Logo className="w-auto h-10" />
             </Link>
             <div className="hidden lg:flex lg:gap-10">
               <NavLinks />
@@ -69,9 +87,9 @@ export function Header() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
+                        <ChevronUpIcon className="w-6 h-6" />
                       ) : (
-                        <MenuIcon className="h-6 w-6" />
+                        <MenuIcon className="w-6 h-6" />
                       )
                     }
                   </Popover.Button>
@@ -96,22 +114,28 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
                         >
                           <div className="space-y-4">
                             <MobileNavLink href="#about">
                               About $ALTCOIN
                             </MobileNavLink>
-                            <MobileNavLink href="#team">
-                              Team
-                            </MobileNavLink>
-                            <MobileNavLink href="#why">
-                              Why
-                            </MobileNavLink>
+                            <MobileNavLink href="#team">Team</MobileNavLink>
+                            <MobileNavLink href="#why">Why</MobileNavLink>
                             <MobileNavLink href="#faqs">FAQs</MobileNavLink>
                           </div>
-                          <div className="mt-8 flex flex-col gap-4">
+
+                          <div className="flex flex-col mt-4 space-y-4">
                             <Button href="#altcoin">Buy $ALTCOIN</Button>
+
+                            <Button
+                              href="https://github.com/polkaswitch/examples"
+                              className="space-x-2"
+                              variant="outline"
+                            >
+                              <FontAwesomeIcon size="lg" icon={faGithub} />
+                              <span>Fork on Github</span>
+                            </Button>
                           </div>
                         </Popover.Panel>
                       </>
@@ -121,11 +145,20 @@ export function Header() {
               )}
             </Popover>
             <Button href="#altcoin" className="hidden lg:block">
-            Buy $ALTCOIN
+              Buy $ALTCOIN
+            </Button>
+
+            <Button
+              href="https://github.com/polkaswitch/examples"
+              className="hidden space-x-2 lg:block"
+              variant="outline"
+            >
+              <FontAwesomeIcon size="lg" icon={faGithub} />
+              <span>Fork on Github</span>
             </Button>
           </div>
         </Container>
       </nav>
     </header>
-  )
+  );
 }

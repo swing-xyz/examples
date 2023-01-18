@@ -51,7 +51,7 @@ export function Hero() {
             <AppDemo />
           </div>
 
-          <div className="relative -mt-4 lg:col-span-7 lg:mt-0 xl:col-span-6">
+          <div className="relative mt-10 lg:mt-0 lg:col-span-7 xl:col-span-6">
             <p className="text-sm font-semibold text-center text-gray-900 lg:text-left">
               As featured in
             </p>

@@ -74,7 +74,7 @@ const Swap = () => {
   return (
     <div
       id="#altcoin"
-      className="p-5 ml-auto space-y-4 bg-white border rounded-md w-80"
+      className="w-full max-w-2xl p-5 m-auto space-y-4 bg-white border rounded-md lg:ml-auto lg:w-80"
     >
       <div className="text-lg font-bold">Swap for $ALTCOIN</div>
 

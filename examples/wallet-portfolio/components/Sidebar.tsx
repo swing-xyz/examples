@@ -1,3 +1,4 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faGear,
   faLineChart,
@@ -17,7 +18,7 @@ export default function Sidebar() {
       <Link
         id="sidebar-item-Home"
         className="relative flex items-center px-4 py-2 text-orange-300 group hover:bg-slate-700"
-        href="/"
+        href="/swap"
       >
         <div className="flex items-center justify-center mr-2 text-orange-500">
           <FontAwesomeIcon icon={faOtter} />
@@ -31,7 +32,7 @@ export default function Sidebar() {
             <Link
               id="sidebar-item-Portfolio"
               className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
-              href="/"
+              href="/swap"
             >
               <div className="flex items-center justify-center mr-2">
                 <FontAwesomeIcon icon={faLineChart} />
@@ -55,7 +56,7 @@ export default function Sidebar() {
             <Link
               id="sidebar-item-Watchlist"
               className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
-              href="/watchlist"
+              href="/swap"
             >
               <div className="flex items-center justify-center mr-2">
                 <FontAwesomeIcon icon={faStar} />
@@ -71,7 +72,7 @@ export default function Sidebar() {
           <Link
             id="sidebar-item-Settings"
             className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
-            href="/watchlist"
+            href="/swap"
           >
             <div className="flex items-center justify-center mr-2">
               <FontAwesomeIcon icon={faGear} />
@@ -109,12 +110,13 @@ export default function Sidebar() {
       </div>
 
       <Link
-        id="terms-of-service-desktop"
-        href="/swap"
-        className="flex items-center px-6 py-4 -mb-5 text-white border-t cursor-pointer border-slate-700 hover:bg-slate-700"
+        id="fork-on-github"
+        href="https://github.com/polkaswitch/examples"
+        className="flex items-center px-6 py-4 -mb-5 space-x-2 text-white border-t cursor-pointer border-slate-700 hover:bg-slate-700"
+        target={"_blank"}
       >
-        <div className="mr-2 text-sm font-medium">Terms of service</div>
-        <FontAwesomeIcon icon={faUpRightFromSquare} />
+        <FontAwesomeIcon size="lg" icon={faGithub} />
+        <div className="text-sm font-medium">Fork on Github</div>
       </Link>
     </div>
   );
