@@ -4,7 +4,7 @@
 - [Wallet Portfolio](./examples/wallet-portfolio/README.md) - Swing Widget template
 - Cross-chain DEX - Swing API template (coming soon)
 
-> Have an idea for another template? Please [join our discord](https://discord.com/invite/dvrA4v3qqr).
+> Have an idea for another template? Please [join our discord](https://discord.gg/swingxyz).
 
 ## Getting started
 
