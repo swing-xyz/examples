@@ -425,7 +425,7 @@ function FeaturesDesktop() {
         </div>
         <Tab.Panels as={Fragment}>
           <AnimatePresence initial={false} custom={{ isForwards, changeCount }}>
-            <SwapWidget />
+            <SwapWidget projectId="altcoin-example" />
           </AnimatePresence>
         </Tab.Panels>
       </div>
