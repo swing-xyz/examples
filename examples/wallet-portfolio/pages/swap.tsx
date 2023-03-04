@@ -8,7 +8,7 @@ const Swap = dynamic(() => import("../components/Swap"), {
 const SwapPage: NextPage = () => {
   return (
     <div className="flex items-center justify-center h-full">
-      <Swap />
+      <Swap projectId="wallet-portfolio-example" />
     </div>
   );
 };

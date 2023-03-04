@@ -14,7 +14,9 @@ const Swap = () => {
   const swapToAltcoin = async () => {
     setIsLoading(true);
 
-    const swingSDK = new SwingSDK({});
+    const swingSDK = new SwingSDK({
+      projectId: "altcoin-example",
+    });
 
     swingSDK.on("TRANSFER", (transferStatus) => {
       setStatus(transferStatus);
@@ -40,8 +42,8 @@ const Swap = () => {
       amount: String(amount),
       fromChain: "ethereum",
       fromToken: "USDC",
-      toChain: "polygon",
-      toToken: "ALTCOIN" as Components.Schemas.TokenSymbol,
+      toChain: "ethereum",
+      toToken: "DOG" as Components.Schemas.TokenSymbol,
       fromUserAddress,
       toUserAddress: fromUserAddress,
     });
@@ -59,8 +61,8 @@ const Swap = () => {
         amount: String(amount),
         fromChain: "ethereum",
         fromToken: "USDC",
-        toChain: "polygon",
-        toToken: "USDC",
+        toChain: "ethereum",
+        toToken: "DOG" as Components.Schemas.TokenSymbol,
         fromUserAddress,
         toUserAddress: fromUserAddress,
       });
