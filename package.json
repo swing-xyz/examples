@@ -14,8 +14,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@swing.xyz/sdk": "^0.15.0",
-    "@swing.xyz/ui": "^0.15.0",
     "@types/node": "18.8.0",
     "@types/react": "18.0.21",
     "eslint-config-custom": "*",

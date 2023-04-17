@@ -8,7 +8,10 @@ import { ethers } from "ethers";
 
 declare var window: any;
 
-const sdk = new SwingSDK({ debug: true });
+const sdk = new SwingSDK({ 
+  projectId: 'basic-sdk-example',
+  debug: true
+});
 sdk.on('TRANSFER', (transfer) => {
   switch (transfer.status) {
     case 'PENDING':
@@ -157,36 +160,36 @@ const Home = () => {
   };
 
   return (
-    <div className="w-128 mx-auto mt-40">
+    <div className="mx-auto mt-40 w-128">
       <h1 className="text-2xl font-bold text-white">
         CROSS-CHAIN TRANSFER (DEMO SDK)
       </h1>
-      <div className="mt-4 p-8 rounded-xl border border-slate-300 bg-white">
+      <div className="p-8 mt-4 bg-white border rounded-xl border-slate-300">
         <div className="flex flex-row gap-4">
-          <div className="w-1/2 flex flex-col gap-4">
+          <div className="flex flex-col w-1/2 gap-4">
             <p>From</p>
             <ChainContainer data={chains} onChange={onChangeFromChain} value={fromChain} />
             <TokenContainer data={fromChain?.tokens} onChange={onChangeFromToken} value={fromToken} />
           </div>
-          <div className="w-1/2 flex flex-col gap-4">
+          <div className="flex flex-col w-1/2 gap-4">
             <p>To</p>
             <ChainContainer data={chains} onChange={onChangeToChain} value={toChain} />
             <TokenContainer data={toChain?.tokens} onChange={onChangeToToken} value={toToken}/>
           </div>
         </div>
 
-        <div className="mt-4 flex flex-row gap-4">
-          <div className="w-1/2 flex flex-col gap-4 justify-center">
-            <p>Amount <span className="p-2 font-bold bg-stone-400 rounded-xl text-white cursor-pointer">Max</span></p>
+        <div className="flex flex-row gap-4 mt-4">
+          <div className="flex flex-col justify-center w-1/2 gap-4">
+            <p>Amount <span className="p-2 font-bold text-white cursor-pointer bg-stone-400 rounded-xl">Max</span></p>
           </div>
-          <div className="w-1/2 flex flex-col gap-4">
+          <div className="flex flex-col w-1/2 gap-4">
             <InputContainer onChange={onChangeAmount} />
           </div>
         </div>
 
-        <div className="mt-10 flex gap-4">
+        <div className="flex gap-4 mt-10">
           <button
-            className="w-full bg-blue-400 px-6 py-4 rounded text-white hover:bg-blue-500 active:bg-blue-600"
+            className="w-full px-6 py-4 text-white bg-blue-400 rounded hover:bg-blue-500 active:bg-blue-600"
             onClick={onClick}
           >
             {getButtonName()}

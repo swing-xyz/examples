@@ -1,0 +1,98 @@
+{
+  "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js", "src/polyfills.ts"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico"
+            ],
+            "styles": [
+              "../../node_modules/@swing.xyz/ui/theme.css"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@multiversx/sdk-extension-provider",
+              "@walletconnect/environment",
+              "@walletconnect/socket-transport",
+              "@walletconnect/window-getters",
+              "@walletconnect/window-metadata",
+              "@web3-react/coinbase-wallet",
+              "@web3-react/core",
+              "@web3-react/metamask",
+              "@web3-react/walletconnect",
+              "aes-js",
+              "bech32",
+              "bn.js",
+              "cross-fetch",
+              "dayjs",
+              "hash.js",
+              "hoist-non-react-statics",
+              "js-sha3",
+              "lodash/isEqual",
+              "query-string",
+              "scrypt-js"
+           ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular:build:production"
+            },
+            "development": {
+              "browserTarget": "angular:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular:build"
+          }
+        }
+      }
+    }
+  }
+}
