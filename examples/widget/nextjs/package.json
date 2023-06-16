@@ -1,11 +1,12 @@
 {
   "private": true,
-  "name": "wallet-portfolio",
+  "name": "widget-nextjs",
   "version": "0.0.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "clean": "rm -rf .next node_modules"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -13,7 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@swing.xyz/ui": "^0.18.0",
+    "@swing.xyz/ui": "^0.27.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"

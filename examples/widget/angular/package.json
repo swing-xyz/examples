@@ -1,5 +1,5 @@
 {
-  "name": "angular",
+  "name": "widget-angular",
   "version": "0.0.0",
   "description": "Example project from an angular.io guide.",
   "license": "MIT",
@@ -8,8 +8,8 @@
     "dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clean": "rm -rf dist .angular node_modules"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +19,9 @@
     "@angular/core": "^15",
     "@angular/platform-browser": "^15",
     "@angular/platform-browser-dynamic": "^15",
-    "@swing.xyz/ui": "^0.18.0",
+    "@swing.xyz/ui": "^0.27.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

@@ -1,6 +1,6 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SwingSDK, { Components, TransferStatus } from "@swing.xyz/sdk";
+import SwingSDK, { Components, TransferStepResult } from "@swing.xyz/sdk";
 import clsx from "clsx";
 import { useState } from "react";
 import { Button } from "./Button";
@@ -8,7 +8,7 @@ import { Button } from "./Button";
 const Swap = () => {
   const [amount, setAmount] = useState();
   const [error, setError] = useState("");
-  const [status, setStatus] = useState<TransferStatus | null>(null);
+  const [status, setStatus] = useState<TransferStepResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const swapToAltcoin = async () => {

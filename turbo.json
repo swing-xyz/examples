@@ -3,12 +3,22 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        ".angular/**",
+        "build/**"
+      ]
     },
     "lint": {
       "outputs": []
     },
+    "test": {},
     "dev": {
+      "cache": false
+    },
+    "clean": {
       "cache": false
     }
   }
