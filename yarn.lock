@@ -5378,9 +5378,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.27.0":
-  version: 0.27.0
-  resolution: "@swing.xyz/design-system@npm:0.27.0"
+"@swing.xyz/design-system@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@swing.xyz/design-system@npm:0.27.1"
   dependencies:
     "@fortawesome/fontawesome-svg-core": ^6.4.0
     "@fortawesome/free-brands-svg-icons": ^6.4.0
@@ -5396,7 +5396,7 @@ __metadata:
   peerDependencies:
     react: ^16 || ^17 || ^18
     react-dom: ^16 || ^17 || ^18
-  checksum: 17b19c94dd4e39f82ba06d2bb040fc713ac02e2080e4f30d3ab13477b14fbddeaa8ae06e43ba23153b6ed8d7870d7eb9e04dd5d218e3b75e83ebf8c7478ec533
+  checksum: 65fc8df8590c4739f6511b6e9c69072bca004a9a5f40376a9a1de57d8c4caecafb075f2c2553b94e99772d9fbf48a2340a2e1b4de521b569b9afb897da3bef2a
   languageName: node
   linkType: hard
 
@@ -5412,7 +5412,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swing.xyz/sdk@npm:0.27.0, @swing.xyz/sdk@npm:^0.27.0":
+"@swing.xyz/sdk@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@swing.xyz/sdk@npm:0.27.1"
+  dependencies:
+    "@coinbase/wallet-sdk": ^3.6.6
+    "@cosmjs/stargate": ^0.30.1
+    "@ethersproject/abi": ^5.7.0
+    "@ethersproject/bignumber": ^5.7.0
+    "@ethersproject/constants": ^5.7.0
+    "@ethersproject/contracts": ^5.7.0
+    "@ethersproject/hash": ^5.7.0
+    "@ethersproject/providers": ^5.7.2
+    "@ethersproject/signing-key": ^5.7.0
+    "@ethersproject/units": ^5.7.0
+    "@multiversx/sdk-core": ^11.6.0
+    "@multiversx/sdk-extension-provider": ^2.0.7
+    "@multiversx/sdk-network-providers": ^1.4.0
+    "@sentry/browser": ^7.54.0
+    axios: ^1.4.0
+    ethers: ^5.7.2
+    eventemitter3: ^4.0.7
+    openapi-client-axios: 7.2.0
+  checksum: b9ea41bafcec6a857ae136f30a3b271b8dd604cb11ab84d015126b5eb2c8312949e2cacf74714ad691f270d695f352b24553c0b2682f97f4923a80f68754c224
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.27.0":
   version: 0.27.0
   resolution: "@swing.xyz/sdk@npm:0.27.0"
   dependencies:
@@ -5439,9 +5465,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.27.0":
-  version: 0.27.0
-  resolution: "@swing.xyz/ui@npm:0.27.0"
+"@swing.xyz/ui@npm:^0.27.1":
+  version: 0.27.1
+  resolution: "@swing.xyz/ui@npm:0.27.1"
   dependencies:
     "@coinbase/wallet-sdk": ^3.6.6
     "@fortawesome/fontawesome-svg-core": ^6.4.0
@@ -5451,8 +5477,8 @@ __metadata:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@multiversx/sdk-extension-provider": ^2.0.7
     "@sentry/react": ^7.54.0
-    "@swing.xyz/design-system": 0.27.0
-    "@swing.xyz/sdk": 0.27.0
+    "@swing.xyz/design-system": 0.27.1
+    "@swing.xyz/sdk": 0.27.1
     "@walletconnect/ethereum-provider": ^1.8.0
     "@walletconnect/jsonrpc-http-connection": ^1.0.7
     "@walletconnect/jsonrpc-provider": ^1.0.13
@@ -5475,7 +5501,7 @@ __metadata:
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 81a797f5d8b52933796972b6f369839536ddd980a4d217d34db7f5060ff11cabae485cfb639dfb45ab6e5589e41064d6ff5706466f5b845efb976910c60b6a5e
+  checksum: 6c93eb8ee299d96f24a1d56575fdfd5c9e9d4028387cd5ae831cd603c935c98ed6493c5b8b5754ddc680fcba7c1e1f599469ca26257a35a9cc416c40da7c1da0
   languageName: node
   linkType: hard
 
@@ -18835,7 +18861,7 @@ prettier@latest:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@headlessui/react": ^1.7.2
     "@swing.xyz/sdk": ^0.27.0
-    "@swing.xyz/ui": ^0.27.0
+    "@swing.xyz/ui": ^0.27.1
     "@tailwindcss/forms": ^0.5.3
     autoprefixer: ^10.4.12
     clsx: ^1.2.1
@@ -21608,7 +21634,7 @@ turbo@latest:
     "@angular/core": ^15
     "@angular/platform-browser": ^15
     "@angular/platform-browser-dynamic": ^15
-    "@swing.xyz/ui": ^0.27.0
+    "@swing.xyz/ui": ^0.27.1
     "@types/jasmine": ~4.3.0
     "@types/node": ^16.11.35
     copyfiles: ^2.4.1
@@ -21640,7 +21666,7 @@ turbo@latest:
     "@fortawesome/free-regular-svg-icons": ^6.2.1
     "@fortawesome/free-solid-svg-icons": ^6.2.1
     "@fortawesome/react-fontawesome": ^0.2.0
-    "@swing.xyz/ui": ^0.27.0
+    "@swing.xyz/ui": ^0.27.1
     "@types/node": 18.11.3
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
