@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@ethersproject/providers": "^5.6.8",
-    "@swing.xyz/sdk": "^0.27.2",
+    "@swing.xyz/sdk": "^0.29.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.39",
     "@types/react": "^18.0.12",
