@@ -5340,9 +5340,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.27.2":
-  version: 0.27.2
-  resolution: "@swing.xyz/design-system@npm:0.27.2"
+"@swing.xyz/design-system@npm:0.30.3":
+  version: 0.30.3
+  resolution: "@swing.xyz/design-system@npm:0.30.3"
   dependencies:
     "@fortawesome/fontawesome-svg-core": ^6.4.0
     "@fortawesome/free-brands-svg-icons": ^6.4.0
@@ -5351,14 +5351,13 @@ __metadata:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@headlessui/react": ^1.7.15
     "@radix-ui/react-dialog": ^1.0.4
-    "@tanstack/react-virtual": 3.0.0-beta.54
+    "@tanstack/react-virtual": beta
     clsx: ^1.2.1
     jotai: ^2.1.1
-    usehooks-ts: ^2.9.1
   peerDependencies:
     react: ^16 || ^17 || ^18
     react-dom: ^16 || ^17 || ^18
-  checksum: 4aaa1b88068e387dd9ecf7c5f3148669bb0a34f01db70accf5f9b1f109505f861cd138188f3bc26dd68b48a3adff8778caefe436d0322864a9d5c7c9942772db
+  checksum: 5dd6184e1e57b88bf10e219866cfa8c887d11996ad58f09348a224acd27ccedfac73c66dff9e497416f4dbd98224841da8c0dbaed4b2d8f2ffa84d503fc0270b
   languageName: node
   linkType: hard
 
@@ -5374,7 +5373,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swing.xyz/sdk@npm:0.27.2, @swing.xyz/sdk@npm:^0.27.2":
+"@swing.xyz/sdk@npm:0.30.3":
+  version: 0.30.3
+  resolution: "@swing.xyz/sdk@npm:0.30.3"
+  dependencies:
+    "@coinbase/wallet-sdk": ^3.6.6
+    "@cosmjs/stargate": ^0.30.1
+    "@ethersproject/abi": ^5.7.0
+    "@ethersproject/bignumber": ^5.7.0
+    "@ethersproject/constants": ^5.7.0
+    "@ethersproject/contracts": ^5.7.0
+    "@ethersproject/hash": ^5.7.0
+    "@ethersproject/providers": ^5.7.2
+    "@ethersproject/signing-key": ^5.7.0
+    "@ethersproject/units": ^5.7.0
+    "@multiversx/sdk-core": ^11.6.0
+    "@multiversx/sdk-extension-provider": ^2.0.7
+    "@multiversx/sdk-network-providers": ^1.4.0
+    "@sentry/browser": ^7.54.0
+    axios: ^1.4.0
+    ethers: ^5.7.2
+    eventemitter3: ^4.0.7
+    openapi-client-axios: 7.2.0
+  checksum: 3418f5cde37645e6e25650e05deaa52c943dec70e54d277372c07c4cac313970d03f4357da3e20f78ec82a5334f7bd960c6d90f844183a3e702e77bfffc6ae2e
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.27.2":
   version: 0.27.2
   resolution: "@swing.xyz/sdk@npm:0.27.2"
   dependencies:
@@ -5400,9 +5425,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.27.2":
-  version: 0.27.2
-  resolution: "@swing.xyz/ui@npm:0.27.2"
+"@swing.xyz/ui@npm:^0.30.3":
+  version: 0.30.3
+  resolution: "@swing.xyz/ui@npm:0.30.3"
   dependencies:
     "@coinbase/wallet-sdk": ^3.6.6
     "@fortawesome/fontawesome-svg-core": ^6.4.0
@@ -5412,8 +5437,8 @@ __metadata:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@multiversx/sdk-extension-provider": ^2.0.7
     "@sentry/react": ^7.54.0
-    "@swing.xyz/design-system": 0.27.2
-    "@swing.xyz/sdk": 0.27.2
+    "@swing.xyz/design-system": 0.30.3
+    "@swing.xyz/sdk": 0.30.3
     "@walletconnect/ethereum-provider": ^1.8.0
     "@walletconnect/jsonrpc-http-connection": ^1.0.7
     "@walletconnect/jsonrpc-provider": ^1.0.13
@@ -5430,13 +5455,12 @@ __metadata:
     clsx: ^1.2.1
     dayjs: ^1.11.8
     jotai: ^2.1.1
-    lodash: ^4.17.21
+    lodash.isequal: ^4.5.0
     react-timeago: ^7.1.0
-    usehooks-ts: ^2.9.1
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 66248ba5458b52b4a471e3e9efd5ab24d8a97c33608d45f18e0a8c67a1859bdf2f08a04e192c118a0e8d8297d3c8f41694aff0425c0865f2798f361eaab152df
+  checksum: 50265ba76fb76bf43b23e7de8e108d86cc97bff92929193b64a1d39a78dd75740ae26e47eadba3a1ac018ae8a64a4dd1d5317dea09118c00d8cf00c01977184d
   languageName: node
   linkType: hard
 
@@ -5451,7 +5475,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-virtual@npm:3.0.0-beta.54":
+"@tanstack/react-virtual@npm:beta":
   version: 3.0.0-beta.54
   resolution: "@tanstack/react-virtual@npm:3.0.0-beta.54"
   dependencies:
@@ -14600,6 +14624,13 @@ eslint-config-turbo@latest:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
+  languageName: node
+  linkType: hard
+
 "lodash.memoize@npm:^4.1.2":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
@@ -18748,7 +18779,7 @@ prettier@latest:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@headlessui/react": ^1.7.2
     "@swing.xyz/sdk": ^0.27.2
-    "@swing.xyz/ui": ^0.27.2
+    "@swing.xyz/ui": ^0.30.3
     "@tailwindcss/forms": ^0.5.3
     autoprefixer: ^10.4.12
     clsx: ^1.2.1
@@ -20861,16 +20892,6 @@ turbo@latest:
   languageName: node
   linkType: hard
 
-"usehooks-ts@npm:^2.9.1":
-  version: 2.9.1
-  resolution: "usehooks-ts@npm:2.9.1"
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
-  checksum: 36f1e4142ce23bc019b81d2e93aefd7f2c350abcf255598c21627114a69a2f2f116b35dc3a353375f09c6e4c9b704a04f104e3d10e98280545c097feca66c30a
-  languageName: node
-  linkType: hard
-
 "utf-8-validate@npm:^5.0.2":
   version: 5.0.10
   resolution: "utf-8-validate@npm:5.0.10"
@@ -21521,7 +21542,7 @@ turbo@latest:
     "@angular/core": ^15
     "@angular/platform-browser": ^15
     "@angular/platform-browser-dynamic": ^15
-    "@swing.xyz/ui": ^0.27.2
+    "@swing.xyz/ui": ^0.30.3
     "@types/jasmine": ~4.3.0
     "@types/node": ^16.11.35
     copyfiles: ^2.4.1
@@ -21553,7 +21574,7 @@ turbo@latest:
     "@fortawesome/free-regular-svg-icons": ^6.2.1
     "@fortawesome/free-solid-svg-icons": ^6.2.1
     "@fortawesome/react-fontawesome": ^0.2.0
-    "@swing.xyz/ui": ^0.27.2
+    "@swing.xyz/ui": ^0.30.3
     "@types/node": 18.11.3
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6

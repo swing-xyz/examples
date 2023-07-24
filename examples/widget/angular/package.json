@@ -19,7 +19,7 @@
     "@angular/core": "^15",
     "@angular/platform-browser": "^15",
     "@angular/platform-browser-dynamic": "^15",
-    "@swing.xyz/ui": "^0.27.2",
+    "@swing.xyz/ui": "^0.30.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rxjs": "~7.8.0",
