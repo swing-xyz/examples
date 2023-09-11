@@ -2144,7 +2144,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/wallet-sdk@npm:^3.6.6":
+"@coinbase/wallet-sdk@npm:^3.6.6, @coinbase/wallet-sdk@npm:^3.7.1":
   version: 3.7.1
   resolution: "@coinbase/wallet-sdk@npm:3.7.1"
   dependencies:
@@ -2198,6 +2198,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/amino@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/amino@npm:0.31.1"
+  dependencies:
+    "@cosmjs/crypto": ^0.31.1
+    "@cosmjs/encoding": ^0.31.1
+    "@cosmjs/math": ^0.31.1
+    "@cosmjs/utils": ^0.31.1
+  checksum: 0e9dc15c4d6e77191135cd36bd8777c09704a39bf4c3281230d8899fbd57a1bc3929f728cc5bede55f69d23af6c03ac50a3b122440c9597afbd6512cf0b0f59d
+  languageName: node
+  linkType: hard
+
 "@cosmjs/crypto@npm:^0.30.1":
   version: 0.30.1
   resolution: "@cosmjs/crypto@npm:0.30.1"
@@ -2213,6 +2225,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/crypto@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/crypto@npm:0.31.1"
+  dependencies:
+    "@cosmjs/encoding": ^0.31.1
+    "@cosmjs/math": ^0.31.1
+    "@cosmjs/utils": ^0.31.1
+    "@noble/hashes": ^1
+    bn.js: ^5.2.0
+    elliptic: ^6.5.4
+    libsodium-wrappers-sumo: ^0.7.11
+  checksum: c212113d1768041c0e28dfaac57324d39ae7f670c082afe15c45b742a5e1fdedb3ea9be19ce1ba8ad69e0e15904fe672ca8b335b8a4ff248762fddae2980c588
+  languageName: node
+  linkType: hard
+
 "@cosmjs/encoding@npm:^0.30.1":
   version: 0.30.1
   resolution: "@cosmjs/encoding@npm:0.30.1"
@@ -2221,6 +2248,17 @@ __metadata:
     bech32: ^1.1.4
     readonly-date: ^1.0.0
   checksum: bd1932fafecbf9876ad97dee8133cc955f52d2fd9b6040d8c991b40ba4195c02cb4dc3c4beec7c237217ba96db78cd914840b2b895348482190d459a21c2b6dd
+  languageName: node
+  linkType: hard
+
+"@cosmjs/encoding@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/encoding@npm:0.31.1"
+  dependencies:
+    base64-js: ^1.3.0
+    bech32: ^1.1.4
+    readonly-date: ^1.0.0
+  checksum: dcfcce6832937749ed3f21d0b363ac2e73078704a66a9d74b33ad05f035ce3fe9c892b0be513d2f6c010d3201112f5c55870082184d37d9a113b4c9d0d1ceb8b
   languageName: node
   linkType: hard
 
@@ -2234,12 +2272,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/json-rpc@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/json-rpc@npm:0.31.1"
+  dependencies:
+    "@cosmjs/stream": ^0.31.1
+    xstream: ^11.14.0
+  checksum: cb0a32037f66f405c1f8fc158d9765fdae86623125737e5e47b110fcd7bc909dfae57190b05d7eb06802896c219bd19d181c12ce0b76ad98243270bdf1afad2a
+  languageName: node
+  linkType: hard
+
 "@cosmjs/math@npm:^0.30.1":
   version: 0.30.1
   resolution: "@cosmjs/math@npm:0.30.1"
   dependencies:
     bn.js: ^5.2.0
   checksum: c13d2a89348407bcc0f737f989fc1eb850b81d1f0ae06f1cc656b9a3194bf9ee048ce2e5c948f6ada61e95f5bfa324fad43dc531ade7538bcf993ba2085cb5fe
+  languageName: node
+  linkType: hard
+
+"@cosmjs/math@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/math@npm:0.31.1"
+  dependencies:
+    bn.js: ^5.2.0
+  checksum: f0254092b67d6349cf5c83670e414f629b49fb8f91131baa9bccc5584b6d270ab3a4b35575d9988b4098de2bc3e814e137dd9f80ad795a1be6a037e053b35346
   languageName: node
   linkType: hard
 
@@ -2258,6 +2315,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/proto-signing@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/proto-signing@npm:0.31.1"
+  dependencies:
+    "@cosmjs/amino": ^0.31.1
+    "@cosmjs/crypto": ^0.31.1
+    "@cosmjs/encoding": ^0.31.1
+    "@cosmjs/math": ^0.31.1
+    "@cosmjs/utils": ^0.31.1
+    cosmjs-types: ^0.8.0
+    long: ^4.0.0
+  checksum: 365832c4ed65c8fdd9b2fe42a05a4c0ecc2d10f8faa912bf8915b6eb4b5c352d0bde73a593bed24c3a9e0dbcb6e712414ad6d2d2cc042158600359f3db24f9f0
+  languageName: node
+  linkType: hard
+
 "@cosmjs/socket@npm:^0.30.1":
   version: 0.30.1
   resolution: "@cosmjs/socket@npm:0.30.1"
@@ -2267,6 +2339,18 @@ __metadata:
     ws: ^7
     xstream: ^11.14.0
   checksum: ef5e5d7bbcd89b5bfbd6fa4039133e15e5db848e6b0bc812b89872d28d9ced73d8a12fbf6581e6b0b08de28f2c1a9c7b05825804be65eb07d2f3d3532babea91
+  languageName: node
+  linkType: hard
+
+"@cosmjs/socket@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/socket@npm:0.31.1"
+  dependencies:
+    "@cosmjs/stream": ^0.31.1
+    isomorphic-ws: ^4.0.1
+    ws: ^7
+    xstream: ^11.14.0
+  checksum: b59699201bb9d8a35b398e52240a8d9996e4f9276b00f0f0e74e22d99a795d00e8704d57baaa10519ae699e45950e7c77c29a999fd3e927719b4cd2f2415f666
   languageName: node
   linkType: hard
 
@@ -2290,12 +2374,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/stargate@npm:^0.31.0":
+  version: 0.31.1
+  resolution: "@cosmjs/stargate@npm:0.31.1"
+  dependencies:
+    "@confio/ics23": ^0.6.8
+    "@cosmjs/amino": ^0.31.1
+    "@cosmjs/encoding": ^0.31.1
+    "@cosmjs/math": ^0.31.1
+    "@cosmjs/proto-signing": ^0.31.1
+    "@cosmjs/stream": ^0.31.1
+    "@cosmjs/tendermint-rpc": ^0.31.1
+    "@cosmjs/utils": ^0.31.1
+    cosmjs-types: ^0.8.0
+    long: ^4.0.0
+    protobufjs: ~6.11.3
+    xstream: ^11.14.0
+  checksum: 5358112000f0befd3bf39172bc8a974e7bec35c66b8c7bbc4e67de6c166e60e7c46a569d6fd4a8958bd592d63a6ebd36a6828f59dd8a12b7d6c6eb97b7c747d8
+  languageName: node
+  linkType: hard
+
 "@cosmjs/stream@npm:^0.30.1":
   version: 0.30.1
   resolution: "@cosmjs/stream@npm:0.30.1"
   dependencies:
     xstream: ^11.14.0
   checksum: f9e48a8377c2d3cfbf288fcf4fad745905c042dabc442d2cbb93d4280033e3c8e493a3328f58c0b645b60f9c2188d14603b2bb37a174bc0619686c5e70b13dca
+  languageName: node
+  linkType: hard
+
+"@cosmjs/stream@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/stream@npm:0.31.1"
+  dependencies:
+    xstream: ^11.14.0
+  checksum: 88a4c8d0b346a26f27456696d4c5e6c52ed7e7f315e78e6a68e985cc75cfbae09606b9a6fc1ec3c540494f6e56d1ccccf9f5d2c9e2b055b710e1a15570f5092e
   languageName: node
   linkType: hard
 
@@ -2317,10 +2430,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/tendermint-rpc@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/tendermint-rpc@npm:0.31.1"
+  dependencies:
+    "@cosmjs/crypto": ^0.31.1
+    "@cosmjs/encoding": ^0.31.1
+    "@cosmjs/json-rpc": ^0.31.1
+    "@cosmjs/math": ^0.31.1
+    "@cosmjs/socket": ^0.31.1
+    "@cosmjs/stream": ^0.31.1
+    "@cosmjs/utils": ^0.31.1
+    axios: ^0.21.2
+    readonly-date: ^1.0.0
+    xstream: ^11.14.0
+  checksum: 6c9e4eaec763b3a1a8179c0987a3d7262524e089f62b967fd03b3ae19495a1b54714a1812024916f3272b96e3a4aa6b3acc109c6d81e2c848cd6e0f67ce261a8
+  languageName: node
+  linkType: hard
+
 "@cosmjs/utils@npm:^0.30.1":
   version: 0.30.1
   resolution: "@cosmjs/utils@npm:0.30.1"
   checksum: 64ea16cdeba64d2b346a0b45ca47059ab4297fdf5c4e5fd89ec262eec488807f49f94dcdc294628142015ce4669c4eaf7426d1f8a6538146da5601dcc484cb19
+  languageName: node
+  linkType: hard
+
+"@cosmjs/utils@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@cosmjs/utils@npm:0.31.1"
+  checksum: 55e1bca211b73f2b72fc1e742f69f53e780824717f81914cc313bb5a997e47da11249c3dc944a08c5a210440eaefa9a4818977a44f8af6e7d3b5e2bda55c0304
   languageName: node
   linkType: hard
 
@@ -3163,7 +3301,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^6.2.1, @fortawesome/fontawesome-svg-core@npm:^6.4.0":
+"@fortawesome/fontawesome-common-types@npm:6.4.2":
+  version: 6.4.2
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.4.2"
+  checksum: 4a22932bd0cac65be1d35b739624f366b6c247b60eb5b8f66218957f54ce1cae56e2a20ea88789ede45d1e1c0c1014f160e01c1752122ec174ad0823e60f94bf
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-svg-core@npm:^6.2.1":
   version: 6.4.0
   resolution: "@fortawesome/fontawesome-svg-core@npm:6.4.0"
   dependencies:
@@ -3172,7 +3317,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-brands-svg-icons@npm:^6.2.1, @fortawesome/free-brands-svg-icons@npm:^6.4.0":
+"@fortawesome/fontawesome-svg-core@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.4.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.4.2
+  checksum: 0c0ecd9058883b128127e2b281c983ba6272be38a17577aaa2293ada58e9b1538357fe44430ded508d49ae3f5cc55aa720a0448d2b9d99689bb912d786f034e5
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-brands-svg-icons@npm:^6.2.1":
   version: 6.4.0
   resolution: "@fortawesome/free-brands-svg-icons@npm:6.4.0"
   dependencies:
@@ -3181,7 +3335,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-regular-svg-icons@npm:^6.2.1, @fortawesome/free-regular-svg-icons@npm:^6.4.0":
+"@fortawesome/free-brands-svg-icons@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "@fortawesome/free-brands-svg-icons@npm:6.4.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.4.2
+  checksum: 79efd840297f7b8dc057b553e46df1d5bfbc58e936bb2c7a3e488721fbbd430a70c4f4c613ac4d52bdc752e115b104fcd92774f35080ae04b8075add5423b6f0
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-regular-svg-icons@npm:^6.2.1":
   version: 6.4.0
   resolution: "@fortawesome/free-regular-svg-icons@npm:6.4.0"
   dependencies:
@@ -3190,12 +3353,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.2.1, @fortawesome/free-solid-svg-icons@npm:^6.4.0":
+"@fortawesome/free-regular-svg-icons@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "@fortawesome/free-regular-svg-icons@npm:6.4.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.4.2
+  checksum: fdb78fced6087f83b45fc1d73de874c69956aa07e7376b8f79b3b0b76e9f800d06c4586b5431acea4e8b5ebc40866f2c4e87fc02986cae7b066c1ea9d150d7e1
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:^6.2.1":
   version: 6.4.0
   resolution: "@fortawesome/free-solid-svg-icons@npm:6.4.0"
   dependencies:
     "@fortawesome/fontawesome-common-types": 6.4.0
   checksum: efdd1688620be3d52aacaeac36c955571962e174ae981fc697b6e92fb0996b00166d02e7729a59ea93713a514e2c8d564ab1aa79c9653b4cfed0263e4874d070
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.4.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.4.2
+  checksum: 4a365004990d5b1c970fb30c11b284b0b807903d0ecb193eb9b5a5e41ea7c0b8fff5c60480c580a1e44535cf23c5d9c90cb698189741e40ea3e10ac66290709c
   languageName: node
   linkType: hard
 
@@ -3218,7 +3399,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:^1.7.15, @headlessui/react@npm:^1.7.2":
+"@headlessui/react@npm:^1.7.16":
+  version: 1.7.17
+  resolution: "@headlessui/react@npm:1.7.17"
+  dependencies:
+    client-only: ^0.0.1
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: 0cdb67747e7f606f78214dac0b48573247779e70534b4471515c094b74addda173dc6a9847d33aea9c6e6bc151016c034125328953077e32aa7947ebabed91f7
+  languageName: node
+  linkType: hard
+
+"@headlessui/react@npm:^1.7.2":
   version: 1.7.15
   resolution: "@headlessui/react@npm:1.7.15"
   dependencies:
@@ -3798,6 +3991,19 @@ __metadata:
     buffer: 6.0.3
     json-bigint: 1.0.0
   checksum: b69a245f9dd30537e63c46254f29c36d41822b2bfbad5aaf8f73e717208d7fca94b1b62575ab458f4e7f1bcfc843124b4f9d3ccf5075550066b932b6daab0e19
+  languageName: node
+  linkType: hard
+
+"@multiversx/sdk-network-providers@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@multiversx/sdk-network-providers@npm:1.5.0"
+  dependencies:
+    axios: 0.24.0
+    bech32: 1.1.4
+    bignumber.js: 9.0.1
+    buffer: 6.0.3
+    json-bigint: 1.0.0
+  checksum: c2877a200fb61e26c33b5dc74688afee994e66aec9c8c86b56ee8f592a80e6a9296af09f86f964a2cd548c2b740ce1a6c9b226bcec3fe839dcabd3ce1e44159a
   languageName: node
   linkType: hard
 
@@ -5028,7 +5234,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.55.2, @sentry/browser@npm:^7.54.0":
+"@sentry-internal/tracing@npm:7.68.0":
+  version: 7.68.0
+  resolution: "@sentry-internal/tracing@npm:7.68.0"
+  dependencies:
+    "@sentry/core": 7.68.0
+    "@sentry/types": 7.68.0
+    "@sentry/utils": 7.68.0
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: 93523660ede29988054451e6af6e4f38102753a0bd851c0623ccd05207e3fc63eaf01559c1ffc76e4e234624df9ee26834e693426995907ce646cb750e80a3f2
+  languageName: node
+  linkType: hard
+
+"@sentry/browser@npm:7.68.0, @sentry/browser@npm:^7.61.1":
+  version: 7.68.0
+  resolution: "@sentry/browser@npm:7.68.0"
+  dependencies:
+    "@sentry-internal/tracing": 7.68.0
+    "@sentry/core": 7.68.0
+    "@sentry/replay": 7.68.0
+    "@sentry/types": 7.68.0
+    "@sentry/utils": 7.68.0
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: 85d688902057d85113cd6fb46e4ca17167bfda6ce77c8264f1f29bf7d451dd73315ebcf7134ac91d539fc4032449ac25b0dd6e9209695bd934a4716acda55aac
+  languageName: node
+  linkType: hard
+
+"@sentry/browser@npm:^7.54.0":
   version: 7.55.2
   resolution: "@sentry/browser@npm:7.55.2"
   dependencies:
@@ -5053,18 +5285,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:^7.54.0":
-  version: 7.55.2
-  resolution: "@sentry/react@npm:7.55.2"
+"@sentry/core@npm:7.68.0":
+  version: 7.68.0
+  resolution: "@sentry/core@npm:7.68.0"
   dependencies:
-    "@sentry/browser": 7.55.2
-    "@sentry/types": 7.55.2
-    "@sentry/utils": 7.55.2
+    "@sentry/types": 7.68.0
+    "@sentry/utils": 7.68.0
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: 1601fba3f7c8b2f35c3212d8f51690cb25efb17a7c21698ae67fdcbe3ae17f56c381edb51870739649752aee291efe742fb3e169b3118dc2690eb820de043766
+  languageName: node
+  linkType: hard
+
+"@sentry/react@npm:^7.61.1":
+  version: 7.68.0
+  resolution: "@sentry/react@npm:7.68.0"
+  dependencies:
+    "@sentry/browser": 7.68.0
+    "@sentry/types": 7.68.0
+    "@sentry/utils": 7.68.0
     hoist-non-react-statics: ^3.3.2
-    tslib: ^1.9.3
+    tslib: ^2.4.1 || ^1.9.3
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: e3cf5585f8f9afbecce2a371879e2cc14ca57bb2a5251edfac0656634f6a976f392ae158a213dc0d4f42cb7868463adaf2baf4abb6e8afeb9e56e66ccc6703cb
+  checksum: 73b9c3e2e3805ec068d95ceef0702783604c972b1ea873523ec63af9b3ce73667eb9fecbfe0838a5b0f33fe87da97cd2f6c1a74859e342c637adf15999f1bae2
   languageName: node
   linkType: hard
 
@@ -5079,10 +5322,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/replay@npm:7.68.0":
+  version: 7.68.0
+  resolution: "@sentry/replay@npm:7.68.0"
+  dependencies:
+    "@sentry/core": 7.68.0
+    "@sentry/types": 7.68.0
+    "@sentry/utils": 7.68.0
+  checksum: a54871ec011bdd7df329fe684f3790932d1bd3c08ea7a849f5e1d9bde6cdae3b96993687522a92e0cfaf529f4e7439e28db1da5216e13d633af2dcf121b6f505
+  languageName: node
+  linkType: hard
+
 "@sentry/types@npm:7.55.2":
   version: 7.55.2
   resolution: "@sentry/types@npm:7.55.2"
   checksum: 37ca4043dd88e05ea104172e7b0aa39e802f71c01ab3bcc31beb5ef25bccfa98fe1305e57cc929d65cdc59f0da6d71e464556a0309379371e5e350f6866cbf3c
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.68.0":
+  version: 7.68.0
+  resolution: "@sentry/types@npm:7.68.0"
+  checksum: 9854e14b6864dc2b649655dc10a6f05d1e960d8fb2e2b0cb178073d884118314f790aca633d208ab0ab76b173523a66d066fb915294c0d5412e00456fa89343d
   languageName: node
   linkType: hard
 
@@ -5093,6 +5354,16 @@ __metadata:
     "@sentry/types": 7.55.2
     tslib: ^1.9.3
   checksum: efcb02ea9d49de7f754f7e9e42a8f5e882aad4d106ba2a3394706d6fc7b7ea74b86d66595da51f026cdde4b6743963ec3b3a7cb2e870354ac1009d7fa9159476
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.68.0":
+  version: 7.68.0
+  resolution: "@sentry/utils@npm:7.68.0"
+  dependencies:
+    "@sentry/types": 7.68.0
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: fd80eb9379ffb208864906b693e599d01a9229f523cf6516c261abe37316afd9dedd83a5690355e4823290164099e129957bf7dc3891ab724ac6e00b56908cc9
   languageName: node
   linkType: hard
 
@@ -5340,25 +5611,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.27.2":
-  version: 0.27.2
-  resolution: "@swing.xyz/design-system@npm:0.27.2"
+"@swing.xyz/design-system@npm:0.31.1":
+  version: 0.31.1
+  resolution: "@swing.xyz/design-system@npm:0.31.1"
   dependencies:
-    "@fortawesome/fontawesome-svg-core": ^6.4.0
-    "@fortawesome/free-brands-svg-icons": ^6.4.0
-    "@fortawesome/free-regular-svg-icons": ^6.4.0
-    "@fortawesome/free-solid-svg-icons": ^6.4.0
+    "@fortawesome/fontawesome-svg-core": ^6.4.2
+    "@fortawesome/free-brands-svg-icons": ^6.4.2
+    "@fortawesome/free-regular-svg-icons": ^6.4.2
+    "@fortawesome/free-solid-svg-icons": ^6.4.2
     "@fortawesome/react-fontawesome": ^0.2.0
-    "@headlessui/react": ^1.7.15
+    "@headlessui/react": ^1.7.16
     "@radix-ui/react-dialog": ^1.0.4
-    "@tanstack/react-virtual": 3.0.0-beta.54
-    clsx: ^1.2.1
-    jotai: ^2.1.1
-    usehooks-ts: ^2.9.1
+    "@tanstack/react-virtual": beta
+    clsx: ^2.0.0
+    jotai: ^2.3.0
   peerDependencies:
     react: ^16 || ^17 || ^18
     react-dom: ^16 || ^17 || ^18
-  checksum: 4aaa1b88068e387dd9ecf7c5f3148669bb0a34f01db70accf5f9b1f109505f861cd138188f3bc26dd68b48a3adff8778caefe436d0322864a9d5c7c9942772db
+  checksum: bb3cf13d8fd1a11b609a41242a9bc83dab0fc59028f1214564328ada06ef8c726625876cb7ecc9b79000f61bcaaed05f236907b7722f505c01ac78d839d7a6e1
   languageName: node
   linkType: hard
 
@@ -5374,7 +5644,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swing.xyz/sdk@npm:0.27.2, @swing.xyz/sdk@npm:^0.27.2":
+"@swing.xyz/sdk@npm:0.31.1":
+  version: 0.31.1
+  resolution: "@swing.xyz/sdk@npm:0.31.1"
+  dependencies:
+    "@coinbase/wallet-sdk": ^3.7.1
+    "@cosmjs/stargate": ^0.31.0
+    "@ethersproject/abi": ^5.7.0
+    "@ethersproject/bignumber": ^5.7.0
+    "@ethersproject/constants": ^5.7.0
+    "@ethersproject/contracts": ^5.7.0
+    "@ethersproject/hash": ^5.7.0
+    "@ethersproject/providers": ^5.7.2
+    "@ethersproject/signing-key": ^5.7.0
+    "@ethersproject/units": ^5.7.0
+    "@multiversx/sdk-core": ^11.6.0
+    "@multiversx/sdk-extension-provider": ^2.0.7
+    "@multiversx/sdk-network-providers": ^1.5.0
+    "@sentry/browser": ^7.61.1
+    axios: ^1.4.0
+    ethers: ^5.7.2
+    eventemitter3: ^4.0.7
+    openapi-client-axios: 7.3.2
+  checksum: c14f8921e2b5f0c509f5698e17cd54c9e286516b20017148fe4e3b02b0da9b9b0e40d1df892cd95831a7f2ae53c7161105fd5b1b5655f545799a13cc6bb9463e
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.27.2":
   version: 0.27.2
   resolution: "@swing.xyz/sdk@npm:0.27.2"
   dependencies:
@@ -5400,20 +5696,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.27.2":
-  version: 0.27.2
-  resolution: "@swing.xyz/ui@npm:0.27.2"
+"@swing.xyz/ui@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@swing.xyz/ui@npm:0.31.1"
   dependencies:
-    "@coinbase/wallet-sdk": ^3.6.6
-    "@fortawesome/fontawesome-svg-core": ^6.4.0
-    "@fortawesome/free-brands-svg-icons": ^6.4.0
-    "@fortawesome/free-regular-svg-icons": ^6.4.0
-    "@fortawesome/free-solid-svg-icons": ^6.4.0
+    "@coinbase/wallet-sdk": ^3.7.1
+    "@fortawesome/fontawesome-svg-core": ^6.4.2
+    "@fortawesome/free-brands-svg-icons": ^6.4.2
+    "@fortawesome/free-regular-svg-icons": ^6.4.2
+    "@fortawesome/free-solid-svg-icons": ^6.4.2
     "@fortawesome/react-fontawesome": ^0.2.0
     "@multiversx/sdk-extension-provider": ^2.0.7
-    "@sentry/react": ^7.54.0
-    "@swing.xyz/design-system": 0.27.2
-    "@swing.xyz/sdk": 0.27.2
+    "@sentry/react": ^7.61.1
+    "@swing.xyz/design-system": 0.31.1
+    "@swing.xyz/sdk": 0.31.1
     "@walletconnect/ethereum-provider": ^1.8.0
     "@walletconnect/jsonrpc-http-connection": ^1.0.7
     "@walletconnect/jsonrpc-provider": ^1.0.13
@@ -5427,16 +5723,15 @@ __metadata:
     "@web3-react/walletconnect": 8.2.0
     axios: ^1.4.0
     big.js: ^6.2.1
-    clsx: ^1.2.1
-    dayjs: ^1.11.8
-    jotai: ^2.1.1
-    lodash: ^4.17.21
+    clsx: ^2.0.0
+    dayjs: ^1.11.9
+    jotai: ^2.3.0
+    lodash.isequal: ^4.5.0
     react-timeago: ^7.1.0
-    usehooks-ts: ^2.9.1
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 66248ba5458b52b4a471e3e9efd5ab24d8a97c33608d45f18e0a8c67a1859bdf2f08a04e192c118a0e8d8297d3c8f41694aff0425c0865f2798f361eaab152df
+  checksum: dca0bc558b403798427050ec7684baa73e2a1ab0aa56b90708537b6ddc02bdca48e82dc63ee6a15c2069b950a5944209f7a5dc4c2fbe9df441e402a627f59e76
   languageName: node
   linkType: hard
 
@@ -5451,21 +5746,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-virtual@npm:3.0.0-beta.54":
-  version: 3.0.0-beta.54
-  resolution: "@tanstack/react-virtual@npm:3.0.0-beta.54"
+"@tanstack/react-virtual@npm:beta":
+  version: 3.0.0-beta.60
+  resolution: "@tanstack/react-virtual@npm:3.0.0-beta.60"
   dependencies:
-    "@tanstack/virtual-core": 3.0.0-beta.54
+    "@tanstack/virtual-core": 3.0.0-beta.60
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: ddeb3cb46db89365609d5bc402b8a8d410dc7e5f38ee579f39e5589c62a2123799ba36586939a5a6ad1a701650a5b169f657fd24687687bf08f4827b0099bc75
+  checksum: e266ed9ad3e26da77287da07497b6658c2d97fe76151c08c29d6fcb0d34986c2b2d7c482c6c3fd6890b8871d87576e14ee6ce67d0300b0878a226a38023dbc7c
   languageName: node
   linkType: hard
 
-"@tanstack/virtual-core@npm:3.0.0-beta.54":
-  version: 3.0.0-beta.54
-  resolution: "@tanstack/virtual-core@npm:3.0.0-beta.54"
-  checksum: a58cb30e1bbf8a0420caea8693df11c909c1190908163fef75aeddfa11bba621ca993ab218f4e7537c05c1651f9398e61016f3e3d374093c87029b52c868f0e7
+"@tanstack/virtual-core@npm:3.0.0-beta.60":
+  version: 3.0.0-beta.60
+  resolution: "@tanstack/virtual-core@npm:3.0.0-beta.60"
+  checksum: 46d43ddb1745f87e4c17a5580539cb4365265054e8ae3e83133b14b939096f339738d9dbb362927c9df828550a93681c3afd7ae2216d26b3a147422d9b930536
   languageName: node
   linkType: hard
 
@@ -8629,6 +8924,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
+  languageName: node
+  linkType: hard
+
 "co@npm:^4.6.0":
   version: 4.6.0
   resolution: "co@npm:4.6.0"
@@ -9017,6 +9319,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cosmjs-types@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "cosmjs-types@npm:0.8.0"
+  dependencies:
+    long: ^4.0.0
+    protobufjs: ~6.11.2
+  checksum: 99714ec956d2cb2e521d39896c9c9a24cf9df0d370265c203646ea015b51e86472efc0cb11f67a80f0649d178b0bcff77ac659e67fdfc8b2437cd7a42018577f
+  languageName: node
+  linkType: hard
+
 "create-require@npm:^1.1.0":
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
@@ -9377,10 +9689,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.8":
-  version: 1.11.8
-  resolution: "dayjs@npm:1.11.8"
-  checksum: 4fe04b6df98ba6e5f89b49d80bba603cbf01e21a1b4a24ecb163c94c0ba5324a32ac234a139cee654f89d5277a2bcebca5347e6676c28a0a6d1a90f1d34a42b8
+"dayjs@npm:^1.11.9":
+  version: 1.11.9
+  resolution: "dayjs@npm:1.11.9"
+  checksum: a4844d83dc87f921348bb9b1b93af851c51e6f71fa259604809cfe1b49d1230e6b0212dab44d1cb01994c096ad3a77ea1cf18fa55154da6efcc9d3610526ac38
   languageName: node
   linkType: hard
 
@@ -13945,15 +14257,18 @@ eslint-config-turbo@latest:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.1.1":
-  version: 2.2.0
-  resolution: "jotai@npm:2.2.0"
+"jotai@npm:^2.3.0":
+  version: 2.4.2
+  resolution: "jotai@npm:2.4.2"
   peerDependencies:
+    "@types/react": ">=17.0.0"
     react: ">=17.0.0"
   peerDependenciesMeta:
+    "@types/react":
+      optional: true
     react:
       optional: true
-  checksum: 9925a0ced9615773302a2e6262e06f6f31524b8328eb57f07c12eddf4284ad8f9a472ae6d2dc1e1ecdf734e8862be7239cab176aa45eb999741e12d411e46f9e
+  checksum: b0f77afa692435ae922c8ad25f8642b98759127d686c6b3a6e8944b64f351be63e08b14bbcf7f6d2becdf68f2f5c1005b19c853271fc22052db783a2bce25efc
   languageName: node
   linkType: hard
 
@@ -14480,6 +14795,22 @@ eslint-config-turbo@latest:
   languageName: node
   linkType: hard
 
+"libsodium-sumo@npm:^0.7.11":
+  version: 0.7.11
+  resolution: "libsodium-sumo@npm:0.7.11"
+  checksum: 9efac902a05002e1caca1c1df3a7cd838ac370588cfa31107d6e787cb5a181f4ca46c7961e3136943c8b07b1d543c0283b91e08a141f9b55a74f10808c3017ef
+  languageName: node
+  linkType: hard
+
+"libsodium-wrappers-sumo@npm:^0.7.11":
+  version: 0.7.11
+  resolution: "libsodium-wrappers-sumo@npm:0.7.11"
+  dependencies:
+    libsodium-sumo: ^0.7.11
+  checksum: 26c7aaf8c4b6da6b06ef17637e5541e16c796be9611b194d795501f021ac04abfeda09cadae66b3b515308993cd57361a571eefabdf9d9b3377b070a17535440
+  languageName: node
+  linkType: hard
+
 "libsodium-wrappers@npm:^0.7.6":
   version: 0.7.10
   resolution: "libsodium-wrappers@npm:0.7.10"
@@ -14597,6 +14928,13 @@ eslint-config-turbo@latest:
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: a3f527d22c548f43ae31c861ada88b2637eb48ac6aa3eb56e82d44917971b8aa96fbb37aa60efea674dc4ee8c42074f90f7b1f772e9db375435f6c83a19b3bc6
+  languageName: node
+  linkType: hard
+
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
   languageName: node
   linkType: hard
 
@@ -15924,6 +16262,20 @@ next@latest:
     axios: ^0.25.0 || ^1.1.3
     js-yaml: ^4.1.0
   checksum: 416d260699120ca8a173571067a27c2c4d8ad30cca6bb6071d6b912be2e979d8e7a6066ae26f260c0005fb082afc16c7251aabde19b23aacbc7bb48b994e7043
+  languageName: node
+  linkType: hard
+
+"openapi-client-axios@npm:7.3.2":
+  version: 7.3.2
+  resolution: "openapi-client-axios@npm:7.3.2"
+  dependencies:
+    bath-es5: ^3.0.3
+    dereference-json-schema: ^0.2.1
+    openapi-types: ^12.0.2
+  peerDependencies:
+    axios: ">0.25.0"
+    js-yaml: ^4.1.0
+  checksum: 83fb63efed1137924be8cf11952a4bf196a7c17a420fe137a99183f481d095dd89109eb5188945970f0fb540667141bc605bf5158e1692fa3db30a7cd78b3e4a
   languageName: node
   linkType: hard
 
@@ -18748,7 +19100,7 @@ prettier@latest:
     "@fortawesome/react-fontawesome": ^0.2.0
     "@headlessui/react": ^1.7.2
     "@swing.xyz/sdk": ^0.27.2
-    "@swing.xyz/ui": ^0.27.2
+    "@swing.xyz/ui": ^0.31.1
     "@tailwindcss/forms": ^0.5.3
     autoprefixer: ^10.4.12
     clsx: ^1.2.1
@@ -20357,6 +20709,13 @@ prettier@latest:
   languageName: node
   linkType: hard
 
+"tslib@npm:^2.4.1 || ^1.9.3":
+  version: 2.6.2
+  resolution: "tslib@npm:2.6.2"
+  checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
+  languageName: node
+  linkType: hard
+
 "tsutils@npm:^3.21.0":
   version: 3.21.0
   resolution: "tsutils@npm:3.21.0"
@@ -20858,16 +21217,6 @@ turbo@latest:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
-  languageName: node
-  linkType: hard
-
-"usehooks-ts@npm:^2.9.1":
-  version: 2.9.1
-  resolution: "usehooks-ts@npm:2.9.1"
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
-  checksum: 36f1e4142ce23bc019b81d2e93aefd7f2c350abcf255598c21627114a69a2f2f116b35dc3a353375f09c6e4c9b704a04f104e3d10e98280545c097feca66c30a
   languageName: node
   linkType: hard
 
@@ -21521,7 +21870,7 @@ turbo@latest:
     "@angular/core": ^15
     "@angular/platform-browser": ^15
     "@angular/platform-browser-dynamic": ^15
-    "@swing.xyz/ui": ^0.27.2
+    "@swing.xyz/ui": ^0.31.1
     "@types/jasmine": ~4.3.0
     "@types/node": ^16.11.35
     copyfiles: ^2.4.1
@@ -21553,7 +21902,7 @@ turbo@latest:
     "@fortawesome/free-regular-svg-icons": ^6.2.1
     "@fortawesome/free-solid-svg-icons": ^6.2.1
     "@fortawesome/react-fontawesome": ^0.2.0
-    "@swing.xyz/ui": ^0.27.2
+    "@swing.xyz/ui": ^0.31.1
     "@types/node": 18.11.3
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
