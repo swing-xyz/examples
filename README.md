@@ -1,33 +1,50 @@
 # Swing Examples
 
-> Have an idea for a template? Please create a pull request or [chat with us on Discord](https://discord.gg/swingxyz).
-
-## Widget Examples
-
-- [Next.js](./examples/widget/nextjs/README.md) - wallet portfolio app
-- [Angular](./examples/widget/angular/README.md) - basic angular app
-- [Vite](./examples/widget/vite/README.md) - basic vite app
-
-## SDK Examples
-
-- [Next.js](./examples/sdk/nextjs/README.md) - altcoin marking site
-- [React](./examples/sdk/react/README.md) - basic react app
-- [Vite](./examples/sdk/vite/README.md) - basic vite app
-
-## API Examples
-
-- Swing API template (coming soon)
+> Have an idea for a template? Please [create a pull request](https://github.com/polkaswitch/examples/pulls) or [request an example](https://github.com/polkaswitch/examples/issues/new).
 
 ## Getting started
 
-To get started with this template, first install the npm dependencies:
+First choose one of the [example](./examples) templates.
+
+Install the NPM dependencies:
 
 ```bash
 yarn install
 ```
 
-Next, run the development server for a specific example:
+Finally, run the development server for a specific example:
 
 ```bash
-yarn dev --filter=widget-nextjs
+yarn dev --filter=swaps-widget-nextjs
 ```
+
+## Widget Examples
+
+### Swaps
+
+- [swaps-widget-nextjs](./examples/swaps-widget-nextjs/README.md) - Cross-chain Swaps using the Widget in Next.js
+- [swaps-widget-angular](./examples/swaps-widget-angular/README.md) - Cross-chain Swaps using the Widget in Angular
+
+### Staking
+
+- [staking-widget-nextjs](./examples/staking-widget-nextjs/README.md) - Cross-chain Staking using the Widget in Next.js
+
+## SDK Examples
+
+### Swaps
+
+- [swaps-sdk-nextjs](./examples/swaps-sdk-nextjs/README.md) - Cross-chain Swaps using the SDK in Next.js
+
+### Staking
+
+- [staking-sdk-nextjs](./examples/staking-sdk-nextjs/README.md) - Cross-chain Staking using the SDK in Next.js
+
+## API Examples
+
+### Swaps
+
+- [swaps-api-nextjs](./examples/swaps-api-nextjs/README.md) - Cross-chain Swaps using the API in Next.js
+
+### Staking
+
+- [staking-api-nextjs](./examples/staking-api-nextjs/README.md) - Cross-chain Staking using the API in Next.js

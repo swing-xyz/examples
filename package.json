@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "workspaces": [
-    "examples/widget/*",
-    "examples/sdk/*",
+    "examples/*",
     "apps/*",
     "packages/*"
   ],
@@ -14,18 +13,17 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ncu": "npx -y npm-check-updates -ws"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@types/node": "18.8.0",
-    "@types/react": "18.0.21",
+    "@types/node": "20.8.9",
+    "@types/react": "18.2.33",
     "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.16"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@4.0.1"
 }
