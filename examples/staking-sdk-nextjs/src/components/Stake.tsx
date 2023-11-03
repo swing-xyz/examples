@@ -1,7 +1,6 @@
 "use client";
 
-import SwingSDK, {
-  Contract,
+import {
   TransferParams,
   TransferQuote,
   TransferRoute,
@@ -10,7 +9,7 @@ import SwingSDK, {
 } from "@swing.xyz/sdk";
 import "@swing.xyz/ui/theme.css";
 import { Button } from "components/ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -18,52 +17,23 @@ import {
   DialogTitle,
 } from "components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-
-const swingSDK = new SwingSDK({
-  projectId: "example-staking-sdk-nextjs",
-});
+import { useAccount, useSwitchNetwork } from "wagmi";
+import { useSwingSdk } from "./SwingSdkProvider";
+import { useConnectWallet } from "hooks/useConnectWallet";
 
 export function Stake() {
-  const metamask =
-    typeof window !== "undefined" ? (window.ethereum as any) : undefined;
+  const [swingSDK, { isReady }] = useSwingSdk();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<TransferStepResult | null>(null);
   const [results, setResults] = useState<TransferStepResults | null>(null);
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [quote, setQuote] = useState<TransferQuote | null>(null);
   const [transferParams, setTransferParams] = useState<TransferParams | null>(
     null
   );
-
-  useEffect(() => {
-    setIsLoading(true);
-    swingSDK
-      .init()
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setError(error.message);
-      });
-  }, []);
-
-  async function connectWallet() {
-    try {
-      await metamask.request({
-        method: "eth_requestAccounts",
-      });
-
-      const address = await swingSDK.wallet.connect(metamask, "ethereum");
-
-      setWalletAddress(address);
-
-      return address;
-    } catch (error) {
-      setError("Metamask not connected. Do you have it installed?");
-    }
-  }
+  const { address, isConnected } = useAccount();
+  const { switchNetwork } = useSwitchNetwork();
+  const connectWallet = useConnectWallet();
 
   async function startTransfer(
     transferRoute: TransferRoute,
@@ -84,23 +54,11 @@ export function Stake() {
 
       switch (transferStepStatus.status) {
         case "CHAIN_SWITCH_REQUIRED":
-          await metamask.request({
-            method: "wallet_switchEthereumChain",
-            params: [
-              {
-                chainId: `0x${Number(transferStepStatus.chain.chainId).toString(
-                  16
-                )}`,
-              },
-            ],
-          });
+          switchNetwork?.(transferStepStatus.chain.chainId);
           break;
 
         case "WALLET_CONNECTION_REQUIRED":
-          await metamask.request({
-            method: "wallet_requestPermissions",
-            params: [{ eth_accounts: {} }],
-          });
+          connectWallet(transferStepStatus.chain);
           break;
       }
     });
@@ -115,62 +73,69 @@ export function Stake() {
   }
 
   return (
-    <div className="container grid gap-4 px-20">
-      <div className="grid grid-cols-4">
+    <div className="container grid gap-4 pt-5 pb-20">
+      <div className="grid grid-cols-5">
         <div>Provider</div>
+        <div>Chain</div>
         <div>Send</div>
         <div>Receive</div>
         <div></div>
       </div>
 
-      {swingSDK.contracts.map((contract) => {
-        return (
-          <div key={contract.id} className="grid grid-cols-4">
-            <NameLogo
-              name={contract.integration.name}
-              logo={contract.integration.logo}
-            />
-            <NameLogo
-              name={contract.inputToken.symbol!}
-              logo={contract.inputToken?.logo}
-            />
-            <NameLogo
-              name={contract.outputToken?.symbol!}
-              logo={contract.outputToken?.logo}
-            />
+      {isReady
+        ? swingSDK.contracts.map((contract) => {
+            return (
+              <div key={contract.id} className="grid grid-cols-5">
+                <NameLogo
+                  name={contract.integration.name}
+                  logo={contract.integration.logo}
+                />
+                <NameLogo
+                  name={contract.chain.name}
+                  logo={contract.chain.logo}
+                />
+                <NameLogo
+                  name={contract.inputToken.symbol}
+                  logo={contract.inputToken.logo}
+                />
+                <NameLogo
+                  name={contract.outputToken.symbol}
+                  logo={contract.outputToken.logo}
+                />
 
-            <Button
-              className="w-40"
-              variant="secondary"
-              disabled={isLoading}
-              onClick={async () => {
-                const fromUserAddress = await connectWallet();
-                if (!fromUserAddress) return;
+                <Button
+                  className="w-40"
+                  variant="secondary"
+                  disabled={isLoading}
+                  onClick={async () => {
+                    const fromUserAddress = await connectWallet(contract.chain);
+                    if (!fromUserAddress) return;
 
-                setIsLoading(true);
+                    setIsLoading(true);
 
-                const params = {
-                  amount: "1",
-                  fromChain: contract.chain,
-                  fromToken: contract.inputToken.symbol,
-                  fromUserAddress,
-                  toChain: contract.chain,
-                  toToken: contract.outputToken?.symbol!,
-                  toUserAddress: fromUserAddress,
-                };
-                setTransferParams(params);
+                    const params = {
+                      amount: "1",
+                      fromChain: contract.chain.slug,
+                      fromToken: contract.inputToken.symbol,
+                      fromUserAddress,
+                      toChain: contract.chain.slug,
+                      toToken: contract.outputToken?.symbol!,
+                      toUserAddress: fromUserAddress,
+                    };
+                    setTransferParams(params);
 
-                const quoteResponse = await swingSDK.getQuote(params);
+                    const quoteResponse = await swingSDK.getQuote(params);
 
-                setQuote(quoteResponse);
-                setIsLoading(false);
-              }}
-            >
-              Stake Now
-            </Button>
-          </div>
-        );
-      })}
+                    setQuote(quoteResponse);
+                    setIsLoading(false);
+                  }}
+                >
+                  Stake Now
+                </Button>
+              </div>
+            );
+          })
+        : null}
 
       <Dialog
         open={!!transferParams}
@@ -238,17 +203,23 @@ export function Stake() {
                       className="w-40"
                       variant="secondary"
                       disabled={isLoading}
-                      onClick={() =>
-                        startTransfer(route, {
+                      onClick={async () => {
+                        let fromUserAddress = address;
+                        if (!isConnected) {
+                          const chain = swingSDK.getChain(quote.fromChain.slug);
+                          fromUserAddress = await connectWallet(chain!);
+                        }
+
+                        await startTransfer(route, {
                           amount: "1",
                           fromChain: quote.fromChain.slug,
                           fromToken: quote.fromToken.symbol,
                           toChain: quote.toChain.slug,
                           toToken: quote.toToken.symbol,
-                          fromUserAddress: walletAddress!,
-                          toUserAddress: walletAddress!,
-                        })
-                      }
+                          fromUserAddress: fromUserAddress!,
+                          toUserAddress: fromUserAddress!,
+                        });
+                      }}
                     >
                       Stake
                     </Button>

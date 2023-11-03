@@ -1,10 +1,11 @@
 # Cross-chain Staking using the Swing SDK in Next.js
 
-MetaWallet is an example template showcasing how to use the [Swing Widget](https://developers.swing.xyz/reference/widget) to integrate cross-chain staking on a wallet portfolio website.
+MetaWallet is an example template showcasing how to use the [Swing SDK](https://developers.swing.xyz/reference/sdk) to integrate cross-chain staking on a wallet portfolio website.
 
 This example is built with:
 
-- [@swing.xyz/ui](https://developers.swing.xyz/reference/widget)
+- [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk)
+- [wagmi](https://wagmi.sh/react/getting-started)
 - [next.js](https://nextjs.org)
 - [tailwind](https://tailwindcss.com)
 
@@ -24,11 +25,17 @@ yarn dev --filter=staking-sdk-nextjs
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
-## Swing integration
+## Swing Integration
 
-The [@swing.xyz/ui](https://developers.swing.xyz/reference/widget) can be found in [components/Stake.tsx](./components/Stake.tsx).
+The [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk) can be found in the [Stake](./src/components/Stake.tsx) component.
 
-It utilizes the SDK's `connect`, `getQuote` and `transfer` methods to interact with the customer's wallet, find the best route, and transfer the tokens to the staking contract.
+It utilizes the SDK's `getQuote` and `transfer` methods to interact with the customer's wallet, find the best route, and transfer the tokens to the chosen staking provider.
+
+## Wagmi Integration
+
+You can find the Wagmi configuration in the [WagmiProvider](./src/components/WagmiProvider.tsx) component.
+
+Then see how the [useConnectWallet](./src/hooks/useConnectWallet.tsx) hook is used to sync the Wagmi wallet connection with the Swing SDK.
 
 ## Customizing
 

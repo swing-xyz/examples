@@ -18,7 +18,7 @@
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
-    "@swing.xyz/sdk": "^0.40.1",
+    "@swing.xyz/sdk": "^0.41.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.291.0",
@@ -26,7 +26,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "viem": "^1.18.4",
+    "wagmi": "^1.4.5"
   },
   "devDependencies": {
     "@types/node": "20.8.9",
