@@ -4013,6 +4013,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry-internal/tracing@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry-internal/tracing@npm:7.77.0"
+  dependencies:
+    "@sentry/core": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 18d27e1414ab5cf6a66af7545b768139bda06da39608d89000a29a14e3883bae467f5f673dc11c7437cc7b55656b321488f62519f44f71b8189b9630f9f826f2
+  languageName: node
+  linkType: hard
+
 "@sentry/browser@npm:7.76.0":
   version: 7.76.0
   resolution: "@sentry/browser@npm:7.76.0"
@@ -4026,6 +4037,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/browser@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/browser@npm:7.77.0"
+  dependencies:
+    "@sentry-internal/tracing": "npm:7.77.0"
+    "@sentry/core": "npm:7.77.0"
+    "@sentry/replay": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 482c8c8d2302b85c7208105b640ff219c954d81089c67f5c2274f780f5286b17817e8e3ce848d2b522de3854e6101685c96b58b0ac5058dca6fd1d25fe4720a3
+  languageName: node
+  linkType: hard
+
 "@sentry/core@npm:7.76.0":
   version: 7.76.0
   resolution: "@sentry/core@npm:7.76.0"
@@ -4036,17 +4060,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.76.0":
-  version: 7.76.0
-  resolution: "@sentry/react@npm:7.76.0"
+"@sentry/core@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/core@npm:7.77.0"
   dependencies:
-    "@sentry/browser": "npm:7.76.0"
-    "@sentry/types": "npm:7.76.0"
-    "@sentry/utils": "npm:7.76.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 1e019adeb4fde097894b59f5089c7d37758e64f0a010cadb58367959a8e660e9bb266354b0ea19e535d7e2a06df673d67158bc679f9ceb87573eb273d84f3b18
+  languageName: node
+  linkType: hard
+
+"@sentry/react@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/react@npm:7.77.0"
+  dependencies:
+    "@sentry/browser": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
     hoist-non-react-statics: "npm:^3.3.2"
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 2b95e04b83b1d2af5844d0eb77f1fb87c2af0fdb47a716d9e8edf958df99c6e86a56d8d0a0b2398a6ec9b93224850f9c366cac40030b1a8181d5a02950f9204d
+  checksum: 3106a4a5e4600f6a6d6d4105fc32364ff0ef9e86f28e8aa8b0a60fe9fe2ea2de6a0fe967b49d63342b3d8d54b8d345313a7780074754a249cf0c8e66e3fcc653
   languageName: node
   linkType: hard
 
@@ -4062,10 +4096,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/replay@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/replay@npm:7.77.0"
+  dependencies:
+    "@sentry-internal/tracing": "npm:7.77.0"
+    "@sentry/core": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 56fecc749f94d0495821819ad2ecb4920a3efed7fd0f2d949e81f1061533c0e49e015f79316b6d38d6417490bad1ffc9fef12feec97371d64e86786c43e15fd0
+  languageName: node
+  linkType: hard
+
 "@sentry/types@npm:7.76.0":
   version: 7.76.0
   resolution: "@sentry/types@npm:7.76.0"
   checksum: 67a4cde848be8be534b42608f930da91fcb3e6e9f38843d9fc670d5bd531f7d13f826fb24f0ef6f88f1e3e603e8377ea1412b2fd8097ba641746ad4243b90936
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/types@npm:7.77.0"
+  checksum: 9f647ad45af1a99a4ad0556303ab04a507637e678273cb615c9223e3e39c7f7b9dab19fc2ccd09be4b0d0f9cab8b3ea8217d188ac59aacbe6bf74c3fea499bca
   languageName: node
   linkType: hard
 
@@ -4075,6 +4128,15 @@ __metadata:
   dependencies:
     "@sentry/types": "npm:7.76.0"
   checksum: 141e40b3ed4da50b2b6ceb11d58e557db34431d0ad8837af21636de5692275e1fddb0b920bb20c9ac2ead67c28a446fc76f451eefd10304a4aea85f9f2b32242
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/utils@npm:7.77.0"
+  dependencies:
+    "@sentry/types": "npm:7.77.0"
+  checksum: e3e457b1eda43f933e7fc3b7fed615c5c1e336c843a0d53006248fb1e2dc9736afd631a9592ac58ce5592f4ffd1b491d1df2f0218959b61476e34af7aa13f367
   languageName: node
   linkType: hard
 
@@ -4340,9 +4402,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.41.0":
-  version: 0.41.0
-  resolution: "@swing.xyz/design-system@npm:0.41.0"
+"@swing.xyz/design-system@npm:0.41.1":
+  version: 0.41.1
+  resolution: "@swing.xyz/design-system@npm:0.41.1"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
@@ -4355,11 +4417,11 @@ __metadata:
     "@tanstack/react-virtual": "npm:beta"
     clsx: "npm:^2.0.0"
     jotai: "npm:^2.5.0"
-    tailwind-merge: "npm:^1.14.0"
+    tailwind-merge: "npm:^2.0.0"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: ccc6ca7ea3019b7bf47029f1e51e4cabc5875bfebf53cee4a199587e28aa5423d48a7b7d84c8d1eaf30ecd63e8de3c3fa44944c5585969e1016754ec228d940e
+  checksum: be83bc3dabbba854ca708937be7d581c832691cd18f8c33ae28a2671344631e3cb0ea7cc4cb5c97cfa2e19b6488051bcf3c6e762225f265fb79f3dae31d5232f
   languageName: node
   linkType: hard
 
@@ -4382,7 +4444,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.41.0, @swing.xyz/sdk@npm:^0.41.0":
+"@swing.xyz/sdk@npm:0.41.1":
+  version: 0.41.1
+  resolution: "@swing.xyz/sdk@npm:0.41.1"
+  dependencies:
+    "@coinbase/wallet-sdk": "npm:^3.7.2"
+    "@cosmjs/stargate": "npm:^0.31.3"
+    "@ethersproject/abi": "npm:^5.7.0"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/constants": "npm:^5.7.0"
+    "@ethersproject/contracts": "npm:^5.7.0"
+    "@ethersproject/hash": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/signing-key": "npm:^5.7.0"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.77.0"
+    "@swing.xyz/cross-chain-api": "npm:^0.0.11"
+    "@swing.xyz/platform-api": "npm:^0.0.10"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+  checksum: 0547dcc15c5631c3faf1e5ed7a74ab9c7c5d3a81ce5a85ac6f87892763e0c5b9f05b32383a204a525a2c33d032d4ff8fd728aba0b0a403906a4801a21cc8f369
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.41.0":
   version: 0.41.0
   resolution: "@swing.xyz/sdk@npm:0.41.0"
   dependencies:
@@ -4408,9 +4496,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.41.0":
-  version: 0.41.0
-  resolution: "@swing.xyz/ui@npm:0.41.0"
+"@swing.xyz/ui@npm:^0.41.1":
+  version: 0.41.1
+  resolution: "@swing.xyz/ui@npm:0.41.1"
   dependencies:
     "@coinbase/wallet-sdk": "npm:^3.7.2"
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
@@ -4419,9 +4507,9 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
-    "@sentry/react": "npm:7.76.0"
-    "@swing.xyz/design-system": "npm:0.41.0"
-    "@swing.xyz/sdk": "npm:0.41.0"
+    "@sentry/react": "npm:7.77.0"
+    "@swing.xyz/design-system": "npm:0.41.1"
+    "@swing.xyz/sdk": "npm:0.41.1"
     "@web3-react/coinbase-wallet": "npm:8.2.3"
     "@web3-react/core": "npm:8.2.3"
     "@web3-react/empty": "npm:8.2.3"
@@ -4440,7 +4528,7 @@ __metadata:
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 83a0140e520bbf0d4a568dc4ff0fc8a578bc9bf24759f606f2dd432e4fb45ba842df7ec83da9a85edcd00a9fee3f1ae37380d9830b4a14f90a2d3514183bb6aa
+  checksum: 6d98d38a86c98e756a276ac29ea46bb8121ee38278bc755bccc171377e2cea93ced45b723af1a54e654abe933938661576b8d085eadf9230bf8de27bf35c54c4
   languageName: node
   linkType: hard
 
@@ -14829,7 +14917,7 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.41.0"
+    "@swing.xyz/ui": "npm:^0.41.1"
     "@types/node": "npm:20.8.9"
     "@types/react": "npm:18.2.33"
     "@types/react-dom": "npm:18.2.14"
@@ -15179,7 +15267,7 @@ __metadata:
     "@angular/core": "npm:^15"
     "@angular/platform-browser": "npm:^15"
     "@angular/platform-browser-dynamic": "npm:^15"
-    "@swing.xyz/ui": "npm:^0.41.0"
+    "@swing.xyz/ui": "npm:^0.41.1"
     "@types/jasmine": "npm:~5.1.1"
     "@types/node": "npm:^20.8.9"
     copyfiles: "npm:^2.4.1"
@@ -15211,7 +15299,7 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.41.0"
+    "@swing.xyz/ui": "npm:^0.41.1"
     "@types/node": "npm:20.8.9"
     "@types/react": "npm:18.2.33"
     "@types/react-dom": "npm:18.2.14"
@@ -15236,13 +15324,6 @@ __metadata:
   version: 2.0.3
   resolution: "symbol-observable@npm:2.0.3"
   checksum: 15ca0de42b490172e901b4cf61b35da9d5ad752afcb5ef6dc9c998a0e9b414dfa26aa9f0dde11d235dfa96731e26a6521c98738e90143bf8efe65bfdc1633be1
-  languageName: node
-  linkType: hard
-
-"tailwind-merge@npm:^1.14.0":
-  version: 1.14.0
-  resolution: "tailwind-merge@npm:1.14.0"
-  checksum: 35ff3c3a7f89111acbdef879130064229ce7deee017fd75f17d07135aa4bcc213e049c35d6bd5000de4dc3219e25f7a03295952736d1fee1423535c55775b1e7
   languageName: node
   linkType: hard
 
