@@ -4013,6 +4013,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry-internal/tracing@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry-internal/tracing@npm:7.77.0"
+  dependencies:
+    "@sentry/core": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 18d27e1414ab5cf6a66af7545b768139bda06da39608d89000a29a14e3883bae467f5f673dc11c7437cc7b55656b321488f62519f44f71b8189b9630f9f826f2
+  languageName: node
+  linkType: hard
+
 "@sentry/browser@npm:7.76.0":
   version: 7.76.0
   resolution: "@sentry/browser@npm:7.76.0"
@@ -4026,6 +4037,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/browser@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/browser@npm:7.77.0"
+  dependencies:
+    "@sentry-internal/tracing": "npm:7.77.0"
+    "@sentry/core": "npm:7.77.0"
+    "@sentry/replay": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 482c8c8d2302b85c7208105b640ff219c954d81089c67f5c2274f780f5286b17817e8e3ce848d2b522de3854e6101685c96b58b0ac5058dca6fd1d25fe4720a3
+  languageName: node
+  linkType: hard
+
 "@sentry/core@npm:7.76.0":
   version: 7.76.0
   resolution: "@sentry/core@npm:7.76.0"
@@ -4033,6 +4057,16 @@ __metadata:
     "@sentry/types": "npm:7.76.0"
     "@sentry/utils": "npm:7.76.0"
   checksum: f6b524036a0bfe875868882d31a822ae71e598a33da1c6bb6ebf62da0520ac2b6dca5e28c70e8fb7570751ae1ebd590fc3c5b5fcc49f857753dcb739bfa7f06e
+  languageName: node
+  linkType: hard
+
+"@sentry/core@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/core@npm:7.77.0"
+  dependencies:
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 1e019adeb4fde097894b59f5089c7d37758e64f0a010cadb58367959a8e660e9bb266354b0ea19e535d7e2a06df673d67158bc679f9ceb87573eb273d84f3b18
   languageName: node
   linkType: hard
 
@@ -4062,10 +4096,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/replay@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/replay@npm:7.77.0"
+  dependencies:
+    "@sentry-internal/tracing": "npm:7.77.0"
+    "@sentry/core": "npm:7.77.0"
+    "@sentry/types": "npm:7.77.0"
+    "@sentry/utils": "npm:7.77.0"
+  checksum: 56fecc749f94d0495821819ad2ecb4920a3efed7fd0f2d949e81f1061533c0e49e015f79316b6d38d6417490bad1ffc9fef12feec97371d64e86786c43e15fd0
+  languageName: node
+  linkType: hard
+
 "@sentry/types@npm:7.76.0":
   version: 7.76.0
   resolution: "@sentry/types@npm:7.76.0"
   checksum: 67a4cde848be8be534b42608f930da91fcb3e6e9f38843d9fc670d5bd531f7d13f826fb24f0ef6f88f1e3e603e8377ea1412b2fd8097ba641746ad4243b90936
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/types@npm:7.77.0"
+  checksum: 9f647ad45af1a99a4ad0556303ab04a507637e678273cb615c9223e3e39c7f7b9dab19fc2ccd09be4b0d0f9cab8b3ea8217d188ac59aacbe6bf74c3fea499bca
   languageName: node
   linkType: hard
 
@@ -4075,6 +4128,15 @@ __metadata:
   dependencies:
     "@sentry/types": "npm:7.76.0"
   checksum: 141e40b3ed4da50b2b6ceb11d58e557db34431d0ad8837af21636de5692275e1fddb0b920bb20c9ac2ead67c28a446fc76f451eefd10304a4aea85f9f2b32242
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.77.0":
+  version: 7.77.0
+  resolution: "@sentry/utils@npm:7.77.0"
+  dependencies:
+    "@sentry/types": "npm:7.77.0"
+  checksum: e3e457b1eda43f933e7fc3b7fed615c5c1e336c843a0d53006248fb1e2dc9736afd631a9592ac58ce5592f4ffd1b491d1df2f0218959b61476e34af7aa13f367
   languageName: node
   linkType: hard
 
@@ -4382,7 +4444,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.41.0, @swing.xyz/sdk@npm:^0.41.0":
+"@swing.xyz/sdk@npm:0.41.0":
   version: 0.41.0
   resolution: "@swing.xyz/sdk@npm:0.41.0"
   dependencies:
@@ -4405,6 +4467,32 @@ __metadata:
     ethers: "npm:^5.7.2"
     eventemitter3: "npm:^4.0.7"
   checksum: ec6783daa6071ebb1e684fae877d1e2c0f0dad7e0cd39d0c6ea7f29383e4f9f66b0fd69eefc8bdac27ad30b440b5f781b7c8313a116236c9495de13eca19c8b4
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.41.1":
+  version: 0.41.1
+  resolution: "@swing.xyz/sdk@npm:0.41.1"
+  dependencies:
+    "@coinbase/wallet-sdk": "npm:^3.7.2"
+    "@cosmjs/stargate": "npm:^0.31.3"
+    "@ethersproject/abi": "npm:^5.7.0"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/constants": "npm:^5.7.0"
+    "@ethersproject/contracts": "npm:^5.7.0"
+    "@ethersproject/hash": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/signing-key": "npm:^5.7.0"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.77.0"
+    "@swing.xyz/cross-chain-api": "npm:^0.0.11"
+    "@swing.xyz/platform-api": "npm:^0.0.10"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+  checksum: 0547dcc15c5631c3faf1e5ed7a74ab9c7c5d3a81ce5a85ac6f87892763e0c5b9f05b32383a204a525a2c33d032d4ff8fd728aba0b0a403906a4801a21cc8f369
   languageName: node
   linkType: hard
 
@@ -14799,7 +14887,7 @@ __metadata:
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/sdk": "npm:^0.41.0"
+    "@swing.xyz/sdk": "npm:^0.41.1"
     "@types/node": "npm:20.8.9"
     "@types/react": "npm:18.2.33"
     "@types/react-dom": "npm:18.2.14"
@@ -15153,7 +15241,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.17"
-    "@swing.xyz/sdk": "npm:^0.41.0"
+    "@swing.xyz/sdk": "npm:^0.41.1"
     "@tailwindcss/forms": "npm:^0.5.6"
     autoprefixer: "npm:^10.4.16"
     clsx: "npm:^1.2.1"
