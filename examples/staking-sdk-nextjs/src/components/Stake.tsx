@@ -9,7 +9,7 @@ import {
 } from "@swing.xyz/sdk";
 import "@swing.xyz/ui/theme.css";
 import { Button } from "components/ui/button";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -32,7 +32,7 @@ export function Stake() {
     null
   );
   const { address, isConnected } = useAccount();
-  const { switchNetwork } = useSwitchNetwork();
+  const { switchNetworkAsync } = useSwitchNetwork();
   const connectWallet = useConnectWallet();
 
   async function startTransfer(
@@ -44,30 +44,53 @@ export function Stake() {
       return;
     }
 
+    setError("");
     setIsLoading(true);
 
-    swingSDK.on("TRANSFER", async (transferStepStatus, transferResults) => {
-      setStatus(transferStepStatus);
-      setResults(transferResults);
+    // Setup a transfer listener to handle user required interactions
+    const removeTransferListener = swingSDK.on(
+      "TRANSFER",
+      async (transferStep, transferResults) => {
+        setStatus(transferStep);
+        setResults(transferResults);
 
-      console.log("TRANSFER", transferStepStatus, transferResults);
+        console.log("TRANSFER", {
+          transferId: transferResults.transferId,
+          transferStep,
+          transferResults,
+        });
 
-      switch (transferStepStatus.status) {
-        case "CHAIN_SWITCH_REQUIRED":
-          switchNetwork?.(transferStepStatus.chain.chainId);
-          break;
+        switch (transferStep.status) {
+          case "WALLET_CONNECTION_REQUIRED":
+            try {
+              await connectWallet(transferStep.chain);
+            } catch (error) {
+              // Cancel transfer if user rejects wallet connection
+              swingSDK.cancelTransfer(transferResults.transferId);
+            }
+            break;
 
-        case "WALLET_CONNECTION_REQUIRED":
-          connectWallet(transferStepStatus.chain);
-          break;
+          case "CHAIN_SWITCH_REQUIRED":
+            try {
+              await switchNetworkAsync?.(transferStep.chain.chainId);
+            } catch (error) {
+              // Cancel transfer if user rejects network switch
+              swingSDK.cancelTransfer(transferResults.transferId);
+            }
+            break;
+        }
       }
-    });
+    );
 
     try {
       await swingSDK.transfer(transferRoute, transferParams);
     } catch (error: any) {
+      // This will be the same error that's available in `transferStep.error` when the transferStep is `FAILED`
       setError(error.message);
     }
+
+    // Remove event listener
+    removeTransferListener();
 
     setIsLoading(false);
   }
@@ -83,7 +106,7 @@ export function Stake() {
       </div>
 
       {isReady
-        ? swingSDK.contracts.map((contract) => {
+        ? swingSDK.getAvailableStakingTokens().map((contract) => {
             return (
               <div key={contract.id} className="grid grid-cols-5">
                 <NameLogo
@@ -148,6 +171,8 @@ export function Stake() {
           <DialogHeader>
             {transferParams ? (
               <DialogTitle className="flex items-center gap-4 mb-8">
+                <div>Stake</div>
+
                 <NameLogo
                   name={transferParams.fromToken!}
                   logo={
@@ -158,7 +183,7 @@ export function Stake() {
                   }
                 />
 
-                <div>to</div>
+                <div>for</div>
 
                 <NameLogo
                   name={transferParams.toToken!}
@@ -174,14 +199,12 @@ export function Stake() {
           </DialogHeader>
 
           {quote?.routes.length ? (
-            <div className="grid gap-4">
-              <div className="grid grid-cols-5">
-                <div>Provider</div>
-                <div>Fees</div>
-                <div>Gas</div>
-                <div>Total</div>
-                <div></div>
-              </div>
+            <div className="grid items-center grid-cols-[minmax(50px,_100px)_2fr_3fr_3fr_160px] gap-4">
+              <div>Provider</div>
+              <div>Fees</div>
+              <div>Gas</div>
+              <div>Total</div>
+              <div></div>
 
               {quote?.routes.map((route, index) => {
                 const integration = swingSDK.getIntegration(
@@ -189,14 +212,14 @@ export function Stake() {
                 );
 
                 return (
-                  <div key={index} className="grid items-center grid-cols-5">
+                  <Fragment key={index}>
                     <NameLogo
                       name={integration?.name!}
                       logo={integration?.logo}
                     />
 
                     <div>${route.quote.bridgeFeeUSD}</div>
-                    <div>${route.gasUSD}</div>
+                    <div className="truncate">${route.gasUSD}</div>
                     <div>${route.quote.amountUSD}</div>
 
                     <Button
@@ -223,7 +246,7 @@ export function Stake() {
                     >
                       Stake
                     </Button>
-                  </div>
+                  </Fragment>
                 );
               })}
             </div>
@@ -247,14 +270,12 @@ export function Stake() {
               </div>
             )}
 
-            {status?.status === "FAILED" || error ? (
+            {error ? (
               <div className="mt-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Error
                 </label>{" "}
-                <div className="text-red-500 capitalize">
-                  {status?.status === "FAILED" ? status.error : error}
-                </div>
+                <div className="text-red-500 capitalize">{error}</div>
               </div>
             ) : null}
           </div>

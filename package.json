@@ -16,8 +16,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@types/node": "20.8.9",
-    "@types/react": "18.2.33",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
     "eslint-config-custom": "*",
     "prettier": "^3.0.3",
     "turbo": "^1.10.16"

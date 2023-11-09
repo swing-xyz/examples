@@ -27,7 +27,10 @@ export function useConnectWallet() {
     );
 
     // Pass transport into Swing SDK: https://wagmi.sh/react/ethers-adapters#wallet-client--signer
-    swingSDK.wallet.connect(walletClient!.transport, connectionChain!.slug);
+    await swingSDK.wallet.connect(
+      walletClient!.transport,
+      connectionChain!.slug
+    );
 
     return connection.account;
   }

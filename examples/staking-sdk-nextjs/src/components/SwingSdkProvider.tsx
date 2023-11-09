@@ -5,6 +5,8 @@ import { useContext, useEffect, useState, createContext } from "react";
 
 const swingSdk = new SwingSDK({
   projectId: "example-staking-sdk-nextjs",
+  // environment: "testnet",
+  // debug: true,
 });
 
 const SwingSdkContext = createContext<[SwingSDK, { isReady: boolean }]>([
