@@ -1,6 +1,6 @@
-# Cross-chain Staking using the Swing Widget in Next.js
+# Cross-chain Gas Refill using the Swing Widget in Next.js
 
-MetaWallet is an example template showcasing how to use the [Swing Widget](https://developers.swing.xyz/reference/widget) to integrate cross-chain staking on a wallet portfolio website.
+MetaWallet is an example template showcasing how to use the [Swing Widget](https://developers.swing.xyz/reference/widget) to integrate cross-chain gas on a wallet portfolio website.
 
 This example is built with:
 
@@ -10,7 +10,7 @@ This example is built with:
 
 ## Demo
 
-View the live demo https://staking-widget-nextjs.vercel.app/
+View the live demo https://gas-widget-nextjs.vercel.app/
 
 ## Getting started
 
@@ -32,7 +32,7 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 
 The [@swing.xyz/ui](https://developers.swing.xyz/reference/widget) can be found in [src/app/page.tsx](./src/app/page.tsx).
 
-It utilizes the `Stake` component to enable a low-code, cross-chain staking experience.
+It utilizes the `Gas` component to enable a low-code, cross-chain gas refill experience.
 
 ## Customizing
 

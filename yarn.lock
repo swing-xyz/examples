@@ -4002,79 +4002,79 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry-internal/tracing@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry-internal/tracing@npm:7.77.0"
+"@sentry-internal/tracing@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry-internal/tracing@npm:7.80.1"
   dependencies:
-    "@sentry/core": "npm:7.77.0"
-    "@sentry/types": "npm:7.77.0"
-    "@sentry/utils": "npm:7.77.0"
-  checksum: 18d27e1414ab5cf6a66af7545b768139bda06da39608d89000a29a14e3883bae467f5f673dc11c7437cc7b55656b321488f62519f44f71b8189b9630f9f826f2
+    "@sentry/core": "npm:7.80.1"
+    "@sentry/types": "npm:7.80.1"
+    "@sentry/utils": "npm:7.80.1"
+  checksum: 7b7a64c79e55f938227822370e21e3a06731067da4644ac70ceed3d4d73afee4ba2643aba5c813ff4e019e4f0fab42ee26405e33cda3d353dc3c574ec2aee145
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry/browser@npm:7.77.0"
+"@sentry/browser@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry/browser@npm:7.80.1"
   dependencies:
-    "@sentry-internal/tracing": "npm:7.77.0"
-    "@sentry/core": "npm:7.77.0"
-    "@sentry/replay": "npm:7.77.0"
-    "@sentry/types": "npm:7.77.0"
-    "@sentry/utils": "npm:7.77.0"
-  checksum: 482c8c8d2302b85c7208105b640ff219c954d81089c67f5c2274f780f5286b17817e8e3ce848d2b522de3854e6101685c96b58b0ac5058dca6fd1d25fe4720a3
+    "@sentry-internal/tracing": "npm:7.80.1"
+    "@sentry/core": "npm:7.80.1"
+    "@sentry/replay": "npm:7.80.1"
+    "@sentry/types": "npm:7.80.1"
+    "@sentry/utils": "npm:7.80.1"
+  checksum: e1f64106529ea0e2068ca39696d3ee7a125a8ff2ad157a59ee7d697371bb1e98cedef3f0012d9d0b03e135e8a73c099378397f1c61d3e917bb8c1f41e73e6df5
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry/core@npm:7.77.0"
+"@sentry/core@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry/core@npm:7.80.1"
   dependencies:
-    "@sentry/types": "npm:7.77.0"
-    "@sentry/utils": "npm:7.77.0"
-  checksum: 1e019adeb4fde097894b59f5089c7d37758e64f0a010cadb58367959a8e660e9bb266354b0ea19e535d7e2a06df673d67158bc679f9ceb87573eb273d84f3b18
+    "@sentry/types": "npm:7.80.1"
+    "@sentry/utils": "npm:7.80.1"
+  checksum: d61e3bf9b1bb144a02f440c38fb4b5c96539609689cf3d6cc2d1d4f98a8b09089981f89a4dca5ff29eafa2b44814e672126664fa99f2f9f72a36faaa855ef77e
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry/react@npm:7.77.0"
+"@sentry/react@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry/react@npm:7.80.1"
   dependencies:
-    "@sentry/browser": "npm:7.77.0"
-    "@sentry/types": "npm:7.77.0"
-    "@sentry/utils": "npm:7.77.0"
+    "@sentry/browser": "npm:7.80.1"
+    "@sentry/types": "npm:7.80.1"
+    "@sentry/utils": "npm:7.80.1"
     hoist-non-react-statics: "npm:^3.3.2"
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 3106a4a5e4600f6a6d6d4105fc32364ff0ef9e86f28e8aa8b0a60fe9fe2ea2de6a0fe967b49d63342b3d8d54b8d345313a7780074754a249cf0c8e66e3fcc653
+  checksum: ff27ecbe6a12ad04c1f18b5ace0670320fcbcb7f2f3c68d6542b0f7a1a14a73f96b8ad47656bb1c86d9581536fdb96565a48b73a81860ef7c4e3c4262adc8c2c
   languageName: node
   linkType: hard
 
-"@sentry/replay@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry/replay@npm:7.77.0"
+"@sentry/replay@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry/replay@npm:7.80.1"
   dependencies:
-    "@sentry-internal/tracing": "npm:7.77.0"
-    "@sentry/core": "npm:7.77.0"
-    "@sentry/types": "npm:7.77.0"
-    "@sentry/utils": "npm:7.77.0"
-  checksum: 56fecc749f94d0495821819ad2ecb4920a3efed7fd0f2d949e81f1061533c0e49e015f79316b6d38d6417490bad1ffc9fef12feec97371d64e86786c43e15fd0
+    "@sentry-internal/tracing": "npm:7.80.1"
+    "@sentry/core": "npm:7.80.1"
+    "@sentry/types": "npm:7.80.1"
+    "@sentry/utils": "npm:7.80.1"
+  checksum: 1e454a380702fd7d53cb963062cb546b6f82b5d2c3bf60cffce7a51b284182f6d832bed4cf0462cc45790165e36027aedd78c46ac568d7a498843b513372688f
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry/types@npm:7.77.0"
-  checksum: 9f647ad45af1a99a4ad0556303ab04a507637e678273cb615c9223e3e39c7f7b9dab19fc2ccd09be4b0d0f9cab8b3ea8217d188ac59aacbe6bf74c3fea499bca
+"@sentry/types@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry/types@npm:7.80.1"
+  checksum: 87dc9d74b07ee2fead0be0b80557f0ba5402ab79df36e606055a2c47fb97c6df5f2fd4c3ad0af9a4b02db4cb814009122226f6335233e6efd2708c9b50c99635
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.77.0":
-  version: 7.77.0
-  resolution: "@sentry/utils@npm:7.77.0"
+"@sentry/utils@npm:7.80.1":
+  version: 7.80.1
+  resolution: "@sentry/utils@npm:7.80.1"
   dependencies:
-    "@sentry/types": "npm:7.77.0"
-  checksum: e3e457b1eda43f933e7fc3b7fed615c5c1e336c843a0d53006248fb1e2dc9736afd631a9592ac58ce5592f4ffd1b491d1df2f0218959b61476e34af7aa13f367
+    "@sentry/types": "npm:7.80.1"
+  checksum: adfde8024485d05b78d7e73ef2c3181d6de1ecd4fc9b50c8bf45a810e80b6f1a9bb6400b4aa03bfea1b778a160654f974af92f90d28145b013f16a013259387b
   languageName: node
   linkType: hard
 
@@ -4340,9 +4340,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.43.1":
-  version: 0.43.1
-  resolution: "@swing.xyz/design-system@npm:0.43.1"
+"@swing.xyz/design-system@npm:0.44.0":
+  version: 0.44.0
+  resolution: "@swing.xyz/design-system@npm:0.44.0"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
@@ -4352,14 +4352,14 @@ __metadata:
     "@headlessui/react": "npm:^1.7.17"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
-    "@tanstack/react-virtual": "npm:beta"
+    "@tanstack/react-virtual": "npm:^3.0.0-beta.68"
     clsx: "npm:^2.0.0"
-    jotai: "npm:^2.5.0"
+    jotai: "npm:^2.5.1"
     tailwind-merge: "npm:^2.0.0"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: b2bd77f0baddd68b895aea257a44cb4d1a987cd7113e0fa49edb0e8092e02880666cf8d14448c9f84c084dbc730708f6b6013dc45d52125e6f710125132530d2
+  checksum: e22122886beecae070ec23f436ffa8c9c63a73c555a1589fa7692ffbeeffe699172154560dd536031bdf85dad8e9b80d4f094dbacb58f7cffa96dddee957edfd
   languageName: node
   linkType: hard
 
@@ -4370,6 +4370,7 @@ __metadata:
     "@types/node": "npm:20.9.0"
     "@types/react": "npm:18.2.37"
     eslint-config-custom: "npm:*"
+    pino-pretty: "npm:^10.2.3"
     prettier: "npm:^3.0.3"
     turbo: "npm:^1.10.16"
   languageName: unknown
@@ -4382,9 +4383,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.43.1, @swing.xyz/sdk@npm:^0.43.1":
-  version: 0.43.1
-  resolution: "@swing.xyz/sdk@npm:0.43.1"
+"@swing.xyz/sdk@npm:0.44.0, @swing.xyz/sdk@npm:^0.44.0":
+  version: 0.44.0
+  resolution: "@swing.xyz/sdk@npm:0.44.0"
   dependencies:
     "@coinbase/wallet-sdk": "npm:^3.7.2"
     "@cosmjs/stargate": "npm:^0.31.3"
@@ -4399,18 +4400,18 @@ __metadata:
     "@multiversx/sdk-core": "npm:^11.6.0"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
     "@multiversx/sdk-network-providers": "npm:^1.5.0"
-    "@sentry/browser": "npm:7.77.0"
+    "@sentry/browser": "npm:7.80.1"
     "@swing.xyz/cross-chain-api": "npm:^0.0.11"
     "@swing.xyz/platform-api": "npm:^0.0.10"
     ethers: "npm:^5.7.2"
     eventemitter3: "npm:^4.0.7"
-  checksum: 55f77704756a438a3cdbd1dc2b5452c338b8d4e34209b2dba601a5a7f8beb1a0a06c869a989b5df84629aba284a71908fa7b9ef5c1a2b6f85663f9ef966bf66c
+  checksum: bc21ca58726ddb626d8f3ebadb6191b407a796df8c03dee09908c8bb77d4e3ccf3e7127d551c33b28f6951787cf8bc6d6a0b4a95a9800fdaae24c8f9c4b3dcbd
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.43.1":
-  version: 0.43.1
-  resolution: "@swing.xyz/ui@npm:0.43.1"
+"@swing.xyz/ui@npm:^0.44.0":
+  version: 0.44.0
+  resolution: "@swing.xyz/ui@npm:0.44.0"
   dependencies:
     "@coinbase/wallet-sdk": "npm:^3.7.2"
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
@@ -4419,9 +4420,9 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
-    "@sentry/react": "npm:7.77.0"
-    "@swing.xyz/design-system": "npm:0.43.1"
-    "@swing.xyz/sdk": "npm:0.43.1"
+    "@sentry/react": "npm:7.80.1"
+    "@swing.xyz/design-system": "npm:0.44.0"
+    "@swing.xyz/sdk": "npm:0.44.0"
     "@web3-react/coinbase-wallet": "npm:8.2.3"
     "@web3-react/core": "npm:8.2.3"
     "@web3-react/empty": "npm:8.2.3"
@@ -4434,13 +4435,13 @@ __metadata:
     clsx: "npm:^2.0.0"
     dayjs: "npm:^1.11.10"
     fuse.js: "npm:^6.6.2"
-    jotai: "npm:^2.5.0"
+    jotai: "npm:^2.5.1"
     lodash.isequal: "npm:^4.5.0"
     react-timeago: "npm:^7.2.0"
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 6e25295f1adaa2f4fa11d70e97802428561c22bc4a99191452b8c8e7f719593b0ef251fb6374f05cd43b453a5c714a8b13df87effa7c58471b73f76e062bb25f
+  checksum: 33c9a8706dfa735061376dc5183bb6b7f98a17b1d7a762bb4eaeaec225e469629bc8eb3cdcb2cfc06c77ca127244403ac75391463c59e3f9dadd9b12b34ed75e
   languageName: node
   linkType: hard
 
@@ -4510,7 +4511,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-virtual@npm:beta":
+"@tanstack/react-virtual@npm:^3.0.0-beta.68":
   version: 3.0.0-beta.68
   resolution: "@tanstack/react-virtual@npm:3.0.0-beta.68"
   dependencies:
@@ -5912,6 +5913,15 @@ __metadata:
     zod:
       optional: true
   checksum: 90940804839b1b65cb5b427d934db9c1cc899157d6091f281b1ce94d9c0c08b1ae946ab43e984e70c031e94c49355f6677475a7242ec60cae5457c074dcd40f9
+  languageName: node
+  linkType: hard
+
+"abort-controller@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "abort-controller@npm:3.0.0"
+  dependencies:
+    event-target-shim: "npm:^5.0.0"
+  checksum: ed84af329f1828327798229578b4fe03a4dd2596ba304083ebd2252666bdc1d7647d66d0b18704477e1f8aa315f055944aa6e859afebd341f12d0a53c37b4b40
   languageName: node
   linkType: hard
 
@@ -7333,7 +7343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:^2.0.10":
+"colorette@npm:^2.0.10, colorette@npm:^2.0.7":
   version: 2.0.20
   resolution: "colorette@npm:2.0.20"
   checksum: 0b8de48bfa5d10afc160b8eaa2b9938f34a892530b2f7d7897e0458d9535a066e3998b49da9d21161c78225b272df19ae3a64d6df28b4c9734c0e55bbd02406f
@@ -7715,6 +7725,13 @@ __metadata:
   version: 4.0.14
   resolution: "date-format@npm:4.0.14"
   checksum: 6b07fd1df247439c53b71244e3468b93e6dfebb5d409b9328dd7b7e9ed0d2e875018e20fb1a95ae6b677dea708ec06aaa5058a7a5faa1a7f649338aabf04991a
+  languageName: node
+  linkType: hard
+
+"dateformat@npm:^4.6.3":
+  version: 4.6.3
+  resolution: "dateformat@npm:4.6.3"
+  checksum: 5c149c91bf9ce2142c89f84eee4c585f0cb1f6faf2536b1af89873f862666a28529d1ccafc44750aa01384da2197c4f76f4e149a3cc0c1cb2c46f5cc45f2bcb5
   languageName: node
   linkType: hard
 
@@ -8188,7 +8205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"end-of-stream@npm:^1.4.1":
+"end-of-stream@npm:^1.1.0, end-of-stream@npm:^1.4.1":
   version: 1.4.4
   resolution: "end-of-stream@npm:1.4.4"
   dependencies:
@@ -8971,6 +8988,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"event-target-shim@npm:^5.0.0":
+  version: 5.0.1
+  resolution: "event-target-shim@npm:5.0.1"
+  checksum: 49ff46c3a7facbad3decb31f597063e761785d7fdb3920d4989d7b08c97a61c2f51183e2f3a03130c9088df88d4b489b1b79ab632219901f184f85158508f4c8
+  languageName: node
+  linkType: hard
+
 "eventemitter-asyncresource@npm:^1.0.0":
   version: 1.0.0
   resolution: "eventemitter-asyncresource@npm:1.0.0"
@@ -9101,6 +9125,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-copy@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "fast-copy@npm:3.0.1"
+  checksum: 2f655f1e84440f990cddf7895f0acce38b2eb090a27dc0f97f1654cd6f2e38f67d9603471856c2af13e0bfbdf04c2c0b8d446fee1dd1f6f485992e4cc4693c7a
+  languageName: node
+  linkType: hard
+
 "fast-deep-equal@npm:^3.1.1, fast-deep-equal@npm:^3.1.3":
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
@@ -9142,7 +9173,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-safe-stringify@npm:^2.0.6":
+"fast-safe-stringify@npm:^2.0.6, fast-safe-stringify@npm:^2.1.1":
   version: 2.1.1
   resolution: "fast-safe-stringify@npm:2.1.1"
   checksum: dc1f063c2c6ac9533aee14d406441f86783a8984b2ca09b19c2fe281f9ff59d315298bc7bc22fd1f83d26fe19ef2f20e2ddb68e96b15040292e555c5ced0c1e4
@@ -9486,6 +9517,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gas-widget-nextjs@workspace:examples/gas-widget-nextjs":
+  version: 0.0.0-use.local
+  resolution: "gas-widget-nextjs@workspace:examples/gas-widget-nextjs"
+  dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
+    "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@swing.xyz/ui": "npm:^0.44.0"
+    "@types/node": "npm:20.9.0"
+    "@types/react": "npm:18.2.37"
+    "@types/react-dom": "npm:18.2.15"
+    autoprefixer: "npm:^10.4.16"
+    next: "npm:^14.0.2"
+    postcss: "npm:^8.4.31"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    tailwindcss: "npm:^3.3.5"
+    typescript: "npm:5.2.2"
+  languageName: unknown
+  linkType: soft
+
 "gauge@npm:^4.0.3":
   version: 4.0.4
   resolution: "gauge@npm:4.0.4"
@@ -9630,7 +9683,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:8.1.0, glob@npm:^8.0.1":
+"glob@npm:8.1.0, glob@npm:^8.0.0, glob@npm:^8.0.1":
   version: 8.1.0
   resolution: "glob@npm:8.1.0"
   dependencies:
@@ -9897,6 +9950,16 @@ __metadata:
   version: 3.0.0
   resolution: "hdr-histogram-percentiles-obj@npm:3.0.0"
   checksum: 8fb15ab608997faf7716b641c032c538320f2479aee99af89d40aa5b9215f15b879d096e32745b552f7c50081acced7182bf58133d53dc61230aede5ac255d53
+  languageName: node
+  linkType: hard
+
+"help-me@npm:^4.0.1":
+  version: 4.2.0
+  resolution: "help-me@npm:4.2.0"
+  dependencies:
+    glob: "npm:^8.0.0"
+    readable-stream: "npm:^3.6.0"
+  checksum: 2c5ea6d2aae62b9a27708f5a9d19dfdc73331f62521a7cb904aeafbb69bc6fd9934d65c31b653f4387dab31a744e81701a5b434b126ac37a8cc981a1426eea21
   languageName: node
   linkType: hard
 
@@ -10897,9 +10960,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "jotai@npm:2.5.0"
+"jotai@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "jotai@npm:2.5.1"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -10908,7 +10971,14 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 8485043226c9e208c29cf5e636d50d655dc261a13e5aad505833ac3dcb60f832e35d5e8b9f76390a0bb3a5d07f1df5eea0b06b7e83c14084f0ec018c8323da60
+  checksum: acd85e669eeb3bb86feef26d53050611488143f8d2311e8b714a65708b8a7c383d0677285240daf2cb1762fee9dc008edd09048a0ba161e99ff1c096efd81cfd
+  languageName: node
+  linkType: hard
+
+"joycon@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "joycon@npm:3.1.1"
+  checksum: 4b36e3479144ec196425f46b3618f8a96ce7e1b658f091a309cd4906215f5b7a402d7df331a3e0a09681381a658d0c5f039cb3cf6907e0a1e17ed847f5d37775
   languageName: node
   linkType: hard
 
@@ -12554,6 +12624,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"on-exit-leak-free@npm:^2.1.0":
+  version: 2.1.2
+  resolution: "on-exit-leak-free@npm:2.1.2"
+  checksum: f7b4b7200026a08f6e4a17ba6d72e6c5cbb41789ed9cf7deaf9d9e322872c7dc5a7898549a894651ee0ee9ae635d34a678115bf8acdfba8ebd2ba2af688b563c
+  languageName: node
+  linkType: hard
+
 "on-finished@npm:2.4.1":
   version: 2.4.1
   resolution: "on-finished@npm:2.4.1"
@@ -12579,7 +12656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"once@npm:^1.3.0, once@npm:^1.4.0":
+"once@npm:^1.3.0, once@npm:^1.3.1, once@npm:^1.4.0":
   version: 1.4.0
   resolution: "once@npm:1.4.0"
   dependencies:
@@ -12958,6 +13035,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pino-abstract-transport@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "pino-abstract-transport@npm:1.1.0"
+  dependencies:
+    readable-stream: "npm:^4.0.0"
+    split2: "npm:^4.0.0"
+  checksum: 39b4496c9e4289e8d44a1d01adfa8dfeebb374e14b7a6451a4f3713561aeb9e181c64ff0272921667abcb95aceb312ab2761b82e253db23a456ab3dd35a42675
+  languageName: node
+  linkType: hard
+
 "pino-abstract-transport@npm:v0.5.0":
   version: 0.5.0
   resolution: "pino-abstract-transport@npm:0.5.0"
@@ -12965,6 +13052,30 @@ __metadata:
     duplexify: "npm:^4.1.2"
     split2: "npm:^4.0.0"
   checksum: d304a104e5cb0c3fef62ea544a4a39bf2472a602cdd7ddb136b0671b9c324ad93fa7888825c4cf33e624802436e897081ba92440f40518b9f2dbdbc0c889e409
+  languageName: node
+  linkType: hard
+
+"pino-pretty@npm:^10.2.3":
+  version: 10.2.3
+  resolution: "pino-pretty@npm:10.2.3"
+  dependencies:
+    colorette: "npm:^2.0.7"
+    dateformat: "npm:^4.6.3"
+    fast-copy: "npm:^3.0.0"
+    fast-safe-stringify: "npm:^2.1.1"
+    help-me: "npm:^4.0.1"
+    joycon: "npm:^3.1.1"
+    minimist: "npm:^1.2.6"
+    on-exit-leak-free: "npm:^2.1.0"
+    pino-abstract-transport: "npm:^1.0.0"
+    pump: "npm:^3.0.0"
+    readable-stream: "npm:^4.0.0"
+    secure-json-parse: "npm:^2.4.0"
+    sonic-boom: "npm:^3.0.0"
+    strip-json-comments: "npm:^3.1.1"
+  bin:
+    pino-pretty: bin.js
+  checksum: 05f79bd8e6261f8d91010fb169dd36b075ce2dfc53b5e4f6382b65c38f6ad487c9f737b44a97df4b69933a8ba1adb98135833373f5dcf8ff1f02de0415f6e56b
   languageName: node
   linkType: hard
 
@@ -13236,6 +13347,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"process@npm:^0.11.10":
+  version: 0.11.10
+  resolution: "process@npm:0.11.10"
+  checksum: dbaa7e8d1d5cf375c36963ff43116772a989ef2bb47c9bdee20f38fd8fc061119cf38140631cf90c781aca4d3f0f0d2c834711952b728953f04fd7d238f59f5b
+  languageName: node
+  linkType: hard
+
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -13366,6 +13484,16 @@ __metadata:
   version: 1.9.0
   resolution: "psl@npm:1.9.0"
   checksum: d07879d4bfd0ac74796306a8e5a36a93cfb9c4f4e8ee8e63fbb909066c192fe1008cd8f12abd8ba2f62ca28247949a20c8fb32e1d18831d9e71285a1569720f9
+  languageName: node
+  linkType: hard
+
+"pump@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "pump@npm:3.0.0"
+  dependencies:
+    end-of-stream: "npm:^1.1.0"
+    once: "npm:^1.3.1"
+  checksum: e42e9229fba14732593a718b04cb5e1cfef8254544870997e0ecd9732b189a48e1256e4e5478148ecb47c8511dca2b09eae56b4d0aad8009e6fac8072923cfc9
   languageName: node
   linkType: hard
 
@@ -13676,6 +13804,19 @@ __metadata:
     string_decoder: "npm:^1.1.1"
     util-deprecate: "npm:^1.0.1"
   checksum: d9e3e53193adcdb79d8f10f2a1f6989bd4389f5936c6f8b870e77570853561c362bee69feca2bbb7b32368ce96a85504aa4cedf7cf80f36e6a9de30d64244048
+  languageName: node
+  linkType: hard
+
+"readable-stream@npm:^4.0.0":
+  version: 4.4.2
+  resolution: "readable-stream@npm:4.4.2"
+  dependencies:
+    abort-controller: "npm:^3.0.0"
+    buffer: "npm:^6.0.3"
+    events: "npm:^3.3.0"
+    process: "npm:^0.11.10"
+    string_decoder: "npm:^1.3.0"
+  checksum: 02950422df3f20d2e231f40e9f312e3306b7d4c2a9716849509d0d6668eea24657c96f85ed057e38cc576b34a72db613fbde9ba3689ca8de466cd31bdda96827
   languageName: node
   linkType: hard
 
@@ -14249,6 +14390,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"secure-json-parse@npm:^2.4.0":
+  version: 2.7.0
+  resolution: "secure-json-parse@npm:2.7.0"
+  checksum: 974386587060b6fc5b1ac06481b2f9dbbb0d63c860cc73dc7533f27835fdb67b0ef08762dbfef25625c15bc0a0c366899e00076cb0d556af06b71e22f1dede4c
+  languageName: node
+  linkType: hard
+
 "select-hose@npm:^2.0.0":
   version: 2.0.0
   resolution: "select-hose@npm:2.0.0"
@@ -14599,6 +14747,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sonic-boom@npm:^3.0.0":
+  version: 3.7.0
+  resolution: "sonic-boom@npm:3.7.0"
+  dependencies:
+    atomic-sleep: "npm:^1.0.0"
+  checksum: 6f64a9cf93fd8b7a7044f68597f80522bfacaf978d5e9f226c4e6f1c5dd00f07884a8f7f5fb6f45bb0b6951600629654d2db7a9a20b626b37f8f01d4b9161cfe
+  languageName: node
+  linkType: hard
+
 "source-map-js@npm:>=0.6.2 <2.0.0, source-map-js@npm:^1.0.2":
   version: 1.0.2
   resolution: "source-map-js@npm:1.0.2"
@@ -14786,13 +14943,12 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
-    "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/sdk": "npm:^0.43.1"
+    "@swing.xyz/sdk": "npm:^0.44.0"
     "@types/node": "npm:20.9.0"
     "@types/react": "npm:18.2.37"
     "@types/react-dom": "npm:18.2.15"
@@ -14819,10 +14975,9 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
-    "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.43.1"
+    "@swing.xyz/ui": "npm:^0.44.0"
     "@types/node": "npm:20.9.0"
     "@types/react": "npm:18.2.37"
     "@types/react-dom": "npm:18.2.15"
@@ -14964,7 +15119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string_decoder@npm:^1.1.1":
+"string_decoder@npm:^1.1.1, string_decoder@npm:^1.3.0":
   version: 1.3.0
   resolution: "string_decoder@npm:1.3.0"
   dependencies:
@@ -15142,11 +15297,10 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
-    "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.17"
-    "@swing.xyz/sdk": "npm:^0.43.1"
+    "@swing.xyz/sdk": "npm:^0.44.0"
     "@tailwindcss/forms": "npm:^0.5.6"
     autoprefixer: "npm:^10.4.16"
     clsx: "npm:^2.0.0"
@@ -15172,7 +15326,7 @@ __metadata:
     "@angular/core": "npm:^15"
     "@angular/platform-browser": "npm:^15"
     "@angular/platform-browser-dynamic": "npm:^15"
-    "@swing.xyz/ui": "npm:^0.43.1"
+    "@swing.xyz/ui": "npm:^0.44.0"
     "@types/jasmine": "npm:~5.1.1"
     "@types/node": "npm:^20.9.0"
     copyfiles: "npm:^2.4.1"
@@ -15201,10 +15355,9 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
-    "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.43.1"
+    "@swing.xyz/ui": "npm:^0.44.0"
     "@types/node": "npm:20.9.0"
     "@types/react": "npm:18.2.37"
     "@types/react-dom": "npm:18.2.15"
@@ -16537,6 +16690,28 @@ __metadata:
   checksum: e0c60a12a219e4b12065d1199802d81c27b841ed6ad6d9d28240980c73ceec6f856771d575af367cbec2982d9ae7838759168b551776577f155044f5a5ba843c
   languageName: node
   linkType: hard
+
+"withdraw-widget-nextjs@workspace:examples/withdraw-widget-nextjs":
+  version: 0.0.0-use.local
+  resolution: "withdraw-widget-nextjs@workspace:examples/withdraw-widget-nextjs"
+  dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^6.4.2"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.4.2"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.4.2"
+    "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@swing.xyz/ui": "npm:^0.44.0"
+    "@types/node": "npm:20.9.0"
+    "@types/react": "npm:18.2.37"
+    "@types/react-dom": "npm:18.2.15"
+    autoprefixer: "npm:^10.4.16"
+    next: "npm:^14.0.2"
+    postcss: "npm:^8.4.31"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    tailwindcss: "npm:^3.3.5"
+    typescript: "npm:5.2.2"
+  languageName: unknown
+  linkType: soft
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0, wrap-ansi@npm:^7.0.0":
   version: 7.0.0

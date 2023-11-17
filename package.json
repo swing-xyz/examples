@@ -19,6 +19,7 @@
     "@types/node": "20.9.0",
     "@types/react": "18.2.37",
     "eslint-config-custom": "*",
+    "pino-pretty": "^10.2.3",
     "prettier": "^3.0.3",
     "turbo": "^1.10.16"
   },

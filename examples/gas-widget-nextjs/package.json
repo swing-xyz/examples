@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "staking-widget-nextjs",
+  "name": "gas-widget-nextjs",
   "version": "0.0.1",
   "scripts": {
     "dev": "next dev",

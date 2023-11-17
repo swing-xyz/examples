@@ -9,6 +9,10 @@ This example is built with:
 - [next.js](https://nextjs.org)
 - [tailwind](https://tailwindcss.com)
 
+## Demo
+
+View the live demo https://staking-sdk-nextjs.vercel.app/
+
 ## Getting started
 
 To get started with this template, first install the npm dependencies:
