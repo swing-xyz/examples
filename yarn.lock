@@ -5884,9 +5884,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.45.5":
-  version: 0.45.5
-  resolution: "@swing.xyz/design-system@npm:0.45.5"
+"@swing.xyz/design-system@npm:0.45.6":
+  version: 0.45.6
+  resolution: "@swing.xyz/design-system@npm:0.45.6"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.1"
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
@@ -5903,7 +5903,7 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 6a722eb31336452fcaf568911f5f353dab9e1ca30f2f27cb0eba0cb0bf66f4797398228d90fd00acd1ff2dad687d8a95d00310d0f033f8fb97a80c24c8087e14
+  checksum: 334174c53a19d42121c0442be9a8a0c980561d3ab58594c1ca2a2dc204e7249466c3b1029ecb927cf62833baf9ae3350ebabdddb12da63715a1f63a96c8b7b94
   languageName: node
   linkType: hard
 
@@ -5927,7 +5927,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.45.5, @swing.xyz/sdk@npm:^0.45.5":
+"@swing.xyz/sdk@npm:0.45.6":
+  version: 0.45.6
+  resolution: "@swing.xyz/sdk@npm:0.45.6"
+  dependencies:
+    "@coinbase/wallet-sdk": "npm:^3.9.1"
+    "@cosmjs/stargate": "npm:^0.32.1"
+    "@ethersproject/abi": "npm:^5.7.0"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/constants": "npm:^5.7.0"
+    "@ethersproject/contracts": "npm:^5.7.0"
+    "@ethersproject/hash": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/signing-key": "npm:^5.7.0"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.86.0"
+    "@swing.xyz/cross-chain-api": "npm:^0.0.12"
+    "@swing.xyz/platform-api": "npm:^0.0.11"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+  checksum: ff51c92d4252f7bf217c9d2828ebc3475ecc898ce8f4cebf75229b1e1d61dd852effc1ad294c42484a4a8437c0c19568984da209e637bc8c8b9b757e6d2e2460
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.45.5":
   version: 0.45.5
   resolution: "@swing.xyz/sdk@npm:0.45.5"
   dependencies:
@@ -5953,9 +5979,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.45.5":
-  version: 0.45.5
-  resolution: "@swing.xyz/ui@npm:0.45.5"
+"@swing.xyz/ui@npm:^0.45.6":
+  version: 0.45.6
+  resolution: "@swing.xyz/ui@npm:0.45.6"
   dependencies:
     "@coinbase/wallet-sdk": "npm:^3.9.1"
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.1"
@@ -5965,8 +5991,8 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
     "@sentry/react": "npm:7.86.0"
-    "@swing.xyz/design-system": "npm:0.45.5"
-    "@swing.xyz/sdk": "npm:0.45.5"
+    "@swing.xyz/design-system": "npm:0.45.6"
+    "@swing.xyz/sdk": "npm:0.45.6"
     "@web3-react/coinbase-wallet": "npm:8.2.3"
     "@web3-react/core": "npm:8.2.3"
     "@web3-react/empty": "npm:8.2.3"
@@ -5985,7 +6011,7 @@ __metadata:
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 2561e215ef0bb8370f4ff130e98984b0c394fc454d8f538d5a2da5f4c63fd029ab18c3c796a9b7c327f23281f34be917280d5191037005f938caf42ea943e634
+  checksum: b056ca690380b1b38324204640fc1cc541b9434dfeb803167273fed23cbf82399cbb35d0707534dea6e39881df9e73205fd4625fcceee21476a7e5914a5928c6
   languageName: node
   linkType: hard
 
@@ -12514,7 +12540,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.45.5"
+    "@swing.xyz/ui": "npm:^0.45.6"
     "@types/node": "npm:20.10.5"
     "@types/react": "npm:18.2.45"
     "@types/react-dom": "npm:18.2.18"
@@ -20433,7 +20459,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/ui": "npm:^0.45.5"
+    "@swing.xyz/ui": "npm:^0.45.6"
     "@types/node": "npm:20.10.5"
     "@types/react": "npm:18.2.45"
     "@types/react-dom": "npm:18.2.18"
@@ -20924,7 +20950,7 @@ __metadata:
     "@angular/core": "npm:^15"
     "@angular/platform-browser": "npm:^15"
     "@angular/platform-browser-dynamic": "npm:^15"
-    "@swing.xyz/ui": "npm:^0.45.5"
+    "@swing.xyz/ui": "npm:^0.45.6"
     "@types/jasmine": "npm:~5.1.4"
     "@types/node": "npm:^20.10.5"
     copyfiles: "npm:^2.4.1"
@@ -20955,7 +20981,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.45.5"
+    "@swing.xyz/ui": "npm:^0.45.6"
     "@types/node": "npm:20.10.5"
     "@types/react": "npm:18.2.45"
     "@types/react-dom": "npm:18.2.18"
@@ -20976,7 +21002,7 @@ __metadata:
     "@babel/core": "npm:^7.16.0"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.3"
     "@svgr/webpack": "npm:^5.5.0"
-    "@swing.xyz/ui": "npm:^0.45.5"
+    "@swing.xyz/ui": "npm:^0.45.6"
     "@types/node": "npm:^20.10.5"
     "@types/react": "npm:^18.2.45"
     "@types/react-dom": "npm:^18.2.18"
@@ -22856,7 +22882,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.45.5"
+    "@swing.xyz/ui": "npm:^0.45.6"
     "@types/node": "npm:20.10.5"
     "@types/react": "npm:18.2.45"
     "@types/react-dom": "npm:18.2.18"
