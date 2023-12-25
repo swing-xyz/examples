@@ -5927,7 +5927,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.45.5, @swing.xyz/sdk@npm:^0.45.5":
+"@swing.xyz/sdk@npm:0.45.5":
   version: 0.45.5
   resolution: "@swing.xyz/sdk@npm:0.45.5"
   dependencies:
@@ -5950,6 +5950,32 @@ __metadata:
     ethers: "npm:^5.7.2"
     eventemitter3: "npm:^4.0.7"
   checksum: 2b864530037454a0f9198052c52dfb14b2116ab603260ddee2067cc1b877aedad11aecfc4481a2f707a01bf5a381a3a43c30bc9b4cde7d5c6cd62ba6b04e70c6
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.45.6":
+  version: 0.45.6
+  resolution: "@swing.xyz/sdk@npm:0.45.6"
+  dependencies:
+    "@coinbase/wallet-sdk": "npm:^3.9.1"
+    "@cosmjs/stargate": "npm:^0.32.1"
+    "@ethersproject/abi": "npm:^5.7.0"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/constants": "npm:^5.7.0"
+    "@ethersproject/contracts": "npm:^5.7.0"
+    "@ethersproject/hash": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/signing-key": "npm:^5.7.0"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.86.0"
+    "@swing.xyz/cross-chain-api": "npm:^0.0.12"
+    "@swing.xyz/platform-api": "npm:^0.0.11"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+  checksum: ff51c92d4252f7bf217c9d2828ebc3475ecc898ce8f4cebf75229b1e1d61dd852effc1ad294c42484a4a8437c0c19568984da209e637bc8c8b9b757e6d2e2460
   languageName: node
   linkType: hard
 
@@ -20403,7 +20429,7 @@ __metadata:
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/sdk": "npm:^0.45.5"
+    "@swing.xyz/sdk": "npm:^0.45.6"
     "@types/node": "npm:20.10.5"
     "@types/react": "npm:18.2.45"
     "@types/react-dom": "npm:18.2.18"
@@ -20898,7 +20924,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.17"
-    "@swing.xyz/sdk": "npm:^0.45.5"
+    "@swing.xyz/sdk": "npm:^0.45.6"
     "@tailwindcss/forms": "npm:^0.5.7"
     autoprefixer: "npm:^10.4.16"
     clsx: "npm:^2.0.0"
