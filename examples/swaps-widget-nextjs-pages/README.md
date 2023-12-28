@@ -1,16 +1,12 @@
-# Cross-chain Swaps using the Swing Widget in Next.js App Router
+# Cross-chain Swaps using the Swing Widget in Next.js Pages
 
-MetaWallet is an example template showcasing how to use the [Swing Widget](https://developers.swing.xyz/reference/widget) to integrate cross-chain swaps on a wallet portfolio website.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This example is built with:
+## Built with
 
 - [@swing.xyz/ui](https://developers.swing.xyz/reference/widget)
 - [next.js](https://nextjs.org)
 - [tailwind](https://tailwindcss.com)
-
-## Demo
-
-View the live demo https://swaps-widget-nextjs.vercel.app/
 
 ## Getting started
 
@@ -23,14 +19,14 @@ yarn install
 Next, run the development server:
 
 ```bash
-yarn dev --filter=swaps-widget-nextjs
+yarn dev --filter=swaps-widget-nextjs-pages
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
 ## Swing integration
 
-The [@swing.xyz/ui](https://developers.swing.xyz/reference/widget) can be found in [src/app/page.tsx](./src/app/page.tsx).
+The [@swing.xyz/ui](https://developers.swing.xyz/reference/widget) can be found in [src/pages/index.tsx](./src/pages/index.tsx).
 
 It utilizes the `Swap` component to enable a low-code, cross-chain swapping experience.
 

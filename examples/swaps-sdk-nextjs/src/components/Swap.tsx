@@ -17,9 +17,21 @@ const swingSDK = new SwingSDK({
   environment: "testnet",
 });
 
+function getMetaMask() {
+  if (typeof window === "undefined") return;
+
+  const metamask = window.ethereum as any;
+
+  // Handle multiple providers
+  if ("providerMap" in metamask) {
+    return metamask.providerMap.get("MetaMask") || metamask.providers[0];
+  }
+
+  return metamask;
+}
+
 const Swap = () => {
-  const metamask =
-    typeof window !== "undefined" ? (window.ethereum as any) : undefined;
+  const metamask = getMetaMask();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<TransferStepResult | null>(null);
@@ -57,10 +69,7 @@ const Swap = () => {
         method: "eth_requestAccounts",
       });
 
-      const fromUserAddress = await swingSDK.wallet.connect(
-        metamask,
-        "ethereum"
-      );
+      const fromUserAddress = await swingSDK.wallet.connect(metamask, "goerli");
 
       setTransferParams({
         ...transferParams,
@@ -68,6 +77,7 @@ const Swap = () => {
         toUserAddress: fromUserAddress,
       });
     } catch (error) {
+      console.error("Connect Wallet Error", error);
       setError("Metamask not connected. Do you have it installed?");
     }
   }
@@ -84,7 +94,7 @@ const Swap = () => {
         return;
       }
 
-      setTransferRoute(quotes.routes[0]);
+      setTransferRoute(quotes.routes[0]!);
     } catch (error: any) {
       console.error("Quote Error", error);
       setError(error.message);
