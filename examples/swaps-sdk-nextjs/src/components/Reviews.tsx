@@ -245,28 +245,28 @@ function ReviewGrid() {
       {isInView && (
         <>
           <ReviewColumn
-            reviews={[...columns[0], ...columns[2].flat(), ...columns[1]]}
+            reviews={[...columns[0]!, ...columns[2]!.flat(), ...columns[1]!]}
             reviewClassName={(reviewIndex: number) =>
               clsx(
                 // @ts-ignore
                 reviewIndex >= columns[0].length + columns[2][0].length &&
                   "md:hidden",
-                reviewIndex >= columns[0].length && "lg:hidden"
+                reviewIndex >= columns[0]!.length && "lg:hidden"
               )
             }
             msPerPixel={10}
           />
           <ReviewColumn
-            reviews={[...columns[1], ...columns[2][1]]}
+            reviews={[...columns[1]!, ...columns[2]![1]!]}
             className="hidden md:block"
             reviewClassName={(reviewIndex: number) =>
-              reviewIndex >= columns[1].length && "lg:hidden"
+              reviewIndex >= columns[1]!.length && "lg:hidden"
             }
             msPerPixel={15}
           />
           {/* @ts-ignore */}
           <ReviewColumn
-            reviews={columns[2].flat()}
+            reviews={columns[2]!.flat()}
             className="hidden lg:block"
             msPerPixel={10}
           />
