@@ -7,85 +7,122 @@ import SwingSDK, {
   TransferStepResult,
   TransferRoute,
   TransferParams,
+  Chain,
 } from "@swing.xyz/sdk";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { Button } from "./Button";
+import { Button } from "./ui/Button";
+import { useConnect, useWallet, metamaskWallet } from "@thirdweb-dev/react";
 
-const swingSDK = new SwingSDK({
-  projectId: "example-swaps-sdk-nextjs",
-  environment: "testnet",
-});
+const walletConfig = metamaskWallet();
 
-function getMetaMask() {
-  if (typeof window === "undefined") return;
-
-  const metamask = window.ethereum as any;
-
-  // Handle multiple providers
-  if ("providerMap" in metamask) {
-    return metamask.providerMap.get("MetaMask") || metamask.providers[0];
-  }
-
-  return metamask;
-}
+const defaultTransferParams: TransferParams = {
+  amount: "1",
+  fromChain: "goerli",
+  fromToken: "ETH",
+  fromUserAddress: "",
+  toChain: "goerli",
+  toToken: "USDC",
+  toUserAddress: "",
+};
 
 const Swap = () => {
-  const metamask = getMetaMask();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<TransferStepResult | null>(null);
   const [results, setResults] = useState<TransferStepResults | null>(null);
-  const [transferParams, setTransferParams] = useState<TransferParams>({
-    amount: "1",
-    fromChain: "goerli",
-    fromToken: "ETH",
-    fromUserAddress: "",
-    toChain: "goerli",
-    toToken: "USDC",
-    toUserAddress: "",
-  });
+  const [transferParams, setTransferParams] = useState<TransferParams>(
+    defaultTransferParams
+  );
   const [transferRoute, setTransferRoute] = useState<TransferRoute | null>(
     null
   );
-  const isConnected = swingSDK.wallet.isConnected();
+  const connect = useConnect();
+  const walletInstance = useWallet();
+  const [swingSDK, setSwingSDK] = useState<SwingSDK | null>(null);
+  const isConnected = swingSDK?.wallet.isConnected();
 
   useEffect(() => {
+    const swing = new SwingSDK({
+      projectId: "example-swaps-sdk-nextjs",
+      environment: "testnet",
+    });
+
     setIsLoading(true);
-    swingSDK
+
+    swing
       .init()
       .then(() => {
         setIsLoading(false);
+        setSwingSDK(swing);
       })
       .catch((error) => {
         setIsLoading(false);
         setError(error.message);
+        setSwingSDK(swing);
       });
   }, []);
 
-  async function connectWallet() {
+  async function connectWallet(chainId?: number) {
+    if (!swingSDK) return;
+
     try {
-      await metamask.request({
-        method: "eth_requestAccounts",
-      });
+      // Connect to MetaMask
+      const connection = await connect(walletConfig, { chainId });
+      const signer = await connection.getSigner();
 
-      const fromUserAddress = await swingSDK.wallet.connect(metamask, "goerli");
+      // Connect wallet signer to Swing SDK
+      const walletAddress = await swingSDK.wallet.connect(
+        signer.provider,
+        defaultTransferParams.fromChain
+      );
 
-      setTransferParams({
-        ...transferParams,
-        fromUserAddress,
-        toUserAddress: fromUserAddress,
+      setTransferParams((prev) => {
+        return {
+          ...prev,
+          fromUserAddress: walletAddress,
+          toUserAddress: walletAddress,
+        };
       });
-    } catch (error) {
-      console.error("Connect Wallet Error", error);
-      setError("Metamask not connected. Do you have it installed?");
+    } catch (error: any) {
+      console.error("Connect Wallet Error:", error);
+      setError(error.message);
+    }
+  }
+
+  async function switchChain(chain: Chain) {
+    if (!swingSDK) return;
+
+    try {
+      await walletInstance?.switchChain(chain.chainId);
+      const walletSigner = await walletInstance?.getSigner()!;
+
+      // Connect wallet signer to Swing SDK
+      const walletAddress = await swingSDK.wallet.connect(
+        walletSigner.provider,
+        chain.slug
+      );
+
+      setTransferParams((prev) => {
+        return {
+          ...prev,
+          fromUserAddress: walletAddress,
+          toUserAddress: walletAddress,
+        };
+      });
+    } catch (error: any) {
+      console.error("Switch Chain Error:", error);
+      setError(error.message);
     }
   }
 
   async function getQuote() {
+    if (!swingSDK) return;
+
     setIsLoading(true);
 
     try {
+      // Get a quote from the Swing API
       const quotes = await swingSDK.getQuote(transferParams);
 
       if (!quotes.routes.length) {
@@ -96,7 +133,7 @@ const Swap = () => {
 
       setTransferRoute(quotes.routes[0]!);
     } catch (error: any) {
-      console.error("Quote Error", error);
+      console.error("Quote Error:", error);
       setError(error.message);
     }
 
@@ -104,48 +141,44 @@ const Swap = () => {
   }
 
   async function startTransfer() {
+    if (!swingSDK) return;
+
     if (!transferRoute) {
       setError("Choose a transfer route first.");
       return;
     }
 
-    swingSDK.on("TRANSFER", async (transferStepStatus, transferResults) => {
-      setStatus(transferStepStatus);
-      setResults(transferResults);
+    const transferListener = swingSDK.on(
+      "TRANSFER",
+      async (transferStepStatus, transferResults) => {
+        setStatus(transferStepStatus);
+        setResults(transferResults);
 
-      console.log("TRANSFER", transferStepStatus, transferResults);
+        console.log("TRANSFER:", transferStepStatus, transferResults);
 
-      switch (transferStepStatus.status) {
-        case "CHAIN_SWITCH_REQUIRED":
-          await metamask.request({
-            method: "wallet_switchEthereumChain",
-            params: [
-              {
-                chainId: `0x${Number(transferStepStatus.chain.chainId).toString(
-                  16
-                )}`,
-              },
-            ],
-          });
-          break;
+        switch (transferStepStatus.status) {
+          case "CHAIN_SWITCH_REQUIRED":
+            await switchChain(transferStepStatus.chain);
+            break;
 
-        case "WALLET_CONNECTION_REQUIRED":
-          await metamask.request({
-            method: "wallet_requestPermissions",
-            params: [{ eth_accounts: {} }],
-          });
-          break;
+          case "WALLET_CONNECTION_REQUIRED":
+            await connectWallet(transferStepStatus.chain.chainId);
+            break;
+        }
       }
-    });
+    );
 
     setIsLoading(true);
 
     try {
       await swingSDK.transfer(transferRoute, transferParams);
     } catch (error: any) {
+      console.error("Transfer Error:", error);
       setError(error.message);
     }
 
+    // Close the transfer listener
+    transferListener();
     setIsLoading(false);
   }
 
@@ -173,10 +206,10 @@ const Swap = () => {
             value={transferParams.amount}
             onChange={(e: any) => {
               setTransferRoute(null); // Reset transfer route
-              setTransferParams({
-                ...transferParams,
+              setTransferParams((prev) => ({
+                ...prev,
                 amount: e.currentTarget.value,
-              });
+              }));
             }}
           />
           <div className="absolute right-3">{transferParams.fromToken}</div>
@@ -234,7 +267,7 @@ const Swap = () => {
                 Gas Fee
               </label>
               <div className="font-medium capitalize">
-                ${transferRoute.gasUSD}
+                {formatUSD(transferRoute.gasUSD)}
               </div>
             </div>
 
@@ -243,7 +276,7 @@ const Swap = () => {
                 Total
               </label>
               <div className="font-medium capitalize">
-                ${transferRoute.quote.amountUSD}
+                {formatUSD(transferRoute.quote.amountUSD)}
               </div>
             </div>
           </div>
@@ -276,5 +309,13 @@ const Swap = () => {
     </div>
   );
 };
+
+function formatUSD(amount: string) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
+  }).format(Number(amount));
+}
 
 export default Swap;

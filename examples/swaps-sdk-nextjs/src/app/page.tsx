@@ -1,17 +1,18 @@
-import { CallToAction } from "../components/CallToAction";
-import { Hero } from "../components/Hero";
-import { PrimaryFeatures } from "../components/PrimaryFeatures";
-import { Reviews } from "../components/Reviews";
-import { SecondaryFeatures } from "../components/SecondaryFeatures";
+import { CallToAction } from "../components/ui/CallToAction";
+import { Hero } from "../components/ui/Hero";
+import { PrimaryFeatures } from "../components/ui/PrimaryFeatures";
+import { Reviews } from "../components/ui/Reviews";
+import { SecondaryFeatures } from "../components/ui/SecondaryFeatures";
+import { ThirdwebProvider } from "../components/ThirdwebProvider";
 
 export default function Home() {
   return (
-    <>
+    <ThirdwebProvider>
       <Hero />
       <PrimaryFeatures />
       <SecondaryFeatures />
       <CallToAction />
       <Reviews />
-    </>
+    </ThirdwebProvider>
   );
 }

@@ -20,7 +20,7 @@ import {
   TransistorLogo,
   TupleLogo,
 } from "./StockLogos";
-import Swap from "./Swap";
+import Swap from "../Swap";
 
 const MotionAppScreenHeader = motion(AppScreen.Header);
 const MotionAppScreenBody = motion(AppScreen.Body);
