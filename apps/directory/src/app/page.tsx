@@ -67,6 +67,33 @@ const templates: TemplateMeta[] = fg
   })
   .sort((a, b) => a.name.localeCompare(b.name));
 
+export const metadata = {
+  metadataBase: new URL("https://developers.swing.xyz/examples"),
+  title: "Swing Example Templates",
+  description:
+    "Find an example template to help you get started integrating with Swing.",
+  openGraph: {
+    type: "website",
+    images: [
+      {
+        url: "https://developers.swing.xyz/examples/directory-landing.png",
+        width: 1200,
+        height: 838,
+        alt: "Swing Example Templates",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@swing_xyz",
+    site: "@swing_xyz",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function Directory() {
   return (
     <main>
