@@ -31,7 +31,10 @@ export function Footer() {
               className="text-muted hover:text-muted/80"
             >
               <span className="sr-only">{item.name}</span>
-              <item.icon className="h-6 w-6" aria-hidden="true" />
+              <item.icon
+                className="h-6 w-6 fill-muted hover:fill-muted/80"
+                aria-hidden="true"
+              />
             </a>
           ))}
         </div>

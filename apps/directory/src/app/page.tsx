@@ -7,6 +7,9 @@ import path from "node:path";
 import fs from "node:fs";
 import { slugify } from "lib/slugify";
 import { keywordOptions } from "lib/keywords";
+import { Suspense } from "react";
+import { Filters } from "components/filters";
+import { TemplateGrid } from "components/template-grid";
 
 const examplesPath = path.resolve(
   __dirname,
@@ -19,8 +22,10 @@ const examplesPath = path.resolve(
 );
 
 const templates: TemplateMeta[] = fg
-  .globSync(["package.json"], {
+  .globSync(["**/package.json"], {
     cwd: examplesPath,
+    deep: 2,
+    onlyFiles: true,
   })
   .map((packageJsonPath) => {
     const packageJson = JSON.parse(
@@ -67,7 +72,21 @@ export default function Directory() {
     <main>
       <Hero />
 
-      <Templates templates={templates} />
+      <div id="templates">
+        <div className="flex flex-col min-[960px]:flex-row container max-w-6xl gap-10 py-32">
+          <div className="px-10 min-[960px]:w-56 min-[960px]:px-0">
+            <Suspense>
+              <Filters />
+            </Suspense>
+          </div>
+
+          <div className="flex-grow">
+            <Suspense fallback={<TemplateGrid templates={templates} />}>
+              <Templates templates={templates} />
+            </Suspense>
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </main>

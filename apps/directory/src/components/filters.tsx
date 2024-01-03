@@ -22,12 +22,7 @@ export function Filters() {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 960px)");
 
-  if (isDesktop)
-    return (
-      <div className="w-56">
-        <Filter />
-      </div>
-    );
+  if (isDesktop) return <Filter />;
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -36,9 +31,7 @@ export function Filters() {
       </DrawerTrigger>
 
       <DrawerContent>
-        <div className="px-10">
-          <Filter />
-        </div>
+        <Filter />
       </DrawerContent>
     </Drawer>
   );

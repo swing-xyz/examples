@@ -18,6 +18,9 @@
       "outputs": []
     },
     "test": {},
+    "start": {
+      "dependsOn": ["build"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
