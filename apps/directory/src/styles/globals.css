@@ -1,3 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 144.52deg 38.59% 52.75%;
+    --primary-foreground: 210deg 40% 98%;
+
+    --background: 0deg 0% 100%;
+    --foreground: 240deg 5.88% 10%;
+
+    --muted: 223deg 3% 46%;
+    --muted-foreground: 215.4deg 16.3% 46.9%;
+
+    --popover: 0deg 0% 100%;
+    --popover-foreground: 240deg 5.88% 10%;
+
+    --secondary: 240deg 4.76% 95.88%;
+    --secondary-foreground: 240deg 5.88% 10%;
+
+    --accent: 240deg 5.88% 90%;
+    --accent-foreground: 240deg 5.88% 10%;
+
+    --card: 0deg 0% 100%;
+    --card-foreground: 222.2deg 84% 4.9%;
+
+    --destructive: 0deg 84.2% 60.2%;
+    --destructive-foreground: 210deg 40% 98%;
+
+    --border: 240deg 5.88% 90%;
+    --input: 240deg 5.88% 90%;
+    --ring: 215deg 20.2% 65.1%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --primary: 144.52deg 38.59% 52.75%;
+    --primary-foreground: 210deg 40% 98%;
+
+    --background: 0deg 0% 0%;
+    --foreground: 213deg 31% 91%;
+
+    --muted: 217.89deg 10.61% 64.9%;
+    --muted-foreground: 215.4deg 16.3% 56.9%;
+
+    --popover: 240deg 5.88% 10%;
+    --popover-foreground: 213deg 31% 91%;
+
+    --secondary: 0deg 0% 9%;
+    --secondary-foreground: 214.29deg 30.43% 90.98%;
+
+    --accent: 240deg 3.7% 15.88%;
+    --accent-foreground: 210deg 40% 98%;
+
+    --card: 222.2deg 84% 4.9%;
+    --card-foreground: 210deg 40% 98%;
+
+    --destructive: 0deg 62.8% 30.6%;
+    --destructive-foreground: 210deg 40% 98%;
+
+    --border: 240deg 3.7% 15.88%;
+    --input: 240deg 3.7% 15.88%;
+    --ring: 216deg 34% 17%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

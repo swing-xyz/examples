@@ -13,6 +13,7 @@ module.exports = {
     "node_modules/",
     ".next/",
     "dist/",
+    "build/",
     ".eslintrc.js",
     "**/*.css",
     "react-app-env.d.ts",

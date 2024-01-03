@@ -1,6 +1,0 @@
-{
-  "name": "Cross-chain Swaps SDK Next.js Example",
-  "description": "Example template showcasing how to integrate cross-chain swaps using @swing.xyz/sdk",
-  "package": "@swing.xyz/sdk",
-  "feature": "swaps"
-}

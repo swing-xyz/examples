@@ -1,6 +1,14 @@
 {
   "name": "swaps-sdk-nextjs",
-  "description": "Next.js example template showcasing how to integrate cross-chain swaps using @swing.xyz/sdk",
+  "demo": "https://swaps-sdk-nextjs.vercel.app/",
+  "keywords": [
+    "@swing.xyz/sdk",
+    "sdk",
+    "swaps",
+    "nextjs",
+    "thirdweb"
+  ],
+  "license": "MIT",
   "version": "0.0.1",
   "private": true,
   "scripts": {

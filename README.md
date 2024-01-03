@@ -1,4 +1,11 @@
-# Swing Examples
+<p align="center">
+  <a href="https://swing-examples.vercel.app/">
+    <picture>
+      <img src="./apps/directory/public/directory-landing.png" height="300" style="border-radius:10px;">
+    </picture>
+    <h1 align="center">Swing Example Templates</h1>
+  </a>
+</p>
 
 > Have an idea for a template? Please [create a pull request](https://github.com/polkaswitch/examples/pulls) or [request an example](https://github.com/polkaswitch/examples/issues/new).
 
@@ -24,7 +31,9 @@ yarn dev --filter=swaps-widget-nextjs
 
 Finally, open the example http://localhost:3000
 
-## Swaps
+## Examples
+
+### Swaps
 
 **Next.js**
 
@@ -41,16 +50,16 @@ Finally, open the example http://localhost:3000
 
 - [swaps-widget-angular](./examples/swaps-widget-angular/README.md) - Cross-chain Swaps using the Widget in Angular
 
-## Staking
+### Staking
 
 - [staking-widget-nextjs](./examples/staking-widget-nextjs/README.md) - Cross-chain Staking using the Widget in Next.js
 - [staking-sdk-nextjs](./examples/staking-sdk-nextjs/README.md) - Cross-chain Staking using the SDK in Next.js
 - [staking-api-nextjs](./examples/staking-api-nextjs/README.md) - Cross-chain Staking using the Swing API in Next.js
 
-## Withdraw
+### Withdraw
 
 - [withdraw-widget-nextjs](./examples/withdraw-widget-nextjs/README.md) - Cross-chain Withdraw using the Widget in Next.js
 
-## Gas
+### Gas
 
 - [gas-widget-nextjs](./examples/gas-widget-nextjs/README.md) - Cross-chain Gas Refill using the Widget in Next.js

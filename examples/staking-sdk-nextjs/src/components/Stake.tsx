@@ -7,7 +7,6 @@ import {
   TransferStepResult,
   TransferStepResults,
 } from "@swing.xyz/sdk";
-import "@swing.xyz/ui/theme.css";
 import { Button } from "components/ui/button";
 import { Fragment, useState } from "react";
 import {

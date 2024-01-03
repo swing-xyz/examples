@@ -1,8 +1,14 @@
 {
   "name": "swaps-widget-angular",
-  "version": "0.0.0",
-  "description": "Example project from an angular.io guide.",
+  "keywords": [
+    "@swing.xyz/ui",
+    "widget",
+    "swaps",
+    "angular"
+  ],
   "license": "MIT",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
@@ -11,7 +17,6 @@
     "e2e": "ng e2e",
     "clean": "rm -rf dist .angular node_modules"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^15",
     "@angular/common": "^15",
@@ -34,6 +39,7 @@
     "copyfiles": "^2.4.1",
     "eslint": "^8.56.0",
     "eslint-config-examples": "workspace:*",
+    "pino-pretty": "^10.3.1",
     "protractor": "~7.0.0",
     "ts-node": "~10.9.2",
     "typescript": "^5.3.3",
