@@ -1,0 +1,35 @@
+{
+  "extends": ["//"],
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": ["build/**"],
+      "env": [
+        "BABEL_ENV",
+        "BUILD_PATH",
+        "CI",
+        "DANGEROUSLY_DISABLE_HOST_CHECK",
+        "DISABLE_ESLINT_PLUGIN",
+        "DISABLE_NEW_JSX_TRANSFORM",
+        "ESLINT_NO_DEV_ERRORS",
+        "FAST_REFRESH",
+        "GENERATE_SOURCEMAP",
+        "HOST",
+        "HTTPS",
+        "IMAGE_INLINE_SIZE_LIMIT",
+        "INLINE_RUNTIME_CHUNK",
+        "NODE_ENV",
+        "NODE_PATH",
+        "PORT",
+        "PUBLIC_URL",
+        "SSL_CRT_FILE",
+        "SSL_KEY_FILE",
+        "TSC_COMPILE_ON_ERROR",
+        "WDS_SOCKET_HOST",
+        "WDS_SOCKET_PATH",
+        "WDS_SOCKET_PORT"
+      ],
+      "outputMode": "new-only"
+    }
+  }
+}

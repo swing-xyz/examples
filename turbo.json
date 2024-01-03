@@ -3,6 +3,8 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
+      "outputMode": "new-only",
+      "env": ["NODE_ENV"],
       "outputs": [
         ".next/**",
         "!.next/cache/**",
@@ -12,6 +14,7 @@
       ]
     },
     "lint": {
+      "outputMode": "new-only",
       "outputs": []
     },
     "test": {},

@@ -289,7 +289,7 @@ const Swap = () => {
                 Transfer Status
               </label>
               <div className="capitalize">
-                {status.step}: <b>{status.status}</b>
+                {status.step}: <b>{status.status || results?.status || ""}</b>
               </div>
             </div>
           )}

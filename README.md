@@ -26,11 +26,20 @@ Finally, open the example http://localhost:3000
 
 ## Swaps
 
-- [swaps-widget-nextjs](./examples/swaps-widget-nextjs/README.md) - Cross-chain Swaps using the Widget in Next.js App Router
-- [swaps-widget-nextjs-pages](./examples/swaps-widget-nextjs-pages/README.md) - Cross-chain Swaps using the Widget in Next.js Pages Router
-- [swaps-widget-angular](./examples/swaps-widget-angular/README.md) - Cross-chain Swaps using the Widget in Angular
+**Next.js**
+
+- [swaps-widget-nextjs](./examples/swaps-widget-nextjs/README.md) - Cross-chain Swaps using the Widget in **Next.js App Router**
+- [swaps-widget-nextjs-pages](./examples/swaps-widget-nextjs-pages/README.md) - Cross-chain Swaps using the Widget in **Next.js Pages Router**
 - [swaps-sdk-nextjs](./examples/swaps-sdk-nextjs/README.md) - Cross-chain Swaps using the SDK in Next.js
 - [swaps-api-nextjs](./examples/swaps-api-nextjs/README.md) - Cross-chain Swaps using the Swing API in Next.js
+
+**Webpack**
+
+- [swaps-widget-webpack](./examples/swaps-widget-webpack/README.md) - Cross-chain Swaps using the Widget with Webpack
+
+**Angular**
+
+- [swaps-widget-angular](./examples/swaps-widget-angular/README.md) - Cross-chain Swaps using the Widget in Angular
 
 ## Staking
 

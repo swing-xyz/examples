@@ -35,6 +35,7 @@ export function useConnectWallet() {
     return connection.account;
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- Depend on swingSDK.isReady
   return useCallback(connectWallet, [
     isConnected,
     connectAsync,

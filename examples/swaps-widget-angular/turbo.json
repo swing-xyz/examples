@@ -1,0 +1,10 @@
+{
+  "extends": ["//"],
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": [".angular/**", "dist/**"],
+      "outputMode": "new-only"
+    }
+  }
+}
