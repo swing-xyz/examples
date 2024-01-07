@@ -1,6 +1,5 @@
 {
   "name": "swaps-widget-webpack",
-  "demo": "https://swaps-widget-webpack.vercel.app/",
   "keywords": [
     "@swing.xyz/ui",
     "widget",
@@ -17,7 +16,7 @@
     "clean": "rm -rf build node_modules"
   },
   "dependencies": {
-    "@swing.xyz/ui": "^0.47.2",
+    "@swing.xyz/ui": "^0.47.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
