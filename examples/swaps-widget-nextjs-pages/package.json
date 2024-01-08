@@ -17,7 +17,7 @@
     "clean": "rm -rf .next node_modules"
   },
   "dependencies": {
-    "@swing.xyz/ui": "^0.47.3",
+    "@swing.xyz/ui": "^0.47.5",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
