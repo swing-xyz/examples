@@ -15,22 +15,18 @@ export function useConnectWallet() {
       return address;
     }
 
+    const connector = connectors[0];
+
     const connection = await connectAsync({
       chainId: chain?.chainId,
-      connector: connectors[0],
+      connector,
     });
 
-    const walletClient = await connection.connector?.getWalletClient();
-
-    const connectionChain = swingSDK.chains.find(
-      (chain) => chain.chainId === connection.chain.id
-    );
+    const walletClient = await connector.getWalletClient();
+    const chainId = await connector.getChainId();
 
     // Pass transport into Swing SDK: https://wagmi.sh/react/ethers-adapters#wallet-client--signer
-    await swingSDK.wallet.connect(
-      walletClient!.transport,
-      connectionChain!.slug
-    );
+    await swingSDK.wallet.connect(walletClient.transport, chainId);
 
     return connection.account;
   }

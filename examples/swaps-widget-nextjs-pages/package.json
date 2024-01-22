@@ -17,21 +17,21 @@
     "clean": "rm -rf .next node_modules"
   },
   "dependencies": {
-    "@swing.xyz/ui": "^0.47.3",
-    "next": "14.0.4",
+    "@swing.xyz/ui": "^0.47.9",
+    "next": "14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.6",
-    "@types/react": "^18.2.46",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
     "eslint-config-examples": "workspace:*",
     "pino-pretty": "^10.3.1",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
     "typescript-config": "workspace:*"
   }

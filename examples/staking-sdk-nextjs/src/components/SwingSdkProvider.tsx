@@ -1,6 +1,6 @@
 "use client";
 
-import SwingSDK from "@swing.xyz/sdk";
+import { SwingSDK } from "@swing.xyz/sdk";
 import { useContext, useEffect, useState, createContext } from "react";
 
 const swingSdk = new SwingSDK({
