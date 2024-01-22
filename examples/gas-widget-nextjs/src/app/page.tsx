@@ -7,6 +7,7 @@ export default function SwapPage() {
       <Gas
         title="Gas Refill with MetaWallet"
         projectId="example-gas-widget-nextjs"
+        debug
       />
     </div>
   );

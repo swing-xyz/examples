@@ -12,7 +12,7 @@ import { SwingSdkProvider, Stake } from "@swing.xyz/ui";
 
 export default function StakePage() {
   return (
-    <SwingSdkProvider projectId="example-staking-widget-nextjs">
+    <SwingSdkProvider projectId="example-staking-widget-nextjs" debug>
       <WagmiProvider>
         <Sidebar />
 
@@ -32,6 +32,7 @@ export default function StakePage() {
             <Stake
               title="Stake with MetaWallet"
               projectId="example-staking-widget-nextjs"
+              debug
             />
           </div>
         </main>

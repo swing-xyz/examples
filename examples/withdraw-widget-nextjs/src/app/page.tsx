@@ -7,6 +7,7 @@ export default function SwapPage() {
       <Withdraw
         title="Withdraw with MetaWallet"
         projectId="example-withdraw-widget-nextjs"
+        debug
       />
     </div>
   );

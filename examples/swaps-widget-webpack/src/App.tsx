@@ -6,6 +6,7 @@ function App() {
     <Swap
       title="Swap Demo with Webpack"
       projectId="example-swaps-widget-webpack"
+      debug
     />
   );
 }

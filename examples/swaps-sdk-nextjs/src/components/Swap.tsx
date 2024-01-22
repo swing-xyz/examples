@@ -46,6 +46,7 @@ const Swap = () => {
     const swing = new SwingSDK({
       projectId: "example-swaps-sdk-nextjs",
       environment: "testnet",
+      debug: true,
     });
 
     setIsLoading(true);

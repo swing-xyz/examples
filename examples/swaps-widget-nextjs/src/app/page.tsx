@@ -7,6 +7,7 @@ export default function SwapPage() {
       <Swap
         title="Swap with MetaWallet"
         projectId="example-swaps-widget-nextjs"
+        debug
       />
     </div>
   );
