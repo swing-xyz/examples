@@ -6,9 +6,10 @@
     "baseUrl": "./src",
     "plugins": [
       {
-        "name": "next"
-      }
-    ]
+        "name": "next",
+      },
+    ],
+    "verbatimModuleSyntax": true,
   },
   "include": [
     "next-env.d.ts",
@@ -16,7 +17,7 @@
     "**/*.tsx",
     "*.js",
     "*.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
   ],
-  "exclude": ["node_modules", ".next"]
+  "exclude": ["node_modules", ".next"],
 }

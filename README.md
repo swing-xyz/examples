@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://developers.swing.xyz/examples">
+  <a href="https://examples.swing.xyz">
     <picture>
       <img src="./apps/directory/public/directory-landing.png" height="300" style="border-radius:10px;">
     </picture>
@@ -7,7 +7,16 @@
   </a>
 </p>
 
-> Have an idea for a template? Please [create a pull request](https://github.com/polkaswitch/examples/pulls) or [request an example](https://github.com/polkaswitch/examples/issues/new).
+<p align="center">Kickstart your Swing integration with ready-to-ship repositories.</p>
+
+<p align="center">
+  <a aria-label="Examples Website" href="https://examples.swing.xyz">
+    <img alt="Examples Website" src="https://img.shields.io/badge/Examples%20Directory-000000.svg?style=for-the-badge&labelColor=000">
+  </a>
+  <a aria-label="Swing Developers Website" href="https://developers.swing.xyz">
+    <img alt="Swing Developers Website" src="https://img.shields.io/badge/Developer%20Docs-000000.svg?style=for-the-badge&labelColor=000">
+  </a>
+</p>
 
 ## Documentation
 
@@ -15,7 +24,7 @@ Looking for the documentation? https://developers.swing.xyz
 
 ## Getting started
 
-First choose one of the [examples](./examples).
+First choose one of the [examples](#examples).
 
 Install the NPM dependencies:
 
@@ -33,21 +42,15 @@ Finally, open the example http://localhost:3000
 
 ## Examples
 
-### Swaps
+> Have an idea for a template? Please [create a pull request](https://github.com/swing-xyz/examples/pulls) or [request one](https://github.com/swing-xyz/examples/issues/new).
 
-**Next.js**
+### Swaps
 
 - [swaps-widget-nextjs](./examples/swaps-widget-nextjs/README.md) - Cross-chain Swaps using the Widget in **Next.js App Router**
 - [swaps-widget-nextjs-pages](./examples/swaps-widget-nextjs-pages/README.md) - Cross-chain Swaps using the Widget in **Next.js Pages Router**
 - [swaps-sdk-nextjs](./examples/swaps-sdk-nextjs/README.md) - Cross-chain Swaps using the SDK in Next.js
 - [swaps-api-nextjs](./examples/swaps-api-nextjs/README.md) - Cross-chain Swaps using the Swing API in Next.js
-
-**Webpack**
-
 - [swaps-widget-webpack](./examples/swaps-widget-webpack/README.md) - Cross-chain Swaps using the Widget with Webpack
-
-**Angular**
-
 - [swaps-widget-angular](./examples/swaps-widget-angular/README.md) - Cross-chain Swaps using the Widget in Angular
 
 ### Staking

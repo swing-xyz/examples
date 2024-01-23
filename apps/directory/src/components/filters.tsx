@@ -27,10 +27,10 @@ export function Filters() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="ghost">Filter Templates</Button>
+        <Button variant="ghost">Filter</Button>
       </DrawerTrigger>
 
-      <DrawerContent>
+      <DrawerContent className="p-4">
         <Filter />
       </DrawerContent>
     </Drawer>
@@ -43,9 +43,9 @@ function Filter() {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className="relative overflow-auto">
       <div className="flex items-center justify-between">
-        <h4 className="font-bold">Filter Templates</h4>
+        <h4 className="font-bold text-base">Filter</h4>
 
         <Button
           className={cn({
@@ -125,6 +125,6 @@ function Filter() {
           })}
         </Accordion>
       </form>
-    </>
+    </div>
   );
 }

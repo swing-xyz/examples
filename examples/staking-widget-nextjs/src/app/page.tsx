@@ -21,7 +21,7 @@ export default function StakePage() {
             <ConnectWallet />
 
             <Button className="space-x-2" variant="outline" asChild>
-              <a href="https://github.com/polkaswitch/examples">
+              <a href="https://github.com/swing-xyz/examples">
                 <FontAwesomeIcon size="lg" icon={faGithub} />
                 <span>Fork on Github</span>
               </a>

@@ -11731,6 +11731,7 @@ __metadata:
     eslint: "npm:^8.56.0"
     eslint-config-examples: "workspace:*"
     fast-glob: "npm:^3.3.2"
+    geist: "npm:^1.2.0"
     lucide-react: "npm:^0.314.0"
     next: "npm:^14.1.0"
     next-themes: "npm:^0.2.1"
@@ -13781,6 +13782,15 @@ __metadata:
     gaxios: "npm:^5.0.0"
     json-bigint: "npm:^1.0.0"
   checksum: ec2c32bd74ef6bfab9533612ef5ece328cb4a550e7523a20245e5eae6a9a74a68ab38ab37d1c1218d893fc39a08f590cef29c98d9a9e622db4fee39d3e1d396b
+  languageName: node
+  linkType: hard
+
+"geist@npm:^1.2.0":
+  version: 1.2.1
+  resolution: "geist@npm:1.2.1"
+  peerDependencies:
+    next: ^13.2 || ^14
+  checksum: 305a69b9b063dd60d2a67dd5f74cb4405c3cfbfd6c5f3f5cdc9e96cadb8224a0f8604156fd45a31ae467628b9cfad6370e3c7a6df34ebc9d7ca8a8c9444cfd29
   languageName: node
   linkType: hard
 

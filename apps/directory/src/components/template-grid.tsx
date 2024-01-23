@@ -32,7 +32,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
         return (
           <Card
             key={template.id}
-            className="max-w-72 hover:scale-105 duration-300 mx-auto flex flex-col relative overflow-hidden bg-background"
+            className="sm:max-w-72 hover:scale-105 duration-300 mx-auto flex flex-col relative overflow-hidden bg-background"
           >
             <a
               className="absolute inset-0"

@@ -112,7 +112,7 @@ export default function Sidebar() {
 
       <Link
         id="fork-on-github"
-        href="https://github.com/polkaswitch/examples"
+        href="https://github.com/swing-xyz/examples"
         className="flex items-center px-6 py-4 -mb-5 space-x-2 text-white border-t cursor-pointer border-slate-700 hover:bg-slate-700"
         target={"_blank"}
       >
