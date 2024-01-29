@@ -12,3 +12,7 @@ updates:
       interval: "weekly"
     allow:
       - dependency-name: "@swing.xyz/*"
+    groups:
+      swing:
+        patterns:
+          - "@swing.xyz/*"
