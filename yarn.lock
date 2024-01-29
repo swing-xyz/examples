@@ -2352,6 +2352,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cosmjs/cosmwasm-stargate@npm:^0.32.2":
+  version: 0.32.2
+  resolution: "@cosmjs/cosmwasm-stargate@npm:0.32.2"
+  dependencies:
+    "@cosmjs/amino": "npm:^0.32.2"
+    "@cosmjs/crypto": "npm:^0.32.2"
+    "@cosmjs/encoding": "npm:^0.32.2"
+    "@cosmjs/math": "npm:^0.32.2"
+    "@cosmjs/proto-signing": "npm:^0.32.2"
+    "@cosmjs/stargate": "npm:^0.32.2"
+    "@cosmjs/tendermint-rpc": "npm:^0.32.2"
+    "@cosmjs/utils": "npm:^0.32.2"
+    cosmjs-types: "npm:^0.9.0"
+    pako: "npm:^2.0.2"
+  checksum: f7ac842f217eb8bfbc51c5baaa6053a780aed6cc7a820bdcf60f90e31cc55dfa0276baf421de032b8f39667411ab9e659b489309e37ae9cb98f363af85391094
+  languageName: node
+  linkType: hard
+
 "@cosmjs/crypto@npm:^0.32.2":
   version: 0.32.2
   resolution: "@cosmjs/crypto@npm:0.32.2"
@@ -6177,6 +6195,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry-internal/feedback@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry-internal/feedback@npm:7.98.0"
+  dependencies:
+    "@sentry/core": "npm:7.98.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
+  checksum: 3366822ab31750b339885d9453acab0f869e0a17b0bb69f5ee9faec527b4b7cd686b9ddc52c939314b8d03cfee3571b372fcf4595be5c14ea6aff0a758426aab
+  languageName: node
+  linkType: hard
+
+"@sentry-internal/replay-canvas@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry-internal/replay-canvas@npm:7.98.0"
+  dependencies:
+    "@sentry/core": "npm:7.98.0"
+    "@sentry/replay": "npm:7.98.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
+  checksum: 96fc2416c97fd02e2cc22dbf35c9c5c050f9a12709f5a7b74dbc2993439c11cbe452500fe9f7865a64abaad398da123a58c86277f55bb36aae4c480fa226fe48
+  languageName: node
+  linkType: hard
+
 "@sentry-internal/tracing@npm:7.93.0":
   version: 7.93.0
   resolution: "@sentry-internal/tracing@npm:7.93.0"
@@ -6185,6 +6226,17 @@ __metadata:
     "@sentry/types": "npm:7.93.0"
     "@sentry/utils": "npm:7.93.0"
   checksum: 26efc18b072b015fdea6606ad58a657e5dc3cdcc5b18ab320e34844c25d717a69b706a4ed4415373f6b71b22f22a7bf877d607e79836fcc3e115c33d23b50577
+  languageName: node
+  linkType: hard
+
+"@sentry-internal/tracing@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry-internal/tracing@npm:7.98.0"
+  dependencies:
+    "@sentry/core": "npm:7.98.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
+  checksum: fbd6cf01f411d5540e5cf1f1d0c6a7054e63b299e9721044a81b36487e51cdc69fad2d0f55567a9b15fc963162b41c6639035640f822f58808ad8e286881aa74
   languageName: node
   linkType: hard
 
@@ -6202,6 +6254,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/browser@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry/browser@npm:7.98.0"
+  dependencies:
+    "@sentry-internal/feedback": "npm:7.98.0"
+    "@sentry-internal/replay-canvas": "npm:7.98.0"
+    "@sentry-internal/tracing": "npm:7.98.0"
+    "@sentry/core": "npm:7.98.0"
+    "@sentry/replay": "npm:7.98.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
+  checksum: 18d98207ea1b6b0a21a73de8218915e4af9dccd38a8ef0703f42754a3da916117139652ddaa2f9851945ab6be66cf477801db77e2ca4090a59258e77ffdcc77e
+  languageName: node
+  linkType: hard
+
 "@sentry/core@npm:7.93.0":
   version: 7.93.0
   resolution: "@sentry/core@npm:7.93.0"
@@ -6212,18 +6279,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.93.0":
-  version: 7.93.0
-  resolution: "@sentry/react@npm:7.93.0"
+"@sentry/core@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry/core@npm:7.98.0"
   dependencies:
-    "@sentry/browser": "npm:7.93.0"
-    "@sentry/core": "npm:7.93.0"
-    "@sentry/types": "npm:7.93.0"
-    "@sentry/utils": "npm:7.93.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
+  checksum: fa2221c5776a8a9331df60c263a78e034b535cec524296af659704215da8d225057fcf1df928e99386d1ac9f55f45a95c43f5ec1f85ebb99317f90f77936aeb8
+  languageName: node
+  linkType: hard
+
+"@sentry/react@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry/react@npm:7.98.0"
+  dependencies:
+    "@sentry/browser": "npm:7.98.0"
+    "@sentry/core": "npm:7.98.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
     hoist-non-react-statics: "npm:^3.3.2"
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 9a371b2ec980b60dce5ad9fdba8978cadd4b982ac7d39e9c60b91d074996f2e08567fe6f0dcce6ba59f6712f0e6b905d83279b31501f932e38ac7747f465cc98
+  checksum: c2e7b378ed81ee9cb93a4de4e1f10dffade66a079183ebe268cc34f3112b2f7f035ac0bb84f2efcb00d42474c4303ca0d190a4f3be54c636df168c7a6d4b3ab4
   languageName: node
   linkType: hard
 
@@ -6239,10 +6316,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/replay@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry/replay@npm:7.98.0"
+  dependencies:
+    "@sentry-internal/tracing": "npm:7.98.0"
+    "@sentry/core": "npm:7.98.0"
+    "@sentry/types": "npm:7.98.0"
+    "@sentry/utils": "npm:7.98.0"
+  checksum: fd3577c1432eb8f382b71627880f61f9638bcd4d9fcc6ee6e8487a7460df09648f5245c73a0260653bf2aca9ef84085d855a3b96208de2611abe6b407a837a24
+  languageName: node
+  linkType: hard
+
 "@sentry/types@npm:7.93.0":
   version: 7.93.0
   resolution: "@sentry/types@npm:7.93.0"
   checksum: 851480468ebe35f05b402fa954040bdc12f08bb5f820c149988c9108328c54a43e685bf85e8f94fc3a2c729ce41079bb3d7a78e757586b2cf2ac49e727b89669
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry/types@npm:7.98.0"
+  checksum: 3b9bd8929b988c4ee70afadb8662e47d22188b2acdf63f58b61a3cabea3be341d63d612aca7b61f0a267659c5eb774ee81347611a47f87e2c9ed71c8123ccae5
   languageName: node
   linkType: hard
 
@@ -6252,6 +6348,15 @@ __metadata:
   dependencies:
     "@sentry/types": "npm:7.93.0"
   checksum: 12442644235c797d787b28c2b8fbfa907806bbf31b42e50214d44d055fbbd218562f1bf12ac520eaea609c30594764860e2c117cbd9a5f2e2d03f0a74e4b9cda
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.98.0":
+  version: 7.98.0
+  resolution: "@sentry/utils@npm:7.98.0"
+  dependencies:
+    "@sentry/types": "npm:7.98.0"
+  checksum: b4697bd8a1ad6ee4a7b2d639847e874d0bc6fce7395ee2184618cfe6b3a31f06732483e339c76e9e0dd50c39c97ea598ac42921a2fa3fefd2a786684e0bcb10c
   languageName: node
   linkType: hard
 
@@ -6660,23 +6765,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.47.9":
-  version: 0.47.9
-  resolution: "@swing.xyz/design-system@npm:0.47.9"
+"@swing.xyz/design-system@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@swing.xyz/design-system@npm:0.48.2"
   dependencies:
     "@fortawesome/fontawesome-common-types": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@headlessui/react": "npm:^1.7.18"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
-    "@tanstack/react-virtual": "npm:^3.0.1"
+    "@tanstack/react-virtual": "npm:^3.0.2"
     clsx: "npm:^2.1.0"
-    jotai: "npm:^2.6.2"
-    tailwind-merge: "npm:^2.2.0"
+    jotai: "npm:^2.6.3"
+    tailwind-merge: "npm:^2.2.1"
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 9204493f596ca1dd58f33364d559f9d67d7a11007df34c03d2f330ae8c1a80d87e6e71e419754bb588fd2a28151f4aa4217ff9a9ffa8a6258ee37fdec4799bec
+  checksum: a7463df205c3e79bd9139c640d585ba060af0e5f66eb8e4bb21cfeeede711da3afde547c222de0f643b837aeaaeee03e5bc3e158f0a0910a44e6f855b8681654
   languageName: node
   linkType: hard
 
@@ -6696,7 +6801,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.47.9, @swing.xyz/sdk@npm:^0.47.9":
+"@swing.xyz/sdk@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@swing.xyz/sdk@npm:0.48.2"
+  dependencies:
+    "@coinbase/wallet-sdk": "npm:^3.9.1"
+    "@cosmjs/cosmwasm-stargate": "npm:^0.32.2"
+    "@cosmjs/stargate": "npm:^0.32.2"
+    "@ethersproject/abi": "npm:^5.7.0"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/constants": "npm:^5.7.0"
+    "@ethersproject/contracts": "npm:^5.7.0"
+    "@ethersproject/hash": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/signing-key": "npm:^5.7.0"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.98.0"
+    "@solana/web3.js": "npm:^1.89.1"
+    "@swing.xyz/cross-chain-api": "npm:^0.0.12"
+    "@swing.xyz/platform-api": "npm:^0.0.13"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+  checksum: 28f97e94043006aae33a1b291bad4a01ad14b77b3f5f8ce7f717caa0310aa401ceea0be9f4b63c15a981a2314f911e07afdfba7dcdf563edc42155ce8e18bc28
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.47.9":
   version: 0.47.9
   resolution: "@swing.xyz/sdk@npm:0.47.9"
   dependencies:
@@ -6723,18 +6856,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.47.9":
-  version: 0.47.9
-  resolution: "@swing.xyz/ui@npm:0.47.9"
+"@swing.xyz/ui@npm:^0.48.2":
+  version: 0.48.2
+  resolution: "@swing.xyz/ui@npm:0.48.2"
   dependencies:
     "@coinbase/wallet-sdk": "npm:^3.9.1"
+    "@cosmjs/stargate": "npm:^0.32.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-regular-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
-    "@sentry/react": "npm:7.93.0"
-    "@swing.xyz/design-system": "npm:0.47.9"
-    "@swing.xyz/sdk": "npm:0.47.9"
+    "@sentry/react": "npm:7.98.0"
+    "@swing.xyz/design-system": "npm:0.48.2"
+    "@swing.xyz/sdk": "npm:0.48.2"
     "@web3-react/coinbase-wallet": "npm:8.2.3"
     "@web3-react/core": "npm:8.2.3"
     "@web3-react/empty": "npm:8.2.3"
@@ -6747,13 +6881,13 @@ __metadata:
     clsx: "npm:^2.1.0"
     dayjs: "npm:^1.11.10"
     fuse.js: "npm:^6.6.2"
-    jotai: "npm:^2.6.2"
+    jotai: "npm:^2.6.3"
     lodash.isequal: "npm:^4.5.0"
     react-timeago: "npm:^7.2.0"
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: e6ac93672e5d94f55947ee56f5263f09da11c1873138bc6b408dab1e2754cf82ff14ee1202c043a9b50827998b617641fe4b274687e9153705d269fb041fe0b5
+  checksum: 77f18195e94bcec1feb6d62baee71d7d6f2b89386e26515a755ea01d9c4c1f2c0875cf3690f06c51f2aea4de7bbfedfca1e4130b2b559eff42f22b948b9d4128
   languageName: node
   linkType: hard
 
@@ -6823,7 +6957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-virtual@npm:^3.0.0-beta.60, @tanstack/react-virtual@npm:^3.0.1":
+"@tanstack/react-virtual@npm:^3.0.0-beta.60, @tanstack/react-virtual@npm:^3.0.2":
   version: 3.0.2
   resolution: "@tanstack/react-virtual@npm:3.0.2"
   dependencies:
@@ -13729,7 +13863,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:20.11.5"
     "@types/react": "npm:18.2.48"
     "@types/react-dom": "npm:18.2.18"
@@ -15523,9 +15657,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "jotai@npm:2.6.2"
+"jotai@npm:^2.6.3":
+  version: 2.6.3
+  resolution: "jotai@npm:2.6.3"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -15534,7 +15668,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 394669517e5463d89e20264b51d00884805bd1d0c5b1dd3c19965e82dd1d7409fdbf4b6b71d32731aa2488f41337a60bade6f34aef4015637c910bff76b4c4fe
+  checksum: b0daf3da93524a61e7a7c1892b9e34ada05982575dfa477626021f877389c58379b55a470e34cb74dc466b5f758c4b0aa92b48a923522d081649ffa5cb8dd100
   languageName: node
   linkType: hard
 
@@ -17897,6 +18031,13 @@ __metadata:
   version: 1.0.11
   resolution: "pako@npm:1.0.11"
   checksum: 1ad07210e894472685564c4d39a08717e84c2a68a70d3c1d9e657d32394ef1670e22972a433cbfe48976cb98b154ba06855dcd3fcfba77f60f1777634bec48c0
+  languageName: node
+  linkType: hard
+
+"pako@npm:^2.0.2":
+  version: 2.1.0
+  resolution: "pako@npm:2.1.0"
+  checksum: 38a04991d0ec4f4b92794a68b8c92bf7340692c5d980255c92148da96eb3e550df7a86a7128b5ac0c65ecddfe5ef3bbe9c6dab13e1bc315086e759b18f7c1401
   languageName: node
   linkType: hard
 
@@ -21293,7 +21434,7 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:20.11.5"
     "@types/react": "npm:18.2.48"
     "@types/react-dom": "npm:18.2.18"
@@ -21774,7 +21915,7 @@ __metadata:
     "@angular/core": "npm:^15.2.10"
     "@angular/platform-browser": "npm:^15.2.10"
     "@angular/platform-browser-dynamic": "npm:^15.2.10"
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:^20.11.5"
     copyfiles: "npm:^2.4.1"
     eslint: "npm:^8.56.0"
@@ -21796,7 +21937,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "swaps-widget-nextjs-pages@workspace:examples/swaps-widget-nextjs-pages"
   dependencies:
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:^20.11.5"
     "@types/react": "npm:^18.2.48"
     "@types/react-dom": "npm:^18.2.18"
@@ -21822,7 +21963,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:20.11.5"
     "@types/react": "npm:18.2.48"
     "@types/react-dom": "npm:18.2.18"
@@ -21847,7 +21988,7 @@ __metadata:
     "@babel/core": "npm:^7.23.7"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.11"
     "@svgr/webpack": "npm:^5.5.0"
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:^20.11.5"
     "@types/react": "npm:^18.2.48"
     "@types/react-dom": "npm:^18.2.18"
@@ -21910,7 +22051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:^2.2.0, tailwind-merge@npm:^2.2.1":
+"tailwind-merge@npm:^2.2.1":
   version: 2.2.1
   resolution: "tailwind-merge@npm:2.2.1"
   dependencies:
@@ -24002,7 +24143,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.47.9"
+    "@swing.xyz/ui": "npm:^0.48.2"
     "@types/node": "npm:20.11.5"
     "@types/react": "npm:18.2.48"
     "@types/react-dom": "npm:18.2.18"
