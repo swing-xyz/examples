@@ -100,7 +100,7 @@ const Swap = () => {
 
       // Connect wallet signer to Swing SDK
       const walletAddress = await swingSDK.wallet.connect(
-        walletSigner.provider,
+        walletSigner,
         chain.slug
       );
 
