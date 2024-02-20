@@ -69,7 +69,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
               <CardDescription>{template.description}</CardDescription>
             </CardHeader>
 
-            <CardFooter className="gap-x-2">
+            <CardFooter className="gap-x-2 flex-wrap gap-y-2">
               {template.framework ? (
                 <Badge variant="secondary">{template.framework}</Badge>
               ) : null}
