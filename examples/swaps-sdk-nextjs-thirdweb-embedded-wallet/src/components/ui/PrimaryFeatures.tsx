@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Fragment, useEffect, useId, useRef, useState } from "react";
@@ -88,7 +89,7 @@ function DeviceNotificationIcon(props: any) {
 }
 
 function DeviceTouchIcon(props: any) {
-  let id = useId();
+  const id = useId();
 
   return (
     <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>
@@ -357,7 +358,7 @@ function InvestScreen({ custom, animated = false }: any) {
 }
 
 function usePrevious(value: any) {
-  let ref = useRef();
+  const ref = useRef();
 
   useEffect(() => {
     ref.current = value;
@@ -367,12 +368,12 @@ function usePrevious(value: any) {
 }
 
 function FeaturesDesktop() {
-  let [changeCount, setChangeCount] = useState(0);
-  let [selectedIndex, setSelectedIndex] = useState(0);
-  let prevIndex = usePrevious(selectedIndex);
-  let isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
+  const [changeCount, setChangeCount] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const prevIndex = usePrevious(selectedIndex);
+  const isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
 
-  let onChange = useDebouncedCallback(
+  const onChange = useDebouncedCallback(
     (selectedIndex) => {
       setSelectedIndex(selectedIndex);
       setChangeCount((changeCount) => changeCount + 1);
@@ -432,14 +433,14 @@ function FeaturesDesktop() {
 }
 
 function FeaturesMobile() {
-  let [activeIndex, setActiveIndex] = useState(0);
-  let slideContainerRef = useRef<HTMLDivElement | null>(null);
-  let slideRefs = useRef<any>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const slideContainerRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<any>([]);
 
   useEffect(() => {
-    let observer = new window.IntersectionObserver(
+    const observer = new window.IntersectionObserver(
       (entries) => {
-        for (let entry of entries) {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveIndex(slideRefs.current.indexOf(entry.target));
             break;
@@ -452,7 +453,7 @@ function FeaturesMobile() {
       }
     );
 
-    for (let slide of slideRefs.current) {
+    for (const slide of slideRefs.current) {
       if (slide) {
         observer.observe(slide);
       }

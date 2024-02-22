@@ -85,9 +85,9 @@ const Swap = () => {
           toUserAddress: walletAddress,
         };
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error("Connect Wallet Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
   }
 
@@ -96,7 +96,7 @@ const Swap = () => {
 
     try {
       await walletInstance?.switchChain(chain.chainId);
-      const walletSigner = await walletInstance?.getSigner()!;
+      const walletSigner = await walletInstance?.getSigner();
 
       // Connect wallet signer to Swing SDK
       const walletAddress = await swingSDK.wallet.connect(
@@ -111,9 +111,9 @@ const Swap = () => {
           toUserAddress: walletAddress,
         };
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error("Switch Chain Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
   }
 
@@ -133,9 +133,9 @@ const Swap = () => {
       }
 
       setTransferRoute(quotes.routes[0]!);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Quote Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
 
     setIsLoading(false);
@@ -173,9 +173,9 @@ const Swap = () => {
 
     try {
       await swingSDK.transfer(transferRoute, transferParams);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Transfer Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
 
     // Close the transfer listener
@@ -205,7 +205,7 @@ const Swap = () => {
             className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="0.0"
             value={transferParams.amount}
-            onChange={(e: any) => {
+            onChange={(e) => {
               setTransferRoute(null); // Reset transfer route
               setTransferParams((prev) => ({
                 ...prev,

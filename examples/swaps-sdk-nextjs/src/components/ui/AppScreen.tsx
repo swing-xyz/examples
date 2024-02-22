@@ -17,7 +17,7 @@ AppScreen.Header = forwardRef(function AppScreenHeader(
   }: {
     children: React.ReactNode;
   },
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div ref={ref} className="px-4 mt-6 text-white">
@@ -50,7 +50,7 @@ AppScreen.Body = forwardRef(function AppScreenBody(
     children: React.ReactNode;
     className?: string;
   },
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div ref={ref} className={clsx("flex-auto mt-6 rounded-t-2xl", className)}>

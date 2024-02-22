@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -132,8 +134,8 @@ function Review({
   rating: number;
   className?: string;
 }) {
-  let animationDelay = useMemo(() => {
-    let possibleAnimationDelays = [
+  const animationDelay = useMemo(() => {
+    const possibleAnimationDelays = [
       "0s",
       "0.1s",
       "0.2s",
@@ -170,9 +172,9 @@ function Review({
 }
 
 function splitArray(array: any[], numParts: number) {
-  let result = [];
+  const result = [];
   for (let i = 0; i < array.length; i++) {
-    let index = i % numParts;
+    const index = i % numParts;
     if (!result[index]) {
       result[index] = [];
     }
@@ -193,12 +195,12 @@ function ReviewColumn({
   reviewClassName: any;
   msPerPixel: number;
 }) {
-  let columnRef = useRef<HTMLDivElement | null>(null);
-  let [columnHeight, setColumnHeight] = useState(0);
-  let duration = `${columnHeight * msPerPixel}ms`;
+  const columnRef = useRef<HTMLDivElement | null>(null);
+  const [columnHeight, setColumnHeight] = useState(0);
+  const duration = `${columnHeight * msPerPixel}ms`;
 
   useEffect(() => {
-    let resizeObserver = new window.ResizeObserver(() => {
+    const resizeObserver = new window.ResizeObserver(() => {
       setColumnHeight(columnRef.current?.offsetHeight || 0);
     });
 
@@ -231,8 +233,8 @@ function ReviewColumn({
 }
 
 function ReviewGrid() {
-  let containerRef = useRef<HTMLDivElement | null>(null);
-  let isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
   let columns = splitArray(reviews, 3);
   // @ts-ignore
   columns = [columns[0], columns[1], splitArray(columns[2], 2)];

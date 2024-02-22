@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function NavLinks() {
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <>

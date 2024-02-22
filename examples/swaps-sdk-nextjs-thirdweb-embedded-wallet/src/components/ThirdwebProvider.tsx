@@ -1,3 +1,8 @@
-'use client';
+"use client";
 
-export { ThirdwebProvider, embeddedWallet, ConnectWallet, useEmbeddedWallet } from '@thirdweb-dev/react';
+export {
+  ThirdwebProvider,
+  embeddedWallet,
+  ConnectWallet,
+  useEmbeddedWallet,
+} from "@thirdweb-dev/react";

@@ -95,7 +95,7 @@ function Filter() {
                           checked={isChecked}
                           onCheckedChange={(checked) => {
                             const nextSearchParams = new URLSearchParams(
-                              searchParams
+                              searchParams,
                             );
 
                             if (checked) {
@@ -108,7 +108,7 @@ function Filter() {
                               pathname + "?" + nextSearchParams.toString(),
                               {
                                 scroll: false,
-                              }
+                              },
                             );
                           }}
                         />
