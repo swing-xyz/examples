@@ -8,7 +8,7 @@ export const SingleToken: FC<IToken> = ({ chain, token, onSelectChain }) => {
   const [tokenBalance] = useState("");
 
   useEffect(() => {
-    if (!swingSDK.isReady || !isConnected) {
+    if (!swingSDK?.isReady || !isConnected) {
       return;
     }
 
@@ -16,7 +16,7 @@ export const SingleToken: FC<IToken> = ({ chain, token, onSelectChain }) => {
     //     console.log(balance);
     //     setTokenBalance(balance);
     // });
-  }, [swingSDK.isReady]);
+  }, [swingSDK?.isReady]);
 
   return (
     <div

@@ -13,10 +13,10 @@ export const Route: FC<IRoute> = ({ route, onRouteSelected }) => {
   const { swingSDK } = useCustomSwingSdk();
 
   useEffect(() => {
-    if (swingSDK.isReady) {
+    if (swingSDK?.isReady) {
       setProcessedRoute(swingSDK.getIntegration(route.quote.integration));
     }
-  }, [swingSDK.isReady]);
+  }, [swingSDK?.isReady]);
   return (
     <div
       key={route.quote.integration}
@@ -26,6 +26,7 @@ export const Route: FC<IRoute> = ({ route, onRouteSelected }) => {
       <div className="flex justify-between items-center">
         <div className="group flex flex-col justify-center items-start space-y-3 p-3">
           <div className="flex">
+            {/* @ts-expect-error override route */}
             {route?.isBest ? (
               <div className="flex space-x-1 bg-green-200 font-bold rounded-full text-[9px] text-green-600 px-2 py-1">
                 <MdCheckCircle className="w-3 h-3" />
