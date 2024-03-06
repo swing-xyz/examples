@@ -1,12 +1,14 @@
-import { TransferRoute } from '@swing.xyz/sdk';
+import { TransferRoute } from "@swing.xyz/sdk";
 
 export interface ISelectRoute {
-    routes: TransferRoute[];
-    title?: string;
-    onRouteSelected: (route: TransferRoute) => void;
+  routes: TransferRoute[];
+  title?: string;
+  // eslint-disable-next-line no-unused-vars
+  onRouteSelected: (route: TransferRoute) => void;
 }
 
 export interface IRoute {
-    route: TransferRoute | any;
-    onRouteSelected: (route: TransferRoute) => void;
+  route: TransferRoute;
+  // eslint-disable-next-line no-unused-vars
+  onRouteSelected: (route: TransferRoute) => void;
 }

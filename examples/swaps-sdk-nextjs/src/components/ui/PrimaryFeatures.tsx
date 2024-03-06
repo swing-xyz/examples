@@ -1,6 +1,13 @@
 "use client";
 
-import { Fragment, useEffect, useId, useRef, useState } from "react";
+import {
+  Fragment,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type SVGProps,
+} from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -49,7 +56,7 @@ const features = [
   },
 ];
 
-function DeviceUserIcon(props: any) {
+function DeviceUserIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" {...props}>
       <circle cx={16} cy={16} r={16} fill="#A3A3A3" fillOpacity={0.2} />
@@ -69,7 +76,7 @@ function DeviceUserIcon(props: any) {
   );
 }
 
-function DeviceNotificationIcon(props: any) {
+function DeviceNotificationIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" {...props}>
       <circle cx={16} cy={16} r={16} fill="#A3A3A3" fillOpacity={0.2} />
@@ -87,8 +94,8 @@ function DeviceNotificationIcon(props: any) {
   );
 }
 
-function DeviceTouchIcon(props: any) {
-  let id = useId();
+function DeviceTouchIcon(props: SVGProps<SVGSVGElement>) {
+  const id = useId();
 
   return (
     <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>
@@ -143,7 +150,7 @@ const bodyVariantBackwards = {
   transition: { duration: 0.4 },
 };
 
-const bodyVariantForwards = (custom: any) => ({
+const bodyVariantForwards = (custom: { changeCount: number }) => ({
   y: "100%",
   zIndex: maxZIndex - custom.changeCount,
   transition: { duration: 0.4 },
@@ -154,9 +161,9 @@ const bodyAnimation = {
   animate: "animate",
   exit: "exit",
   variants: {
-    initial: (custom: any) =>
+    initial: (custom: { isForwards: boolean; changeCount: number }) =>
       custom.isForwards ? bodyVariantForwards(custom) : bodyVariantBackwards,
-    animate: (custom: any) => ({
+    animate: (custom: { changeCount: number }) => ({
       y: "0%",
       opacity: 1,
       scale: 1,
@@ -164,12 +171,18 @@ const bodyAnimation = {
       filter: "blur(0px)",
       transition: { duration: 0.4 },
     }),
-    exit: (custom: any) =>
+    exit: (custom: { isForwards: boolean; changeCount: number }) =>
       custom.isForwards ? bodyVariantBackwards : bodyVariantForwards(custom),
   },
 };
 
-function InviteScreen({ custom, animated = false }: any) {
+function InviteScreen({
+  custom,
+  animated = false,
+}: {
+  custom: { changeCount: number };
+  animated: boolean;
+}) {
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(animated ? headerAnimation : {})}>
@@ -203,7 +216,13 @@ function InviteScreen({ custom, animated = false }: any) {
   );
 }
 
-function StocksScreen({ custom, animated = false }: any) {
+function StocksScreen({
+  custom,
+  animated = false,
+}: {
+  custom: { changeCount: number };
+  animated: boolean;
+}) {
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(animated ? headerAnimation : {})}>
@@ -303,7 +322,13 @@ function StocksScreen({ custom, animated = false }: any) {
   );
 }
 
-function InvestScreen({ custom, animated = false }: any) {
+function InvestScreen({
+  custom,
+  animated = false,
+}: {
+  custom: { changeCount: number };
+  animated: boolean;
+}) {
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(animated ? headerAnimation : {})}>
@@ -356,8 +381,8 @@ function InvestScreen({ custom, animated = false }: any) {
   );
 }
 
-function usePrevious(value: any) {
-  let ref = useRef();
+function usePrevious<T>(value: T) {
+  const ref = useRef<T>();
 
   useEffect(() => {
     ref.current = value;
@@ -367,12 +392,12 @@ function usePrevious(value: any) {
 }
 
 function FeaturesDesktop() {
-  let [changeCount, setChangeCount] = useState(0);
-  let [selectedIndex, setSelectedIndex] = useState(0);
-  let prevIndex = usePrevious(selectedIndex);
-  let isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
+  const [changeCount, setChangeCount] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const prevIndex = usePrevious(selectedIndex);
+  const isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
 
-  let onChange = useDebouncedCallback(
+  const onChange = useDebouncedCallback(
     (selectedIndex) => {
       setSelectedIndex(selectedIndex);
       setChangeCount((changeCount) => changeCount + 1);
@@ -432,14 +457,14 @@ function FeaturesDesktop() {
 }
 
 function FeaturesMobile() {
-  let [activeIndex, setActiveIndex] = useState(0);
-  let slideContainerRef = useRef<HTMLDivElement | null>(null);
-  let slideRefs = useRef<any>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const slideContainerRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<Element[]>([]);
 
   useEffect(() => {
-    let observer = new window.IntersectionObserver(
+    const observer = new window.IntersectionObserver(
       (entries) => {
-        for (let entry of entries) {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveIndex(slideRefs.current.indexOf(entry.target));
             break;
@@ -452,7 +477,7 @@ function FeaturesMobile() {
       }
     );
 
-    for (let slide of slideRefs.current) {
+    for (const slide of slideRefs.current) {
       if (slide) {
         observer.observe(slide);
       }
@@ -472,6 +497,7 @@ function FeaturesMobile() {
         {features.map((feature, featureIndex) => (
           <div
             key={featureIndex}
+            // @ts-expect-error ignore
             ref={(ref) => (slideRefs.current[featureIndex] = ref)}
             className="flex-none w-full px-4 snap-center sm:px-6"
           >
@@ -483,6 +509,7 @@ function FeaturesMobile() {
                 />
               </div>
               <PhoneFrame className="relative mx-auto w-full max-w-[366px]">
+                {/* @ts-expect-error ignore */}
                 <feature.screen />
               </PhoneFrame>
               <div className="absolute inset-x-0 bottom-0 p-6 bg-gray-800/95 backdrop-blur sm:p-10">

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Popover } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import Link from "next/link";
+import { Popover } from "@headlessui/react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from './Button';
 import { Container } from './Container';
@@ -14,27 +14,57 @@ import { useCustomSwingSdk } from 'components/hooks/useSwingSDK';
 import { shortenAddress } from '@thirdweb-dev/react';
 
 function MenuIcon({ className }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-            <path d="M5 6h14M5 18h14M5 12h14" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    );
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
+      <path
+        d="M5 6h14M5 18h14M5 12h14"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
 function ChevronUpIcon({ className }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-            <path d="M17 14l-5-5-5 5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    );
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
+      <path
+        d="M17 14l-5-5-5 5"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
-function MobileNavLink({ children, href }: { children: React.ReactNode; href: string }) {
-    return (
-        <Popover.Button as={Link} className="block text-base leading-7 tracking-tight text-gray-700" href={href}>
-            {children}
-        </Popover.Button>
-    );
+function MobileNavLink({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) {
+  return (
+    <Popover.Button
+      as={Link}
+      className="block text-base leading-7 tracking-tight text-gray-700"
+      href={href}
+    >
+      {children}
+    </Popover.Button>
+  );
 }
 
 function ConnectButtonMobile() {

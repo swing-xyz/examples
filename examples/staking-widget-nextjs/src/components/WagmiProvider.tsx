@@ -8,7 +8,7 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet, avalanche],
-  [publicProvider()]
+  [publicProvider()],
 );
 
 const config = createConfig({

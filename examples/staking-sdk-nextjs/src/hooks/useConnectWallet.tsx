@@ -9,7 +9,7 @@ export function useConnectWallet() {
   const [swingSDK] = useSwingSdk();
 
   async function connectWallet(
-    chain?: Chain
+    chain?: Chain,
   ): Promise<`0x${string}` | undefined> {
     if (isConnected) {
       return address;

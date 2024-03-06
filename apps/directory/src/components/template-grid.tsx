@@ -56,7 +56,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
                   "via-indigo-500": template.integration === "Widget",
                   "via-emerald-500": template.integration === "SDK",
                   "via-amber-500": template.integration === "API",
-                }
+                },
               )}
             >
               {FrameworkIcon ? (

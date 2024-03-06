@@ -34,7 +34,7 @@ const AccordionTrigger = React.forwardRef<
         className,
         {
           "justify-between": iconSide === "right",
-        }
+        },
       )}
       {...props}
     >

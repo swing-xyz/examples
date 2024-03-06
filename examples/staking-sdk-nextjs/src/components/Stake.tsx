@@ -83,9 +83,9 @@ export function Stake() {
 
     try {
       await swingSDK.transfer(transferRoute, transferParams);
-    } catch (error: any) {
+    } catch (error) {
       // This will be the same error that's available in `transferStep.error` when the transferStep is `FAILED`
-      setError(error.message);
+      setError((error as Error).message);
     }
 
     // Remove event listener
@@ -141,7 +141,7 @@ export function Stake() {
                       fromToken: contract.inputToken.symbol,
                       fromUserAddress,
                       toChain: contract.chain.slug,
-                      toToken: contract.outputToken?.symbol!,
+                      toToken: contract.outputToken?.symbol,
                       toUserAddress: fromUserAddress,
                     };
                     setTransferParams(params);
@@ -213,7 +213,7 @@ export function Stake() {
                 return (
                   <Fragment key={index}>
                     <NameLogo
-                      name={integration?.name!}
+                      name={integration?.name || ""}
                       logo={integration?.logo}
                     />
 

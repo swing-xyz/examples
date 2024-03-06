@@ -1,33 +1,52 @@
-import { ISelectChainContext, ISelectChainProvider, ISelectedChain } from 'app/interfaces/IChainSelector';
-import React, { createContext, useContext, useState, ReactNode, FC, useCallback } from 'react';
+import {
+  ISelectChainContext,
+  ISelectChainProvider,
+  ISelectedChain,
+} from "app/interfaces/IChainSelector";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  FC,
+  useCallback,
+} from "react";
 
 const defaultSelectChainContext: ISelectChainContext = {
-    setChainAndToken: () => {},
-    selectedChain: {},
-    clearChainAndToken: () => {},
+  setChainAndToken: () => {},
+  selectedChain: {},
+  clearChainAndToken: () => {},
 };
 
-const SelectChainContext = createContext<ISelectChainContext>(defaultSelectChainContext);
+const SelectChainContext = createContext<ISelectChainContext>(
+  defaultSelectChainContext,
+);
 
 export const SelectChainProvider: FC<ISelectChainProvider> = ({ children }) => {
-    const [selectedChain, setSelectedChain] = useState<ISelectedChain>();
+  const [selectedChain, setSelectedChain] = useState<ISelectedChain>();
 
-    const setChainAndToken = useCallback((chain: ISelectedChain) => setSelectedChain(chain), []);
-    const clearChainAndToken = useCallback(() => setSelectedChain({}), []);
+  const setChainAndToken = useCallback(
+    (chain: ISelectedChain) => setSelectedChain(chain),
+    [],
+  );
+  const clearChainAndToken = useCallback(() => setSelectedChain({}), []);
 
-    const provider: ISelectChainContext = {
-        selectedChain,
-        setChainAndToken,
-        clearChainAndToken,
-    };
+  const provider: ISelectChainContext = {
+    selectedChain,
+    setChainAndToken,
+    clearChainAndToken,
+  };
 
-    return <SelectChainContext.Provider value={provider}>{children}</SelectChainContext.Provider>;
+  return (
+    <SelectChainContext.Provider value={provider}>
+      {children}
+    </SelectChainContext.Provider>
+  );
 };
 
 export const useSelectChain = () => {
-    const contextValue = useContext<ISelectChainContext>(SelectChainContext);
-    if (contextValue === null) {
-        throw new Error('useSelectChain must be used within a SelectChainProvider');
-    }
-    return contextValue;
+  const contextValue = useContext<ISelectChainContext>(SelectChainContext);
+  if (contextValue === null) {
+    throw new Error("useSelectChain must be used within a SelectChainProvider");
+  }
+  return contextValue;
 };
