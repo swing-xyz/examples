@@ -133,7 +133,6 @@ const Swap = () => {
       }
 
       setTransferRoute(quotes.routes[0]!);
-      console.log(quotes.routes[0]!)
     } catch (error: any) {
       console.error("Quote Error:", error);
       setError(error.message);
@@ -210,7 +209,7 @@ const Swap = () => {
               setTransferRoute(null); // Reset transfer route
               setTransferParams((prev) => ({
                 ...prev,
-                amount: e.target.value,
+                amount: e.currentTarget.value,
               }));
             }}
           />

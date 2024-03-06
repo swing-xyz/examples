@@ -6820,6 +6820,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@swing.xyz/examples@workspace:."
   dependencies:
+    "@web3-react/core": "npm:^8.2.3"
     prettier: "npm:^3.2.4"
     turbo: "npm:^1.11.3"
   languageName: unknown
@@ -8489,7 +8490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-react/core@npm:8.2.3":
+"@web3-react/core@npm:8.2.3, @web3-react/core@npm:^8.2.3":
   version: 8.2.3
   resolution: "@web3-react/core@npm:8.2.3"
   dependencies:
@@ -21952,6 +21953,39 @@ __metadata:
     tailwind-scrollbar: "npm:^3.0.5"
     tailwindcss: "npm:^3.4.1"
     tailwindcss-animate: "npm:^1.0.7"
+    typescript: "npm:^5.3.3"
+    typescript-config: "workspace:*"
+    use-debounce: "npm:^10.0.0"
+  languageName: unknown
+  linkType: soft
+
+"swaps-sdk-nextjs-web3-react@workspace:examples/swaps-sdk-nextjs-web3-react":
+  version: 0.0.0-use.local
+  resolution: "swaps-sdk-nextjs-web3-react@workspace:examples/swaps-sdk-nextjs-web3-react"
+  dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^6.5.1"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
+    "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@headlessui/react": "npm:^1.7.18"
+    "@swing.xyz/sdk": "npm:^0.48.2"
+    "@tailwindcss/forms": "npm:^0.5.7"
+    "@thirdweb-dev/react": "npm:^4.3.2"
+    "@thirdweb-dev/sdk": "npm:^4.0.27"
+    "@types/node": "npm:20.11.5"
+    "@types/react": "npm:18.2.48"
+    "@types/react-dom": "npm:18.2.18"
+    autoprefixer: "npm:^10.4.17"
+    clsx: "npm:^2.1.0"
+    eslint: "npm:^8.56.0"
+    eslint-config-examples: "workspace:*"
+    framer-motion: "npm:^6.5.1"
+    next: "npm:14.1.0"
+    pino-pretty: "npm:^10.3.1"
+    postcss: "npm:^8.4.33"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    tailwindcss: "npm:^3.4.1"
     typescript: "npm:^5.3.3"
     typescript-config: "workspace:*"
     use-debounce: "npm:^10.0.0"
