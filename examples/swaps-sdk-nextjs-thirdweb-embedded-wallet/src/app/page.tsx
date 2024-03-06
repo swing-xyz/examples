@@ -1,10 +1,6 @@
 'use client';
 
-import { CallToAction } from '../components/ui/CallToAction';
 import { Hero } from '../components/ui/Hero';
-import { PrimaryFeatures } from '../components/ui/PrimaryFeatures';
-import { Reviews } from '../components/ui/Reviews';
-import { SecondaryFeatures } from '../components/ui/SecondaryFeatures';
 import { ThirdwebProvider, embeddedWallet } from '../components/ThirdwebProvider';
 import { CustomSwingSdkProvider } from '../components/hooks/useSwingSDK';
 import { Header } from 'components/ui/Header';
