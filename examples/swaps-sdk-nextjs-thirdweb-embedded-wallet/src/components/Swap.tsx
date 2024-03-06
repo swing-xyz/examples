@@ -579,7 +579,7 @@ const Swap = () => {
               )}
             </p>
             <p className="text-[10px] p-0 m-0 text-zinc-950/[0.6]">
-              {Number(toTokenBalance).toFixed(3)}
+              {Number(toTokenBalance).toFixed(3)}{" "}
               {toToken?.symbol ?? <>USDC</>} available
             </p>
           </div>
