@@ -32,10 +32,10 @@ const Swap = () => {
   const [status, setStatus] = useState<TransferStepResult | null>(null);
   const [results, setResults] = useState<TransferStepResults | null>(null);
   const [transferParams, setTransferParams] = useState<TransferParams>(
-    defaultTransferParams
+    defaultTransferParams,
   );
   const [transferRoute, setTransferRoute] = useState<TransferRoute | null>(
-    null
+    null,
   );
   const connect = useConnect();
   const walletInstance = useWallet();
@@ -75,7 +75,7 @@ const Swap = () => {
       // Connect wallet signer to Swing SDK
       const walletAddress = await swingSDK.wallet.connect(
         signer,
-        defaultTransferParams.fromChain
+        defaultTransferParams.fromChain,
       );
 
       setTransferParams((prev) => {
@@ -101,7 +101,7 @@ const Swap = () => {
       // Connect wallet signer to Swing SDK
       const walletAddress = await swingSDK.wallet.connect(
         walletSigner,
-        chain.slug
+        chain.slug,
       );
 
       setTransferParams((prev) => {
@@ -166,7 +166,7 @@ const Swap = () => {
             await connectWallet(transferStepStatus.chain.chainId);
             break;
         }
-      }
+      },
     );
 
     setIsLoading(true);

@@ -8,7 +8,7 @@ export const SelectRoute: FC<ISelectRoute> = ({
   onRouteSelected,
 }: ISelectRoute) => {
   const groupedRoutes = routes.sort(
-    (a, b) => Number(a.quote.amount) - Number(b.quote.amount)
+    (a, b) => Number(a.quote.amount) - Number(b.quote.amount),
   ) as TransferRoute[];
   // @ts-expect-error ignore
   groupedRoutes[0]["isBest"] = true;

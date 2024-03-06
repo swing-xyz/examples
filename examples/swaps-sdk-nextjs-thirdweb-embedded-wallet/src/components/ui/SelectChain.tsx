@@ -16,21 +16,27 @@ export const SelectChain: FC<ISelectChain> = ({
     useSelectChain();
   const [tokens, setTokens] = useState<Token[]>();
 
-    const { swingSDK } = useCustomSwingSdk();
+  const { swingSDK } = useCustomSwingSdk();
 
-    useEffect(() => {
-        if (selectedChain?.chain) {
-            let sendTokens = !toChain
-                ? swingSDK?.getAvailableSendTokens({ fromChainSlug: selectedChain.chain.slug, type: 'swap' })
-                : swingSDK?.getAvailableReceiveTokens({
-                      fromChainSlug: selectedChain.chain.slug,
-                      fromTokenSymbol: selectedChain.token?.symbol!,
-                      type: 'swap',
-                      toChainSlug: toChain.slug,
-                  });
-            const nativeToken = sendTokens?.filter((token: Token) => token.symbol == selectedChain.chain?.nativeToken?.symbol);
-            console.log('native token', nativeToken);
-            sendTokens = sendTokens;
+  useEffect(() => {
+    if (selectedChain?.chain) {
+      let sendTokens = !toChain
+        ? swingSDK?.getAvailableSendTokens({
+            fromChainSlug: selectedChain.chain.slug,
+            type: "swap",
+          })
+        : swingSDK?.getAvailableReceiveTokens({
+            fromChainSlug: selectedChain.chain.slug,
+            fromTokenSymbol: selectedChain.token?.symbol!,
+            type: "swap",
+            toChainSlug: toChain.slug,
+          });
+      const nativeToken = sendTokens?.filter(
+        (token: Token) =>
+          token.symbol == selectedChain.chain?.nativeToken?.symbol,
+      );
+      console.log("native token", nativeToken);
+      sendTokens = sendTokens;
 
       setTokens([...nativeToken!, ...sendTokens!]);
     }

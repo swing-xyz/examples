@@ -71,7 +71,7 @@ const Swap = () => {
   const [_status, setStatus] = useState<TransferStepResult | null>(null);
   const [_results, setResults] = useState<TransferStepResults | null>(null);
   const [transferRoute, setTransferRoute] = useState<TransferRoute | null>(
-    null
+    null,
   );
   const [receiveAmount, setReceiveAmount] = useState("");
   const [sendChains, setSendChains] = useState<Chain[]>();
@@ -98,7 +98,7 @@ const Swap = () => {
       calculateTokenAmount({
         amount: Number(transferRoute?.quote?.amount ?? 0),
         decimals: transferRoute?.quote?.decimals ?? 0,
-      })
+      }),
     );
   }, 1000);
 
@@ -188,7 +188,7 @@ const Swap = () => {
       const _balance = await swingSDK?.wallet.getBalance(
         toChain?.slug,
         toToken?.symbol!,
-        walletAddress
+        walletAddress,
       );
       setToTokenBalance(_balance!);
     }
@@ -196,7 +196,7 @@ const Swap = () => {
       const _balance = await swingSDK?.wallet.getBalance(
         fromChain?.slug!,
         fromToken?.symbol!,
-        walletAddress
+        walletAddress,
       );
       setFromTokenBalance(_balance!);
     }
@@ -217,7 +217,7 @@ const Swap = () => {
       const balance = await swingSDK.wallet.getBalance(
         defaultTransferParams.fromChain,
         defaultTransferParams.fromToken,
-        walletAddress
+        walletAddress,
       );
       setBalance(balance);
 
@@ -273,10 +273,10 @@ const Swap = () => {
       }
 
       const bestQuote = _quotes.routes.sort(
-        (a, b) => Number(a.quote.amount) - Number(b.quote.amount)
+        (a, b) => Number(a.quote.amount) - Number(b.quote.amount),
       )[0];
       const quoteIntegration = swingSDK.getIntegration(
-        bestQuote.quote.integration
+        bestQuote.quote.integration,
       );
 
       setToTokenLocalAmount(bestQuote?.quote?.amountUSD);
@@ -344,7 +344,7 @@ const Swap = () => {
             await connectWallet();
             break;
         }
-      }
+      },
     );
 
     setIsLoading(true);
@@ -410,7 +410,7 @@ const Swap = () => {
             fromChainSlug: chain?.slug!,
             fromTokenSymbol: token?.symbol!,
             type: "swap",
-          })
+          }),
           // .filter((_chain) => allowedChains.includes(_chain.slug)),
         );
         setFromChain(chain!);
@@ -579,8 +579,8 @@ const Swap = () => {
               )}
             </p>
             <p className="text-[10px] p-0 m-0 text-zinc-950/[0.6]">
-              {Number(toTokenBalance).toFixed(3)}{" "}
-              {toToken?.symbol ?? <>USDC</>} available
+              {Number(toTokenBalance).toFixed(3)} {toToken?.symbol ?? <>USDC</>}{" "}
+              available
             </p>
           </div>
         </div>
@@ -629,7 +629,7 @@ const Swap = () => {
                   <img
                     src={
                       swingSDK?.getIntegration(
-                        transferRoute?.quote.integration!
+                        transferRoute?.quote.integration!,
                       )?.logo
                     }
                     alt={transferRoute?.quote?.integration}

@@ -4,7 +4,7 @@ import { IModalContext } from "app/interfaces/IModal";
 
 export const openSelectRouteModal = (
   { openModal }: IModalContext,
-  { title, routes, onRouteSelected }: ISelectRoute
+  { title, routes, onRouteSelected }: ISelectRoute,
 ) => {
   openModal({
     content: <SelectRoute routes={routes} onRouteSelected={onRouteSelected} />,

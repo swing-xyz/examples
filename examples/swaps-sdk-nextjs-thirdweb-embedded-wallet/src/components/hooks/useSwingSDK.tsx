@@ -10,7 +10,7 @@ import {
 import React, { useContext, type SetStateAction, type Dispatch } from "react";
 
 const CustomSwingSdkContext = React.createContext<ISwingSdkContext | null>(
-  null
+  null,
 );
 
 const allowedChains = [
@@ -50,7 +50,7 @@ export const CustomSwingSdkProvider: React.FC<ISwingSdkProvider> = ({
   const [balance, setBalance] = React.useState<string>("");
   const [error, setError] = React.useState("");
   const [transferParams, setTransferParams] = React.useState<TransferParams>(
-    defaultTransferParams
+    defaultTransferParams,
   );
 
   const { toast } = useToast();
@@ -65,13 +65,13 @@ export const CustomSwingSdkProvider: React.FC<ISwingSdkProvider> = ({
 
       const walletAddress = await swingSDK.wallet.connect(
         signer,
-        defaultTransferParams.fromChain
+        defaultTransferParams.fromChain,
       );
 
       const balance = await swingSDK.wallet.getBalance(
         defaultTransferParams.fromChain,
         defaultTransferParams.fromToken,
-        walletAddress
+        walletAddress,
       );
       setBalance(balance);
 
@@ -160,7 +160,7 @@ export const useCustomSwingSdk = () => {
   const contextValue = useContext(CustomSwingSdkContext);
   if (contextValue === null) {
     throw new Error(
-      "useCustomSwingSdk must be used within a CustomSwingSdkProvider"
+      "useCustomSwingSdk must be used within a CustomSwingSdkProvider",
     );
   }
   return contextValue;

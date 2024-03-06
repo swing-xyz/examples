@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  MdArrowDropUp,
-} from "react-icons/md";
+import { MdArrowDropUp } from "react-icons/md";
 import { Container } from "./Container";
 
 import { FaMoon } from "react-icons/fa";

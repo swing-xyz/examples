@@ -28,7 +28,7 @@ export function Stake() {
   const [results, setResults] = useState<TransferStepResults | null>(null);
   const [quote, setQuote] = useState<TransferQuote | null>(null);
   const [transferParams, setTransferParams] = useState<TransferParams | null>(
-    null
+    null,
   );
   const { address, isConnected } = useAccount();
   const { switchNetworkAsync } = useSwitchNetwork();
@@ -36,7 +36,7 @@ export function Stake() {
 
   async function startTransfer(
     transferRoute: TransferRoute,
-    transferParams: TransferParams
+    transferParams: TransferParams,
   ) {
     if (!transferRoute) {
       setError("Choose a transfer route first.");
@@ -78,7 +78,7 @@ export function Stake() {
             }
             break;
         }
-      }
+      },
     );
 
     try {
@@ -177,7 +177,7 @@ export function Stake() {
                   logo={
                     swingSDK.getTokenForChain(
                       transferParams?.fromChain,
-                      transferParams?.fromToken
+                      transferParams?.fromToken,
                     )?.logo
                   }
                 />
@@ -189,7 +189,7 @@ export function Stake() {
                   logo={
                     swingSDK.getTokenForChain(
                       transferParams?.toChain,
-                      transferParams?.toToken
+                      transferParams?.toToken,
                     )?.logo
                   }
                 />
@@ -207,7 +207,7 @@ export function Stake() {
 
               {quote?.routes.map((route, index) => {
                 const integration = swingSDK.getIntegration(
-                  route.quote.integration
+                  route.quote.integration,
                 );
 
                 return (
