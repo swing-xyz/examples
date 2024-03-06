@@ -11,7 +11,7 @@ export const SelectChain: FC<ISelectChain> = ({ chains, onChainAndTokenSelected,
     const { selectedChain, setChainAndToken, clearChainAndToken } = useSelectChain();
     const [tokens, setTokens] = useState<Token[]>();
 
-    const { swingSDK, allowedTokens } = useCustomSwingSdk();
+    const { swingSDK } = useCustomSwingSdk();
 
     useEffect(() => {
         if (selectedChain?.chain) {
@@ -26,8 +26,6 @@ export const SelectChain: FC<ISelectChain> = ({ chains, onChainAndTokenSelected,
             const nativeToken = sendTokens.filter((token: Token) => token.symbol == selectedChain.chain?.nativeToken?.symbol);
             console.log('native token', nativeToken);
             sendTokens = sendTokens;
-            // .filter((token) => allowedTokens.includes(token.symbol))
-            // .filter((token: Token) => token.symbol != selectedChain.chain?.nativeToken?.symbol);
 
             setTokens([...nativeToken, ...sendTokens]);
         }

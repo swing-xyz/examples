@@ -8,8 +8,8 @@ export function NavLinks() {
     return (
         <>
             {[
-                ['Swap', '#about'],
-                ['Stake', '#team'],
+                ['Swap', '#swap'],
+                ['Stake', '#stake'],
             ].map(([label, href], index) => (
                 <Link
                     key={label}

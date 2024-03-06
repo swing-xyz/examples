@@ -38,9 +38,55 @@ function MobileNavLink({ children, href }: { children: React.ReactNode; href: st
     );
 }
 
-export function Header() {
+function ConnectButtonMobile() {
     const { walletAddress, isConnected, connectWallet } = useCustomSwingSdk();
 
+    return (
+        <>
+            {isConnected ? (
+                <Button
+                    className="bg-[#06b6d4] block"
+                    onClick={async () => {
+                        await navigator.clipboard.writeText(walletAddress);
+                        alert('Wallet address copied to clipboard! 🚀');
+                    }}
+                >
+                    {shortenAddress(walletAddress)}
+                </Button>
+            ) : (
+                <Button href="#altcoin" className="block" onClick={connectWallet}>
+                    Connect Wallet
+                </Button>
+            )}
+        </>
+    );
+}
+
+function ConnectButton() {
+    const { walletAddress, isConnected, connectWallet } = useCustomSwingSdk();
+
+    return (
+        <>
+            {isConnected ? (
+                <Button
+                    className="bg-[#06b6d4] hidden lg:block"
+                    onClick={async () => {
+                        await navigator.clipboard.writeText(walletAddress);
+                        alert('Wallet address copied to clipboard! 🚀');
+                    }}
+                >
+                    {shortenAddress(walletAddress)}
+                </Button>
+            ) : (
+                <Button href="#altcoin" className="hidden lg:block" onClick={connectWallet}>
+                    Connect Wallet
+                </Button>
+            )}
+        </>
+    );
+}
+
+export function Header() {
     return (
         <header>
             <nav>
@@ -89,14 +135,12 @@ export function Header() {
                                                     className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
                                                 >
                                                     <div className="space-y-4">
-                                                        <MobileNavLink href="#about">About $ALTCOIN</MobileNavLink>
-                                                        <MobileNavLink href="#team">Team</MobileNavLink>
-                                                        <MobileNavLink href="#why">Why</MobileNavLink>
-                                                        <MobileNavLink href="#faqs">FAQs</MobileNavLink>
+                                                        <MobileNavLink href="#swap">Swap</MobileNavLink>
+                                                        <MobileNavLink href="#stake">Stake</MobileNavLink>
                                                     </div>
 
                                                     <div className="flex flex-col mt-4 space-y-4">
-                                                        <Button href="#altcoin">Connect Wallet</Button>
+                                                        <ConnectButtonMobile />
 
                                                         <Button href="https://github.com/swing-xyz/examples" className="space-x-2" variant="outline">
                                                             <FontAwesomeIcon size="lg" icon={faGithub} />
@@ -116,22 +160,7 @@ export function Header() {
                             <span>Fork on Github</span>
                         </Button>
 
-                        {isConnected ? (
-                            <Button
-                                className="bg-[#06b6d4] hidden lg:block"
-                                href="#altcoin"
-                                onClick={async () => {
-                                    await navigator.clipboard.writeText(walletAddress);
-                                    alert('Wallet address copied to clipboard! 🚀');
-                                }}
-                            >
-                                {shortenAddress(walletAddress)}
-                            </Button>
-                        ) : (
-                            <Button href="#altcoin" className="hidden lg:block" onClick={connectWallet}>
-                                Connect Wallet
-                            </Button>
-                        )}
+                        <ConnectButton />
                     </div>
                 </Container>
             </nav>
