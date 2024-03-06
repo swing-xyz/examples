@@ -38,7 +38,7 @@ export const Button = function Button({
   className = clsx(
     baseStyles[variant],
     color in styles ? styles[color as keyof typeof styles] : {},
-    className
+    className,
   );
 
   const isExternalLink = href?.startsWith("http");

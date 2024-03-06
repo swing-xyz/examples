@@ -5717,6 +5717,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-toast@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@radix-ui/react-toast@npm:1.1.5"
+  dependencies:
+    "@babel/runtime": "npm:^7.13.10"
+    "@radix-ui/primitive": "npm:1.0.1"
+    "@radix-ui/react-collection": "npm:1.0.3"
+    "@radix-ui/react-compose-refs": "npm:1.0.1"
+    "@radix-ui/react-context": "npm:1.0.1"
+    "@radix-ui/react-dismissable-layer": "npm:1.0.5"
+    "@radix-ui/react-portal": "npm:1.0.4"
+    "@radix-ui/react-presence": "npm:1.0.1"
+    "@radix-ui/react-primitive": "npm:1.0.3"
+    "@radix-ui/react-use-callback-ref": "npm:1.0.1"
+    "@radix-ui/react-use-controllable-state": "npm:1.0.1"
+    "@radix-ui/react-use-layout-effect": "npm:1.0.1"
+    "@radix-ui/react-visually-hidden": "npm:1.0.3"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 4185b7fb28f22890662be876f50f88ad26fd86b8b178d553072875fbe8e4c14585ba3f6e205a88432d4566292dc5517398cd9551e2b554deb39c2c9d6febfb79
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-tooltip@npm:^1.0.6":
   version: 1.0.7
   resolution: "@radix-ui/react-tooltip@npm:1.0.7"
@@ -6184,6 +6215,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry-internal/feedback@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry-internal/feedback@npm:7.93.0"
+  dependencies:
+    "@sentry/core": "npm:7.93.0"
+    "@sentry/types": "npm:7.93.0"
+    "@sentry/utils": "npm:7.93.0"
+  checksum: f266f8374c7039ddb6fe4d50edaad7e4c27a6004e0ca4df181b9d359b3cb97cea59f8dd097e13eb2228877ef252beccf5d2433cde35f788f637ed074d0f9b5f8
+  languageName: node
+  linkType: hard
+
 "@sentry-internal/feedback@npm:7.98.0":
   version: 7.98.0
   resolution: "@sentry-internal/feedback@npm:7.98.0"
@@ -6207,6 +6249,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry-internal/tracing@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry-internal/tracing@npm:7.93.0"
+  dependencies:
+    "@sentry/core": "npm:7.93.0"
+    "@sentry/types": "npm:7.93.0"
+    "@sentry/utils": "npm:7.93.0"
+  checksum: 26efc18b072b015fdea6606ad58a657e5dc3cdcc5b18ab320e34844c25d717a69b706a4ed4415373f6b71b22f22a7bf877d607e79836fcc3e115c33d23b50577
+  languageName: node
+  linkType: hard
+
 "@sentry-internal/tracing@npm:7.98.0":
   version: 7.98.0
   resolution: "@sentry-internal/tracing@npm:7.98.0"
@@ -6215,6 +6268,20 @@ __metadata:
     "@sentry/types": "npm:7.98.0"
     "@sentry/utils": "npm:7.98.0"
   checksum: fbd6cf01f411d5540e5cf1f1d0c6a7054e63b299e9721044a81b36487e51cdc69fad2d0f55567a9b15fc963162b41c6639035640f822f58808ad8e286881aa74
+  languageName: node
+  linkType: hard
+
+"@sentry/browser@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry/browser@npm:7.93.0"
+  dependencies:
+    "@sentry-internal/feedback": "npm:7.93.0"
+    "@sentry-internal/tracing": "npm:7.93.0"
+    "@sentry/core": "npm:7.93.0"
+    "@sentry/replay": "npm:7.93.0"
+    "@sentry/types": "npm:7.93.0"
+    "@sentry/utils": "npm:7.93.0"
+  checksum: 8cc27d219ca3ebf5c904535bb2a1b8807f04d99cfb7b8a13bf22930531488b0de66d45ee1dd2772e37112dd5cbc58f099e8334a6ab4712133baaad756c6ae9ce
   languageName: node
   linkType: hard
 
@@ -6230,6 +6297,16 @@ __metadata:
     "@sentry/types": "npm:7.98.0"
     "@sentry/utils": "npm:7.98.0"
   checksum: 18d98207ea1b6b0a21a73de8218915e4af9dccd38a8ef0703f42754a3da916117139652ddaa2f9851945ab6be66cf477801db77e2ca4090a59258e77ffdcc77e
+  languageName: node
+  linkType: hard
+
+"@sentry/core@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry/core@npm:7.93.0"
+  dependencies:
+    "@sentry/types": "npm:7.93.0"
+    "@sentry/utils": "npm:7.93.0"
+  checksum: 8604fa49dd3e82f7f40e537c4ea15ecf945efa36ed25cb65ee7868d6c7691b9639c5b76ea90987423ab0ab2ad5baa75397bf434f4a75535a1bd08e0f10442f01
   languageName: node
   linkType: hard
 
@@ -6258,6 +6335,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/replay@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry/replay@npm:7.93.0"
+  dependencies:
+    "@sentry-internal/tracing": "npm:7.93.0"
+    "@sentry/core": "npm:7.93.0"
+    "@sentry/types": "npm:7.93.0"
+    "@sentry/utils": "npm:7.93.0"
+  checksum: 54700f3ae869fca65610fea4752fced09cf76e63eb836f8291ad66dae2ca70b762d7c1ff584028606c8a7dea2edbe0c88c0fca04b74eaebc7357b3e966cfcff6
+  languageName: node
+  linkType: hard
+
 "@sentry/replay@npm:7.98.0":
   version: 7.98.0
   resolution: "@sentry/replay@npm:7.98.0"
@@ -6270,10 +6359,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/types@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry/types@npm:7.93.0"
+  checksum: 851480468ebe35f05b402fa954040bdc12f08bb5f820c149988c9108328c54a43e685bf85e8f94fc3a2c729ce41079bb3d7a78e757586b2cf2ac49e727b89669
+  languageName: node
+  linkType: hard
+
 "@sentry/types@npm:7.98.0":
   version: 7.98.0
   resolution: "@sentry/types@npm:7.98.0"
   checksum: 3b9bd8929b988c4ee70afadb8662e47d22188b2acdf63f58b61a3cabea3be341d63d612aca7b61f0a267659c5eb774ee81347611a47f87e2c9ed71c8123ccae5
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.93.0":
+  version: 7.93.0
+  resolution: "@sentry/utils@npm:7.93.0"
+  dependencies:
+    "@sentry/types": "npm:7.93.0"
+  checksum: 12442644235c797d787b28c2b8fbfa907806bbf31b42e50214d44d055fbbd218562f1bf12ac520eaea609c30594764860e2c117cbd9a5f2e2d03f0a74e4b9cda
   languageName: node
   linkType: hard
 
@@ -6752,6 +6857,33 @@ __metadata:
     ethers: "npm:^5.7.2"
     eventemitter3: "npm:^4.0.7"
   checksum: 28f97e94043006aae33a1b291bad4a01ad14b77b3f5f8ce7f717caa0310aa401ceea0be9f4b63c15a981a2314f911e07afdfba7dcdf563edc42155ce8e18bc28
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.47.9":
+  version: 0.47.12
+  resolution: "@swing.xyz/sdk@npm:0.47.12"
+  dependencies:
+    "@coinbase/wallet-sdk": "npm:^3.9.1"
+    "@cosmjs/stargate": "npm:^0.32.2"
+    "@ethersproject/abi": "npm:^5.7.0"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/constants": "npm:^5.7.0"
+    "@ethersproject/contracts": "npm:^5.7.0"
+    "@ethersproject/hash": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/signing-key": "npm:^5.7.0"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.93.0"
+    "@solana/web3.js": "npm:^1.89.1"
+    "@swing.xyz/cross-chain-api": "npm:^0.0.12"
+    "@swing.xyz/platform-api": "npm:^0.0.13"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+  checksum: dba18892b38ca3da29435f759184cef5945d2981f0e3489ef57f0a8fba8218d135a78df6f9fb267778fdea49a4f570ea2e934c2b9a426e29a99a3b5c02b57c3d
   languageName: node
   linkType: hard
 
@@ -12483,6 +12615,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-config-turbo: "npm:^1.11.3"
     eslint-plugin-react: "npm:7.33.2"
+    eslint-plugin-unused-imports: "npm:^3.0.0"
     prettier: "npm:^3.2.4"
     typescript: "npm:^5.3.3"
   languageName: unknown
@@ -12670,6 +12803,28 @@ __metadata:
   peerDependencies:
     eslint: ">6.6.0"
   checksum: 1eec81bcb64a54b9b74bb454eefd181c38969975a6d0588e80de04032a5ac9e4d49f545fd614594a3281765687e0568894e5b6f5742a96ebde1ff88135853554
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-unused-imports@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "eslint-plugin-unused-imports@npm:3.1.0"
+  dependencies:
+    eslint-rule-composer: "npm:^0.3.0"
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": 6 - 7
+    eslint: 8
+  peerDependenciesMeta:
+    "@typescript-eslint/eslint-plugin":
+      optional: true
+  checksum: 8ad49d6d343492f5a5e6398a57d2c66c28651410d83478b16eac8fadb466cf7785b43cd7cfe33e0fb9624c464c7a92b5b78b34ad2daf418e8ac8fed5c554e1ed
+  languageName: node
+  linkType: hard
+
+"eslint-rule-composer@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "eslint-rule-composer@npm:0.3.0"
+  checksum: c751e71243c6750de553ca0f586a71c7e9d43864bcbd0536639f287332e3f1ed3337bb0db07020652fa90937ceb63b6cc14c0f71fb227e8fc20ca44ee67e837f
   languageName: node
   linkType: hard
 
@@ -16448,6 +16603,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.334.0":
+  version: 0.334.0
+  resolution: "lucide-react@npm:0.334.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: d24d20bda88e17bfa32a1e12575ebee9f09387ca0235560ed0a2dd96bb46693fc16d81663869a008acb94814d1f11f50418dde8d60bc55b15d1d250d3f585a02
+  languageName: node
+  linkType: hard
+
 "magic-sdk@npm:^13.6.2":
   version: 13.6.2
   resolution: "magic-sdk@npm:13.6.2"
@@ -19720,6 +19884,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-icons@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "react-icons@npm:5.0.1"
+  peerDependencies:
+    react: "*"
+  checksum: c4458c643ae32a793ddebc5fa1235c7ec051be1b131205510e8199d15a4c89221a501f95a71fa21c2da93e8dd225290e2e24bb80abd3fb85801e43009e692098
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -21768,6 +21941,46 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swaps-sdk-nextjs-thirdweb-embedded-wallet@workspace:examples/swaps-sdk-nextjs-thirdweb-embedded-wallet":
+  version: 0.0.0-use.local
+  resolution: "swaps-sdk-nextjs-thirdweb-embedded-wallet@workspace:examples/swaps-sdk-nextjs-thirdweb-embedded-wallet"
+  dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^6.5.1"
+    "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
+    "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@headlessui/react": "npm:^1.7.18"
+    "@radix-ui/react-toast": "npm:^1.1.5"
+    "@swing.xyz/sdk": "npm:^0.47.9"
+    "@tailwindcss/forms": "npm:^0.5.7"
+    "@thirdweb-dev/react": "npm:^4.3.2"
+    "@thirdweb-dev/sdk": "npm:^4.0.27"
+    "@types/node": "npm:20.11.5"
+    "@types/react": "npm:18.2.48"
+    "@types/react-dom": "npm:18.2.18"
+    autoprefixer: "npm:^10.4.17"
+    class-variance-authority: "npm:^0.7.0"
+    clsx: "npm:^2.1.0"
+    eslint: "npm:^8.56.0"
+    eslint-config-examples: "workspace:*"
+    framer-motion: "npm:^6.5.1"
+    lucide-react: "npm:^0.334.0"
+    next: "npm:14.1.0"
+    pino-pretty: "npm:^10.3.1"
+    postcss: "npm:^8.4.33"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    react-icons: "npm:^5.0.1"
+    tailwind-merge: "npm:^2.2.1"
+    tailwind-scrollbar: "npm:^3.0.5"
+    tailwindcss: "npm:^3.4.1"
+    tailwindcss-animate: "npm:^1.0.7"
+    typescript: "npm:^5.3.3"
+    typescript-config: "workspace:*"
+    use-debounce: "npm:^10.0.0"
+  languageName: unknown
+  linkType: soft
+
 "swaps-sdk-nextjs@workspace:examples/swaps-sdk-nextjs":
   version: 0.0.0-use.local
   resolution: "swaps-sdk-nextjs@workspace:examples/swaps-sdk-nextjs"
@@ -21956,6 +22169,15 @@ __metadata:
   dependencies:
     "@babel/runtime": "npm:^7.23.7"
   checksum: 3d8aecfa03c077472a038f25e95504ca47c1e7549ab843a854a690509098caac4e2e57790a7cadda4054fd07ec31421980a7afac33547013cf22299788625e72
+  languageName: node
+  linkType: hard
+
+"tailwind-scrollbar@npm:^3.0.5":
+  version: 3.1.0
+  resolution: "tailwind-scrollbar@npm:3.1.0"
+  peerDependencies:
+    tailwindcss: 3.x
+  checksum: c51a4788e72a9113155e2a8c472f45b280da190db999a7fc817f042adef7bc3890c15719f7d18bf34cf4817a414b29f42f622ed20d20658d06f654ad85dee20b
   languageName: node
   linkType: hard
 

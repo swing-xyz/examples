@@ -13,7 +13,7 @@ const examplesPath = path.resolve(
   "..",
   "..",
   "..",
-  "examples"
+  "examples",
 );
 
 export function getTemplates() {
@@ -27,7 +27,7 @@ export function getTemplates() {
     const packageJson = JSON.parse(
       fs.readFileSync(path.join(examplesPath, packageJsonPath), {
         encoding: "utf-8",
-      })
+      }),
     );
 
     if (!packageJson.name) {
@@ -39,16 +39,16 @@ export function getTemplates() {
 
     const template = {
       integration: keywordOptions.Integration.find((integration) =>
-        packageJson.name.includes(slugify(integration))
+        packageJson.name.includes(slugify(integration)),
       ),
       framework: keywordOptions.Framework.find((framework) =>
-        keywords.includes(slugify(framework))
+        keywords.includes(slugify(framework)),
       ),
       wallet: keywordOptions.Wallet.find((wallet) =>
-        keywords.includes(slugify(wallet))
+        keywords.includes(slugify(wallet)),
       ),
       "use-case": keywordOptions["Use Case"].find((useCase) =>
-        packageJson.name.includes(slugify(useCase))
+        packageJson.name.includes(slugify(useCase)),
       ),
     };
 
