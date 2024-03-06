@@ -1,7 +1,7 @@
 import { IRoute } from 'app/interfaces/IRouteSelector';
 import { useCustomSwingSdk } from 'components/hooks/useSwingSDK';
 import { FC, useEffect, useState } from 'react';
-import { FaGasPump, FaMoneyBill, FaStopwatch } from 'react-icons/fa';
+import { FaGasPump, FaMoneyBill } from 'react-icons/fa';
 import { MdCheckCircle, MdOutlineTimelapse } from 'react-icons/md';
 
 export const Route: FC<IRoute> = ({ route, onRouteSelected }) => {
