@@ -20,7 +20,7 @@ export const SelectChain: FC<ISelectChain> = ({
 
   useEffect(() => {
     if (selectedChain?.chain) {
-      let sendTokens = !toChain
+      const sendTokens = !toChain
         ? swingSDK?.getAvailableSendTokens({
             fromChainSlug: selectedChain.chain.slug,
             type: "swap",
@@ -36,7 +36,6 @@ export const SelectChain: FC<ISelectChain> = ({
           token.symbol == selectedChain.chain?.nativeToken?.symbol,
       );
       console.log("native token", nativeToken);
-      sendTokens = sendTokens;
 
       setTokens([...nativeToken!, ...sendTokens!]);
     }
