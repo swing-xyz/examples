@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Swap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+    href="https://unpkg.com/@swing.xyz/ui/dist/index.css"
+    rel="stylesheet"
+  />
+
+  <script
+    type="module"
+    src="https://unpkg.com/@swing.xyz/ui/dist/web-components/index.umd.js"
+  ></script>
+  <style>
+    #swing {
+        width: 350px;
+    }
+  </style>
+</head>
+<body class="min-w-screen min-h-screen bg-green-500 overflow-hidden">
+    
+
+    <div id="contents" class="w-full h-full flex">
+        <aside id="sidebar" class="lg:w-[15%] sm:w-[25%] min-h-screen bg-green-200 p-5">
+            <div id="navs">
+
+            </div>
+        </aside>
+
+        <div id="main-body" class="w-full h-full">
+            <div id="header" class="w-full min-h-[2rem] flex justify-between items-center p-5">
+                <div id="logo" class="text-2xl italic">
+                    SwapSwitch
+                </div>
+                <nav>
+                    <ul class="list-none flex flex-colomn gap-4 text-sm">
+                        <li><a href="#">Connect Wallet</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div id="container" class="w-full h-screen flex justify-center items-center">
+                <swing-swap projectId="replug"></swing-swap>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
