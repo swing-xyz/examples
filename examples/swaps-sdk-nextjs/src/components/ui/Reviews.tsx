@@ -6,7 +6,7 @@ import { useInView } from "framer-motion";
 
 import { Container } from "./Container";
 
-const reviews = [
+const REVIEWS = [
   {
     title: "It really works.",
     body: "I bought Altcoin today and turned $5000 into $25,000 in half an hour.",
@@ -92,6 +92,7 @@ const reviews = [
     rating: 5,
   },
 ];
+const reviews = REVIEWS;
 
 function StarIcon({ className }: { className?: string }) {
   return (
@@ -104,13 +105,13 @@ function StarIcon({ className }: { className?: string }) {
 function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex">
-      {/* @ts-ignore */}
+      {/* @ts-expect-error ignore */}
       {[...Array(5).keys()].map((index) => (
         <StarIcon
           key={index}
           className={clsx(
             "w-5 h-5",
-            rating > index ? "fill-cyan-500" : "fill-gray-300"
+            rating > index ? "fill-cyan-500" : "fill-gray-300",
           )}
         />
       ))}
@@ -132,8 +133,8 @@ function Review({
   rating: number;
   className?: string;
 }) {
-  let animationDelay = useMemo(() => {
-    let possibleAnimationDelays = [
+  const animationDelay = useMemo(() => {
+    const possibleAnimationDelays = [
       "0s",
       "0.1s",
       "0.2s",
@@ -150,7 +151,7 @@ function Review({
     <figure
       className={clsx(
         "p-6 bg-white shadow-md opacity-0 animate-fade-in rounded-3xl shadow-gray-900/5",
-        className
+        className,
       )}
       style={{ animationDelay }}
       {...props}
@@ -169,14 +170,14 @@ function Review({
   );
 }
 
-function splitArray(array: any[], numParts: number) {
-  let result = [];
+function splitArray<T>(array: T[], numParts: number) {
+  const result: T[][] = [];
   for (let i = 0; i < array.length; i++) {
-    let index = i % numParts;
+    const index = i % numParts;
     if (!result[index]) {
       result[index] = [];
     }
-    // @ts-ignore
+
     result[index].push(array[i]);
   }
   return result;
@@ -185,20 +186,22 @@ function splitArray(array: any[], numParts: number) {
 function ReviewColumn({
   className,
   reviews,
-  reviewClassName = () => {},
+  reviewClassName = () => {
+    return undefined;
+  },
   msPerPixel = 0,
 }: {
   className?: string;
-  reviews: any[];
-  reviewClassName: any;
+  reviews: typeof REVIEWS;
+  reviewClassName?: (reviewIndex: number) => string | undefined;
   msPerPixel: number;
 }) {
-  let columnRef = useRef<HTMLDivElement | null>(null);
-  let [columnHeight, setColumnHeight] = useState(0);
-  let duration = `${columnHeight * msPerPixel}ms`;
+  const columnRef = useRef<HTMLDivElement | null>(null);
+  const [columnHeight, setColumnHeight] = useState(0);
+  const duration = `${columnHeight * msPerPixel}ms`;
 
   useEffect(() => {
-    let resizeObserver = new window.ResizeObserver(() => {
+    const resizeObserver = new window.ResizeObserver(() => {
       setColumnHeight(columnRef.current?.offsetHeight || 0);
     });
 
@@ -215,7 +218,7 @@ function ReviewColumn({
     <div
       ref={columnRef}
       className={clsx("py-4 space-y-8 animate-marquee", className)}
-      // @ts-ignore
+      // @ts-expect-error allow custom properties
       style={{ "--marquee-duration": duration }}
     >
       {reviews.concat(reviews).map((review, reviewIndex) => (
@@ -231,10 +234,10 @@ function ReviewColumn({
 }
 
 function ReviewGrid() {
-  let containerRef = useRef<HTMLDivElement | null>(null);
-  let isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
   let columns = splitArray(reviews, 3);
-  // @ts-ignore
+  // @ts-expect-error ignore
   columns = [columns[0], columns[1], splitArray(columns[2], 2)];
 
   return (
@@ -248,23 +251,24 @@ function ReviewGrid() {
             reviews={[...columns[0]!, ...columns[2]!.flat(), ...columns[1]!]}
             reviewClassName={(reviewIndex: number) =>
               clsx(
-                // @ts-ignore
+                // @ts-expect-error ignore
                 reviewIndex >= columns[0].length + columns[2][0].length &&
                   "md:hidden",
-                reviewIndex >= columns[0]!.length && "lg:hidden"
+                reviewIndex >= columns[0]!.length && "lg:hidden",
               )
             }
             msPerPixel={10}
           />
           <ReviewColumn
+            // @ts-expect-error ignore
             reviews={[...columns[1]!, ...columns[2]![1]!]}
             className="hidden md:block"
+            // @ts-expect-error ignore
             reviewClassName={(reviewIndex: number) =>
               reviewIndex >= columns[1]!.length && "lg:hidden"
             }
             msPerPixel={15}
           />
-          {/* @ts-ignore */}
           <ReviewColumn
             reviews={columns[2]!.flat()}
             className="hidden lg:block"
