@@ -12,11 +12,9 @@ import SwingSDK, {
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/Button";
-import { useConnect, useWallet, metamaskWallet } from "@thirdweb-dev/react";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from '@ethersproject/providers';
 
-const walletConfig = metamaskWallet();
 
 const defaultTransferParams: TransferParams = {
   amount: "1",
@@ -27,10 +25,6 @@ const defaultTransferParams: TransferParams = {
   toToken: "USDC",
   toUserAddress: "",
 };
-
-async function getLibrary(provider: any) {
-  return new Web3Provider(provider);
-}
 
 const Swap = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +60,7 @@ const Swap = () => {
 
   useEffect(() => {
     const swing = new SwingSDK({
-      projectId: "example-swaps-sdk-nextjs",
+      projectId: "replug",
       environment: "testnet",
       debug: true,
     });
