@@ -13,6 +13,8 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/Button";
 import { useConnect, useWallet, metamaskWallet } from "@thirdweb-dev/react";
+import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from '@ethersproject/providers';
 
 const walletConfig = metamaskWallet();
 
@@ -26,6 +28,10 @@ const defaultTransferParams: TransferParams = {
   toUserAddress: "",
 };
 
+async function getLibrary(provider: any) {
+  return new Web3Provider(provider);
+}
+
 const Swap = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -37,10 +43,26 @@ const Swap = () => {
   const [transferRoute, setTransferRoute] = useState<TransferRoute | null>(
     null
   );
-  const connect = useConnect();
-  const walletInstance = useWallet();
+  const { connector, provider } = useWeb3React();
+
   const [swingSDK, setSwingSDK] = useState<SwingSDK | null>(null);
   const isConnected = swingSDK?.wallet.isConnected();
+
+  useEffect(() => {
+    async function syncProviderWithSwingSDK() {
+        const walletAddress = await swingSDK?.wallet.connect(provider?.getSigner(), defaultTransferParams.fromChain);
+
+        setTransferParams((prev: any) => {
+          return {
+            ...prev,
+            fromUserAddress: walletAddress,
+            toUserAddress: walletAddress,
+          };
+        });
+    }
+
+    syncProviderWithSwingSDK();
+}, [provider]);
 
   useEffect(() => {
     const swing = new SwingSDK({
@@ -69,12 +91,13 @@ const Swap = () => {
 
     try {
       // Connect to MetaMask
-      const connection = await connect(walletConfig, { chainId });
-      const signer = await connection.getSigner();
+      await connector.activate();
+
+      const signer = await provider?.getSigner();
 
       // Connect wallet signer to Swing SDK
       const walletAddress = await swingSDK.wallet.connect(
-        signer,
+        provider,
         defaultTransferParams.fromChain
       );
 
@@ -95,21 +118,9 @@ const Swap = () => {
     if (!swingSDK) return;
 
     try {
-      await walletInstance?.switchChain(chain.chainId);
-      const walletSigner = await walletInstance?.getSigner()!;
 
-      // Connect wallet signer to Swing SDK
-      const walletAddress = await swingSDK.wallet.connect(
-        walletSigner,
-        chain.slug
-      );
-
-      setTransferParams((prev) => {
-        return {
-          ...prev,
-          fromUserAddress: walletAddress,
-          toUserAddress: walletAddress,
-        };
+      await connector.activate({
+        chainId: chain.id
       });
     } catch (error: any) {
       console.error("Switch Chain Error:", error);
@@ -209,7 +220,7 @@ const Swap = () => {
               setTransferRoute(null); // Reset transfer route
               setTransferParams((prev) => ({
                 ...prev,
-                amount: e.currentTarget.value,
+                amount: e.target.value,
               }));
             }}
           />
