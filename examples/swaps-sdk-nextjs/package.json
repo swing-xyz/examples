@@ -24,7 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.18",
-    "@swing.xyz/sdk": "^0.48.2",
+    "@swing.xyz/sdk": "^0.50.10",
     "@tailwindcss/forms": "^0.5.7",
     "@thirdweb-dev/react": "^4.3.2",
     "@thirdweb-dev/sdk": "^4.0.27",
