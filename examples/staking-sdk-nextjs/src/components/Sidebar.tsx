@@ -43,7 +43,7 @@ export default function Sidebar() {
 
             <Link
               id="sidebar-item-Swap"
-              className="relative flex items-center px-4 py-2 font-semibold group bg-slate-700 text-midnight-primary dark:text-white"
+              className="relative flex items-center px-4 py-2 font-semibold group bg-slate-700 text-white"
               href="/"
               aria-current="page"
             >

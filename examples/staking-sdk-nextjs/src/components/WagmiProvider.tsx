@@ -1,31 +1,36 @@
 "use client";
 
-import { WagmiConfig, configureChains, createConfig } from "wagmi";
-import { avalanche, mainnet } from "viem/chains";
-import { publicProvider } from "wagmi/providers/public";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import { createConfig, WagmiProvider as WagmiConfig } from "wagmi";
+import * as WagmiChains from "wagmi/chains";
+import { injected, coinbaseWallet } from "wagmi/connectors";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createClient, http } from "viem";
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, avalanche],
-  [publicProvider()],
-);
+const queryClient = new QueryClient();
 
 const config = createConfig({
-  autoConnect: false,
-  publicClient,
-  webSocketPublicClient,
+  ssr: true,
+  chains: Object.values<WagmiChains.Chain>(WagmiChains) as [
+    WagmiChains.Chain,
+    ...WagmiChains.Chain[],
+  ],
+
+  client({ chain }) {
+    return createClient({ chain, transport: http() });
+  },
+
   connectors: [
-    new InjectedConnector({ chains }),
-    new MetaMaskConnector({
-      chains,
-      options: {
-        UNSTABLE_shimOnConnectSelectAccount: true,
-      },
+    injected({ shimDisconnect: true, target: "metaMask" }),
+    coinbaseWallet({
+      appName: "Swing Staking Widget Example",
     }),
   ],
 });
 
 export function WagmiProvider({ children }: { children: React.ReactNode }) {
-  return <WagmiConfig config={config}>{children}</WagmiConfig>;
+  return (
+    <WagmiConfig config={config}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </WagmiConfig>
+  );
 }
