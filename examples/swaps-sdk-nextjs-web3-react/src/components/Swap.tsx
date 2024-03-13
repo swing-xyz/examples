@@ -17,11 +17,11 @@ import { useWeb3React } from "@web3-react/core";
 
 const defaultTransferParams: TransferParams = {
   amount: "1",
-  fromChain: "goerli",
-  fromToken: "USDC",
+  fromChain: "polygon",
+  fromToken: "MATIC",
   fromUserAddress: "",
-  toChain: "goerli",
-  toToken: "ETH",
+  toChain: "polygon",
+  toToken: "USDC",
   toUserAddress: "",
 };
 
@@ -60,7 +60,7 @@ const Swap = () => {
   useEffect(() => {
     const swing = new SwingSDK({
       projectId: "replug",
-      environment: "testnet",
+      environment: "production",
       debug: true,
     });
 
@@ -97,9 +97,12 @@ const Swap = () => {
 
     try {
 
-      await connector.activate({
-        chainId: chain.id
-      });
+      // await connector.activate({chainId: chain.id,
+      //   chainName: chain.name,
+      //   nativeCurrency: chain.nativeToken,
+      //   rpcUrls: [chain.rpcUrl]}) // <--- To suggest user add chain to wallet
+
+      await connector.activate(chain.id);
     } catch (error: any) {
       console.error("Switch Chain Error:", error);
       setError(error.message);
