@@ -16,7 +16,7 @@ import {
   DialogTitle,
 } from "components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { useAccount, useSwitchNetwork } from "wagmi";
+import { useAccount, useSwitchChain } from "wagmi";
 import { useSwingSdk } from "./SwingSdkProvider";
 import { useConnectWallet } from "hooks/useConnectWallet";
 
@@ -31,7 +31,7 @@ export function Stake() {
     null,
   );
   const { address, isConnected } = useAccount();
-  const { switchNetworkAsync } = useSwitchNetwork();
+  const { switchChainAsync } = useSwitchChain();
   const connectWallet = useConnectWallet();
 
   async function startTransfer(
@@ -71,7 +71,7 @@ export function Stake() {
 
           case "CHAIN_SWITCH_REQUIRED":
             try {
-              await switchNetworkAsync?.(transferStep.chain.chainId);
+              await switchChainAsync?.({ chainId: transferStep.chain.chainId });
             } catch (error) {
               // Cancel transfer if user rejects network switch
               swingSDK.cancelTransfer(transferResults.transferId);

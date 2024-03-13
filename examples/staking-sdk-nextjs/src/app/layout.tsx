@@ -14,9 +14,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head />
 
-      <body className="relative flex max-h-screen min-h-full text-white bg-slate-900">
-        <SwingSdkProvider>
-          <WagmiProvider>
+      <body className="relative flex max-h-screen min-h-full">
+        {/* Place WagmiProvider around SwingSdkProvider, so Swing will inherit your Wagmi config */}
+        <WagmiProvider>
+          <SwingSdkProvider>
             <Sidebar />
 
             <main className="container relative flex flex-col w-full min-h-screen overflow-y-auto">
@@ -33,8 +34,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
               {children}
             </main>
-          </WagmiProvider>
-        </SwingSdkProvider>
+          </SwingSdkProvider>
+        </WagmiProvider>
       </body>
     </html>
   );
