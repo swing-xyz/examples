@@ -13,12 +13,13 @@
     "dev": "turbo run dev --parallel",
     "test": "turbo run test",
     "lint": "turbo run lint",
+    "lint.fix": "turbo run lint -- --fix && yarn format",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "prettier": "^3.2.4",
-    "turbo": "^1.11.3"
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.5"
   },
   "engines": {
     "node": ">=18.0.0"

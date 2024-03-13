@@ -22,13 +22,12 @@ export function useConnectWallet() {
       connector,
     });
 
-    const walletClient = await connector.getWalletClient();
+    const provider = await connector.getProvider();
     const chainId = await connector.getChainId();
 
-    // Pass transport into Swing SDK: https://wagmi.sh/react/ethers-adapters#wallet-client--signer
-    await swingSDK.wallet.connect(walletClient.transport, chainId);
+    await swingSDK.wallet.connect(provider, chainId);
 
-    return connection.account;
+    return connection.accounts[0];
   }
 
   return useCallback(connectWallet, [

@@ -1,20 +1,20 @@
 "use client";
 
-import { useAccount, useEnsName } from "wagmi";
+import { useAccount, useEnsName, useConnect, useConnectors } from "wagmi";
 import { Button } from "./ui/button";
-import { useConnectWallet } from "hooks/useConnectWallet";
 
 export function ConnectWallet() {
   const { address, isConnected } = useAccount();
   const { data: ensName } = useEnsName({ address });
-  const connectWallet = useConnectWallet();
+  const { connect } = useConnect();
+  const connectors = useConnectors();
 
   return (
     <Button
-      onClick={async () => {
+      onClick={() => {
         if (isConnected) return;
 
-        connectWallet();
+        connect({ connector: connectors[0] });
       }}
     >
       {isConnected ? ensName ?? address : "Connect Wallet"}
