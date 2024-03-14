@@ -1,12 +1,12 @@
-import { useId } from "react";
+import { useId, type SVGProps } from "react";
 
 export function CircleBackground({
   color,
   width = 558,
   height = 558,
   ...props
-}: any) {
-  let id = useId();
+}: SVGProps<SVGSVGElement>) {
+  const id = useId();
 
   return (
     <svg

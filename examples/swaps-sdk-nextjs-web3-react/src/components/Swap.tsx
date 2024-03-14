@@ -45,7 +45,7 @@ const Swap = () => {
     async function syncProviderWithSwingSDK() {
         const walletAddress = await swingSDK?.wallet.connect(provider?.getSigner(), defaultTransferParams.fromChain);
 
-        setTransferParams((prev: any) => {
+        setTransferParams((prev: TransferStepResults | null) => {
           return {
             ...prev,
             fromUserAddress: walletAddress,
@@ -84,11 +84,11 @@ const Swap = () => {
 
     try {
       // Connect to MetaMask
-      await connector.activate();
+      await connector.activate(chainId);
 
-    } catch (error: any) {
+    } catch (error) {
       console.error("Connect Wallet Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
   }
 
@@ -103,9 +103,9 @@ const Swap = () => {
       //   rpcUrls: [chain.rpcUrl]}) // <--- To suggest user add chain to wallet
 
       await connector.activate(chain.id);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Switch Chain Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
   }
 
@@ -125,9 +125,9 @@ const Swap = () => {
       }
 
       setTransferRoute(quotes.routes[0]!);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Quote Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
 
     setIsLoading(false);
@@ -165,9 +165,9 @@ const Swap = () => {
 
     try {
       await swingSDK.transfer(transferRoute, transferParams);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Transfer Error:", error);
-      setError(error.message);
+      setError((error as Error).message);
     }
 
     // Close the transfer listener
@@ -197,7 +197,7 @@ const Swap = () => {
             className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="0.0"
             value={transferParams.amount}
-            onChange={(e: any) => {
+            onChange={(e) => {
               setTransferRoute(null); // Reset transfer route
               setTransferParams((prev) => ({
                 ...prev,

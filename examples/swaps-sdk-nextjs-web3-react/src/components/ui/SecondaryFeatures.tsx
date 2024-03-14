@@ -64,7 +64,7 @@ function DeviceArrowIcon({ className }: { className?: string }) {
 }
 
 function DeviceCardsIcon({ className }: { className?: string }) {
-  let id = useId();
+  const id = useId();
 
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" className={className}>
