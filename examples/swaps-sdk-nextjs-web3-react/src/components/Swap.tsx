@@ -45,13 +45,12 @@ const Swap = () => {
     async function syncProviderWithSwingSDK() {
         const walletAddress = await swingSDK?.wallet.connect(provider?.getSigner(), defaultTransferParams.fromChain);
 
-        setTransferParams((prev: TransferStepResults | null) => {
-          return {
-            ...prev,
-            fromUserAddress: walletAddress,
-            toUserAddress: walletAddress,
-          };
-        });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setTransferParams((prev: TransferParams | any) => ({
+          ...prev,
+          fromUserAddress: walletAddress,
+          toUserAddress: walletAddress,
+        }))
     }
 
     syncProviderWithSwingSDK();
