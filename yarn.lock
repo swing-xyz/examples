@@ -4085,6 +4085,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@metamask/detect-provider@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@metamask/detect-provider@npm:1.2.0"
+  checksum: 2c152534a8dd15bc1430bb5159cdf58993549a644cff344a1ff43f4ede8f041aad72b909e822747f6545de3ed293a740ecffc86a859daf7a925c4096efd61eb3
+  languageName: node
+  linkType: hard
+
 "@metamask/eth-json-rpc-provider@npm:^1.0.0":
   version: 1.0.1
   resolution: "@metamask/eth-json-rpc-provider@npm:1.0.1"
@@ -8584,6 +8591,16 @@ __metadata:
     "@ethersproject/providers":
       optional: true
   checksum: a0043bc567f471f4dc45f41712dd0aa6e871a1010b88fefb4818a8ef09465e0c21d0396482a2a159734a5ca93aa4a5f1d1437fe40525ef7ac08d172499c3b9b6
+  languageName: node
+  linkType: hard
+
+"@web3-react/metamask@npm:^8.2.4":
+  version: 8.2.4
+  resolution: "@web3-react/metamask@npm:8.2.4"
+  dependencies:
+    "@metamask/detect-provider": "npm:^1.2.0"
+    "@web3-react/types": "npm:^8.2.3"
+  checksum: e0f237c72625f271563e85f1ff1bc6bc2a54a5edafe448c6e754ec0dc50414865da55c5cd3055b11b13a26374798085b5c62533b8ee7ec9c28294b912739ba37
   languageName: node
   linkType: hard
 
@@ -22497,6 +22514,7 @@ __metadata:
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
     "@web3-react/core": "npm:8.2.3"
+    "@web3-react/metamask": "npm:^8.2.4"
     autoprefixer: "npm:^10.4.17"
     clsx: "npm:^2.1.0"
     eslint: "npm:^8.56.0"
