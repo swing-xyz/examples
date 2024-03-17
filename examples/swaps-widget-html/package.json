@@ -1,0 +1,13 @@
+{
+    "name": "swaps-widget-html",
+    "demo": "https://swaps-widget-nextjs.vercel.app/",
+    "keywords": [
+        "@swing.xyz/ui",
+        "widget",
+        "swaps",
+        "html"
+    ],
+    "license": "MIT",
+    "version": "0.0.1",
+    "private": true
+}
