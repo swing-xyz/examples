@@ -5,8 +5,8 @@ Altcoin is an example template showcasing how to use the [Swing SDK](https://dev
 This example is built with:
 
 - [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk)
-- [@thirdweb-dev/react](https://portal.thirdweb.com/react)
-- [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
+- [@web3-react/core](https://docs.uniswap.org/sdk/web3-react/overview)
+- [@web3-react/metamask](https://www.npmjs.com/package/@web3-react/metamask)
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 

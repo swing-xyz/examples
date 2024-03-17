@@ -33,7 +33,7 @@ yarn install
 Next, run the development server:
 
 ```bash
-yarn dev --filter=swaps-sdk-nextjs
+yarn dev --filter=swaps-sdk-nextjs-thirdweb-embedded-wallet
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
