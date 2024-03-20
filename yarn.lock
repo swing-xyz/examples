@@ -22759,6 +22759,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"swaps-widget-html@workspace:examples/swaps-widget-html":
+  version: 0.0.0-use.local
+  resolution: "swaps-widget-html@workspace:examples/swaps-widget-html"
+  languageName: unknown
+  linkType: soft
+
 "swaps-widget-nextjs-pages@workspace:examples/swaps-widget-nextjs-pages":
   version: 0.0.0-use.local
   resolution: "swaps-widget-nextjs-pages@workspace:examples/swaps-widget-nextjs-pages"
