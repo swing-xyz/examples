@@ -15,6 +15,7 @@ import logoForbes from "images/logos/forbes.svg";
 import logoHuffpost from "images/logos/huffpost.svg";
 import logoTechcrunch from "images/logos/techcrunch.svg";
 import logoWired from "images/logos/wired.svg";
+import { Swap } from "@swing.xyz/ui";
 
 const SwapSDK = dynamic(() => import("../Swap"), {
   ssr: false,
@@ -26,6 +27,7 @@ function AppDemo() {
       <AppScreen.Body>
         <React.Suspense fallback={null}>
           <SwapSDK />
+          <Swap projectId="replug" debug environment="production" />
         </React.Suspense>
       </AppScreen.Body>
     </AppScreen>
