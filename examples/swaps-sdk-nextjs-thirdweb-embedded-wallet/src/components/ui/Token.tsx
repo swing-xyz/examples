@@ -16,7 +16,7 @@ export const SingleToken: FC<IToken> = ({ chain, token, onSelectChain }) => {
     //     console.log(balance);
     //     setTokenBalance(balance);
     // });
-  }, [swingSDK?.isReady]);
+  }, [swingSDK?.isReady, isConnected]);
 
   return (
     <div
