@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "./Button";
 import { Container } from "./Container";
-import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -72,8 +71,8 @@ export function Header() {
       <nav>
         <Container className="relative z-50 flex justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
-            <Link href="/" aria-label="Home">
-              <Logo className="w-auto h-10" />
+            <Link href="/" aria-label="Home" className="text-xl">
+              RapidPay
             </Link>
             <div className="hidden lg:flex lg:gap-10">
               <NavLinks />
@@ -84,7 +83,7 @@ export function Header() {
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
+                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-900 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
@@ -119,16 +118,12 @@ export function Header() {
                           className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
                         >
                           <div className="space-y-4">
-                            <MobileNavLink href="#about">
-                              About $ALTCOIN
-                            </MobileNavLink>
-                            <MobileNavLink href="#team">Team</MobileNavLink>
-                            <MobileNavLink href="#why">Why</MobileNavLink>
-                            <MobileNavLink href="#faqs">FAQs</MobileNavLink>
+                            <MobileNavLink href="#gov">Governance</MobileNavLink>
+                            <MobileNavLink href="#docs">Docs</MobileNavLink>
                           </div>
 
                           <div className="flex flex-col mt-4 space-y-4">
-                            <Button href="#altcoin">Buy $ALTCOIN</Button>
+                            {/* <Button href="#altcoin">Connect</Button> */}
 
                             <Button
                               href="https://github.com/swing-xyz/examples"
@@ -146,9 +141,6 @@ export function Header() {
                 </>
               )}
             </Popover>
-            <Button href="#altcoin" className="hidden lg:block">
-              Buy $ALTCOIN
-            </Button>
 
             <Button
               href="https://github.com/swing-xyz/examples"
@@ -158,6 +150,11 @@ export function Header() {
               <FontAwesomeIcon size="lg" icon={faGithub} />
               <span>Fork on Github</span>
             </Button>
+            {/* <Button href="#altcoin" className="hidden lg:block">
+              Connect
+            </Button> */}
+
+            
           </div>
         </Container>
       </nav>

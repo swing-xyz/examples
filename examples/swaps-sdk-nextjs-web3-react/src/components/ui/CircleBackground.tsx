@@ -2,8 +2,8 @@ import { useId, type SVGProps } from "react";
 
 export function CircleBackground({
   color,
-  width = 558,
-  height = 558,
+  width = 800,
+  height = 800,
   ...props
 }: SVGProps<SVGSVGElement>) {
   const id = useId();

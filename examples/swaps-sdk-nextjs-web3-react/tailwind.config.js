@@ -1,8 +1,16 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{ts,tsx}'],
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  prefix: "",
   theme: {
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -19,8 +27,27 @@ module.exports = {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
       animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
         'fade-in': 'fade-in 0.5s linear forwards',
         marquee: 'marquee var(--marquee-duration) linear infinite',
         'spin-slow': 'spin 4s linear infinite',
@@ -39,30 +66,15 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
-      keyframes: {
-        'fade-in': {
-          from: {
-            opacity: 0,
-          },
-          to: {
-            opacity: 1,
-          },
-        },
-        marquee: {
-          '100%': {
-            transform: 'translateY(-50%)',
-          },
-        },
-        'spin-reverse': {
-          to: {
-            transform: 'rotate(-360deg)',
-          },
-        },
-      },
       maxWidth: {
         '2xl': '40rem',
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/forms'), plugin(function({ addBase, theme }) {
+    addBase({
+      'ul': { listStyle: 'disc' },
+      '*': { color: 'white' }
+    })
+  })],
 }
