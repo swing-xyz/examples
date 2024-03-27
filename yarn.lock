@@ -7124,9 +7124,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.50.18":
-  version: 0.50.18
-  resolution: "@swing.xyz/design-system@npm:0.50.18"
+"@swing.xyz/design-system@npm:0.50.22":
+  version: 0.50.22
+  resolution: "@swing.xyz/design-system@npm:0.50.22"
   dependencies:
     "@fortawesome/fontawesome-common-types": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
@@ -7140,7 +7140,7 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 424cf5199e9158993eef4a72e1322a54f71ee978fbc5d79ba198136ac7c99d0d4779abe132d96496a118781f77410b710b184df3b264c143d02b8fa76824218e
+  checksum: e34464b5b382b03a0377fc2a1c045b4eb426dfeacd3a35cf373102542c70c17fb6421dfc438954e9c55357f1290cbcd01cdc2bfdbe5db8d0d06ed064fcac01d9
   languageName: node
   linkType: hard
 
@@ -7167,9 +7167,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.50.18, @swing.xyz/sdk@npm:^0.50.18":
-  version: 0.50.18
-  resolution: "@swing.xyz/sdk@npm:0.50.18"
+"@swing.xyz/sdk@npm:0.50.22, @swing.xyz/sdk@npm:^0.50.22":
+  version: 0.50.22
+  resolution: "@swing.xyz/sdk@npm:0.50.22"
   dependencies:
     "@cosmjs/cosmwasm-stargate": "npm:^0.32.3"
     "@cosmjs/stargate": "npm:^0.32.3"
@@ -7191,7 +7191,7 @@ __metadata:
     ethers: "npm:^5.7.2"
     eventemitter3: "npm:^4.0.7"
     viem: "npm:^2.8.9"
-  checksum: 0215f640c3416b3487b3e644ab0b9041b1af712afbe9e53f8b654691fb1a869a676241200bf0eeb0062d288aa97e8fea9617bf5c582b9528858156a3d2b558b4
+  checksum: 84fb2e1605ccf304f9db18667cdec1df8e3220c9e633a5f4dcacb6af6243238b4a3d1b6a66b7429128102b4bf798d4ee6e1df2d92160bf093c4ef184ef1b9b0e
   languageName: node
   linkType: hard
 
@@ -7223,9 +7223,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.50.18":
-  version: 0.50.18
-  resolution: "@swing.xyz/ui@npm:0.50.18"
+"@swing.xyz/ui@npm:^0.50.22":
+  version: 0.50.22
+  resolution: "@swing.xyz/ui@npm:0.50.22"
   dependencies:
     "@cosmjs/stargate": "npm:^0.32.3"
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
@@ -7233,8 +7233,8 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
     "@sentry/react": "npm:7.107.0"
-    "@swing.xyz/design-system": "npm:0.50.18"
-    "@swing.xyz/sdk": "npm:0.50.18"
+    "@swing.xyz/design-system": "npm:0.50.22"
+    "@swing.xyz/sdk": "npm:0.50.22"
     "@tanstack/react-query": "npm:^5.28.4"
     big.js: "npm:^6.2.1"
     clsx: "npm:^2.1.0"
@@ -7248,7 +7248,7 @@ __metadata:
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: df3502c1c1f9a744fafe0ffd0763d8b7881aca5107189ac3ec19e48a998de2b474987d1e310dbe7c5b18162a66d9699937dbf8fe47119418c80076159886d4d4
+  checksum: 4b4c13fe2ee965dac9485d7a2b9751aaab110c7b55aa68afedfc64e4288c96ecddaa191d15d94187810c4bba777729551fcf1422aeeaba501992769b155cbe7c
   languageName: node
   linkType: hard
 
@@ -14386,7 +14386,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@types/node": "npm:20.11.26"
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
@@ -22236,7 +22236,7 @@ __metadata:
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/sdk": "npm:^0.50.18"
+    "@swing.xyz/sdk": "npm:^0.50.22"
     "@tanstack/react-query": "npm:^5.26.3"
     "@types/node": "npm:20.11.26"
     "@types/react": "npm:18.2.65"
@@ -22272,7 +22272,7 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@tanstack/react-query": "npm:^5.26.3"
     "@types/node": "npm:20.11.26"
     "@types/react": "npm:18.2.65"
@@ -22727,7 +22727,7 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.18"
     "@radix-ui/react-toast": "npm:^1.1.5"
-    "@swing.xyz/sdk": "npm:^0.50.18"
+    "@swing.xyz/sdk": "npm:^0.50.22"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@thirdweb-dev/react": "npm:^4.4.17"
     "@thirdweb-dev/sdk": "npm:^4.0.44"
@@ -22810,7 +22810,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.18"
-    "@swing.xyz/sdk": "npm:^0.50.18"
+    "@swing.xyz/sdk": "npm:^0.50.22"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@thirdweb-dev/react": "npm:^4.4.17"
     "@thirdweb-dev/sdk": "npm:^4.0.44"
@@ -22847,7 +22847,7 @@ __metadata:
     "@angular/core": "npm:^15.2.10"
     "@angular/platform-browser": "npm:^15.2.10"
     "@angular/platform-browser-dynamic": "npm:^15.2.10"
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@types/node": "npm:^20.11.26"
     copyfiles: "npm:^2.4.1"
     eslint: "npm:^8.57.0"
@@ -22875,7 +22875,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "swaps-widget-nextjs-pages@workspace:examples/swaps-widget-nextjs-pages"
   dependencies:
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@types/node": "npm:^20.11.26"
     "@types/react": "npm:^18.2.65"
     "@types/react-dom": "npm:^18.2.22"
@@ -22901,7 +22901,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@types/node": "npm:20.11.26"
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
@@ -22926,7 +22926,7 @@ __metadata:
     "@babel/core": "npm:^7.24.0"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.11"
     "@svgr/webpack": "npm:^5.5.0"
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@types/node": "npm:^20.11.26"
     "@types/react": "npm:^18.2.65"
     "@types/react-dom": "npm:^18.2.22"
@@ -25200,7 +25200,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.50.18"
+    "@swing.xyz/ui": "npm:^0.50.22"
     "@types/node": "npm:20.11.26"
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
