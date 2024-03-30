@@ -21,19 +21,19 @@ export const StatusSheet = ({ isOpen, logs=[], onCancel = () => {} }:{ isOpen: b
     if(logType === "CHAIN_SWITCH") {
 
       return (
-        <div className="flex gap-4 min-h-[50px] mb-2">
+        <div className="flex sm:flex-col gap-4 min-h-[50px] mb-2">
           <span className={clsx("text-yellow-400")}>{time}</span>
           <div className="bg-zinc-700 rounded-xl p-1">
-            <h3 className="text-sm">{log}</h3>
+            <h3 className="text-sm sm:text-xs">{log}</h3>
           </div>
         </div>
       )
     } else if(logType === "ACTION_REQUIRED") {
       return (
-        <div className="flex gap-4 min-h-[50px] mb-2">
+        <div className="lg:flex sm:block gap-4 min-h-[50px] mb-2">
           <span className={clsx("text-yellow-400")}>{time}</span>
           <div className="bg-zinc-700 rounded-xl p-2">
-            <h3 className="text-sm">{log}</h3>
+            <h3 className="text-sm sm:text-xs">{log}</h3>
           </div>
         </div>
       )
@@ -57,9 +57,9 @@ export const StatusSheet = ({ isOpen, logs=[], onCancel = () => {} }:{ isOpen: b
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <ScrollArea className="flex flex-col justify-start space-x-2 bg-zinc-800  text-sm rounded max-h-[200px]">
+            <ScrollArea className="flex flex-col justify-start space-x-2 bg-zinc-800  text-sm sm:text-xs rounded max-h-[200px]">
               <div className="w-full">
-                <div>
+                <div className="">
                   <span className="text-zinc-400">{new Date().toISOString()}</span>: Initiating transaction....
                 </div>
                 {logs.map((log, index) => (

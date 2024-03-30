@@ -57,7 +57,7 @@ function MobileNavLink({
   return (
     <Popover.Button
       as={Link}
-      className="block text-base leading-7 tracking-tight text-gray-700"
+      className="block text-base leading-7 tracking-tight text-white"
       href={href}
     >
       {children}
@@ -83,7 +83,7 @@ export function Header() {
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-900 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
+                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-white p-2 hover:bg-gray-900 active:stroke-white [&:not(:focus-visible)]:focus:outline-none"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
@@ -115,7 +115,7 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-black shadow-gray-900/20"
                         >
                           <div className="space-y-4">
                             <MobileNavLink href="#gov">Governance</MobileNavLink>
