@@ -9,7 +9,9 @@ updates:
     directory: "/" # Location of package manifests
     versioning-strategy: increase
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    reviewers:
+      - "lottamus"
     allow:
       - dependency-name: "@swing.xyz/*"
     groups:
