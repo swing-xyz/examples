@@ -10,6 +10,8 @@ updates:
     versioning-strategy: increase
     schedule:
       interval: "daily"
+    reviewers:
+      - "lottamus"
     allow:
       - dependency-name: "@swing.xyz/*"
     groups:
