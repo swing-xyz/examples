@@ -24,7 +24,7 @@ export function Hero() {
             </p>
           </div>
 
-          <div className="relative mt-10 sm:mt-20 lg:col-span-6 lg:row-span-2 lg:mt-0 xl:col-span-6">
+          <div className="flex justify-center items-center">
             <SwapSDK />
           </div>
         </div>
