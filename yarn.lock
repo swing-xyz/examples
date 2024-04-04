@@ -6740,30 +6740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/web3.js@npm:^1.91.1":
-  version: 1.91.1
-  resolution: "@solana/web3.js@npm:1.91.1"
-  dependencies:
-    "@babel/runtime": "npm:^7.23.4"
-    "@noble/curves": "npm:^1.2.0"
-    "@noble/hashes": "npm:^1.3.3"
-    "@solana/buffer-layout": "npm:^4.0.1"
-    agentkeepalive: "npm:^4.5.0"
-    bigint-buffer: "npm:^1.1.5"
-    bn.js: "npm:^5.2.1"
-    borsh: "npm:^0.7.0"
-    bs58: "npm:^4.0.1"
-    buffer: "npm:6.0.3"
-    fast-stable-stringify: "npm:^1.0.0"
-    jayson: "npm:^4.1.0"
-    node-fetch: "npm:^2.7.0"
-    rpc-websockets: "npm:^7.5.1"
-    superstruct: "npm:^0.14.2"
-  checksum: 10/43474b924a73493937eb0979f9ddfe74fb1f3fd7c0c8caa47315e5e4f67c9a70b2d768fe66a3f789180e7e87398c2a086d49d0f25e09a2e1d5bce692d2880b3b
-  languageName: node
-  linkType: hard
-
-"@solana/web3.js@npm:^1.91.2":
+"@solana/web3.js@npm:^1.91.1, @solana/web3.js@npm:^1.91.2":
   version: 1.91.2
   resolution: "@solana/web3.js@npm:1.91.2"
   dependencies:
@@ -7144,14 +7121,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swing.xyz/platform-api@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@swing.xyz/platform-api@npm:0.2.0"
-  checksum: 10/5b4cd5c416e77959f5b8fd09238fccf54dd9e40aca5ddaf8b6c5b4021a6d60cd7a882363578b41b89e1b60cf77af63fc2a37cc9e5675cfb68031b9b560e70507
-  languageName: node
-  linkType: hard
-
-"@swing.xyz/platform-api@npm:^0.2.1":
+"@swing.xyz/platform-api@npm:^0.2.0, @swing.xyz/platform-api@npm:^0.2.1":
   version: 0.2.1
   resolution: "@swing.xyz/platform-api@npm:0.2.1"
   checksum: 10/383884487814eba032a88ac3cb2996a2fae0dbebb12e69e1d334cb990cf2596a92c72d0702af523831fcb1730e349966076a43e0f28a6d54ad9ca811a1be6e5a
@@ -14494,6 +14464,7 @@ __metadata:
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
     autoprefixer: "npm:^10.4.18"
+    clsx: "npm:^2.1.0"
     eslint: "npm:^8.57.0"
     eslint-config-examples: "workspace:*"
     next: "npm:^14.1.3"
@@ -23020,6 +22991,7 @@ __metadata:
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
     autoprefixer: "npm:^10.4.18"
+    clsx: "npm:^2.1.0"
     eslint: "npm:^8.57.0"
     eslint-config-examples: "workspace:*"
     next: "npm:^14.1.3"
@@ -24439,28 +24411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.8.5, viem@npm:^2.9.0":
-  version: 2.9.5
-  resolution: "viem@npm:2.9.5"
-  dependencies:
-    "@adraffy/ens-normalize": "npm:1.10.0"
-    "@noble/curves": "npm:1.2.0"
-    "@noble/hashes": "npm:1.3.2"
-    "@scure/bip32": "npm:1.3.2"
-    "@scure/bip39": "npm:1.2.1"
-    abitype: "npm:1.0.0"
-    isows: "npm:1.0.3"
-    ws: "npm:8.13.0"
-  peerDependencies:
-    typescript: ">=5.0.4"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 10/4625338930057edb62d358468d90f387553652bf7ea33c89f4616c23fc08aaf0c4255efb4c500fafbdc1de39623858c2507437900a12452c254c796bdc7e561b
-  languageName: node
-  linkType: hard
-
-"viem@npm:^2.9.6":
+"viem@npm:^2.8.5, viem@npm:^2.9.0, viem@npm:^2.9.6":
   version: 2.9.6
   resolution: "viem@npm:2.9.6"
   dependencies:
@@ -25325,6 +25276,7 @@ __metadata:
     "@types/react": "npm:18.2.65"
     "@types/react-dom": "npm:18.2.22"
     autoprefixer: "npm:^10.4.18"
+    clsx: "npm:^2.1.0"
     eslint: "npm:^8.57.0"
     eslint-config-examples: "workspace:*"
     next: "npm:^14.1.3"
