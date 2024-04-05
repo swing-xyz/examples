@@ -49,6 +49,8 @@ Finally, open the example http://localhost:3000
 - [swaps-widget-nextjs](./examples/swaps-widget-nextjs/README.md) - Cross-chain Swaps using the Widget in **Next.js App Router**
 - [swaps-widget-nextjs-pages](./examples/swaps-widget-nextjs-pages/README.md) - Cross-chain Swaps using the Widget in **Next.js Pages Router**
 - [swaps-sdk-nextjs](./examples/swaps-sdk-nextjs/README.md) - Cross-chain Swaps using the SDK in Next.js
+- [swaps-sdk-nextjs-web3-react](./examples/swaps-sdk-nextjs-web3-react/README.md) - Cross-chain Swaps using Swing's SDK and Web3-react library in Next JS
+- [swaps-sdk-nextjs-thirdweb-embedded-wallet](./examples/swaps-sdk-nextjs-thirdweb-embedded-wallet/README.md) - Cross-chain Swaps using Swing's SDK and thirdweb's embedded wallet SDK in Next JS
 - [swaps-api-nextjs](./examples/swaps-api-nextjs/README.md) - Cross-chain Swaps using the Swing API in Next.js
 - [swaps-widget-webpack](./examples/swaps-widget-webpack/README.md) - Cross-chain Swaps using the Widget with Webpack
 - [swaps-widget-angular](./examples/swaps-widget-angular/README.md) - Cross-chain Swaps using the Widget in Angular
