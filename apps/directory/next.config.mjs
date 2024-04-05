@@ -2,11 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
 
-  experimental: {
-    useDeploymentId: true,
-    useDeploymentIdServerActions: true,
-  },
-
   redirects: async () => [
     {
       // Examples directory was hosted from https://developers.swing.xyz/examples at one time.
