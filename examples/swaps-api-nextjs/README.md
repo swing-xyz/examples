@@ -4,23 +4,25 @@ Altcoin is an example template showcasing how to use the [Swing SDK](https://dev
 
 This example is built with:
 
-- [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk)
 - [@thirdweb-dev/react](https://portal.thirdweb.com/react)
 - [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
-> "ALTCOIN" is a fake token used for demonstration purposes only.
-
 ## Demo
 
-View the live demo https://swaps-sdk-nextjs.vercel.app/
+View the live demo https://swaps-api-nextjs.vercel.app/
 
 ## Swing Integration
 
-The [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx).
+>The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx).
 
-It utilizes the SDK's `connect`, `getQuote` and `transfer` methods to interact with the customer's wallet, find the best route, and transfer the funds to a made up "ALTCOIN" token.
+This example demonstrates how you can perform a cross-chain transaction between the Bitcoin and Ethereum chains. 
+
+In this example, we will be using thirdweb's SDK and [xDEFI's injected SDK](https://docs.xdefi.io/docs) to connect to a user's wallet. The process/steps for performing a BTC to ETH transaction and vice versa, is as follows:
+
+- Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
+- Sending a [transaction](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
 
 ## Getting started
 
@@ -33,7 +35,7 @@ yarn install
 Next, run the development server:
 
 ```bash
-yarn dev --filter=swaps-sdk-nextjs
+yarn dev --filter=swaps-sdk-api
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.

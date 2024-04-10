@@ -6,7 +6,8 @@
     "sdk",
     "swaps",
     "nextjs",
-    "thirdweb"
+    "thirdweb",
+    "xDEFI"
   ],
   "license": "MIT",
   "version": "0.0.1",
