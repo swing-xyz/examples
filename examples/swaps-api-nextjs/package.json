@@ -28,6 +28,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@thirdweb-dev/react": "^4.4.17",
     "@thirdweb-dev/sdk": "^4.0.44",
+    "axios": "^1.6.0",
     "clsx": "^2.1.0",
     "framer-motion": "^6.5.1",
     "next": "14.1.3",

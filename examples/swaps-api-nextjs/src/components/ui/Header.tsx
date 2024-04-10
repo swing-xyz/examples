@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "./Button";
 import { Container } from "./Container";
-import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -73,15 +72,13 @@ export function Header() {
         <Container className="relative z-50 flex justify-between items-center py-8">
           <div className="relative z-10 flex items-center gap-16">
             <Link href="/" aria-label="Home" className="text-2xl">
-              BitZapper
+              BitZa<span className="text-cyan-500">pp</span>er
             </Link>
-            
           </div>
           <div className="hidden lg:flex lg:gap-10">
             <NavLinks />
           </div>
           <div className="flex items-center gap-6">
-            
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
