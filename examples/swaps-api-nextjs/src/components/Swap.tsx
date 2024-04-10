@@ -154,8 +154,7 @@ const Swap = () => {
         type: "swap",
       });
 
-      console.log(transfer);
-
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let txData: any = {
         data: transfer.tx.data,
         from: transfer.tx.from,
@@ -168,6 +167,7 @@ const Swap = () => {
 
         const { from, recipient, amount, memo } = transfer.tx.meta;
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window.xfi as any)?.bitcoin.request(
           {
             method: "transfer",
@@ -180,6 +180,7 @@ const Swap = () => {
               },
             ],
           },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (error: any, result: any) => {
             console.debug(error, result);
           }
