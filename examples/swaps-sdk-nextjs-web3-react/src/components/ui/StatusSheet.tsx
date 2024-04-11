@@ -1,25 +1,34 @@
 import {
-    Drawer,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-  } from "@/ui/drawer"
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/ui/drawer";
 import { Button } from "../ui/Button";
 import clsx from "clsx";
-import { ScrollArea } from "@/ui/scroll-area"
+import { ScrollArea } from "@/ui/scroll-area";
 
-export interface MessageLog { time: string, log?: string, logType?: string }
+export interface MessageLog {
+  time: string;
+  log?: string;
+  logType?: string;
+}
 
-export const StatusSheet = ({ isOpen, logs=[], onCancel = () => {} }:{ isOpen: boolean, logs: MessageLog[], onCancel: () => void }) => {
-
+export const StatusSheet = ({
+  isOpen,
+  logs = [],
+  onCancel = () => {},
+}: {
+  isOpen: boolean;
+  logs: MessageLog[];
+  onCancel: () => void;
+}) => {
   const LogMessage = ({ logMessage }: { logMessage: MessageLog }) => {
+    const { time, log, logType } = logMessage;
 
-    const { time, log, logType} = logMessage
-
-    if(logType === "CHAIN_SWITCH") {
-
+    if (logType === "CHAIN_SWITCH") {
       return (
         <div className="flex sm:flex-col gap-4 min-h-[50px] mb-2">
           <span className={clsx("text-yellow-400")}>{time}</span>
@@ -27,8 +36,8 @@ export const StatusSheet = ({ isOpen, logs=[], onCancel = () => {} }:{ isOpen: b
             <h3 className="text-sm sm:text-xs">{log}</h3>
           </div>
         </div>
-      )
-    } else if(logType === "ACTION_REQUIRED") {
+      );
+    } else if (logType === "ACTION_REQUIRED") {
       return (
         <div className="lg:flex sm:block gap-4 min-h-[50px] mb-2">
           <span className={clsx("text-yellow-400")}>{time}</span>
@@ -36,17 +45,17 @@ export const StatusSheet = ({ isOpen, logs=[], onCancel = () => {} }:{ isOpen: b
             <h3 className="text-sm sm:text-xs">{log}</h3>
           </div>
         </div>
-      )
-    } else if(logType === "ERROR") {
-        <div>
-          <span className={clsx("text-red-400")}>{time}</span>: {log}
-        </div>
+      );
+    } else if (logType === "ERROR") {
+      <div>
+        <span className={clsx("text-red-400")}>{time}</span>: {log}
+      </div>;
     } else {
       <div>
         <span className={clsx("text-zinc-400")}>{time}</span>: {log}
-      </div>
+      </div>;
     }
-  }
+  };
 
   return (
     <Drawer open={isOpen}>
@@ -60,24 +69,29 @@ export const StatusSheet = ({ isOpen, logs=[], onCancel = () => {} }:{ isOpen: b
             <ScrollArea className="flex flex-col justify-start space-x-2 bg-zinc-800  text-sm sm:text-xs rounded max-h-[200px]">
               <div className="w-full">
                 <div className="">
-                  <span className="text-zinc-400">{new Date().toISOString()}</span>: Initiating transaction....
+                  <span className="text-zinc-400">
+                    {new Date().toISOString()}
+                  </span>
+                  : Initiating transaction....
                 </div>
                 {logs.map((log, index) => (
-                  <LogMessage key={index} logMessage={log}/>
+                  <LogMessage key={index} logMessage={log} />
                 ))}
               </div>
             </ScrollArea>
           </div>
           <DrawerFooter>
             <Button
-                className={clsx("w-full flex items-center cursor-pointer bg-red-400")}
-                onClick={onCancel}
-              >
-                Cancel Transacton
+              className={clsx(
+                "w-full flex items-center cursor-pointer bg-red-400",
+              )}
+              onClick={onCancel}
+            >
+              Cancel Transacton
             </Button>
           </DrawerFooter>
         </div>
       </DrawerContent>
     </Drawer>
-  )
-}
+  );
+};

@@ -57,7 +57,7 @@ function MobileNavLink({
   return (
     <Popover.Button
       as={Link}
-      className="block text-base leading-7 tracking-tight text-white"
+      className="block text-base leading-7 tracking-tight text-gray-700"
       href={href}
     >
       {children}
@@ -69,21 +69,21 @@ export function Header() {
   return (
     <header>
       <nav>
-        <Container className="relative z-50 flex justify-between py-8">
+        <Container className="relative z-50 flex justify-between items-center py-8">
           <div className="relative z-10 flex items-center gap-16">
-            <Link href="/" aria-label="Home" className="text-xl">
-              RapidPay
+            <Link href="/" aria-label="Home" className="text-2xl">
+              BitZa<span className="text-cyan-500">pp</span>er
             </Link>
-            <div className="hidden lg:flex lg:gap-10">
-              <NavLinks />
-            </div>
+          </div>
+          <div className="hidden lg:flex lg:gap-10">
+            <NavLinks />
           </div>
           <div className="flex items-center gap-6">
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-white p-2 hover:bg-gray-900 active:stroke-white [&:not(:focus-visible)]:focus:outline-none"
+                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
@@ -115,17 +115,19 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-black shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
                         >
                           <div className="space-y-4">
-                            <MobileNavLink href="#gov">
-                              Governance
+                            <MobileNavLink href="#about">
+                              About $ALTCOIN
                             </MobileNavLink>
-                            <MobileNavLink href="#docs">Docs</MobileNavLink>
+                            <MobileNavLink href="#team">Team</MobileNavLink>
+                            <MobileNavLink href="#why">Why</MobileNavLink>
+                            <MobileNavLink href="#faqs">FAQs</MobileNavLink>
                           </div>
 
                           <div className="flex flex-col mt-4 space-y-4">
-                            {/* <Button href="#altcoin">Connect</Button> */}
+                            <Button href="#altcoin">Buy $ALTCOIN</Button>
 
                             <Button
                               href="https://github.com/swing-xyz/examples"
@@ -152,9 +154,6 @@ export function Header() {
               <FontAwesomeIcon size="lg" icon={faGithub} />
               <span>Fork on Github</span>
             </Button>
-            {/* <Button href="#altcoin" className="hidden lg:block">
-              Connect
-            </Button> */}
           </div>
         </Container>
       </nav>
