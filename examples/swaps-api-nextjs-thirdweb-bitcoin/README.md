@@ -1,6 +1,4 @@
-# Cross-chain Swaps using the Swing SDK in Next.js
-
-Altcoin is an example template showcasing how to use the [Swing SDK](https://developers.swing.xyz/reference/sdk) to integrate cross-chain swaps on a token website.
+# Cross-chain Swaps using the Swing API in Next.js
 
 This example is built with:
 
