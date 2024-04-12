@@ -67,7 +67,7 @@ const Swap = () => {
     defaultTransferParams,
   );
 
-  const [recipientAddress, setRecipientAddress] = useState("");
+  const [recipientAddress] = useState("");
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
@@ -230,7 +230,7 @@ const Swap = () => {
       });
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let txData: any = {
+      const txData: any = {
         data: transfer.tx.data,
         from: transfer.tx.from,
         to: transfer.tx.to,
@@ -292,6 +292,7 @@ const Swap = () => {
         variant: "destructive",
         title: "Something went wrong!",
         description:
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           `${(error as AxiosError & any)?.response?.data?.error} : ${(error as AxiosError & any)?.response?.data?.message}` ??
           (error as Error).message ??
           "Something went wrong",

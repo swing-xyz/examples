@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { QuoteAPIResponse, QuoteQueryParams } from "interfaces/quote.interface";
 import {
   SendTransactionApiResponse,
