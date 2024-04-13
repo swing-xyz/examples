@@ -23236,9 +23236,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swaps-api-nextjs-thirdweb-bitcoin@workspace:examples/swaps-api-nextjs-thirdweb-bitcoin":
+"swaps-api-nextjs-bitcoin@workspace:examples/swaps-api-nextjs-bitcoin":
   version: 0.0.0-use.local
-  resolution: "swaps-api-nextjs-thirdweb-bitcoin@workspace:examples/swaps-api-nextjs-thirdweb-bitcoin"
+  resolution: "swaps-api-nextjs-bitcoin@workspace:examples/swaps-api-nextjs-bitcoin"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.1"
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"

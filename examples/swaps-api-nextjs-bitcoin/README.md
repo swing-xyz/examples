@@ -9,7 +9,7 @@ This example is built with:
 
 ## Demo
 
-View the live demo https://swaps-api-nextjs-thirdweb-bitcoin.vercel.app/
+View the live demo [https://swaps-api-nextjs-bitcoin.vercel.app](https://swaps-api-nextjs-bitcoin.vercel.app/)
 
 ## Swing Integration
 
@@ -17,21 +17,22 @@ View the live demo https://swaps-api-nextjs-thirdweb-bitcoin.vercel.app/
 
 This example demonstrates how you can perform a cross-chain transaction between the Bitcoin and Ethereum chains.
 
-In this example, we will be using thirdweb's SDK to connect to a user's wallet. The process/steps for performing a BTC to ETH transaction and vice versa, is as follows:
+In this example, we will be using thirdweb's SDK to connect to a user's wallet. The process/steps for performing a BTC to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
 - Sending a [transaction](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
-- Poll transaction [status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status)
+
+> Although not essential for performing a swap transaction, providing your users with real-time updates on the transaction's status by polling the [status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status) can significantly enhance the user experience.
 
 ## Getting started
 
-To get started with this template, first install the npm dependencies:
+To get started with this template, first install the required npm dependencies:
 
 ```bash
 yarn install
 ```
 
-Next, run the development server:
+Next, launch the development server by running the following command:
 
 ```bash
 yarn dev --filter=swaps-api-nextjs-thirdweb-bitcoin
@@ -43,7 +44,7 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 
 To perform a swap between ETH and BTC, we first have to get a quote from Swing's Cross-Chain API.
 
-URL: https://swap.prod.swing.xyz/v0/transfer/quote
+URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz/v0/transfer/quote)
 
 **Parameters**:
 
@@ -60,7 +61,7 @@ URL: https://swap.prod.swing.xyz/v0/transfer/quote
 | `toUserAddress`    | bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x | Receiver's wallet address                               |
 | `projectId`        | `replug`                                   | Your project's ID                                       |
 
-Navigating to our `src/services/requests.ts` file, you will find our method for getting a qoute from Swing's Cross-Chain API called `getQuoteRequest()`.
+Navigating to our `src/services/requests.ts` file, you will find our method for getting a quote from Swing's Cross-Chain API called `getQuoteRequest()`.
 
 ```typescript
 export const getQuoteRequest = async (
@@ -95,70 +96,87 @@ export interface QuoteAPIResponse {
 
 Each `Route` contains a `gasFee`, `bridgeFee` and the amount of tokens the destination wallet will receive.
 
-Navigating to our `src/components/Swap.tsx` file, you'll find.
-
 Here's an example response that contains the route data:
 
 ```json
 "routes": [
-        {
-            "duration": 1,
-            "gas": "19865251299204366",
-            "quote": {
-                "integration": "dodo",
-                "type": "swap",
-                "bridgeFee": "908",
-                "bridgeFeeInNativeToken": "0",
-                "amount": "908326",
-                "decimals": 6,
-                "amountUSD": "0.908",
-                "bridgeFeeUSD": "0.0009080",
-                "bridgeFeeInNativeTokenUSD": "0",
-                "fees": [
-                    {
-                        "type": "bridge",
-                        "amount": "908",
-                        "amountUSD": "0.0009080",
-                        "chainSlug": "polygon",
-                        "tokenSymbol": "USDC",
-                        "tokenAddress": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
-                        "decimals": 6,
-                        "deductedFromSourceToken": true
-                    },
-                    {
-                        "type": "gas",
-                        "amount": "19865251299204366",
-                        "amountUSD": "0.01802",
-                        "chainSlug": "polygon",
-                        "tokenSymbol": "MATIC",
-                        "tokenAddress": "0x0000000000000000000000000000000000000000",
-                        "decimals": 18,
-                        "deductedFromSourceToken": false
-                    }
-                ]
-            },
-            "route": [
+    {
+        "duration": 10,
+        "gas": "439824241499248",
+        "quote": {
+            "integration": "thorswap",
+            "type": "swap",
+            "bridgeFee": "343736",
+            "bridgeFeeInNativeToken": "0",
+            "amount": "9360457",
+            "decimals": 8,
+            "amountUSD": "6303.051",
+            "bridgeFeeUSD": "231.462",
+            "bridgeFeeInNativeTokenUSD": "0",
+            "fees": [
                 {
-                    "bridge": "dodo",
-                    "bridgeTokenAddress": "0x0000000000000000000000000000000000000000",
-                    "steps": [
-                        "allowance",
-                        "approve",
-                        "send"
-                    ],
-                    "name": "MATIC",
-                    "part": 100
+                    "type": "bridge",
+                    "amount": "343736",
+                    "amountUSD": "231.462",
+                    "chainSlug": "bitcoin",
+                    "tokenSymbol": "BTC",
+                    "tokenAddress": "btc",
+                    "decimals": 8,
+                    "deductedFromSourceToken": true
+                },
+                {
+                    "type": "gas",
+                    "amount": "439824241499248",
+                    "amountUSD": "1.439",
+                    "chainSlug": "ethereum",
+                    "tokenSymbol": "ETH",
+                    "tokenAddress": "0x0000000000000000000000000000000000000000",
+                    "decimals": 18,
+                    "deductedFromSourceToken": false
                 }
-            ],
-            "distribution": {
-                "BalancerV2": 1.3333333333333337,
-                "DODOV1": 1.3333333333333337,
-                "QuickSwap": 1.3333333333333337
-            },
-            "gasUSD": "0.01802"
+            ]
         },
-        ...
-    ],
+        "route": [
+            {
+                "bridge": "thorswap",
+                "bridgeTokenAddress": "0x0000000000000000000000000000000000000000",
+                "steps": [
+                    "allowance",
+                    "approve",
+                    "send"
+                ],
+                "name": "ETH",
+                "part": 100
+            }
+        ],
+        "distribution": {
+            "thorswap": 1
+        },
+        "gasUSD": "1.439"
+    }
+],
+```
+
+Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransferParams` object which will store the default transaction config for our example:
+
+```typescript
+const defaultTransferParams: TranferParams = {
+  tokenAmount: "1",
+  fromChain: "ethereum",
+  fromUserAddress: "",
+  fromTokenAddress: "0x0000000000000000000000000000000000000000",
+  fromTokenIconUrl:
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png",
+  fromChainDecimal: 18,
+  tokenSymbol: "ETH",
+  toTokenAddress: "btc",
+  toTokenSymbol: "BTC",
+  toChain: "bitcoin",
+  toTokenIconUrl:
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/btc.png",
+  toUserAddress: "bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x", // enter your bitcoin wallet here
+  toChainDecimal: 8,
+};
 ```
 
 ## Sending a Transaction
@@ -198,12 +216,12 @@ export const sendTransactionRequest = async (
 
 The `SendTransactionPayload` body payload contains the `source chain`, `destination chain`, `tokenAmount`, and the `route` selected by a user.
 
-URL: https://swap.prod.swing.xyz/v0/transfer/send
+URL: [https://swap.prod.swing.xyz/v0/transfer/send](https://swap.prod.swing.xyz/v0/transfer/send)
 
 **Parameters**:
 
-| Key              | Example                                          | Description                                             |
-| ---------------- | ------------------------------------------------ | ------------------------------------------------------- |
+| Key                | Example                                          | Description                                             |
+| ------------------ | ------------------------------------------------ | ------------------------------------------------------- |
 | `fromChain`        | ethereum                                         | The blockchain where the transaction originates.        |
 | `fromTokenAddress` | 0x0000000000000000000000000000000000000000       | Source Token Address                                    |
 | `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb       | Sender's wallet address                                 |
@@ -304,29 +322,32 @@ If you decided to perform a cross chain swap with Bitcoin as the source chain, y
 Here's a simple demonstration using xDEFI's Injected SDK:
 
 ```typescript
- if (transfer.tx.meta) { //<- For Bitcoin to ETH, the send endpoint will return an object called `meta`
+if (transfer.tx.meta) {
+  //<- For Bitcoin to ETH, the send endpoint will return an object called `meta`
 
-    const { from, recipient, amount, memo } = transfer.tx.meta; // extra txData from `meta` object
+  const { from, recipient, amount, memo } = transfer.tx.meta; // extra txData from `meta` object
 
-    window.xfi?.bitcoin.request( //<- Here, we're prompting a users wallet using xDEFI injected SDK
+  window.xfi?.bitcoin.request(
+    //<- Here, we're prompting a users wallet using xDEFI injected SDK
+    {
+      method: "transfer",
+      params: [
         {
-        method: "transfer",
-        params: [
-            {
-                from,
-                recipient,
-                amount,
-                memo,
-            },
-        ],
+          from,
+          recipient,
+          amount,
+          memo,
         },
-        (error: any, result: any) => {
-            console.debug(error, result);
-        },
-    );
-
+      ],
+    },
+    (error: any, result: any) => {
+      console.debug(error, result);
+    },
+  );
 } else {
-    console.warn("Please install xDEFI Wallet or any wallet that supports Bitcoin")
+  console.warn(
+    "Please install xDEFI Wallet or any wallet that supports Bitcoin",
+  );
 }
 ```
 
@@ -360,46 +381,46 @@ export const getTransationStatus = async (
 
 The `TransactionStatusParams` params contains the three properties, namely: `id`, `txHash` and `projectId`
 
-| Key       | Example                                                        | Description                              |
-|-----------|--------------------------------------------------------------|------------------------------------------|
-| `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.         |
-| `projectId` | replug                                               | Your project's ID.  |
-| `id`        | 239750                                                       | Transaction ID from `/send` response |
+| Key         | Example                             | Description                          |
+| ----------- | ----------------------------------- | ------------------------------------ |
+| `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.     |
+| `projectId` | replug                              | Your project's ID.                   |
+| `id`        | 239750                              | Transaction ID from `/send` response |
 
-To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction has either failed or become completed. 
+To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction has either failed or become completed.
 
 ```typescript
 // src/components/Swaps.tsx
 
 async function getTransStatus(transId: string, txHash: string) {
-    const transactionStatus = await getTransationStatus({
-        id: transId,
-        txHash,
-    });
+  const transactionStatus = await getTransationStatus({
+    id: transId,
+    txHash,
+  });
 
-    setTransStatus(transactionStatus);
+  setTransStatus(transactionStatus);
 
-    return transactionStatus;
+  return transactionStatus;
 }
 
 async function pollTransactionStatus(transId: string, txHash: string) {
-    const transactionStatus = await getTransStatus(transId, txHash);
+  const transactionStatus = await getTransStatus(transId, txHash);
 
-    if (transactionStatus?.status !== "Completed") {
-        setTimeout(
-        () => pollTransactionStatus(transId, txHash),
-        transactionPollingDuration,
-        );
-    } else if (
-        transactionStatus?.status == "Completed" ||
-        transactionStatus?.status == "Transaction Failed"
-    ) {
-        setTransferRoute(null);
-    }
+  if (transactionStatus?.status !== "Completed") {
+    setTimeout(
+      () => pollTransactionStatus(transId, txHash),
+      transactionPollingDuration,
+    );
+  } else if (
+    transactionStatus?.status == "Completed" ||
+    transactionStatus?.status == "Transaction Failed"
+  ) {
+    setTransferRoute(null);
+  }
 }
 ```
 
-In our `startTransfer()` method, we will execute the `pollTransactionStatus()` right afte our transaction is sent over the network
+In our `startTransfer()` method, we will execute the `pollTransactionStatus()` right after our transaction is sent over the network
 
 ```typescript
 // src/components/Swaps.tsx

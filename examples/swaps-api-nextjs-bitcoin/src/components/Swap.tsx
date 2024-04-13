@@ -28,6 +28,9 @@ import { AxiosError } from "axios";
 
 const walletConfig = metamaskWallet();
 
+// import { xdefiWallet } from "@thirdweb-dev/react";
+// const xDefiConfig = xdefiWallet(); <- For connecting to a bitcoin supported wallet.
+
 interface ChainDecimals {
   fromChainDecimal?: number;
   toChainDecimal?: number;
@@ -279,11 +282,10 @@ const Swap = () => {
 
       const txResponse = await signer?.sendTransaction(txData);
 
-      pollTransactionStatus(transfer.id.toString(), txResponse?.hash);
-
-      console.log("Transaction response:", txResponse);
+      pollTransactionStatus(transfer.id.toString(), txResponse?.hash!);
 
       // Wait for the transaction to be mined
+
       const receipt = await txResponse?.wait();
       console.log("Transaction receipt:", receipt);
     } catch (error) {

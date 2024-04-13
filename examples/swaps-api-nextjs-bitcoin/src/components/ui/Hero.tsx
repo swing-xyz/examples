@@ -25,7 +25,8 @@ export function Hero() {
               </div>
             </h1>
             <p className="mt-6 text-lg text-center text-gray-600 w-[60%]">
-              This example demonstrates how you can perform a cross-chain swap between the Ethereum and Bitcoin blockchains (ETH to BTC)
+              This example demonstrates how you can perform a cross-chain swap
+              between the Ethereum and Bitcoin blockchains (ETH to BTC)
             </p>
           </div>
 
