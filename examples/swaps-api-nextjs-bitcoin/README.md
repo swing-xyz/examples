@@ -35,7 +35,7 @@ yarn install
 Next, launch the development server by running the following command:
 
 ```bash
-yarn dev --filter=swaps-api-nextjs-thirdweb-bitcoin
+yarn dev --filter=swaps-api-nextjs-bitcoin
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
