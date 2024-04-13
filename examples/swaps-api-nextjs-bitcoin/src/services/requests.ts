@@ -36,14 +36,11 @@ export const getTransationStatus = async (
       { params: { ...statusParams, projectId } },
     );
 
-    if (response.status === 404) {
-      return { status: "Not Found " };
-    }
     return response.data;
   } catch (error) {
     console.error("Error fetching transaction status:", error);
 
-    return { status: "Transaction Failed" };
+    throw error
   }
 };
 

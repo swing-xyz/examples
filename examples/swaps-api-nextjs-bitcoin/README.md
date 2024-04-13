@@ -404,10 +404,14 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/status](https://developers.swing.x
 | `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.     |
 | `projectId` | `replug`                            | [Your project's ID](https://platform.swing.xyz/)        |
 
-To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction has either failed or become completed.
+To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction is completed.
 
 ```typescript
 // src/components/Swaps.tsx
+
+const pendingStatuses = ["Submitted", "Not Sent", "Pending Source Chain", "Pending Destination Chain"];
+
+....
 
 async function getTransStatus(transId: string, txHash: string) {
   const transactionStatus = await getTransationStatus({
@@ -423,15 +427,12 @@ async function getTransStatus(transId: string, txHash: string) {
 async function pollTransactionStatus(transId: string, txHash: string) {
   const transactionStatus = await getTransStatus(transId, txHash);
 
-  if (transactionStatus?.status !== "Completed") {
+  if (pendingStatuses.includes(transactionStatus?.status)) {
     setTimeout(
       () => pollTransactionStatus(transId, txHash),
       transactionPollingDuration,
     );
-  } else if (
-    transactionStatus?.status == "Completed" ||
-    transactionStatus?.status == "Transaction Failed"
-  ) {
+  } else if (transactionStatus?.status == "Completed") {
     setTransferRoute(null);
   }
 }

@@ -61,6 +61,8 @@ const defaultTransferParams: TranferParams = {
   toChainDecimal: 8,
 };
 
+const pendingStatuses = ["Submitted", "Not Sent", "Pending Source Chain", "Pending Destination Chain"];
+
 const transactionPollingDuration = 10000;
 
 const Swap = () => {
@@ -143,15 +145,12 @@ const Swap = () => {
   async function pollTransactionStatus(transId: string, txHash: string) {
     const transactionStatus = await getTransStatus(transId, txHash);
 
-    if (transactionStatus?.status !== "Completed") {
+    if (pendingStatuses.includes(transactionStatus?.status)) {
       setTimeout(
         () => pollTransactionStatus(transId, txHash),
         transactionPollingDuration,
       );
-    } else if (
-      transactionStatus?.status == "Completed" ||
-      transactionStatus?.status == "Transaction Failed"
-    ) {
+    } else if (transactionStatus?.status == "Completed") {
       setTransferRoute(null);
     }
   }
@@ -516,7 +515,7 @@ const Swap = () => {
             <label className="block text-xs font-medium text-zinc-200">
               Gas Fee
             </label>
-            <div className="font-medium capitalize text-zinc-400 text-green-200">
+            <div className="font-medium capitalize text-green-200">
               {formatUSD(transferRoute?.gasUSD! ?? 0)}
             </div>
           </div>
@@ -525,7 +524,7 @@ const Swap = () => {
             <label className="block text-xs font-medium text-zinc-200">
               Total
             </label>
-            <div className="font-medium capitalize text-zinc-400 text-green-200">
+            <div className="font-medium capitalize text-green-200">
               {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
             </div>
           </div>
