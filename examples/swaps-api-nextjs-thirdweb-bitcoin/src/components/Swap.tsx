@@ -279,7 +279,7 @@ const Swap = () => {
 
       const txResponse = await signer?.sendTransaction(txData);
 
-      pollTransactionStatus(transfer.id.toString(), txResponse.hash);
+      pollTransactionStatus(transfer.id.toString(), txResponse?.hash);
 
       console.log("Transaction response:", txResponse);
 
