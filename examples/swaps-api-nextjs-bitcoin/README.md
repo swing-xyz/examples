@@ -59,7 +59,7 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz
 | `toTokenSymbol`    | `BTC`                                      | Destination Token slug                                  |
 | `toChain`          | `bitcoin`                                  | Destination Chain slug                                  |
 | `toUserAddress`    | bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x | Receiver's wallet address                               |
-| `projectId`        | `replug`                                   | Your project's ID                                       |
+| `projectId`        | `replug`                                   | [Your project's ID](https://platform.swing.xyz/)        |
 
 Navigating to our `src/services/requests.ts` file, you will find our method for getting a quote from Swing's Cross-Chain API called `getQuoteRequest()`.
 
@@ -185,12 +185,12 @@ After getting a quote, you'll next have to send a transaction to Swing's Cross-C
 
 The steps for sending a transaction are as followed:
 
-- Making a request to [`https://swap.prod.swing.xyz/v0/transfer/send`](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote)
-- Signing a wallet transaction
+- First, we will make a request to [`https://swap.prod.swing.xyz/v0/transfer/send`](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
+- Using the `txData` returned from the `/send` request, sign the transaction by using a user's wallet
 
 ### Making a `/send` Request
 
-Navigating to our `src/services/requests.ts`, you'll find our request implemenation of the `/send` endpoint:
+Navigating to our `src/services/requests.ts`, you'll find our request implemenation for the `/send` endpoint:
 
 ```typescript
 export const sendTransactionRequest = async (
@@ -214,7 +214,7 @@ export const sendTransactionRequest = async (
 };
 ```
 
-The `SendTransactionPayload` body payload contains the `source chain`, `destination chain`, `tokenAmount`, and the `route` selected by a user.
+The `SendTransactionPayload` body payload contains the `source chain`, `destination chain`, `tokenAmount`, and the desired `route`.
 
 URL: [https://swap.prod.swing.xyz/v0/transfer/send](https://swap.prod.swing.xyz/v0/transfer/send)
 
@@ -233,12 +233,12 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/send](https://swap.prod.swing.xyz/
 | `toUserAddress`    | bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x       | Receiver's wallet address                               |
 | `tokenAmount`      | 1000000000000000000                              | Amount of the source token being sent (in wei for ETH). |
 | `type`             | swap                                             | Type of transaction.                                    |
-| `projectId`        | replug                                           | Your project's ID                                       |
+| `projectId`        | `replug`                                         | [Your project's ID](https://platform.swing.xyz/)        |
 | `route`            | see `Route` in`src/interfaces/send.interface.ts` | Selected Route                                          |
 
-Since performing a swap will change the state of a user's wallet, the next step of this transaction must be done via Smart Contracts and not via Swing's Cross-Chain API. The response received from the `sendTransactionRequest` endpoint provides us with the necessary `txData/callData` needed to be passed on to a user's wallet to sign the transaction.
+Since performing a swap will change the state of a user's wallet, the next step of this transaction must be done via a `Smart Contract` Transaction and not via Swing's Cross-Chain API. The response received from the `sendTransactionRequest` endpoint provides us with the necessary `txData/callData` needed to be passed on to a user's wallet to sign the transaction.
 
-The `txData` will look something like this:
+The `txData` from the `sendTransactionRequest` will look something like this:
 
 ```json
 {
@@ -309,7 +309,20 @@ console.log("Transaction receipt:", receipt);
 
 The definition for the `sendTransactionRequest` response can be found in `src/interfaces/send.interface.ts.`
 
-> The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need for checking the status of a transaction.
+```typescript
+export interface SendTransactionApiResponse {
+  id: number;
+  fromToken: Token;
+  toToken: Token;
+  fromChain: Chain;
+  toChain: Chain;
+  route: Route[];
+  tx: TransactionDetails;
+}
+
+```
+
+> The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need later for checking the status of a transaction.
 
 ### Sending a Bitcoin Transaction to the Network
 
@@ -381,11 +394,15 @@ export const getTransationStatus = async (
 
 The `TransactionStatusParams` params contains the three properties, namely: `id`, `txHash` and `projectId`
 
+URL: [https://swap.prod.swing.xyz/v0/transfer/status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status)
+
+**Parameters**:
+
 | Key         | Example                             | Description                          |
 | ----------- | ----------------------------------- | ------------------------------------ |
-| `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.     |
-| `projectId` | replug                              | Your project's ID.                   |
 | `id`        | 239750                              | Transaction ID from `/send` response |
+| `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.     |
+| `projectId` | `replug`                            | [Your project's ID](https://platform.swing.xyz/)        |
 
 To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction has either failed or become completed.
 
