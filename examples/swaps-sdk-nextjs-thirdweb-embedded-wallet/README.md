@@ -1,4 +1,4 @@
-# Cross-chain Swaps using the Swing SDK in Next.js
+# Cross-chain Swaps using the Swing SDK and Thirdweb's Embedded Smart Contract wallets in Next.js
 
 Altcoin is an example template showcasing how to use the [Swing SDK](https://developers.swing.xyz/reference/sdk) to integrate cross-chain swaps on a token website.
 
@@ -10,11 +10,9 @@ This example is built with:
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
-> "ALTCOIN" is a fake token used for demonstration purposes only.
-
 ## Demo
 
-View the live demo https://swaps-sdk-nextjs.vercel.app/
+View the live demo [https://swaps-sdk-nextjs-thirdweb-embedded-wallet.vercel.app](https://swaps-sdk-nextjs-thirdweb-embedded-wallet.vercel.app)
 
 ## Swing Integration
 

@@ -118,17 +118,12 @@ export function Header() {
                           className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
                         >
                           <div className="space-y-4">
-                            <MobileNavLink href="#about">
-                              About $ALTCOIN
-                            </MobileNavLink>
-                            <MobileNavLink href="#team">Team</MobileNavLink>
-                            <MobileNavLink href="#why">Why</MobileNavLink>
-                            <MobileNavLink href="#faqs">FAQs</MobileNavLink>
+                            <MobileNavLink href="#">Swap</MobileNavLink>
+                            <MobileNavLink href="#">API</MobileNavLink>
+                            <MobileNavLink href="#">Docs</MobileNavLink>
                           </div>
 
                           <div className="flex flex-col mt-4 space-y-4">
-                            <Button href="#altcoin">Buy $ALTCOIN</Button>
-
                             <Button
                               href="https://github.com/swing-xyz/examples"
                               className="space-x-2"

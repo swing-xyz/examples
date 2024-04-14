@@ -1,6 +1,6 @@
 {
   "name": "swaps-sdk-nextjs-thirdweb-embedded-wallet",
-  "demo": "https://swaps-sdk-nextjs.vercel.app/",
+  "demo": "https://swaps-sdk-nextjs-thirdweb-embedded-wallet.vercel.app",
   "keywords": [
     "@swing.xyz/sdk",
     "sdk",
