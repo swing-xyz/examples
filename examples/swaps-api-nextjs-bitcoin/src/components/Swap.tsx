@@ -150,7 +150,7 @@ const Swap = () => {
         () => pollTransactionStatus(transId, txHash),
         transactionPollingDuration,
       );
-    } else if (transactionStatus?.status == "Completed") {
+    } else {
       setTransferRoute(null);
     }
   }
