@@ -432,7 +432,7 @@ async function pollTransactionStatus(transId: string, txHash: string) {
       () => pollTransactionStatus(transId, txHash),
       transactionPollingDuration,
     );
-  } else if (transactionStatus?.status == "Completed") {
+  } else {
     setTransferRoute(null);
   }
 }
