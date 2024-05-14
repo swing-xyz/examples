@@ -7295,9 +7295,9 @@ __metadata:
   linkType: soft
 
 "@swing.xyz/platform-api@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "@swing.xyz/platform-api@npm:0.6.0"
-  checksum: 10/a63d52148bd44cf6edef02c1247883917d77eb6d15503de6981072f7f13ddb5d990d7cc9833cdb89cf624bee174fa8ac57cd35ccecd7a281000473bd92bbc2ee
+  version: 0.6.1
+  resolution: "@swing.xyz/platform-api@npm:0.6.1"
+  checksum: 10/83a7ff047ce5d8a32aa6c39323df0f78cf054f44c7ba4bbc605b84c3fd6ba26af2ed143d2c702558957fc4eb9b45c3425d225a0fa8358b28283b5f0558938bd8
   languageName: node
   linkType: hard
 
