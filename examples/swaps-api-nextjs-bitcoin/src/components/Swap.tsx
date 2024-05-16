@@ -61,7 +61,12 @@ const defaultTransferParams: TranferParams = {
   toChainDecimal: 8,
 };
 
-const pendingStatuses = ["Submitted", "Not Sent", "Pending Source Chain", "Pending Destination Chain"];
+const pendingStatuses = [
+  "Submitted",
+  "Not Sent",
+  "Pending Source Chain",
+  "Pending Destination Chain",
+];
 
 const transactionPollingDuration = 10000;
 

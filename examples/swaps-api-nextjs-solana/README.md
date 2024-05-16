@@ -1,25 +1,27 @@
-# Cross-chain Swaps using the Swing API in Next.js
+# Cross-chain Swaps using the Swing API in Next.js For Solana
 
 This example is built with:
 
 - [@thirdweb-dev/react](https://portal.thirdweb.com/react)
 - [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
+- [@solana/web3.js](https://www.npmjs.com/package/@solana/web3.js)
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
 ## Demo
 
-View the live demo [https://swaps-api-nextjs-bitcoin.vercel.app](https://swaps-api-nextjs-bitcoin.vercel.app/)
+View the live demo [https://swaps-api-nextjs-solana.vercel.app](https://swaps-api-nextjs-solana.vercel.app/)
 
 ## Swing Integration
 
 > The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx).
 
-This example demonstrates how you can perform a cross-chain transaction between the Bitcoin and Ethereum chains.
+This example demonstrates how you can perform a cross-chain transaction between the Solana and Ethereum chains.
 
-In this example, we will be using thirdweb's SDK to connect to a user's wallet. The process/steps for performing a BTC to ETH transaction, and vice versa, are as follows:
+In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet connector to connect to a user's ethereum and solana wallets respectively. The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
+- (Optional) Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens.
 - Sending a [transaction](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
 
 > Although not essential for performing a swap transaction, providing your users with real-time updates on the transaction's status by polling the [status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status) can significantly enhance the user experience.
@@ -35,31 +37,31 @@ yarn install
 Next, launch the development server by running the following command:
 
 ```bash
-yarn dev --filter=swaps-api-nextjs-bitcoin
+yarn dev --filter=swaps-api-nextjs-solana
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
 ## Getting a Quote
 
-To perform a swap between ETH and BTC, we first have to get a quote from Swing's Cross-Chain API.
+To perform a swap between ETH and SOL, we first have to get a quote from Swing's Cross-Chain API.
 
 URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz/v0/transfer/quote)
 
 **Parameters**:
 
-| Property           | Example                                    | Description                                             |
-| ------------------ | ------------------------------------------ | ------------------------------------------------------- |
-| `tokenAmount`      | 1000000000000000000                        | Amount of the source token being sent (in wei for ETH). |
-| `fromChain`        | `ethereum`                                 | Source Chain slug                                       |
-| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb | Sender's wallet address                                 |
-| `fromTokenAddress` | 0x0000000000000000000000000000000000000000 | Source Token Address                                    |
-| `tokenSymbol`      | `ETH`                                      | Source Token slug                                       |
-| `toTokenAddress`   | `btc`                                      | Destination Token Address.                              |
-| `toTokenSymbol`    | `BTC`                                      | Destination Token slug                                  |
-| `toChain`          | `bitcoin`                                  | Destination Chain slug                                  |
-| `toUserAddress`    | bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x | Receiver's wallet address                               |
-| `projectId`        | `replug`                                   | [Your project's ID](https://platform.swing.xyz/)        |
+| Property           | Example                                      | Description                                             |
+| ------------------ | -------------------------------------------- | ------------------------------------------------------- |
+| `tokenAmount`      | 1000000000000000000                          | Amount of the source token being sent (in wei for ETH). |
+| `fromChain`        | `ethereum`                                   | Source Chain slug                                       |
+| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb   | Sender's wallet address                                 |
+| `fromTokenAddress` | 0x0000000000000000000000000000000000000000   | Source Token Address                                    |
+| `tokenSymbol`      | `ETH`                                        | Source Token slug                                       |
+| `toTokenAddress`   | `11111111111111111111111111111111`           | Destination Token Address.                              |
+| `toTokenSymbol`    | `SOL`                                        | Destination Token slug                                  |
+| `toChain`          | `solana`                                     | Destination Chain slug                                  |
+| `toUserAddress`    | ELoruRy7quAskANEgC99XBYfEnCcrVGSqnwGETWKZtsU | Receiver's wallet address                               |
+| `projectId`        | `replug`                                     | [Your project's ID](https://platform.swing.xyz/)        |
 
 Navigating to our `src/services/requests.ts` file, you will find our method for getting a quote from Swing's Cross-Chain API called `getQuoteRequest()`.
 
@@ -101,60 +103,80 @@ Here's an example response that contains the route data:
 ```json
 "routes": [
     {
-        "duration": 10,
-        "gas": "439824241499248",
+        "duration": 1,
+        "gas": "2770874189563960",
         "quote": {
-            "integration": "thorswap",
+            "integration": "debridge",
             "type": "swap",
-            "bridgeFee": "343736",
-            "bridgeFeeInNativeToken": "0",
-            "amount": "9360457",
-            "decimals": 8,
-            "amountUSD": "6303.051",
-            "bridgeFeeUSD": "231.462",
-            "bridgeFeeInNativeTokenUSD": "0",
+            "bridgeFee": "20867118",
+            "bridgeFeeInNativeToken": "1000000000000000",
+            "amount": "482153281",
+            "decimals": 9,
+            "amountUSD": "69.869",
+            "bridgeFeeUSD": "3.024",
+            "bridgeFeeInNativeTokenUSD": "2.931",
             "fees": [
                 {
                     "type": "bridge",
-                    "amount": "343736",
-                    "amountUSD": "231.462",
-                    "chainSlug": "bitcoin",
-                    "tokenSymbol": "BTC",
-                    "tokenAddress": "btc",
-                    "decimals": 8,
+                    "amount": "20867118",
+                    "amountUSD": "3.024",
+                    "chainSlug": "solana",
+                    "tokenSymbol": "SOL",
+                    "tokenAddress": "11111111111111111111111111111111",
+                    "decimals": 9,
                     "deductedFromSourceToken": true
                 },
                 {
-                    "type": "gas",
-                    "amount": "439824241499248",
-                    "amountUSD": "1.439",
+                    "type": "bridge",
+                    "amount": "1000000000000000",
+                    "amountUSD": "2.931",
                     "chainSlug": "ethereum",
                     "tokenSymbol": "ETH",
                     "tokenAddress": "0x0000000000000000000000000000000000000000",
                     "decimals": 18,
                     "deductedFromSourceToken": false
+                },
+                {
+                    "type": "gas",
+                    "amount": "2770874189563960",
+                    "amountUSD": "8.123",
+                    "chainSlug": "ethereum",
+                    "tokenSymbol": "ETH",
+                    "tokenAddress": "0x0000000000000000000000000000000000000000",
+                    "decimals": 18,
+                    "deductedFromSourceToken": false
+                },
+                {
+                    "type": "partner",
+                    "amount": "0",
+                    "amountUSD": "0",
+                    "chainSlug": "ethereum",
+                    "tokenSymbol": "ETH",
+                    "tokenAddress": "0x0000000000000000000000000000000000000000",
+                    "decimals": 18,
+                    "deductedFromSourceToken": true
                 }
             ]
         },
         "route": [
             {
-                "bridge": "thorswap",
-                "bridgeTokenAddress": "0x0000000000000000000000000000000000000000",
+                "bridge": "debridge",
+                "bridgeTokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
                 "steps": [
                     "allowance",
                     "approve",
                     "send"
                 ],
-                "name": "ETH",
+                "name": "USDC",
                 "part": 100
             }
         ],
         "distribution": {
-            "thorswap": 1
+            "debridge": 1
         },
-        "gasUSD": "1.439"
+        "gasUSD": "8.123"
     }
-],
+]
 ```
 
 Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransferParams` object which will store the default transaction config for our example:
@@ -163,20 +185,85 @@ Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransf
 const defaultTransferParams: TransferParams = {
   tokenAmount: "1",
   fromChain: "ethereum",
+  tokenSymbol: "ETH",
   fromUserAddress: "",
   fromTokenAddress: "0x0000000000000000000000000000000000000000",
+  fromNativeTokenSymbol: "ETH",
   fromTokenIconUrl:
     "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png",
+  fromChainIconUrl:
+    "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png",
   fromChainDecimal: 18,
-  tokenSymbol: "ETH",
-  toTokenAddress: "btc",
-  toTokenSymbol: "BTC",
-  toChain: "bitcoin",
+  toTokenAddress: "11111111111111111111111111111111",
+  toTokenSymbol: "SOL",
+  toNativeTokenSymbol: "SOL",
+  toChain: "solana",
   toTokenIconUrl:
-    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/btc.png",
-  toUserAddress: "bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x", // enter your bitcoin wallet here
-  toChainDecimal: 8,
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
+  toChainIconUrl:
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
+  toUserAddress: "", //solana wallet address
+  toChainDecimal: 9,
 };
+```
+
+## Sending a Token Approval Request for ERC20 Tokens (Optional)
+
+If you're attempting to bridge an ERC20 token from a user's wallet to Solana, you need to prompt the user to approve the required amount of tokens to be bridged.
+
+Navigating to our `src/components/Swap.tsx` file, inside our `startTransfer()` method, you will find our implementation of the `getAllowanceRequest()` and `getApprovalTxDataRequest()` methods. Before approving, you have to perform two checks:
+
+- First, we will check if we're performing a native currency swap by comparing the values of `tokenSymbol` and `fromNativeTokenSymbol`. If we're not dealing with a native currency swap, we then proceed to ask for an allowance.
+- Next, we will check if there's already a pending approval in the user's wallet by calling the `getAllowanceRequest()` method. If no approved allowance is found, we will then proceed to make an approval request.
+
+```typescript
+if (transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol) {
+  const checkAllowance = await getAllowanceRequest({
+    bridge: transferRoute.quote.integration,
+    fromAddress: transferParams.fromUserAddress,
+    fromChain: transferParams.fromChain,
+    tokenAddress: transferParams.fromTokenAddress,
+    tokenSymbol: transferParams.tokenSymbol,
+    toChain: transferParams.toChain,
+    toTokenAddress: transferParams.toTokenAddress!,
+    toTokenSymbol: transferParams.toTokenSymbol!,
+    contractCall: false,
+  });
+
+  if (checkAllowance.allowance < tokenAmount) {
+    setTransStatus({
+      status: `Wallet Interaction Required: Approval Token`,
+    });
+
+    const getApprovalTxData = await getApprovalTxDataRequest({
+      tokenAmount: Number(tokenAmount),
+      bridge: transferRoute.quote.integration,
+      fromAddress: transferParams.fromUserAddress,
+      fromChain: transferParams.fromChain,
+      tokenAddress: transferParams.fromTokenAddress,
+      tokenSymbol: transferParams.tokenSymbol,
+      toChain: transferParams.toChain,
+      toTokenAddress: transferParams.toTokenAddress!,
+      toTokenSymbol: transferParams.toTokenSymbol!,
+      contractCall: true,
+    });
+
+    if (transferParams.fromChain !== "solana") {
+      const txData: TransactionDetails = {
+        data: getApprovalTxData.tx[0].data,
+        from: getApprovalTxData.tx[0].from,
+        to: getApprovalTxData.tx[0].to,
+      };
+
+      const txResponse = await signer?.sendTransaction(txData);
+
+      const receipt = await txResponse?.wait();
+      console.log("Transaction receipt:", receipt);
+
+      setTransStatus({ status: "Token allowance approved" });
+    }
+  }
+}
 ```
 
 ## Sending a Transaction
@@ -226,11 +313,11 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/send](https://swap.prod.swing.xyz/
 | `fromTokenAddress` | 0x0000000000000000000000000000000000000000       | Source Token Address                                    |
 | `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb       | Sender's wallet address                                 |
 | `tokenSymbol`      | ETH                                              | Source Token slug                                       |
-| `toTokenAddress`   | btc                                              | Destination Token Address.                              |
-| `toChain`          | bitcoin                                          | Destination Source slug                                 |
-| `toTokenAmount`    | 4376081                                          | Amount of the destination token being received.         |
-| `toTokenSymbol`    | BTC                                              | Destination Chain slug                                  |
-| `toUserAddress`    | bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x       | Receiver's wallet address                               |
+| `toTokenAddress`   | 11111111111111111111111111111111                 | Destination Token Address.                              |
+| `toChain`          | solana                                           | Destination Source slug                                 |
+| `toTokenAmount`    | 4000000                                          | Amount of the destination token being received.         |
+| `toTokenSymbol`    | SOL                                              | Destination Chain slug                                  |
+| `toUserAddress`    | ELoruRy7quAskANEgC99XBYfEnCcrVGSqnwGETWKZtsU     | Receiver's wallet address                               |
 | `tokenAmount`      | 1000000000000000000                              | Amount of the source token being sent (in wei for ETH). |
 | `type`             | swap                                             | Type of transaction.                                    |
 | `projectId`        | `replug`                                         | [Your project's ID](https://platform.swing.xyz/)        |
@@ -323,43 +410,84 @@ export interface SendTransactionApiResponse {
 
 > The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need later for checking the status of a transaction.
 
-### Sending a Bitcoin Transaction to the Network
+### Sending a Solana Transaction to the Network
 
-> To perform a swap from a Non-EVM chain like Bitcoin, you'll need to send the transaction using a wallet provider that supports Bitcoin.
-
-If you decided to perform a cross chain swap with Bitcoin as the source chain, you'll need to sign the transaction using a wallet provider that supports Bitcoin like xDEFI.
+If you decided to perform a cross chain swap with Solana as the source chain, you'll need to sign the transaction using a wallet provider that supports Solana like [Phantom](https://phantom.app/).
 
 > Remember, you'll have to call the `/send` endpoint via `sendTransactionRequest` before signing the transaction.
 
-Here's a simple demonstration using xDEFI's Injected SDK:
+We will sign the `txData` retured from the `/send` endpoint using the `@solana/web3.js` library. To begin, let's include the necessary imports into our app:
 
 ```typescript
-if (transfer.tx.meta) {
-  //<- For Bitcoin to ETH, the send endpoint will return an object called `meta`
+import {
+  Connection,
+  Transaction,
+  VersionedTransaction,
+  clusterApiUrl,
+} from "@solana/web3.js";
+```
 
-  const { from, recipient, amount, memo } = transfer.tx.meta; // extra txData from `meta` object
+Next, we'll set up a connection to the Solana mainnet:
 
-  window.xfi?.bitcoin.request(
-    //<- Here, we're prompting a users wallet using xDEFI injected SDK
-    {
-      method: "transfer",
-      params: [
-        {
-          from,
-          recipient,
-          amount,
-          memo,
-        },
-      ],
-    },
-    (error: any, result: any) => {
-      console.debug(error, result);
-    },
-  );
-} else {
-  console.warn(
-    "Please install xDEFI Wallet or any wallet that supports Bitcoin",
-  );
+```typescript
+const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+```
+
+For our next steps, we will read the raw transaction data by decoding the value of the `data` property in our `txData`:
+
+```typescript
+const rawTransaction = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
+```
+
+Next, we will create a transaction object by deserializing the raw transaction data. If it fails as a regular transaction, we attempt to deserialize it as a versioned transaction:
+
+```typescript
+var transaction;
+try {
+  // Attempt to deserialize the transaction as a regular transaction
+  transaction = Transaction.from(rawTransaction);
+} catch (error) {
+  // If the transaction is not a regular transaction, attempt to deserialize it as a versioned transaction
+  transaction = VersionedTransaction.deserialize(rawTransaction);
+}
+```
+
+Next, we will check if the user has a Solana-supported wallet installed. If the user does not have a supported wallet installed, we will prompt them to install one. If all is good, we will proceed to sign and send the transaction over to the network.
+
+```typescript
+try {
+  // Sign the transaction
+  if (window.solana) {
+    const signTrans = await window.solana.signTransaction(transaction);
+    const rawTransaction = signTrans.serialize();
+
+    const txid = await connection.sendRawTransaction(rawTransaction, {
+      skipPreflight: true,
+      maxRetries: 2,
+    });
+
+    // Send and confirm the transaction
+    const latestBlockHash = await connection.getLatestBlockhash();
+
+    await connection.confirmTransaction({
+      blockhash: latestBlockHash.blockhash,
+      lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+      signature: txid,
+    });
+  } else {
+    toast({
+      variant: "destructive",
+      title: "No Solana Wallet Detected",
+      description: "Please install any Solana supported wallet",
+    });
+  }
+} catch (error) {
+  console.error("Transaction failed:", error);
+  toast({
+    variant: "destructive",
+    title: "Transaction Failed",
+    description: (error as Error).message,
+  });
 }
 ```
 
