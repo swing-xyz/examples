@@ -97,7 +97,6 @@ const Swap = () => {
       ...prev,
       tokenAmount: value,
     }));
-    // setTimeout(() => getQuote(), 500);
     getQuote(value);
   }, 1000);
 
@@ -218,6 +217,11 @@ const Swap = () => {
         });
         return;
       }
+
+      if(Number(value) <= 0) {
+        return;
+      }
+      
       const quotes = await getQuoteRequest({
         fromChain: transferParams.fromChain,
         fromTokenAddress: transferParams.fromTokenAddress,
