@@ -848,7 +848,7 @@ const Swap = () => {
         <button
           disabled={
             isLoading ||
-            !transferRoute ||
+            (connectionStatus === "connected" && !transferRoute) ||
             (connectionStatus !== "connected" &&
               transferParams.toUserAddress === "")
           }
@@ -857,7 +857,7 @@ const Swap = () => {
             {
               "hover:bg-blue-200":
                 connectionStatus === "connected" && transferRoute,
-              "opacity-30": isLoading || !transferRoute,
+              "opacity-30": (isLoading || !transferRoute) && connectionStatus === "connected",
             },
           )}
           onClick={() =>
