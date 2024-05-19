@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useConnect, metamaskWallet } from "@thirdweb-dev/react";
 import {
   useConnectionStatus,
@@ -28,15 +28,20 @@ import { Token } from "interfaces/token.interface";
 import { SelectTokenPanel } from "./ui/SelectTokenPanel";
 import { SelectChainPanel } from "./ui/SelectChainPanel";
 import { TbSwitchVertical, TbSwitchHorizontal } from "react-icons/tb";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 import {
   Connection,
+  PublicKey,
+  SystemProgram,
   Transaction,
+  TransactionInstruction,
   VersionedTransaction,
 } from "@solana/web3.js";
 import { TransactionDetails, pendingStatuses } from "interfaces/send.interface";
 import { TransferParams } from "types/transfer.types";
 import { TransferHistoryPanel } from "./ui/TransferHistoryPanel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const walletConfig = metamaskWallet();
 
@@ -91,6 +96,7 @@ const Swap = () => {
   const signer = useSigner();
 
   const { toast } = useToast();
+  const sendInputRef = useRef<HTMLInputElement>(null);
 
   const debounced = useDebouncedCallback((value) => {
     setTransferParams((prev: TransferParams) => ({
@@ -198,12 +204,30 @@ const Swap = () => {
         transactionPollingDuration,
       );
     } else {
+      if (transactionStatus.status === "Completed") {
+        toast({
+          title: "Transaction Successful",
+          description: `Bridge Successful`,
+        });
+      } else if (transactionStatus.status === "Failed") {
+        toast({
+          variant: "destructive",
+          title: "Transaction Failed",
+          description: transStatus?.errorReason,
+        });
+      }
+
       setTransferRoute(null);
       setIsTransacting(false);
     }
   }
 
   async function getQuote(value: string) {
+
+    if (Number(value) <= 0) {
+      return;
+    }
+    
     setIsLoading(true);
 
     try {
@@ -218,10 +242,6 @@ const Swap = () => {
         return;
       }
 
-      if(Number(value) <= 0) {
-        return;
-      }
-      
       const quotes = await getQuoteRequest({
         fromChain: transferParams.fromChain,
         fromTokenAddress: transferParams.fromTokenAddress,
@@ -257,63 +277,26 @@ const Swap = () => {
     setIsLoading(false);
   }
 
-  async function sendSolTransaction(txData: TransactionDetails) {
-    // Set up the connection
+  async function sendSolTrans(
+    txData: TransactionDetails,
+  ): Promise<string | undefined> {
     const connection = new Connection(
       "https://solana-mainnet.g.alchemy.com/v2/7CHAAo7P4v6NmLwcYuAXQQ6owOiB5q-a",
     );
+    const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
 
-    // Decode the transaction data
-    const rawTransaction = Uint8Array.from(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      Buffer.from(txData.data as any, "hex"),
-    );
-
-    // Create a transaction object
-
-    let transaction;
+    let transaction: Transaction | VersionedTransaction;
     try {
       // Attempt to deserialize the transaction as a regular transaction
-      transaction = Transaction.from(rawTransaction);
+      transaction = Transaction.from(rawTx);
     } catch (error) {
       // If the transaction is not a regular transaction, attempt to deserialize it as a versioned transaction
-      transaction = VersionedTransaction.deserialize(rawTransaction);
+      transaction = VersionedTransaction.deserialize(rawTx);
     }
 
-    try {
-      // Sign the transaction
-      if (window.solana) {
-        const signTrans = await window.solana.signTransaction(transaction);
-        const rawTransaction = signTrans.serialize();
+    const response = await window.solana?.signAndSendTransaction(transaction);
 
-        const txid = await connection.sendRawTransaction(rawTransaction, {
-          skipPreflight: true,
-          maxRetries: 2,
-        });
-
-        // Send and confirm the transaction
-        const latestBlockHash = await connection.getLatestBlockhash();
-
-        await connection.confirmTransaction({
-          blockhash: latestBlockHash.blockhash,
-          lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-          signature: txid,
-        });
-      } else {
-        toast({
-          variant: "destructive",
-          title: "No Solana Wallet Detected",
-          description: "Please install any Solana supported wallet",
-        });
-      }
-    } catch (error) {
-      console.error("Transaction failed:", error);
-      toast({
-        variant: "destructive",
-        title: "Transaction Failed",
-        description: (error as Error).message,
-      });
-    }
+    return response?.signature;
   }
 
   function switchTransferParams() {
@@ -341,15 +324,24 @@ const Swap = () => {
 
     setTransferRoute(null);
     setTransferParams(newTransferParams);
+    (sendInputRef.current as HTMLInputElement).value = '';
   }
 
   function onEVMChainSelect(chain: Chain) {
+
+    getTokensRequest({ chain: chain.slug }).then(setTokens);
+
     if (transferParams.fromChain !== "solana") {
       setTransferParams((prev) => ({
         ...prev,
         tokenAmount: "0",
         fromChain: chain.slug,
         fromChainIconUrl: chain.logo,
+
+        tokenSymbol: tokens[0].symbol,
+        fromTokenAddress: tokens[0].address,
+        fromTokenIconUrl: tokens[0].logo,
+        fromChainDecimal: tokens[0].decimals,
       }));
     } else {
       setTransferParams((prev) => ({
@@ -357,10 +349,13 @@ const Swap = () => {
         tokenAmount: "0",
         toChain: chain.slug,
         toChainIconUrl: chain.logo,
+
+        toTokenSymbol: tokens[0].symbol,
+        toTokenAddress: tokens[0].address,
+        toTokenIconUrl: tokens[0].logo,
+        toChainDecimal: tokens[0].decimals,
       }));
     }
-
-    getTokensRequest({ chain: chain.slug }).then(setTokens);
 
     setTransferRoute(null);
   }
@@ -483,7 +478,9 @@ const Swap = () => {
         gasLimit: transfer.tx.gas,
       };
 
-      setTransStatus({ status: "Wallet Interaction Required: Approve Transaction" });
+      setTransStatus({
+        status: "Wallet Interaction Required: Approve Transaction",
+      });
 
       let txHash = "";
 
@@ -493,7 +490,7 @@ const Swap = () => {
           from: txData.from,
           to: txData.to,
           value: txData.value,
-          gasLimit: txData.gasLimit
+          gasLimit: txData.gasLimit,
         });
         // Wait for the transaction to be mined
 
@@ -501,8 +498,11 @@ const Swap = () => {
         console.log("Transaction receipt:", receipt);
         txHash = txResponse?.hash!;
       } else {
-        await sendSolTransaction({ ...txData, from: transferParams.toChain });
-        txHash = txData.txId;
+        const hash = await sendSolTrans({
+          ...txData,
+          from: transferParams.fromUserAddress,
+        });
+        txHash = hash!;
       }
 
       pollTransactionStatus(transfer.id.toString(), txHash);
@@ -709,6 +709,7 @@ const Swap = () => {
             aria-label="deposit"
             className="border-none w-[50%] p-2 h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-4xl m-0 text-4xl"
             placeholder={"0 " + transferParams.tokenSymbol}
+            ref={sendInputRef}
             // disabled={!isConnected}
             onChange={(e) => {
               debounced(e.target.value);
@@ -852,6 +853,7 @@ const Swap = () => {
         <button
           disabled={
             isLoading ||
+            isTransacting ||
             (connectionStatus === "connected" && !transferRoute) ||
             (connectionStatus !== "connected" &&
               transferParams.toUserAddress === "")
@@ -861,7 +863,9 @@ const Swap = () => {
             {
               "hover:bg-blue-200":
                 connectionStatus === "connected" && transferRoute,
-              "opacity-30": (isLoading || !transferRoute) && connectionStatus === "connected",
+              "opacity-30":
+                (isLoading || !transferRoute || isTransacting) &&
+                connectionStatus === "connected",
             },
           )}
           onClick={() =>
@@ -869,11 +873,16 @@ const Swap = () => {
           }
         >
           <h4 className="w-full font-bold text-zinc-700">
-            {connectionStatus === "connected"
-              ? isLoading && !transferRoute
-                ? "FETCHING QUOTE...."
-                : "START TRANSFER"
-              : "CONNECT WALLET"}
+            <>
+              {connectionStatus === "connected"
+                ? isLoading && !transferRoute
+                  ? "FETCHING QUOTE"
+                  : "START TRANSFER"
+                : "CONNECT WALLET"}
+              {(isLoading || isTransacting) && (
+                <FontAwesomeIcon className="ml-2" icon={faCircleNotch} spin />
+              )}
+            </>
           </h4>
         </button>
       </div>
