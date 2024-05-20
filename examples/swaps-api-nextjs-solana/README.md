@@ -2,6 +2,7 @@
 
 This example is built with:
 
+- [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk)
 - [@thirdweb-dev/react](https://portal.thirdweb.com/react)
 - [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
 - [@solana/web3.js](https://www.npmjs.com/package/@solana/web3.js)
@@ -18,7 +19,7 @@ View the live demo [https://swaps-api-nextjs-solana.vercel.app](https://swaps-ap
 
 This example demonstrates how you can perform a cross-chain transaction between the Solana and Ethereum chains using Swing's Cross-Chain and Platform APIs via Swing's SDK.
 
-In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet connector to connect to a user's ethereum and solana wallets respectively. We will also be demonstrating how you can utilize Swing's SDK's exported API function, namely
+In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet connector to connect to a user's Ethereum and Solana wallets, respectively. We will also demonstrate how to utilize Swing's SDK exported API functions, namely `crossChainAPI` and `platformAPI`, to build out a fully functionaly cross-chain application.
 
 The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
 
@@ -509,12 +510,8 @@ To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTr
 ```typescript
 // src/components/Swaps.tsx
 
-const pendingStatuses = ["Submitted", "Not Sent", "Pending Source Chain", "Pending Destination Chain"];
-
-....
-
 async function getTransStatus(transId: string, txHash: string) {
-  const transactionStatus = await getTransationStatus({
+  const transactionStatus = await swingServiceAPI?.getTransationStatusRequest({
     id: transId,
     txHash,
   });
@@ -527,13 +524,28 @@ async function getTransStatus(transId: string, txHash: string) {
 async function pollTransactionStatus(transId: string, txHash: string) {
   const transactionStatus = await getTransStatus(transId, txHash);
 
-  if (pendingStatuses.includes(transactionStatus?.status)) {
+  if (transactionStatus?.status! === "Pending") {
     setTimeout(
       () => pollTransactionStatus(transId, txHash),
       transactionPollingDuration,
     );
   } else {
+    if (transactionStatus?.status === "Success") {
+      toast({
+        title: "Transaction Successful",
+        description: `Bridge Successful`,
+      });
+    } else if (transactionStatus?.status === "Failed") {
+      toast({
+        variant: "destructive",
+        title: "Transaction Failed",
+        description: transStatus?.errorReason,
+      });
+    }
+
     setTransferRoute(null);
+    setIsTransacting(false);
+    (sendInputRef.current as HTMLInputElement).value = "";
   }
 }
 ```
