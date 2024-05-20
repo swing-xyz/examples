@@ -1,4 +1,4 @@
-import axios from "axios";
+import { SwingSDK } from "@swing.xyz/sdk";
 import {
   AllowanceAPIResponse,
   AllowanceQueryParams,
@@ -7,10 +7,7 @@ import {
   ApprovalTxDataAPIResponse,
   ApprovalTxDataQueryParams,
 } from "interfaces/approval.interface";
-import {
-  ChainsAPIResponse,
-  ChainsQueryParams,
-} from "interfaces/chain.interface";
+import { Chain, ChainsQueryParams } from "interfaces/chain.interface";
 import {
   TransactionQueryParams,
   TransactionResponseAPIResponse,
@@ -24,136 +21,176 @@ import {
   TransactionStatusAPIResponse,
   TransactionStatusParams,
 } from "interfaces/status.interface";
-import { TokenAPIResponse, TokenQueryParams } from "interfaces/token.interface";
+import { ISwingServiceAPI } from "interfaces/swing-service.interface";
+import { Token, TokenQueryParams } from "interfaces/token.interface";
 
-const baseUrl = "https://swap.prod.swing.xyz/v0";
 const projectId = "replug";
 
-export const getQuoteRequest = async (
-  queryParams: QuoteQueryParams,
-): Promise<QuoteAPIResponse> => {
-  try {
-    const response = await axios.get<QuoteAPIResponse>(
-      `${baseUrl}/transfer/quote`,
-      { params: { ...queryParams, projectId } },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching quote:", error);
-    throw error;
+export class SwingServiceAPI implements ISwingServiceAPI {
+  private readonly swingSDK: SwingSDK;
+
+  constructor() {
+    this.swingSDK = new SwingSDK({
+      projectId: "replug",
+      debug: true,
+    });
   }
-};
 
-export const getAllowanceRequest = async (
-  queryParams: AllowanceQueryParams,
-): Promise<AllowanceAPIResponse> => {
-  try {
-    const response = await axios.get<AllowanceAPIResponse>(
-      `${baseUrl}/transfer/allowance`,
-      { params: { ...queryParams, projectId } },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching allowance:", error);
-    throw error;
-  }
-};
-
-export const getApprovalTxDataRequest = async (
-  queryParams: ApprovalTxDataQueryParams,
-): Promise<ApprovalTxDataAPIResponse> => {
-  try {
-    const response = await axios.get<ApprovalTxDataAPIResponse>(
-      `${baseUrl}/transfer/approve`,
-      { params: { ...queryParams, projectId } },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching approval:", error);
-    throw error;
-  }
-};
-
-export const getChainsRequest = async (
-  queryParams: ChainsQueryParams,
-): Promise<ChainsAPIResponse> => {
-  try {
-    const response = await axios.get<ChainsAPIResponse>(
-      `https://platform.swing.xyz/api/v1/projects/${projectId}/chains`,
-      { params: queryParams },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching approval:", error);
-    throw error;
-  }
-};
-
-export const getTokensRequest = async (
-  queryParams: TokenQueryParams,
-): Promise<TokenAPIResponse> => {
-  try {
-    const response = await axios.get<TokenAPIResponse>(
-      `https://platform.swing.xyz/api/v1/tokens`,
-      { params: queryParams },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching approval:", error);
-    throw error;
-  }
-};
-
-export const getTransationHistory = async (
-  queryParams: TransactionQueryParams,
-): Promise<TransactionResponseAPIResponse> => {
-  try {
-    const response = await axios.get<TransactionResponseAPIResponse>(
-      `${baseUrl}/transfer/history`,
-      { params: { ...queryParams, projectId } },
-    );
-
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching transaction status:", error);
-
-    throw error;
-  }
-};
-
-export const getTransationStatus = async (
-  queryParams: TransactionStatusParams,
-): Promise<TransactionStatusAPIResponse> => {
-  try {
-    const response = await axios.get<TransactionStatusAPIResponse>(
-      `${baseUrl}/transfer/status`,
-      { params: { ...queryParams, projectId } },
-    );
-
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching transaction status:", error);
-
-    throw error;
-  }
-};
-
-export const sendTransactionRequest = async (
-  payload: SendTransactionPayload,
-): Promise<SendTransactionApiResponse> => {
-  try {
-    const response = await axios.post<SendTransactionApiResponse>(
-      `${baseUrl}/transfer/send`,
-      { ...payload, projectId },
-      {
-        headers: {
-          "Content-Type": "application/json",
+  async getQuoteRequest(
+    queryParams: QuoteQueryParams,
+  ): Promise<QuoteAPIResponse | undefined> {
+    try {
+      const response = await this.swingSDK.crossChainAPI.GET(
+        "/v0/transfer/quote",
+        {
+          params: {
+            query: queryParams,
+          },
         },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error sending transaction:", error);
-    throw error;
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching quote:", error);
+      throw error;
+    }
   }
-};
+
+  async getAllowanceRequest(
+    queryParams: AllowanceQueryParams,
+  ): Promise<AllowanceAPIResponse | undefined> {
+    try {
+      const response = await this.swingSDK.crossChainAPI.GET(
+        "/v0/transfer/allowance",
+        {
+          params: {
+            query: queryParams,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching allowance:", error);
+      throw error;
+    }
+  }
+
+  async getApprovalTxDataRequest(
+    queryParams: ApprovalTxDataQueryParams,
+  ): Promise<ApprovalTxDataAPIResponse | undefined> {
+    try {
+      const response = await this.swingSDK.crossChainAPI.GET(
+        "/v0/transfer/approve",
+        {
+          params: {
+            query: queryParams,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching approval:", error);
+      throw error;
+    }
+  }
+
+  async getChainsRequest(
+    queryParams: ChainsQueryParams,
+  ): Promise<Chain[] | undefined> {
+    try {
+      const response = await this.swingSDK.platformAPI.GET("/chains", {
+        params: {
+          query: queryParams,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching approval:", error);
+      throw error;
+    }
+  }
+
+  async getTokensRequest(
+    queryParams: TokenQueryParams,
+  ): Promise<Token[] | undefined> {
+    try {
+      const response = await this.swingSDK.platformAPI.GET("/tokens", {
+        params: {
+          query: queryParams,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching approval:", error);
+      throw error;
+    }
+  }
+
+  async getTransationHistoryRequest(
+    queryParams: TransactionQueryParams,
+  ): Promise<TransactionResponseAPIResponse | undefined> {
+    try {
+      const response = await this.swingSDK.crossChainAPI.GET(
+        "/v0/transfer/history",
+        {
+          params: {
+            query: queryParams,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching transaction status:", error);
+
+      throw error;
+    }
+  }
+
+  async getTransationStatusRequest(
+    queryParams: TransactionStatusParams,
+  ): Promise<TransactionStatusAPIResponse | undefined> {
+    try {
+      const response = await this.swingSDK.platformAPI.GET(
+        "/projects/{projectId}/transactions/{transactionId}",
+        {
+          params: {
+            path: {
+              transactionId: queryParams.id,
+              projectId,
+            },
+            query: {
+              txHash: queryParams.txHash,
+            },
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching transaction status:", error);
+      throw error;
+    }
+  }
+
+  async sendTransactionRequest(
+    payload: SendTransactionPayload,
+  ): Promise<SendTransactionApiResponse | undefined> {
+    try {
+      const response = await this.swingSDK.crossChainAPI.POST(
+        "/v0/transfer/send",
+        {
+          body: payload,
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error sending transaction:", error);
+      throw error;
+    }
+  }
+
+  get isSDKConnected() {
+    return this.swingSDK.isReady;
+  }
+}

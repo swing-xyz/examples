@@ -8,16 +8,7 @@ import {
   useAddress,
   useSigner,
 } from "@thirdweb-dev/react";
-import { Route } from "interfaces/quote.interface";
-import {
-  getAllowanceRequest,
-  getApprovalTxDataRequest,
-  getChainsRequest,
-  getQuoteRequest,
-  getTokensRequest,
-  getTransationStatus,
-  sendTransactionRequest,
-} from "services/requests";
+import { SwingServiceAPI } from "services/requests";
 import { convertEthToWei, convertWeiToEth } from "utils/ethToWei";
 import { useDebouncedCallback } from "use-debounce";
 import { useToast } from "components/ui/use-toast";
@@ -38,10 +29,13 @@ import {
   TransactionInstruction,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { TransactionDetails, pendingStatuses } from "interfaces/send.interface";
+import { pendingStatuses } from "interfaces/send.interface";
 import { TransferParams } from "types/transfer.types";
 import { TransferHistoryPanel } from "./ui/TransferHistoryPanel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ISwingServiceAPI } from "interfaces/swing-service.interface";
+import { QuoteAPIResponse, Route } from "interfaces/quote.interface";
+import { TransactionData } from "interfaces/approval.interface";
 
 const walletConfig = metamaskWallet();
 
@@ -87,6 +81,9 @@ const Swap = () => {
   const [tokens, setTokens] = useState<Token[]>([]);
   const [solTokens, setSolTokens] = useState<Token[]>([]);
   const [chains, setChains] = useState<Chain[]>([]);
+  const [swingServiceAPI, setSwingServiceAPI] = useState<
+    ISwingServiceAPI | undefined
+  >();
 
   const connect = useConnect();
   const address = useAddress();
@@ -107,6 +104,7 @@ const Swap = () => {
   }, 1000);
 
   useEffect(() => {
+    setSwingServiceAPI(new SwingServiceAPI());
     if (window.solana && window.solana.isPhantom) {
       window.solana
         .connect({ onlyIfTrusted: true })
@@ -135,11 +133,23 @@ const Swap = () => {
     setTokens([]);
     setSolTokens([]);
 
-    getChainsRequest({ type: "evm" }).then(setChains);
-    getTokensRequest({ chain: defaultTransferParams.fromChain }).then(
-      setTokens,
-    );
-    getTokensRequest({ chain: "solana" }).then(setSolTokens);
+    swingServiceAPI
+      ?.getChainsRequest({ type: "evm" })
+      .then((chains: Chain[] | undefined) => {
+        setChains(chains!);
+      });
+
+    swingServiceAPI
+      ?.getTokensRequest({ chain: defaultTransferParams.fromChain })
+      .then((tokens: Token[] | undefined) => {
+        setTokens(tokens!);
+      });
+
+    swingServiceAPI
+      ?.getTokensRequest({ chain: "solana" })
+      .then((tokens: Token[] | undefined) => {
+        setSolTokens(tokens!);
+      });
   }, [walletAddress]);
 
   async function connectWallet(chainId?: number) {
@@ -185,10 +195,12 @@ const Swap = () => {
   };
 
   async function getTransStatus(transId: string, txHash: string) {
-    const transactionStatus = await getTransationStatus({
-      id: transId,
-      txHash,
-    });
+    const transactionStatus = await swingServiceAPI?.getTransationStatusRequest(
+      {
+        id: transId,
+        txHash,
+      },
+    );
 
     setTransStatus(transactionStatus);
 
@@ -198,18 +210,18 @@ const Swap = () => {
   async function pollTransactionStatus(transId: string, txHash: string) {
     const transactionStatus = await getTransStatus(transId, txHash);
 
-    if (pendingStatuses.includes(transactionStatus?.status)) {
+    if (transactionStatus?.status! === "Pending") {
       setTimeout(
         () => pollTransactionStatus(transId, txHash),
         transactionPollingDuration,
       );
     } else {
-      if (transactionStatus.status === "Completed") {
+      if (transactionStatus?.status === "Success") {
         toast({
           title: "Transaction Successful",
           description: `Bridge Successful`,
         });
-      } else if (transactionStatus.status === "Failed") {
+      } else if (transactionStatus?.status === "Failed") {
         toast({
           variant: "destructive",
           title: "Transaction Failed",
@@ -219,15 +231,15 @@ const Swap = () => {
 
       setTransferRoute(null);
       setIsTransacting(false);
+      (sendInputRef.current as HTMLInputElement).value = "";
     }
   }
 
   async function getQuote(value: string) {
-
     if (Number(value) <= 0) {
       return;
     }
-    
+
     setIsLoading(true);
 
     try {
@@ -242,7 +254,7 @@ const Swap = () => {
         return;
       }
 
-      const quotes = await getQuoteRequest({
+      const quotes = await swingServiceAPI?.getQuoteRequest({
         fromChain: transferParams.fromChain,
         fromTokenAddress: transferParams.fromTokenAddress,
         fromUserAddress: transferParams.fromUserAddress,
@@ -254,7 +266,7 @@ const Swap = () => {
         tokenAmount: convertEthToWei(value, transferParams.fromChainDecimal),
       });
 
-      if (!quotes.routes.length) {
+      if (!quotes?.routes?.length) {
         toast({
           variant: "destructive",
           title: "No routes found",
@@ -264,7 +276,7 @@ const Swap = () => {
         return;
       }
 
-      setTransferRoute(quotes.routes[0]!);
+      setTransferRoute(quotes.routes.at(0)!);
     } catch (error) {
       console.error("Quote Error:", error);
       toast({
@@ -278,11 +290,8 @@ const Swap = () => {
   }
 
   async function sendSolTrans(
-    txData: TransactionDetails,
+    txData: TransactionData,
   ): Promise<string | undefined> {
-    const connection = new Connection(
-      "https://solana-mainnet.g.alchemy.com/v2/7CHAAo7P4v6NmLwcYuAXQQ6owOiB5q-a",
-    );
     const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
 
     let transaction: Transaction | VersionedTransaction;
@@ -324,12 +333,16 @@ const Swap = () => {
 
     setTransferRoute(null);
     setTransferParams(newTransferParams);
-    (sendInputRef.current as HTMLInputElement).value = '';
+
+    (sendInputRef.current as HTMLInputElement).value = "";
   }
 
   function onEVMChainSelect(chain: Chain) {
-
-    getTokensRequest({ chain: chain.slug }).then(setTokens);
+    swingServiceAPI
+      ?.getTokensRequest({ chain: chain.slug })
+      .then((tokens: Token[] | undefined) => {
+        setTokens(tokens!);
+      });
 
     if (transferParams.fromChain !== "solana") {
       setTransferParams((prev) => ({
@@ -404,7 +417,7 @@ const Swap = () => {
 
     try {
       if (transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol) {
-        const checkAllowance = await getAllowanceRequest({
+        const checkAllowance = await swingServiceAPI?.getAllowanceRequest({
           bridge: transferRoute.quote.integration,
           fromAddress: transferParams.fromUserAddress,
           fromChain: transferParams.fromChain,
@@ -416,29 +429,30 @@ const Swap = () => {
           contractCall: false,
         });
 
-        if (checkAllowance.allowance < tokenAmount) {
+        if (checkAllowance?.allowance! != tokenAmount) {
           setTransStatus({
             status: `Wallet Interaction Required: Approval Token`,
           });
 
-          const getApprovalTxData = await getApprovalTxDataRequest({
-            tokenAmount: Number(tokenAmount),
-            bridge: transferRoute.quote.integration,
-            fromAddress: transferParams.fromUserAddress,
-            fromChain: transferParams.fromChain,
-            tokenAddress: transferParams.fromTokenAddress,
-            tokenSymbol: transferParams.tokenSymbol,
-            toChain: transferParams.toChain,
-            toTokenAddress: transferParams.toTokenAddress!,
-            toTokenSymbol: transferParams.toTokenSymbol!,
-            contractCall: true,
-          });
+          const getApprovalTxData =
+            await swingServiceAPI?.getApprovalTxDataRequest({
+              tokenAmount: tokenAmount,
+              bridge: transferRoute.quote.integration,
+              fromAddress: transferParams.fromUserAddress,
+              fromChain: transferParams.fromChain,
+              tokenAddress: transferParams.fromTokenAddress,
+              tokenSymbol: transferParams.tokenSymbol,
+              toChain: transferParams.toChain,
+              toTokenAddress: transferParams.toTokenAddress!,
+              toTokenSymbol: transferParams.toTokenSymbol!,
+              contractCall: true,
+            });
 
           if (transferParams.fromChain !== "solana") {
-            const txData: TransactionDetails = {
-              data: getApprovalTxData.tx[0].data,
-              from: getApprovalTxData.tx[0].from,
-              to: getApprovalTxData.tx[0].to,
+            const txData: TransactionData = {
+              data: getApprovalTxData?.tx?.at(0)?.data!,
+              from: getApprovalTxData?.tx?.at(0)?.from!,
+              to: getApprovalTxData?.tx?.at(0)?.to!,
             };
 
             const txResponse = await signer?.sendTransaction(txData);
@@ -451,7 +465,7 @@ const Swap = () => {
         }
       }
 
-      const transfer = await sendTransactionRequest({
+      const transfer = await swingServiceAPI?.sendTransactionRequest({
         fromChain: transferParams.fromChain,
         fromTokenAddress: transferParams.fromTokenAddress,
         fromUserAddress: transferParams.fromUserAddress,
@@ -462,20 +476,32 @@ const Swap = () => {
         toTokenAmount: transferRoute.quote.amount,
         toTokenSymbol: transferParams.toTokenSymbol!,
         toUserAddress: transferParams.toUserAddress!,
+        integration: transferRoute.quote.integration,
 
         tokenAmount,
         route: transferRoute.route,
         type: "swap",
       });
 
+      if (!transfer) {
+        toast({
+          variant: "destructive",
+          title: "Something went wrong!",
+          description: "Transaction Failed",
+        });
+        setIsLoading(false);
+        setIsTransacting(false);
+        return;
+      }
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const txData: any = {
-        data: transfer.tx.data,
-        from: transfer.tx.from,
-        to: transfer.tx.to,
-        value: transfer.tx.value,
-        txId: transfer.tx.txId,
-        gasLimit: transfer.tx.gas,
+        data: transfer?.tx?.data,
+        from: transfer?.tx?.from!,
+        to: transfer?.tx?.to!,
+        value: transfer?.tx?.value!,
+        txId: transfer?.tx?.txId!,
+        gasLimit: transfer?.tx?.gas!,
       };
 
       setTransStatus({
@@ -505,7 +531,7 @@ const Swap = () => {
         txHash = hash!;
       }
 
-      pollTransactionStatus(transfer.id.toString(), txHash);
+      pollTransactionStatus(transfer?.id.toString()!, txHash);
     } catch (error) {
       console.error("Transfer Error:", error);
       toast({
@@ -672,6 +698,7 @@ const Swap = () => {
           </div>
           <TransferHistoryPanel
             userAddress={transferParams.fromUserAddress}
+            swingServiceAPI={swingServiceAPI!}
             className="group rounded-2xl py-2 px-4 text-sm font-semibold hover:cursor-pointer
                                         outline-2 outline-offset-2 transition-colors text-zinc-400
                                         flex items-center bg-zinc-600 

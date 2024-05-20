@@ -3,13 +3,13 @@ export interface Chain {
   slug: string;
   name: string;
   logo: string;
-  type: string;
-  tokenExplorer: string;
-  txExplorer: string;
-  rpcUrl: string;
+  type: "solana" | "evm" | "bitcoin" | "ibc" | "multiversx";
   singleChainSwap: boolean;
   singleChainStaking: boolean;
-  nativeToken: {
+  txExplorer?: string | undefined;
+  tokenExplorer?: string | undefined;
+  rpcUrl?: string | undefined;
+  nativeToken?: {
     symbol: string;
     decimals: number;
     logo: string;
@@ -18,8 +18,7 @@ export interface Chain {
   };
 }
 
-export interface ChainsAPIResponse extends Array<Chain> {}
-
 export interface ChainsQueryParams {
-  type: string;
+  integration?: string | undefined;
+  type?: "evm" | "ibc" | "solana" | "multiversx" | "bitcoin" | undefined;
 }

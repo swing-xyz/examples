@@ -1,13 +1,21 @@
 export interface QuoteQueryParams {
-  fromChain: string;
   tokenSymbol: string;
-  fromTokenAddress: string;
-  fromUserAddress: string;
-  toChain: string;
-  toTokenSymbol?: string;
-  toTokenAddress?: string;
-  toUserAddress?: string;
+  toTokenSymbol: string;
   tokenAmount: string;
+  fromTokenAddress: string;
+  fromChain: string;
+  toChain: string;
+  fromUserAddress: string;
+  maxSlippage?: number;
+  toUserAddress: string;
+  partner?: string;
+  projectId?: string;
+  toTokenAddress: string;
+  debug?: string;
+  contractCall?: boolean;
+  skipGasEstimate?: boolean;
+  fee?: number;
+  nativeStaking?: boolean;
 }
 
 export interface QuoteAPIResponse {
@@ -19,19 +27,39 @@ export interface QuoteAPIResponse {
 }
 
 export interface Route {
+  route: RouteStep[];
+  quote: Quote;
   duration: number;
   gas: string;
-  quote: Quote;
-  route: RouteStep[];
-  distribution: { [key: string]: number };
+  distribution?: {
+    [key: string]: number;
+  };
   gasUSD: string;
 }
 
+export interface RouteStep {
+  bridge: string;
+  bridgeTokenAddress: string;
+  steps: (
+    | "allowance"
+    | "approve"
+    | "send"
+    | "nativeStaking"
+    | "sign"
+    | "claim"
+    | "bridge"
+  )[];
+  name: string;
+  part: number;
+  encryptionKeyRequired?: boolean | undefined;
+}
+
 interface Quote {
-  integration: string;
-  type: string;
-  bridgeFee: string;
   bridgeFeeInNativeToken: string;
+  bridgeFee: string;
+  integration: string;
+  type: "swap" | "custom_contract" | "deposit" | "withdraw" | "claim" | null;
+  fromAmount?: string;
   amount: string;
   decimals: number;
   amountUSD: string;
@@ -41,35 +69,34 @@ interface Quote {
 }
 
 interface Fee {
-  type: string;
+  type: "bridge" | "gas" | "partner";
   amount: string;
   amountUSD: string;
-  chainSlug: string;
   tokenSymbol: string;
   tokenAddress: string;
+  chainSlug: string;
   decimals: number;
   deductedFromSourceToken: boolean;
 }
 
-interface RouteStep {
-  bridge: string;
-  bridgeTokenAddress: string;
-  steps: string[];
-  name: string;
-  part: number;
-}
-
 interface Token {
-  address: string;
   symbol: string;
-  name: string;
+  name?: string | undefined;
+  address: string;
   decimals: number;
-  logoURI: string;
+  chainId?: number | undefined;
+  chain?: string | undefined;
+  logoURI?: string | undefined;
 }
 
 interface Chain {
   chainId: number;
-  name: string;
+  name?: string;
   slug: string;
-  protocolType: string;
+  protocolType: "evm" | "ibc" | "solana" | "multiversx";
+  logo?: string;
+  isSingleChainSupported?: boolean;
+  blockExploreUrls?: string[];
+  tokenExplorer?: string;
+  txExplorer?: string;
 }

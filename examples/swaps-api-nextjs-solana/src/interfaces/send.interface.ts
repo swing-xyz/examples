@@ -12,41 +12,34 @@ export interface SendTransactionApiResponse {
   fromChain: Chain;
   toChain: Chain;
   route: Route[];
-  tx: TransactionDetails;
+  tx?: TransactionDetails;
 }
 
 interface Token {
-  address: string;
   symbol: string;
-  name: string;
+  name?: string | undefined;
+  address: string;
   decimals: number;
-  logoURI: string;
+  chainId?: number | undefined;
+  chain?: string | undefined;
+  logoURI?: string | undefined;
 }
 
 interface Chain {
   chainId: number;
-  name: string;
+  name?: string;
   slug: string;
   protocolType: string;
-}
-
-interface Route {
-  bridge: string;
-  bridgeTokenAddress: string;
-  steps: string[];
-  name: string;
-  part: number;
 }
 
 export interface TransactionDetails {
   from: string;
   to: string;
-  data?: string;
+  data: string;
   value?: string;
   nonce?: number;
   txId?: string;
   gas?: string;
-  meta?: Meta;
 }
 
 interface Meta {
@@ -82,7 +75,15 @@ export interface SendTransactionPayload {
 interface Route {
   bridge: string;
   bridgeTokenAddress: string;
-  steps: string[];
+  steps: (
+    | "allowance"
+    | "approve"
+    | "send"
+    | "nativeStaking"
+    | "sign"
+    | "claim"
+    | "bridge"
+  )[];
   name: string;
   part: number;
 }

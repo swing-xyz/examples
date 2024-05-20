@@ -399,8 +399,8 @@ const Swap = () => {
             {transferRoute ? (
               <Popover defaultOpen={false}>
                 <PopoverTrigger
-                  className="inline-flex justify-center rounded-2xl py-2 px-3 text-sm font-semibold 
-                                            outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900
+                  className="justify-center rounded-2xl py-2 px-3 text-sm font-semibold 
+                                            outline-2 outline-offset-2 transition-colors text-white hover:bg-gray-900
                                             flex items-center cursor-pointer bg-zinc-600 
                                             active:bg-gray-800 active:text-white/80"
                 >

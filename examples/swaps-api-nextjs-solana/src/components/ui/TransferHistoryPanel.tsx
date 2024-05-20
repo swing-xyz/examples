@@ -5,11 +5,12 @@ import {
   TransactionResponseAPIResponse,
 } from "interfaces/history.interface";
 import { MdOutlineHistory } from "react-icons/md";
-import { getTransationHistory } from "services/requests";
 import clsx from "clsx";
 import { pendingStatuses } from "interfaces/send.interface";
+import { ISwingServiceAPI } from "interfaces/swing-service.interface";
 
 export const TransferHistoryPanel = ({
+  swingServiceAPI,
   userAddress = "",
   className,
   onItemSelect,
@@ -17,20 +18,23 @@ export const TransferHistoryPanel = ({
   userAddress: string;
   className?: string;
   onItemSelect?: (token: Transaction) => void;
+  swingServiceAPI: ISwingServiceAPI;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [historyList, sethistoryList] = useState<Transaction[]>([]);
-  const [filteredItems, setFilteredItems] = useState<Transaction[]>([]);
+  const [historyList, sethistoryList] = useState<Transaction[] | undefined>([]);
+  const [filteredItems, setFilteredItems] = useState<Transaction[] | undefined>(
+    [],
+  );
 
   useEffect(() => {
     if (isOpen && userAddress.length) {
-      getTransationHistory({ userAddress }).then(
-        (response: TransactionResponseAPIResponse) => {
-          sethistoryList(response.transactions);
-          setFilteredItems(response.transactions);
-        },
-      );
+      swingServiceAPI
+        ?.getTransationHistoryRequest({ userAddress })
+        .then((response: TransactionResponseAPIResponse | undefined) => {
+          sethistoryList(response?.transactions);
+          setFilteredItems(response?.transactions);
+        });
     }
   }, [isOpen]);
 
@@ -62,10 +66,10 @@ export const TransferHistoryPanel = ({
           >
             <div className="flex justify-start items-center gap-x-2">
               <span className="p-1 rounded-xl bg-purple-300">
-                {transaction.fromChainSlug.toUpperCase()}
+                {transaction.fromChainSlug?.toUpperCase()}
               </span>
               <span className="p-1 rounded-xl bg-cyan-200">
-                {transaction.toChainSlug.toUpperCase()}
+                {transaction.toChainSlug?.toUpperCase()}
               </span>
             </div>
             <span
@@ -74,7 +78,9 @@ export const TransferHistoryPanel = ({
                 "bg-yellow-400 text-black": pendingStatuses.includes(
                   transaction.status,
                 ),
-                "bg-red-400 text-white": transaction.status === "Failed",
+                "bg-red-400 text-white":
+                  transaction.status === "Failed Source Chain" ||
+                  "Failed Destination Chain",
               })}
             >
               {transaction.status}

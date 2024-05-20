@@ -14,11 +14,13 @@ View the live demo [https://swaps-api-nextjs-solana.vercel.app](https://swaps-ap
 
 ## Swing Integration
 
-> The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx).
+> The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) and [Platform API](https://developers.swing.xyz/reference/api/platform/a2glq2e1w44ad-project-configuration) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx)
 
-This example demonstrates how you can perform a cross-chain transaction between the Solana and Ethereum chains.
+This example demonstrates how you can perform a cross-chain transaction between the Solana and Ethereum chains using Swing's Cross-Chain and Platform APIs via Swing's SDK.
 
-In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet connector to connect to a user's ethereum and solana wallets respectively. The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
+In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet connector to connect to a user's ethereum and solana wallets respectively. We will also be demonstrating how you can utilize Swing's SDK's exported API function, namely
+
+The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
 - (Optional) Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens.
@@ -66,20 +68,24 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz
 Navigating to our `src/services/requests.ts` file, you will find our method for getting a quote from Swing's Cross-Chain API called `getQuoteRequest()`.
 
 ```typescript
-export const getQuoteRequest = async (
+async getQuoteRequest(
   queryParams: QuoteQueryParams,
-): Promise<QuoteAPIResponse> => {
+): Promise<QuoteAPIResponse | undefined> {
   try {
-    const response = await axios.get<QuoteAPIResponse>(
-      `${baseUrl}/transfer/quote`,
-      { params: { ...queryParams, projectId } },
+    const response = await this.swingSDK.crossChainAPI.GET(
+      "/v0/transfer/quote",
+      {
+        params: {
+          query: queryParams,
+        },
+      },
     );
     return response.data;
   } catch (error) {
     console.error("Error fetching quote:", error);
     throw error;
   }
-};
+}
 ```
 
 The response received from the `getQuoteRequest` endpoint provides us with the `fees` a user will have to pay when performing a transaction, as well as a list of possible `routes` for the user to choose from.
@@ -230,7 +236,7 @@ if (transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol) {
     contractCall: false,
   });
 
-  if (checkAllowance.allowance < tokenAmount) {
+  if (checkAllowance.allowance === tokenAmount) {
     setTransStatus({
       status: `Wallet Interaction Required: Approval Token`,
     });
@@ -280,17 +286,14 @@ The steps for sending a transaction are as followed:
 Navigating to our `src/services/requests.ts`, you'll find our request implemenation for the `/send` endpoint:
 
 ```typescript
-export const sendTransactionRequest = async (
+async sendTransactionRequest(
   payload: SendTransactionPayload,
-): Promise<SendTransactionApiResponse> => {
+): Promise<SendTransactionApiResponse | undefined> {
   try {
-    const response = await axios.post<SendTransactionApiResponse>(
-      `${baseUrl}/transfer/send`,
-      { ...payload, projectId },
+    const response = await this.swingSDK.crossChainAPI.POST(
+      "/v0/transfer/send",
       {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: payload,
       },
     );
     return response.data;
@@ -298,7 +301,7 @@ export const sendTransactionRequest = async (
     console.error("Error sending transaction:", error);
     throw error;
   }
-};
+}
 ```
 
 The `SendTransactionPayload` body payload contains the `source chain`, `destination chain`, `tokenAmount`, and the desired `route`.
@@ -416,39 +419,31 @@ If you decided to perform a cross chain swap with Solana as the source chain, yo
 
 > Remember, you'll have to call the `/send` endpoint via `sendTransactionRequest` before signing the transaction.
 
-We will sign the `txData` retured from the `/send` endpoint using the `@solana/web3.js` library. To begin, let's include the necessary imports into our app:
+We will sign the `txData` returned from the `/send` endpoint using the `@solana/web3.js` library. To begin, let's include the necessary imports into our app:
 
 ```typescript
 import {
-  Connection,
   Transaction,
-  VersionedTransaction,
-  clusterApiUrl,
+  VersionedTransaction
 } from "@solana/web3.js";
-```
-
-Next, we'll set up a connection to the Solana mainnet:
-
-```typescript
-const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
 ```
 
 For our next steps, we will read the raw transaction data by decoding the value of the `data` property in our `txData`:
 
 ```typescript
-const rawTransaction = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
+const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
 ```
 
 Next, we will create a transaction object by deserializing the raw transaction data. If it fails as a regular transaction, we attempt to deserialize it as a versioned transaction:
 
 ```typescript
-var transaction;
+let transaction: Transaction | VersionedTransaction;
 try {
   // Attempt to deserialize the transaction as a regular transaction
-  transaction = Transaction.from(rawTransaction);
+  transaction = Transaction.from(rawTx);
 } catch (error) {
   // If the transaction is not a regular transaction, attempt to deserialize it as a versioned transaction
-  transaction = VersionedTransaction.deserialize(rawTransaction);
+  transaction = VersionedTransaction.deserialize(rawTx);
 }
 ```
 
@@ -456,39 +451,14 @@ Next, we will check if the user has a Solana-supported wallet installed. If the 
 
 ```typescript
 try {
-  // Sign the transaction
-  if (window.solana) {
-    const signTrans = await window.solana.signTransaction(transaction);
-    const rawTransaction = signTrans.serialize();
-
-    const txid = await connection.sendRawTransaction(rawTransaction, {
-      skipPreflight: true,
-      maxRetries: 2,
-    });
-
-    // Send and confirm the transaction
-    const latestBlockHash = await connection.getLatestBlockhash();
-
-    await connection.confirmTransaction({
-      blockhash: latestBlockHash.blockhash,
-      lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-      signature: txid,
-    });
-  } else {
-    toast({
-      variant: "destructive",
-      title: "No Solana Wallet Detected",
-      description: "Please install any Solana supported wallet",
-    });
-  }
+  // Attempt to deserialize the transaction as a regular transaction
+  transaction = Transaction.from(rawTx);
 } catch (error) {
-  console.error("Transaction failed:", error);
-  toast({
-    variant: "destructive",
-    title: "Transaction Failed",
-    description: (error as Error).message,
-  });
+  // If the transaction is not a regular transaction, attempt to deserialize it as a versioned transaction
+  transaction = VersionedTransaction.deserialize(rawTx);
 }
+
+const response = await window.solana?.signAndSendTransaction(transaction);
 ```
 
 ## Polling Transaction Status
@@ -498,25 +468,31 @@ After sending a transaction over to the network, for the sake of user experience
 Navigating to our `src/services/requests.ts` file, you will find our method for getting a transaction status called `getTransationStatus()`.
 
 ```typescript
-export const getTransationStatus = async (
-  statusParams: TransactionStatusParams,
-): Promise<TransactionStatusAPIResponse> => {
+async getTransationStatusRequest(
+  queryParams: TransactionStatusParams,
+): Promise<TransactionStatusAPIResponse | undefined> {
   try {
-    const response = await axios.get<TransactionStatusAPIResponse>(
-      `${baseUrl}/transfer/status`,
-      { params: { ...statusParams, projectId } },
+    const response = await this.swingSDK.platformAPI.GET(
+      "/projects/{projectId}/transactions/{transactionId}",
+      {
+        params: {
+          path: {
+            transactionId: queryParams.id,
+            projectId,
+          },
+          query: {
+            txHash: queryParams.txHash,
+          },
+        },
+      },
     );
 
-    if (response.status === 404) {
-      return { status: "Not Found " };
-    }
     return response.data;
   } catch (error) {
     console.error("Error fetching transaction status:", error);
-
-    return { status: "Transaction Failed" };
+    throw error;
   }
-};
+}
 ```
 
 The `TransactionStatusParams` params contains the three properties, namely: `id`, `txHash` and `projectId`

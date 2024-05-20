@@ -1,56 +1,59 @@
 export interface Transaction {
-  status: string;
-  refundReason: string | null;
-  errorReason: string;
-  needClaim: string | null;
-  bridge: string;
-  txId: string;
-  txStartedTimestamp: number;
-  txCompletedTimestamp: number;
-  fromUserAddress: string;
-  toUserAddress: string;
-  fromTokenAddress: string;
-  fromAmount: string;
-  fromAmountUsdValue: string;
-  fromChainId: number;
-  fromChainSlug: string;
-  fromChainTxHash: string;
-  toTokenAddress: string;
-  toAmount: string;
-  toAmountUsdValue: string;
-  toChainId: number;
-  toChainSlug: string;
-  toChainTxHash: string | null;
-  updatedAt: string;
-  createdAt: string;
-  fromTokenSymbol: string;
-  toTokenSymbol: string;
-  transferStep: string | null;
-  transferStatus: string | null;
-  fallbackTokenAddress: string | null;
-  contractCall: boolean;
-  toContractCallAddress: string | null;
-  toContractCallData: string | null;
-  toContractCallTokenAddress: string | null;
-  toContractCallApprovalAddress: string | null;
-  toContractCallGasLimit: string | null;
-  integration: string;
-  type: string;
-  affiliateId: string | null;
-  bridgeFeeUsdValue: string;
-  bridgeFeeInNativeTokenUsdValue: string | null;
-  destinationTxFeeUsdValue: string | null;
-  gasUsage: string;
-  gasUsageUsdValue: string;
-  partnerShare: string;
-  partnerShareUsdValue: string;
-  swingShare: string;
-  swingShareUsdValue: string;
-  id: number;
+  type?:
+    | "swap"
+    | "deposit"
+    | "withdraw"
+    | "claim"
+    | "custom_contract"
+    | null
+    | undefined;
+  status:
+    | "Submitted"
+    | "Pending Source Chain"
+    | "Pending Destination Chain"
+    | "Completed"
+    | "Refund Required"
+    | "Refunded"
+    | "Failed Source Chain"
+    | "Failed Destination Chain"
+    | "Fallback"
+    | "Not Sent"
+    | "Claim Required";
+  reason?: string;
+  bridge?: string | undefined;
+  txId?: string | undefined;
+  integration?: string;
+  needClaim?: boolean;
+  refundReason?: string;
+  errorReason?: string;
+  fromTokenAddress?: string;
+  fromChainId?: number;
+  fromChainSlug?: string;
+  fromAmount?: string;
+  fromAmountUsdValue?: string;
+  toTokenAddress?: string;
+  toChainId?: number;
+  toChainSlug?: string;
+  toAmount?: string;
+  toAmountUsdValue?: string;
+  fromChainTxHash?: string;
+  toChainTxHash?: string;
+  fromTokenSymbol?: string;
+  toTokenSymbol?: string;
+  fromUserAddress?: string;
+  toUserAddress?: string;
+  txStartedTimestamp?: number;
+  txCompletedTimestamp?: number;
+  updatedAt?: string;
+  createdAt?: string;
+  fallbackTokenAddress?: string;
+  fallbackAmount?: string;
+  id?: number;
+  projectId?: string;
 }
 
 export interface TransactionResponseAPIResponse {
-  transactions: Transaction[];
+  transactions?: Transaction[] | undefined;
 }
 
 export interface TransactionQueryParams {

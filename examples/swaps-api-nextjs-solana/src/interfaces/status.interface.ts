@@ -1,51 +1,44 @@
 export interface TransactionStatusAPIResponse {
-  status: string;
-  refundReason?: string;
-  errorReason?: string | null;
+  type?:
+    | "swap"
+    | "deposit"
+    | "withdraw"
+    | "claim"
+    | "custom_contract"
+    | null
+    | undefined;
+  status: "Pending" | "Success" | "Failed" | any;
+  reason?: string;
+  bridge?: string | undefined;
+  txId?: string | undefined;
+  integration?: string;
   needClaim?: boolean;
-  bridge?: string;
-  txId?: string;
-  txStartedTimestamp?: number;
-  txCompletedTimestamp?: number;
-  fromUserAddress?: string;
-  toUserAddress?: string;
+  refundReason?: string;
+  errorReason?: string;
   fromTokenAddress?: string;
-  fromAmount?: string;
-  fromAmountUsdValue?: string;
   fromChainId?: number;
   fromChainSlug?: string;
-  fromChainTxHash?: string;
+  fromAmount?: string;
+  fromAmountUsdValue?: string;
   toTokenAddress?: string;
-  toAmount?: string;
-  toAmountUsdValue?: string;
   toChainId?: number;
   toChainSlug?: string;
+  toAmount?: string;
+  toAmountUsdValue?: string;
+  fromChainTxHash?: string;
   toChainTxHash?: string;
-  updatedAt?: string;
-  createdAt?: string;
   fromTokenSymbol?: string;
   toTokenSymbol?: string;
-  transferStep?: string | null;
-  transferStatus?: string | null;
-  fallbackTokenAddress?: string | null;
-  contractCall?: boolean;
-  toContractCallAddress?: string | null;
-  toContractCallData?: string | null;
-  toContractCallTokenAddress?: string | null;
-  toContractCallApprovalAddress?: string | null;
-  toContractCallGasLimit?: string | null;
-  integration?: string;
-  type?: string;
-  bridgeFeeUsdValue?: string;
-  bridgeFeeInNativeTokenUsdValue?: string | null;
-  destinationTxFeeUsdValue?: string | null;
-  gasUsage?: string;
-  gasUsageUsdValue?: string;
-  partnerShare?: string;
-  partnerShareUsdValue?: string;
-  swingShare?: string;
-  swingShareUsdValue?: string;
-  id?: number;
+  fromUserAddress?: string;
+  toUserAddress?: string;
+  txStartedTimestamp?: number;
+  txCompletedTimestamp?: number;
+  updatedAt?: string;
+  createdAt?: string;
+  fallbackTokenAddress?: string;
+  fallbackAmount?: string;
+  id?: string;
+  projectId?: string;
 }
 
 export interface TransactionStatusParams {

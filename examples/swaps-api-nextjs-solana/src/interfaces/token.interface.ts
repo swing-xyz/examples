@@ -9,5 +9,3 @@ export interface Token {
   decimals: number;
   chain: string;
 }
-
-export interface TokenAPIResponse extends Array<Token> {}

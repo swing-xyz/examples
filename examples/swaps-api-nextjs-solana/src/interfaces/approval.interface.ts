@@ -5,26 +5,29 @@ export interface ApprovalTxDataQueryParams {
   toChain: string;
   tokenAddress: string;
   tokenSymbol: string;
-  tokenAmount: number;
+  tokenAmount: string;
   toTokenSymbol: string;
   toTokenAddress: string;
   contractCall: boolean;
 }
 
 export interface ApprovalTxDataAPIResponse {
-  tx: TransactionData[];
-  fromChain: Chain;
+  tx?: TransactionData[] | undefined;
+  fromChain: Chain | undefined;
 }
 
-interface TransactionData {
+export interface TransactionData {
   data: string;
-  from: string;
   to: string;
+  value?: string | undefined;
+  gas?: string | undefined;
+  from: string;
+  nonce?: number | undefined;
 }
 
 interface Chain {
   chainId: number;
-  name: string;
+  name?: string | undefined;
   slug: string;
-  protocolType: string;
+  protocolType: "evm" | "ibc" | "solana" | "multiversx";
 }
