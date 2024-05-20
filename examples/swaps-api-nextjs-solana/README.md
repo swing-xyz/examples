@@ -422,10 +422,7 @@ If you decided to perform a cross chain swap with Solana as the source chain, yo
 We will sign the `txData` returned from the `/send` endpoint using the `@solana/web3.js` library. To begin, let's include the necessary imports into our app:
 
 ```typescript
-import {
-  Transaction,
-  VersionedTransaction
-} from "@solana/web3.js";
+import { Transaction, VersionedTransaction } from "@solana/web3.js";
 ```
 
 For our next steps, we will read the raw transaction data by decoding the value of the `data` property in our `txData`:

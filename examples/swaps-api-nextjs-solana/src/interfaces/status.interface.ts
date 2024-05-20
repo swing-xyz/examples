@@ -7,6 +7,7 @@ export interface TransactionStatusAPIResponse {
     | "custom_contract"
     | null
     | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   status: "Pending" | "Success" | "Failed" | any;
   reason?: string;
   bridge?: string | undefined;

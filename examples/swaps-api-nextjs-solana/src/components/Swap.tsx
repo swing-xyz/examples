@@ -21,20 +21,12 @@ import { SelectChainPanel } from "./ui/SelectChainPanel";
 import { TbSwitchVertical, TbSwitchHorizontal } from "react-icons/tb";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  Connection,
-  PublicKey,
-  SystemProgram,
-  Transaction,
-  TransactionInstruction,
-  VersionedTransaction,
-} from "@solana/web3.js";
-import { pendingStatuses } from "interfaces/send.interface";
+import { Transaction, VersionedTransaction } from "@solana/web3.js";
 import { TransferParams } from "types/transfer.types";
 import { TransferHistoryPanel } from "./ui/TransferHistoryPanel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ISwingServiceAPI } from "interfaces/swing-service.interface";
-import { QuoteAPIResponse, Route } from "interfaces/quote.interface";
+import { Route } from "interfaces/quote.interface";
 import { TransactionData } from "interfaces/approval.interface";
 
 const walletConfig = metamaskWallet();
@@ -292,6 +284,7 @@ const Swap = () => {
   async function sendSolTrans(
     txData: TransactionData,
   ): Promise<string | undefined> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
 
     let transaction: Transaction | VersionedTransaction;

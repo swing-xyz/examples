@@ -42,19 +42,6 @@ export interface TransactionDetails {
   gas?: string;
 }
 
-interface Meta {
-  from: string;
-  recipient: string;
-  amount: Amount;
-  memo: string;
-  slippage: number;
-}
-
-interface Amount {
-  amount: string;
-  decimals: number;
-}
-
 export interface SendTransactionPayload {
   fromUserAddress: string;
   toUserAddress: string;
