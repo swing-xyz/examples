@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <ConnectWallet />
 
                 <Button className="space-x-2" variant="outline" asChild>
-                  <a href="https://github.com/swing-xyz/examples">
+                  <a href="https://github.com/swing-xyz/examples/tree/main/examples/staking-sdk-nextjs">
                     <FontAwesomeIcon size="lg" icon={faGithub} />
                     <span>Fork on Github</span>
                   </a>
