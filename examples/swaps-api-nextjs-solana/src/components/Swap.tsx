@@ -95,6 +95,7 @@ const Swap = () => {
     getQuote(value);
   }, 1000);
 
+  //Initialize Swing Service API from service.ts file and connect to phantom wallet if installed
   useEffect(() => {
     setSwingServiceAPI(new SwingServiceAPI());
     if (window.solana && window.solana.isPhantom) {
@@ -113,6 +114,7 @@ const Swap = () => {
     }
   }, []);
 
+  //Fetch chains and tokens whenever wallet address changes
   useEffect(() => {
     setTransferParams((prev) => {
       return {
@@ -144,6 +146,7 @@ const Swap = () => {
       });
   }, [walletAddress]);
 
+  //Connect to Ethereum Wallet
   async function connectWallet(chainId?: number) {
     try {
       // Connect to MetaMask
@@ -168,6 +171,7 @@ const Swap = () => {
     }
   }
 
+  //Connect to Phantom Wallet
   const connectToPhantom = async () => {
     try {
       const { solana } = window;
@@ -185,6 +189,7 @@ const Swap = () => {
       console.error("Failed to connect to Phantom wallet:", error);
     }
   };
+
 
   async function getTransStatus(transId: string, txHash: string) {
     const transactionStatus = await swingServiceAPI?.getTransationStatusRequest(
@@ -235,8 +240,6 @@ const Swap = () => {
     setIsLoading(true);
 
     try {
-      // Get a quote from the Swing API
-
       if (transferParams.toUserAddress === "") {
         toast({
           variant: "destructive",
@@ -666,10 +669,9 @@ const Swap = () => {
               >
                 <SelectFromChainPanel />
                 <SelectFromTokenPanel />
-                <div className="p-1 bg-zinc-500 rounded-full hover:bg-gray-900 cursor-pointer">
+                <div className="group p-1 bg-zinc-500 rounded-full hover:bg-gray-900" onClick={switchTransferParams}>
                   <TbSwitchHorizontal
-                    className="size-8 hover:cursor-pointer"
-                    onClick={switchTransferParams}
+                    className="size-8 group-hover:cursor-pointer"
                   />
                 </div>
 

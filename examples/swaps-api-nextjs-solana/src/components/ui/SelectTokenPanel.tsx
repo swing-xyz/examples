@@ -16,7 +16,7 @@ export const SelectTokenPanel = ({
   };
   onTokenSelect?: (token: Token) => void;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [filteredTokens, setFilteredTokens] = useState<Token[]>(tokens);
 

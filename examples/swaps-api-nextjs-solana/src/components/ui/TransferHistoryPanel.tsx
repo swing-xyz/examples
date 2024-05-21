@@ -20,7 +20,7 @@ export const TransferHistoryPanel = ({
   onItemSelect?: (token: Transaction) => void;
   swingServiceAPI: ISwingServiceAPI;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [historyList, sethistoryList] = useState<Transaction[] | undefined>([]);
   const [filteredItems, setFilteredItems] = useState<Transaction[] | undefined>(

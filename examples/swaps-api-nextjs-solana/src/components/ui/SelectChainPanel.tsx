@@ -14,7 +14,7 @@ export const SelectChainPanel = ({
   transferParams: { chainIconUrl: string; chain: string | undefined };
   onChainSelect?: (chain: Chain) => void;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <Popover defaultOpen={false} open={isOpen} onOpenChange={setIsOpen}>
