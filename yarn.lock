@@ -2327,7 +2327,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/wallet-sdk@npm:^3.7.2":
+"@coinbase/wallet-sdk@npm:4.0.0":
+  version: 4.0.0
+  resolution: "@coinbase/wallet-sdk@npm:4.0.0"
+  dependencies:
+    buffer: "npm:^6.0.3"
+    clsx: "npm:^1.2.1"
+    eventemitter3: "npm:^5.0.1"
+    keccak: "npm:^3.0.3"
+    preact: "npm:^10.16.0"
+    sha.js: "npm:^2.4.11"
+  checksum: 10/4b1d22656acfcedc695010d985b58389fe07dc61a1ebd1af57a62f793d122155b591bb26658a7b3d3df3fa1e6b5f2c3d44123fe42c30a3e4f1a6330138142470
+  languageName: node
+  linkType: hard
+
+"@coinbase/wallet-sdk@npm:^3.7.2, cbw-sdk@npm:@coinbase/wallet-sdk@3.9.3":
   version: 3.9.3
   resolution: "@coinbase/wallet-sdk@npm:3.9.3"
   dependencies:
@@ -7265,9 +7279,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swing.xyz/design-system@npm:0.53.2":
-  version: 0.53.2
-  resolution: "@swing.xyz/design-system@npm:0.53.2"
+"@swing.xyz/design-system@npm:0.54.0":
+  version: 0.54.0
+  resolution: "@swing.xyz/design-system@npm:0.54.0"
   dependencies:
     "@fortawesome/fontawesome-common-types": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
@@ -7281,7 +7295,7 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
-  checksum: 10/40affcdd35a8cad763d7276fd267b80c579a40d205b6f94f2389da8306941a41168c8937f407e635d039378c0f933dd9e7ff7dd44f0df6c8f75371062f996a62
+  checksum: 10/b165cddf96f295b7fe7d08cb0dd9fda7ee9ca232f1d277951ef200872861ba4a3535c0f2451a076fd148b21e442610b2e0e9bba4298f450a7a7e4e2372172096
   languageName: node
   linkType: hard
 
@@ -7294,16 +7308,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swing.xyz/platform-api@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "@swing.xyz/platform-api@npm:0.6.0"
-  checksum: 10/a63d52148bd44cf6edef02c1247883917d77eb6d15503de6981072f7f13ddb5d990d7cc9833cdb89cf624bee174fa8ac57cd35ccecd7a281000473bd92bbc2ee
+"@swing.xyz/platform-api@npm:^0.7.0":
+  version: 0.7.1
+  resolution: "@swing.xyz/platform-api@npm:0.7.1"
+  checksum: 10/0271a97021fdea9ad57bd8a44284414fbd1994726aa5ce990ec7aad101a37b5eef5e5f6316b46962a2b3ba3de895e09f556357f30cedc60329fdc1105480350c
   languageName: node
   linkType: hard
 
-"@swing.xyz/sdk@npm:0.53.2, @swing.xyz/sdk@npm:^0.53.2":
-  version: 0.53.2
-  resolution: "@swing.xyz/sdk@npm:0.53.2"
+"@swing.xyz/sdk@npm:0.54.0, @swing.xyz/sdk@npm:^0.54.0":
+  version: 0.54.0
+  resolution: "@swing.xyz/sdk@npm:0.54.0"
   dependencies:
     "@cosmjs/cosmwasm-stargate": "npm:^0.32.3"
     "@cosmjs/stargate": "npm:^0.32.3"
@@ -7321,17 +7335,17 @@ __metadata:
     "@sentry/browser": "npm:7.114.0"
     "@solana/web3.js": "npm:^1.91.8"
     "@swing.xyz/cross-chain-api": "npm:^0.2.0"
-    "@swing.xyz/platform-api": "npm:^0.6.0"
+    "@swing.xyz/platform-api": "npm:^0.7.0"
     ethers: "npm:^5.7.2"
     eventemitter3: "npm:^4.0.7"
-    viem: "npm:^2.10.3"
-  checksum: 10/94649985f9bdb7d9650a029105b83a9a6fbf3df54824669699ac453d834a1471f2d840c69c3f66969063ccd16d78205e5752a4d59affa3a38593b7d31db16cb1
+    viem: "npm:^2.10.5"
+  checksum: 10/4f336258168869913c2805bb19915f5afba087ef04602e7df09dbed1e4fd9c1d79c998f0dbc20cafcf84f8f2def5001ce1bc83d9267dd3fbd2422f2d7595be5f
   languageName: node
   linkType: hard
 
-"@swing.xyz/ui@npm:^0.53.2":
-  version: 0.53.2
-  resolution: "@swing.xyz/ui@npm:0.53.2"
+"@swing.xyz/ui@npm:^0.54.0":
+  version: 0.54.0
+  resolution: "@swing.xyz/ui@npm:0.54.0"
   dependencies:
     "@cosmjs/stargate": "npm:^0.32.3"
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.2"
@@ -7339,9 +7353,9 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@multiversx/sdk-extension-provider": "npm:^2.0.7"
     "@sentry/react": "npm:7.114.0"
-    "@swing.xyz/design-system": "npm:0.53.2"
-    "@swing.xyz/sdk": "npm:0.53.2"
-    "@tanstack/react-query": "npm:^5.35.1"
+    "@swing.xyz/design-system": "npm:0.54.0"
+    "@swing.xyz/sdk": "npm:0.54.0"
+    "@tanstack/react-query": "npm:^5.36.0"
     "@walletconnect/modal": "npm:^2.6.2"
     "@walletconnect/types": "npm:^2.13.0"
     "@walletconnect/universal-provider": "npm:^2.13.0"
@@ -7353,12 +7367,12 @@ __metadata:
     jotai: "npm:^2.8.0"
     lodash.isequal: "npm:^4.5.0"
     react-timeago: "npm:^7.2.0"
-    viem: "npm:^2.10.3"
-    wagmi: "npm:^2.8.6"
+    viem: "npm:^2.10.5"
+    wagmi: "npm:^2.8.7"
   peerDependencies:
     react: ^18
     react-dom: ^18
-  checksum: 10/4b0eeee8b7738e98720812799285360ced762fc5800f527c20a21d0ae07c62a9ee2744085e0e491c52afd78e21b20d54aa62ec3905fb08b597c56e807f8cbcf0
+  checksum: 10/a04e269426dc01924618837f46a7f8d25795cca38c150eec4353d4b188daf11759ede4f6e917cb40154a147cb50ee233905fa5da3d3e365a4823ead06dbd5d11
   languageName: node
   linkType: hard
 
@@ -7387,10 +7401,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.36.0":
-  version: 5.36.0
-  resolution: "@tanstack/query-core@npm:5.36.0"
-  checksum: 10/b0a5c6c01dfcb38fd5a0503b958a062ee4f5bc966676a1bac412427842f4186dc18a56ec1b009df8fc820ee3fa7c451e069816dd6af962461be1c4ac75e89c10
+"@tanstack/query-core@npm:5.36.1":
+  version: 5.36.1
+  resolution: "@tanstack/query-core@npm:5.36.1"
+  checksum: 10/32f5e34d044016517f3afba3a31efa686bca70275be773ec8df0ee320ecf573867ff4f996bedc107012568d586f19ac51cbbebb45808d6475f25486c47363ed9
   languageName: node
   linkType: hard
 
@@ -7424,14 +7438,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.35.1":
-  version: 5.36.0
-  resolution: "@tanstack/react-query@npm:5.36.0"
+"@tanstack/react-query@npm:^5.36.0":
+  version: 5.37.1
+  resolution: "@tanstack/react-query@npm:5.37.1"
   dependencies:
-    "@tanstack/query-core": "npm:5.36.0"
+    "@tanstack/query-core": "npm:5.36.1"
   peerDependencies:
     react: ^18.0.0
-  checksum: 10/981d01b5b3273cd03b785aa2be5b640cc7d59eb9ddd817a598f07695dbc707fd2a6b4fc224357fe87e2f2be62fd21dbe2511b32938155a4a8ed0a21a643cbca3
+  checksum: 10/f7f11f0702382c7e8fc0bee7c24d11836b4c43eb5feea10282a9054afd4be554945db2887d30c2ded8c6f11018eeba93266a319b23de5f19c0fe50a445d39141
   languageName: node
   linkType: hard
 
@@ -8810,24 +8824,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wagmi/connectors@npm:4.3.8":
-  version: 4.3.8
-  resolution: "@wagmi/connectors@npm:4.3.8"
+"@wagmi/connectors@npm:5.0.3":
+  version: 5.0.3
+  resolution: "@wagmi/connectors@npm:5.0.3"
   dependencies:
-    "@coinbase/wallet-sdk": "npm:3.9.1"
+    "@coinbase/wallet-sdk": "npm:4.0.0"
     "@metamask/sdk": "npm:0.20.3"
     "@safe-global/safe-apps-provider": "npm:0.18.1"
     "@safe-global/safe-apps-sdk": "npm:8.1.0"
     "@walletconnect/ethereum-provider": "npm:2.13.0"
     "@walletconnect/modal": "npm:2.6.2"
+    cbw-sdk: "npm:@coinbase/wallet-sdk@3.9.3"
   peerDependencies:
-    "@wagmi/core": 2.9.6
+    "@wagmi/core": 2.10.3
     typescript: ">=5.0.4"
     viem: 2.x
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/c0faf0e3e1f9fefebe678ae208ab491cbc5d853fc735e7bf14189560e32bbc19e508f9eb9c784cf9b8b4a659d84dee9d769db97cbf9ae1a6a012f917aa13c5c6
+  checksum: 10/83afa209cc99f0f4261ede5b3aa432c3c5930c65fed8d0481f3f08a3e2fd67185779d4b7ce57d2c9116312c558c4605181f3130efb7e49e8cd7cb1f8ebe1959b
+  languageName: node
+  linkType: hard
+
+"@wagmi/core@npm:2.10.3":
+  version: 2.10.3
+  resolution: "@wagmi/core@npm:2.10.3"
+  dependencies:
+    eventemitter3: "npm:5.0.1"
+    mipd: "npm:0.0.5"
+    zustand: "npm:4.4.1"
+  peerDependencies:
+    "@tanstack/query-core": ">=5.0.0"
+    typescript: ">=5.0.4"
+    viem: 2.x
+  peerDependenciesMeta:
+    "@tanstack/query-core":
+      optional: true
+    typescript:
+      optional: true
+  checksum: 10/e6c1105b7d675afcb1935ebe59387ed94fdd3d52869d5cd2d8ac23e6ad481d57a1fa189329a3f4429b9b2c62e44aab88f7fb66c7292d158c047181521d42a90b
   languageName: node
   linkType: hard
 
@@ -8848,26 +8883,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/9cb12ba1575567b6488e13f55c5b089e0f585ac44a933b902d7beca52f6f63fa3c806cc41f62323f631e691dfee2db10fc369a5cca65f6a3d39c7539f0b74d9d
-  languageName: node
-  linkType: hard
-
-"@wagmi/core@npm:2.9.6":
-  version: 2.9.6
-  resolution: "@wagmi/core@npm:2.9.6"
-  dependencies:
-    eventemitter3: "npm:5.0.1"
-    mipd: "npm:0.0.5"
-    zustand: "npm:4.4.1"
-  peerDependencies:
-    "@tanstack/query-core": ">=5.0.0"
-    typescript: ">=5.0.4"
-    viem: 2.x
-  peerDependenciesMeta:
-    "@tanstack/query-core":
-      optional: true
-    typescript:
-      optional: true
-  checksum: 10/44170be7d953b28e1d10578def384340154c45d0b3f1db38f1b9153c56a866607d969dbf83535de581c6d888638c4aba6f30fe818feb8e1a677d4d2978ccefb0
   languageName: node
   linkType: hard
 
@@ -15210,7 +15225,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@types/node": "npm:20.12.4"
     "@types/react": "npm:18.2.74"
     "@types/react-dom": "npm:18.2.24"
@@ -16949,6 +16964,15 @@ __metadata:
   peerDependencies:
     ws: "*"
   checksum: 10/9cacd5cf59f67deb51e825580cd445ab1725ecb05a67c704050383fb772856f3cd5e7da8ad08f5a3bd2823680d77d099459d0c6a7037972a74d6429af61af440
+  languageName: node
+  linkType: hard
+
+"isows@npm:1.0.4":
+  version: 1.0.4
+  resolution: "isows@npm:1.0.4"
+  peerDependencies:
+    ws: "*"
+  checksum: 10/a3ee62e3d6216abb3adeeb2a551fe2e7835eac87b05a6ecc3e7739259bf5f8e83290501f49e26137390c8093f207fc3378d4a7653aab76ad7bbab4b2dba9c5b9
   languageName: node
   linkType: hard
 
@@ -23210,7 +23234,7 @@ __metadata:
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/sdk": "npm:^0.53.2"
+    "@swing.xyz/sdk": "npm:^0.54.0"
     "@tanstack/react-query": "npm:^5.28.14"
     "@types/node": "npm:20.12.4"
     "@types/react": "npm:18.2.74"
@@ -23246,7 +23270,7 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-slot": "npm:^1.0.2"
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@tanstack/react-query": "npm:^5.28.14"
     "@types/node": "npm:20.12.4"
     "@types/react": "npm:18.2.74"
@@ -23757,7 +23781,7 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.18"
     "@radix-ui/react-toast": "npm:^1.1.5"
-    "@swing.xyz/sdk": "npm:^0.53.2"
+    "@swing.xyz/sdk": "npm:^0.54.0"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@thirdweb-dev/react": "npm:^4.4.31"
     "@thirdweb-dev/sdk": "npm:^4.0.57"
@@ -23801,7 +23825,7 @@ __metadata:
     "@radix-ui/react-select": "npm:^2.0.0"
     "@radix-ui/react-tabs": "npm:^1.0.4"
     "@radix-ui/react-toast": "npm:^1.1.5"
-    "@swing.xyz/sdk": "npm:^0.53.2"
+    "@swing.xyz/sdk": "npm:^0.54.0"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@types/node": "npm:20.12.4"
     "@types/react": "npm:18.2.74"
@@ -23840,7 +23864,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
     "@headlessui/react": "npm:^1.7.18"
-    "@swing.xyz/sdk": "npm:^0.53.2"
+    "@swing.xyz/sdk": "npm:^0.54.0"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@thirdweb-dev/react": "npm:^4.4.31"
     "@thirdweb-dev/sdk": "npm:^4.0.57"
@@ -23877,7 +23901,7 @@ __metadata:
     "@angular/core": "npm:^15.2.10"
     "@angular/platform-browser": "npm:^15.2.10"
     "@angular/platform-browser-dynamic": "npm:^15.2.10"
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@types/node": "npm:^20.12.4"
     copyfiles: "npm:^2.4.1"
     eslint: "npm:^8.57.0"
@@ -23905,7 +23929,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "swaps-widget-nextjs-pages@workspace:examples/swaps-widget-nextjs-pages"
   dependencies:
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@types/node": "npm:^20.12.4"
     "@types/react": "npm:^18.2.74"
     "@types/react-dom": "npm:^18.2.24"
@@ -23931,7 +23955,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@types/node": "npm:20.12.4"
     "@types/react": "npm:18.2.74"
     "@types/react-dom": "npm:18.2.24"
@@ -23957,7 +23981,7 @@ __metadata:
     "@babel/core": "npm:^7.24.0"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.11"
     "@svgr/webpack": "npm:^5.5.0"
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@types/node": "npm:^20.12.4"
     "@types/react": "npm:^18.2.74"
     "@types/react-dom": "npm:^18.2.24"
@@ -25440,9 +25464,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.10.3":
-  version: 2.10.5
-  resolution: "viem@npm:2.10.5"
+"viem@npm:^2.10.5":
+  version: 2.12.0
+  resolution: "viem@npm:2.12.0"
   dependencies:
     "@adraffy/ens-normalize": "npm:1.10.0"
     "@noble/curves": "npm:1.2.0"
@@ -25450,14 +25474,14 @@ __metadata:
     "@scure/bip32": "npm:1.3.2"
     "@scure/bip39": "npm:1.2.1"
     abitype: "npm:1.0.0"
-    isows: "npm:1.0.3"
+    isows: "npm:1.0.4"
     ws: "npm:8.13.0"
   peerDependencies:
     typescript: ">=5.0.4"
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/8ef40085caf77a2414c6d5d8b14c49d086534f8300d0a47645722a062deede12a0b22d8d9a18597a25f8892e4c479e7b9ebb3f7387f58aff9854fb0508e30a3b
+  checksum: 10/e394934a1d4f11c11934521c11cbf2c709f108c4cf1742990763293bda22871062db6db218050109955c2263a9914e92b467c2b6ea2d92c0f49a5b2edab8b590
   languageName: node
   linkType: hard
 
@@ -25508,12 +25532,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:^2.8.6":
-  version: 2.8.6
-  resolution: "wagmi@npm:2.8.6"
+"wagmi@npm:^2.8.7":
+  version: 2.9.4
+  resolution: "wagmi@npm:2.9.4"
   dependencies:
-    "@wagmi/connectors": "npm:4.3.8"
-    "@wagmi/core": "npm:2.9.6"
+    "@wagmi/connectors": "npm:5.0.3"
+    "@wagmi/core": "npm:2.10.3"
     use-sync-external-store: "npm:1.2.0"
   peerDependencies:
     "@tanstack/react-query": ">=5.0.0"
@@ -25523,7 +25547,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/ae7cd2b627c988237d68fda2f45a682e711e98b9b75b634e5b98a010a9c105f73d646ca44b9d0ac41614e5a1aa1b6158a6d78553545a189885968138b30eb249
+  checksum: 10/ba7817447dffa25fe6c1adf23ec5378613d541e8a759a4f26b6b1bc4d0003a354e402bc805791058546241a0530197a4d038bbf3470dcb85afeba3f7366ed65e
   languageName: node
   linkType: hard
 
@@ -26340,7 +26364,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
-    "@swing.xyz/ui": "npm:^0.53.2"
+    "@swing.xyz/ui": "npm:^0.54.0"
     "@types/node": "npm:20.12.4"
     "@types/react": "npm:18.2.74"
     "@types/react-dom": "npm:18.2.24"
