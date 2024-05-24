@@ -182,7 +182,7 @@ export function Header() {
                             <ConnectButtonMobile />
 
                             <Button
-                              href="https://github.com/swing-xyz/examples"
+                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-sdk-nextjs-thirdweb-embedded-wallet"
                               className="space-x-2"
                               variant="outline"
                             >
@@ -199,7 +199,7 @@ export function Header() {
             </Popover>
 
             <Button
-              href="https://github.com/swing-xyz/examples"
+              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-sdk-nextjs-thirdweb-embedded-wallet"
               className="hidden space-x-2 lg:block"
               variant="outline"
             >

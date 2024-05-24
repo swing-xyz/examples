@@ -128,7 +128,7 @@ export function Header() {
                             {/* <Button href="#altcoin">Connect</Button> */}
 
                             <Button
-                              href="https://github.com/swing-xyz/examples"
+                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-sdk-nextjs-web3-react"
                               className="space-x-2"
                               variant="outline"
                             >
@@ -145,7 +145,7 @@ export function Header() {
             </Popover>
 
             <Button
-              href="https://github.com/swing-xyz/examples"
+              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-sdk-nextjs-web3-react"
               className="hidden space-x-2 lg:block"
               variant="outline"
             >

@@ -131,7 +131,7 @@ export function Header() {
                             <Button href="#altcoin">Buy $ALTCOIN</Button>
 
                             <Button
-                              href="https://github.com/swing-xyz/examples"
+                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-sdk-nextjs"
                               className="space-x-2"
                               variant="outline"
                             >
@@ -151,7 +151,7 @@ export function Header() {
             </Button>
 
             <Button
-              href="https://github.com/swing-xyz/examples"
+              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-sdk-nextjs"
               className="hidden space-x-2 lg:block"
               variant="outline"
             >
