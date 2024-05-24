@@ -190,7 +190,6 @@ const Swap = () => {
     }
   };
 
-
   async function getTransStatus(transId: string, txHash: string) {
     const transactionStatus = await swingServiceAPI?.getTransationStatusRequest(
       {
@@ -412,7 +411,10 @@ const Swap = () => {
     );
 
     try {
-      if (transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol) {
+      if (
+        transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol &&
+        transferParams.fromChain !== "solana"
+      ) {
         const checkAllowance = await swingServiceAPI?.getAllowanceRequest({
           bridge: transferRoute.quote.integration,
           fromAddress: transferParams.fromUserAddress,
@@ -441,23 +443,21 @@ const Swap = () => {
               toChain: transferParams.toChain,
               toTokenAddress: transferParams.toTokenAddress!,
               toTokenSymbol: transferParams.toTokenSymbol!,
-              contractCall: true,
+              contractCall: false,
             });
 
-          if (transferParams.fromChain !== "solana") {
-            const txData: TransactionData = {
-              data: getApprovalTxData?.tx?.at(0)?.data!,
-              from: getApprovalTxData?.tx?.at(0)?.from!,
-              to: getApprovalTxData?.tx?.at(0)?.to!,
-            };
+          const txData: TransactionData = {
+            data: getApprovalTxData?.tx?.at(0)?.data!,
+            from: getApprovalTxData?.tx?.at(0)?.from!,
+            to: getApprovalTxData?.tx?.at(0)?.to!,
+          };
 
-            const txResponse = await signer?.sendTransaction(txData);
+          const txResponse = await signer?.sendTransaction(txData);
 
-            const receipt = await txResponse?.wait();
-            console.log("Transaction receipt:", receipt);
+          const receipt = await txResponse?.wait();
+          console.log("Transaction receipt:", receipt);
 
-            setTransStatus({ status: "Token allowance approved" });
-          }
+          setTransStatus({ status: "Token allowance approved" });
         }
       }
 
@@ -506,7 +506,13 @@ const Swap = () => {
 
       let txHash = "";
 
-      if (transferParams.fromChain !== "solana") {
+      if (transferParams.fromChain === "solana") {
+        const hash = await sendSolTrans({
+          ...txData,
+          from: transferParams.fromUserAddress,
+        });
+        txHash = hash!;
+      } else {
         const txResponse = await signer?.sendTransaction({
           data: txData.data,
           from: txData.from,
@@ -519,12 +525,6 @@ const Swap = () => {
         const receipt = await txResponse?.wait();
         console.log("Transaction receipt:", receipt);
         txHash = txResponse?.hash!;
-      } else {
-        const hash = await sendSolTrans({
-          ...txData,
-          from: transferParams.fromUserAddress,
-        });
-        txHash = hash!;
       }
 
       pollTransactionStatus(transfer?.id.toString()!, txHash);
@@ -669,10 +669,11 @@ const Swap = () => {
               >
                 <SelectFromChainPanel />
                 <SelectFromTokenPanel />
-                <div className="group p-1 bg-zinc-500 rounded-full hover:bg-gray-900" onClick={switchTransferParams}>
-                  <TbSwitchHorizontal
-                    className="size-8 group-hover:cursor-pointer"
-                  />
+                <div
+                  className="group p-1 bg-zinc-500 rounded-full hover:bg-gray-900"
+                  onClick={switchTransferParams}
+                >
+                  <TbSwitchHorizontal className="size-8 group-hover:cursor-pointer" />
                 </div>
 
                 <SelectToTokenPanel />

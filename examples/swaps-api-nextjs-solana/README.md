@@ -24,7 +24,7 @@ In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet co
 The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
-- (Optional) Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens.
+- Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens. (Optional for SOL > ETH Route)
 - Sending a [transaction](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
 
 > Although not essential for performing a swap transaction, providing your users with real-time updates on the transaction's status by polling the [status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status) can significantly enhance the user experience.
@@ -44,6 +44,40 @@ yarn dev --filter=swaps-api-nextjs-solana
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+
+## Initializing Swing's SDK
+
+Swing's SDK contains two (2) vital objects that are crucial to our API integration. Namely, the `platformAPI` and the `crossChainAPI` objects. These objects are a wrapper for all of Swing's Cross-Chain and Platform APIs removing the need for developers to make API requests using libraries like `fetch` or `axios`. The SDK handles those API requests from behind the scenes.
+
+We've included all the necessary request and response interfaces in the `src/interfaces` folder to aid development.
+
+Navigating to our `src/services/requests.ts`, let's start by initializing Swing's SDK in our `SwingServiceAPI` class:
+
+```typescript
+import { SwingSDK } from "@swing.xyz/sdk";
+
+export class SwingServiceAPI implements ISwingServiceAPI {
+  private readonly swingSDK: SwingSDK;
+
+  constructor() {
+    this.swingSDK = new SwingSDK({
+      projectId: "replug",
+      debug: true,
+    });
+  }
+}
+```
+
+The `SwingSDK` constructor accepts a `projectId` as a mandatory parameter and a few other optional parameters:
+
+| Property      | Example      | Description                                                      |
+| ------------- | ------------ | ---------------------------------------------------------------- |
+| `projectId`   | `replug`     | [Swing Platform project identifier](https://platform.swing.xyz/) |
+| `debug`       | `true`       | Enable verbose logging                                           |
+| `environment` | `production` | Set's SwingAPI to operate either on testnet or mainnet chains    |
+| `analytics`   | `false`      | Enable analytics and error reporting                             |
+
+> You can get your `projectId` by signing up to [Swing!](https://platform.swing.xyz/)
 
 ## Getting a Quote
 
@@ -214,17 +248,32 @@ const defaultTransferParams: TransferParams = {
 };
 ```
 
-## Sending a Token Approval Request for ERC20 Tokens (Optional)
+## Sending a Token Approval Request for ERC20 Tokens (Optional for SOL > ETH Route)
 
 If you're attempting to bridge an ERC20 token from a user's wallet to Solana, you need to prompt the user to approve the required amount of tokens to be bridged.
 
 Navigating to our `src/components/Swap.tsx` file, inside our `startTransfer()` method, you will find our implementation of the `getAllowanceRequest()` and `getApprovalTxDataRequest()` methods. Before approving, you have to perform two checks:
 
-- First, we will check if we're performing a native currency swap by comparing the values of `tokenSymbol` and `fromNativeTokenSymbol`. If we're not dealing with a native currency swap, we then proceed to ask for an allowance.
-- Next, we will check if there's already a pending approval in the user's wallet by calling the `getAllowanceRequest()` method. If no approved allowance is found, we will then proceed to make an approval request.
+- First, we will check if we're performing a native currency swap by comparing the values of `tokenSymbol` and `fromNativeTokenSymbol` on the source chain. If we're not dealing with a native currency swap, we then proceed to ask for an allowance.
+- Next, we will check if an allowance has already been made by Swing on a user's wallet by calling the `getAllowanceRequest()` method. If no approved allowance is found, we will then proceed to make an approval request by calling the `getApprovalTxDataRequest()` method.
+
+Since the `/approval` and `/approve` endpoints are specific to EVM chains, we have to check that source chain via `fromChain` is anything but `solana`. Skipping this check will result in the `/approval` endpoint returning an error to the user:
+
+```json
+{
+  "statusCode": 400,
+  "message": "Non-evm is not supported for approval method: solana",
+  "error": "Bad Request"
+}
+```
+
+Let's execute these steps:
 
 ```typescript
-if (transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol) {
+if (
+  transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol &&
+  transferParams.fromChain !== "solana"
+) {
   const checkAllowance = await getAllowanceRequest({
     bridge: transferRoute.quote.integration,
     fromAddress: transferParams.fromUserAddress,
@@ -252,23 +301,21 @@ if (transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol) {
       toChain: transferParams.toChain,
       toTokenAddress: transferParams.toTokenAddress!,
       toTokenSymbol: transferParams.toTokenSymbol!,
-      contractCall: true,
+      contractCall: false,
     });
 
-    if (transferParams.fromChain !== "solana") {
-      const txData: TransactionDetails = {
-        data: getApprovalTxData.tx[0].data,
-        from: getApprovalTxData.tx[0].from,
-        to: getApprovalTxData.tx[0].to,
-      };
+    const txData: TransactionDetails = {
+      data: getApprovalTxData.tx[0].data,
+      from: getApprovalTxData.tx[0].from,
+      to: getApprovalTxData.tx[0].to,
+    };
 
-      const txResponse = await signer?.sendTransaction(txData);
+    const txResponse = await signer?.sendTransaction(txData);
 
-      const receipt = await txResponse?.wait();
-      console.log("Transaction receipt:", receipt);
+    const receipt = await txResponse?.wait();
+    console.log("Transaction receipt:", receipt);
 
-      setTransStatus({ status: "Token allowance approved" });
-    }
+    setTransStatus({ status: "Token allowance approved" });
   }
 }
 ```
@@ -432,7 +479,7 @@ For our next steps, we will read the raw transaction data by decoding the value 
 const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
 ```
 
-Next, we will create a transaction object by deserializing the raw transaction data. If it fails as a regular transaction, we attempt to deserialize it as a versioned transaction:
+Next, we will create a transaction object by deserializing the raw transaction data. If it fails as a regular transaction, we attempt to deserialize it as a [Versioned Transaction](https://solana.com/docs/advanced/versions):
 
 ```typescript
 let transaction: Transaction | VersionedTransaction;
@@ -445,7 +492,7 @@ try {
 }
 ```
 
-Next, we will check if the user has a Solana-supported wallet installed. If the user does not have a supported wallet installed, we will prompt them to install one. If all is good, we will proceed to sign and send the transaction over to the network.
+Next, we will proceed to sign and send the transaction over to the network.
 
 ```typescript
 try {
@@ -495,7 +542,7 @@ async getTransationStatusRequest(
 
 The `TransactionStatusParams` params contains the three properties, namely: `id`, `txHash` and `projectId`
 
-URL: [https://swap.prod.swing.xyz/v0/transfer/status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status)
+URL: [https://platform.swing.xyz/api/v1/projects/{projectId}/transactions/{transactionId}](https://developers.swing.xyz/reference/api/platform/ehwqfo1kv00ce-get-transaction)
 
 **Parameters**:
 
@@ -555,11 +602,30 @@ In our `startTransfer()` method, we will execute the `pollTransactionStatus()` r
 ```typescript
 // src/components/Swaps.tsx
 
-setTransStatus({ status: "Wallet Interaction Required" });
+let txHash = "";
 
-const txResponse = await signer?.sendTransaction(txData);
+if (transferParams.fromChain === "solana") {
+  const hash = await sendSolTrans({
+    ...txData,
+    from: transferParams.fromUserAddress,
+  });
+  txHash = hash!;
+} else {
+  const txResponse = await signer?.sendTransaction({
+    data: txData.data,
+    from: txData.from,
+    to: txData.to,
+    value: txData.value,
+    gasLimit: txData.gasLimit,
+  });
+  // Wait for the transaction to be mined
 
-pollTransactionStatus(transfer.id.toString(), txResponse.hash);
+  const receipt = await txResponse?.wait();
+  console.log("Transaction receipt:", receipt);
+  txHash = txResponse?.hash!;
+}
+
+pollTransactionStatus(transfer?.id.toString()!, txHash);
 ```
 
 ## Customizing
