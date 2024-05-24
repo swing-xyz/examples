@@ -43,7 +43,7 @@ export const TransferHistoryPanel = ({
       <PopoverTrigger className={className}>
         <MdOutlineHistory className="size-7 group-hover:text-zinc-50" />
       </PopoverTrigger>
-      <PopoverContent className="flex flex-col gap-y-2 rounded-2xl min-w-[50px] max-h-96 overflow-scroll">
+      <PopoverContent className="flex flex-col gap-y-2 p-2 rounded-2xl min-w-[50px] max-h-96 overflow-scroll">
         <input
           id="width"
           defaultValue=""
@@ -53,38 +53,52 @@ export const TransferHistoryPanel = ({
             const historyResults = historyList?.filter((history) =>
               history.status
                 .toLowerCase()
+                .startsWith(e.target.value.toLowerCase()) || history.fromChainSlug!
+                .toLowerCase()
+                .startsWith(e.target.value.toLowerCase()) || history.toChainSlug!
+                .toLowerCase()
                 .startsWith(e.target.value.toLowerCase()),
             );
             setFilteredItems(() => [...historyResults!]);
           }}
         />
-        {filteredItems?.map((transaction, index) => (
+        {filteredItems?.reverse().map((transaction, index) => (
           <div
             key={index}
-            className="flex gap-y-2 flex-col justify-between p-3 hover:bg-zinc-300 hover:cursor-pointer rounded-xl ring-1"
+            className="grid grid-cols-3 gap-x-1 min-h-24 shadow hover:bg-zinc-100 hover:cursor-pointer rounded-2xl p-2"
             onClick={() => onItemSelect?.(transaction)}
           >
-            <div className="flex justify-start items-center gap-x-2">
-              <span className="p-1 rounded-xl bg-purple-300">
-                {transaction.fromChainSlug?.toUpperCase()}
-              </span>
-              <span className="p-1 rounded-xl bg-cyan-200">
-                {transaction.toChainSlug?.toUpperCase()}
+            <div className="flex flex-col p-1 justify-between bg-purple-100 rounded-xl">
+              <span className="text-xs font-bold">ROUTE</span>
+              <span className="text-xs">
+                {transaction.fromChainSlug?.toUpperCase().substring(0, 3)} ({transaction.fromTokenSymbol}) {">"}{" "}
+                {transaction.toChainSlug?.toUpperCase().substring(0, 3)} ({transaction.toTokenSymbol})
               </span>
             </div>
-            <span
-              className={clsx("text-center rounded-xl p-1", {
-                "bg-green-400": transaction.status === "Completed",
-                "bg-yellow-400 text-black": pendingStatuses.includes(
-                  transaction.status,
-                ),
-                "bg-red-400 text-white":
-                  transaction.status === "Failed Source Chain" ||
-                  "Failed Destination Chain",
-              })}
-            >
-              {transaction.status}
-            </span>
+
+            <div className="flex flex-col p-1 justify-between bg-blue-100 rounded-xl">
+              <span className="text-xs font-bold">AMOUNT</span>
+              <span className="text-xs">
+                {transaction.toAmountUsdValue} USD
+              </span>
+            </div>
+
+            <div className="flex flex-col p-1 justify-between bg-cyan-100 rounded-xl">
+              <span className="text-xs font-bold">STATUS</span>
+              <span
+                className={clsx("text-xs font-bold rounded-xl p-1", {
+                  "bg-green-400": transaction.status === "Completed",
+                  "bg-yellow-400 text-black": pendingStatuses.includes(
+                    transaction.status,
+                  ),
+                  "bg-red-400 text-white":
+                    transaction.status === "Failed Source Chain" ||
+                    "Failed Destination Chain",
+                })}
+              >
+                {transaction.status}
+              </span>
+            </div>
           </div>
         ))}
       </PopoverContent>

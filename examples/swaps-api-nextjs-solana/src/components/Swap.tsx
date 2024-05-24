@@ -69,7 +69,7 @@ const Swap = () => {
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
-    useState<TransactionStatusAPIResponse>();
+    useState<TransactionStatusAPIResponse | null>();
   const [tokens, setTokens] = useState<Token[]>([]);
   const [solTokens, setSolTokens] = useState<Token[]>([]);
   const [chains, setChains] = useState<Chain[]>([]);
@@ -226,7 +226,9 @@ const Swap = () => {
       }
 
       setTransferRoute(null);
+      setTransStatus(null);
       setIsTransacting(false);
+      setIsLoading(false);
       (sendInputRef.current as HTMLInputElement).value = "";
     }
   }
@@ -487,6 +489,7 @@ const Swap = () => {
         });
         setIsLoading(false);
         setIsTransacting(false);
+        setTransStatus(null);
         return;
       }
 
@@ -541,9 +544,8 @@ const Swap = () => {
       });
 
       setIsTransacting(false);
+      setTransStatus(null);
     }
-
-    setIsLoading(false);
   }
 
   function SelectFromChainPanel() {

@@ -129,7 +129,7 @@ export function Header() {
 
                           <div className="flex flex-col mt-4 space-y-4">
                             <Button
-                              href="https://github.com/swing-xyz/examples"
+                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-solana"
                               className="space-x-2 text-zinc-900"
                               variant="outline"
                             >
@@ -146,7 +146,7 @@ export function Header() {
             </Popover>
 
             <Button
-              href="https://github.com/swing-xyz/examples"
+              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-solana"
               className="hidden space-x-2 lg:block text-white"
               variant="outline"
             >
