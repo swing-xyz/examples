@@ -160,7 +160,7 @@ Here's an example response that contains the route data:
 Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransferParams` object which will store the default transaction config for our example:
 
 ```typescript
-const defaultTransferParams: TranferParams = {
+const defaultTransferParams: TransferParams = {
   tokenAmount: "1",
   fromChain: "ethereum",
   fromUserAddress: "",
@@ -319,7 +319,6 @@ export interface SendTransactionApiResponse {
   route: Route[];
   tx: TransactionDetails;
 }
-
 ```
 
 > The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need later for checking the status of a transaction.
@@ -398,11 +397,11 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/status](https://developers.swing.x
 
 **Parameters**:
 
-| Key         | Example                             | Description                          |
-| ----------- | ----------------------------------- | ------------------------------------ |
-| `id`        | 239750                              | Transaction ID from `/send` response |
-| `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.     |
-| `projectId` | `replug`                            | [Your project's ID](https://platform.swing.xyz/)        |
+| Key         | Example                             | Description                                      |
+| ----------- | ----------------------------------- | ------------------------------------------------ |
+| `id`        | 239750                              | Transaction ID from `/send` response             |
+| `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.                 |
+| `projectId` | `replug`                            | [Your project's ID](https://platform.swing.xyz/) |
 
 To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction is completed.
 
