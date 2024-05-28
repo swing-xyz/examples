@@ -65,7 +65,7 @@ const Swap = () => {
     defaultTransferParams,
   );
 
-  const [solWalletAddress, setSolWalletAddress] = useState<string>("null");
+  const [solWalletAddress, setSolWalletAddress] = useState<string>("");
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
@@ -178,15 +178,25 @@ const Swap = () => {
       if (solana && solana.isPhantom) {
         const response = await solana.connect();
         setSolWalletAddress(response.publicKey.toString());
-        console.log(
-          "Connected to Phantom wallet:",
-          response.publicKey.toString(),
-        );
+        setTransferParams((prev) => ({
+          ...prev,
+          toUserAddress: response.publicKey.toString(),
+        }));
       } else {
-        alert("Phantom wallet not found. Please install it.");
+        toast({
+          variant: "destructive",
+          title: "Something went wrong!",
+          description: "Phantom wallet not found. Please install it.",
+        });
       }
     } catch (error) {
       console.error("Failed to connect to Phantom wallet:", error);
+      toast({
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: `Failed to connect to Phantom wallet: ${(error as Error).message}`,
+      });
+      
     }
   };
 
@@ -666,8 +676,7 @@ const Swap = () => {
               <div
                 className="justify-center rounded-2xl py-2 px-3 text-sm font-semibold
                                         outline-2 outline-offset-2 transition-colors text-whit
-                                        flex items-center bg-zinc-600
-                                        active:bg-gray-800 active:text-white/80 gap-x-2"
+                                        flex items-center bg-zinc-600 gap-x-2"
               >
                 <SelectFromChainPanel />
                 <SelectFromTokenPanel />
@@ -735,7 +744,7 @@ const Swap = () => {
             className="border-none w-[50%] p-2 h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-4xl m-0 text-4xl"
             placeholder={"0 " + transferParams.tokenSymbol}
             ref={sendInputRef}
-            // disabled={!isConnected}
+            disabled={!solWalletAddress.length}
             onChange={(e) => {
               debounced(e.target.value);
               setTransferRoute(null); // Reset transfer route
@@ -877,11 +886,9 @@ const Swap = () => {
       <div className="flex justify-between w-full gap-3 min-h-[150px]">
         <button
           disabled={
-            isLoading ||
-            isTransacting ||
-            (connectionStatus === "connected" && !transferRoute) ||
-            (connectionStatus !== "connected" &&
-              transferParams.toUserAddress === "")
+            (connectionStatus === "connected" && isLoading) ||
+            (connectionStatus === "connected" && isTransacting) ||
+            (connectionStatus === "connected" && !transferRoute)
           }
           className={clsx(
             "flex flex-col justify-center grow rounded-xl p-3 bg-zinc-300 transition-all ease-in-out hover:cursor-pointer",
@@ -903,7 +910,7 @@ const Swap = () => {
                 ? isLoading && !transferRoute
                   ? "FETCHING QUOTE"
                   : "START TRANSFER"
-                : "CONNECT WALLET"}
+                : "CONNECT ETHEREUM WALLET"}
               {(isLoading || isTransacting) && (
                 <FontAwesomeIcon className="ml-2" icon={faCircleNotch} spin />
               )}
