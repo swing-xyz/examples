@@ -50,14 +50,17 @@ export const TransferHistoryPanel = ({
           placeholder={"Search by status"}
           className="col-span-2 h-8 focus:border-2 focus:border-purple-300 rounded-xl border-none w-full"
           onChange={(e) => {
-            const historyResults = historyList?.filter((history) =>
-              history.status
-                .toLowerCase()
-                .startsWith(e.target.value.toLowerCase()) || history.fromChainSlug!
-                .toLowerCase()
-                .startsWith(e.target.value.toLowerCase()) || history.toChainSlug!
-                .toLowerCase()
-                .startsWith(e.target.value.toLowerCase()),
+            const historyResults = historyList?.filter(
+              (history) =>
+                history.status
+                  .toLowerCase()
+                  .startsWith(e.target.value.toLowerCase()) ||
+                history
+                  .fromChainSlug!.toLowerCase()
+                  .startsWith(e.target.value.toLowerCase()) ||
+                history
+                  .toChainSlug!.toLowerCase()
+                  .startsWith(e.target.value.toLowerCase()),
             );
             setFilteredItems(() => [...historyResults!]);
           }}
@@ -71,8 +74,10 @@ export const TransferHistoryPanel = ({
             <div className="flex flex-col p-1 justify-between bg-purple-100 rounded-xl">
               <span className="text-xs font-bold">ROUTE</span>
               <span className="text-xs">
-                {transaction.fromChainSlug?.toUpperCase().substring(0, 3)} ({transaction.fromTokenSymbol}) {">"}{" "}
-                {transaction.toChainSlug?.toUpperCase().substring(0, 3)} ({transaction.toTokenSymbol})
+                {transaction.fromChainSlug?.toUpperCase().substring(0, 3)} (
+                {transaction.fromTokenSymbol}) {">"}{" "}
+                {transaction.toChainSlug?.toUpperCase().substring(0, 3)} (
+                {transaction.toTokenSymbol})
               </span>
             </div>
 
