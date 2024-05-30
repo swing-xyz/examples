@@ -196,7 +196,6 @@ const Swap = () => {
         title: "Something went wrong!",
         description: `Failed to connect to Phantom wallet: ${(error as Error).message}`,
       });
-      
     }
   };
 
@@ -362,6 +361,7 @@ const Swap = () => {
         fromTokenAddress: tokens[0].address,
         fromTokenIconUrl: tokens[0].logo,
         fromChainDecimal: tokens[0].decimals,
+        fromNativeTokenSymbol: chain.nativeToken?.symbol,
       }));
     } else {
       setTransferParams((prev) => ({
@@ -374,6 +374,7 @@ const Swap = () => {
         toTokenAddress: tokens[0].address,
         toTokenIconUrl: tokens[0].logo,
         toChainDecimal: tokens[0].decimals,
+        toNativeTokenSymbol: chain.nativeToken?.symbol,
       }));
     }
 

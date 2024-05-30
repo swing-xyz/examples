@@ -193,4 +193,12 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   get isSDKConnected() {
     return this.swingSDK.isReady;
   }
+
+  get swingSdk(): null | this {
+    if (this.isSDKConnected) {
+      return this;
+    }
+
+    return null;
+  }
 }
