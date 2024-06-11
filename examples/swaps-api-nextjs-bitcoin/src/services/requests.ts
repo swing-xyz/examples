@@ -40,7 +40,7 @@ export const getTransationStatus = async (
   } catch (error) {
     console.error("Error fetching transaction status:", error);
 
-    throw error
+    throw error;
   }
 };
 
