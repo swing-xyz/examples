@@ -1,0 +1,9 @@
+{
+    "name": "Example TON Application",
+    "description": "This is an example application integrated with TON Connect.",
+    "url": "https://example-ton-app.com",
+    "icons": [
+      "https://example-ton-app.com/icon.png"
+    ],
+    "bridgeUrl": "https://bridge.tonconnect.org"
+  }
