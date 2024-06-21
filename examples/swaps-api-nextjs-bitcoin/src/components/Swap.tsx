@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
-import { useConnect, metamaskWallet } from "@thirdweb-dev/react";
+import { useConnect } from "@thirdweb-dev/react";
 import {
   useConnectionStatus,
   useAddress,
@@ -25,8 +25,6 @@ import { Input } from "./ui/input";
 import { useToast } from "components/ui/use-toast";
 import { TransactionStatusAPIResponse } from "interfaces/status.interface";
 import { AxiosError } from "axios";
-
-const walletConfig = metamaskWallet();
 
 import { xdefiWallet } from "@thirdweb-dev/react";
 const xDefiConfig = xdefiWallet(); //<- For connecting to a bitcoin supported wallet.
@@ -114,6 +112,17 @@ const Swap = () => {
     });
   }, [recipientAddress]);
 
+  useEffect(() => {
+    if(!xDefiConfig?.isInstalled!()) {
+      console.log('not installed')
+      toast({
+        variant: "destructive",
+        title: "xDefi Wallet not installed",
+        description: "Please install xDefi wallet in your browser",
+      });
+    }
+  }, [])
+
   async function connectWallet(chainId?: number) {
     try {
       // Connect to xDefiConfig
@@ -138,15 +147,21 @@ const Swap = () => {
     }
   }
 
-  async function getTransStatus(transId: string, txHash: string) {
-    const transactionStatus = await getTransationStatus({
-      id: transId,
-      txHash,
-    });
+  async function getTransStatus(transId: string, txHash: string): Promise<TransactionStatusAPIResponse> {
+    try {
 
-    setTransStatus(transactionStatus);
+      const transactionStatus = await getTransationStatus({
+        id: transId,
+        txHash,
+      });
+  
+      setTransStatus(transactionStatus);
+  
+      return transactionStatus!;
+    } catch(e) {
 
-    return transactionStatus;
+      return { status: 'Submitted' }
+    }
   }
 
   async function pollTransactionStatus(transId: string, txHash: string) {
@@ -159,9 +174,13 @@ const Swap = () => {
       );
     } else {
       setTransferRoute(null);
+      toast({
+        title: "Transaction Successful",
+        description: `Bridge Successful`,
+      });
     }
 
-    (sendInputRef.current as HTMLInputElement).value = "";
+    (sendInputRef.current as HTMLInputElement).value = "0.000";
   }
 
   function switchTransferParams() {
@@ -186,7 +205,7 @@ const Swap = () => {
     setTransferRoute(null);
     setTransferParams(newTransferParams);
 
-    (sendInputRef.current as HTMLInputElement).value = "";
+    (sendInputRef.current as HTMLInputElement).value = "0.000";
   }
 
   async function getQuote() {
@@ -195,14 +214,22 @@ const Swap = () => {
     try {
       // Get a quote from the Swing API
       const quotes = await getQuoteRequest({
-        ...transferParams,
+
+        fromChain: transferParams.fromChain,
+        fromTokenAddress: transferParams.fromTokenAddress,
+        fromUserAddress: transferParams.fromUserAddress,
+        toChain: transferParams.toChain,
+        tokenSymbol: transferParams.tokenSymbol,
+        toTokenAddress: transferParams.toTokenAddress,
+        toTokenSymbol: transferParams.toTokenSymbol,
+        toUserAddress: transferParams.toUserAddress,
         tokenAmount: convertEthToWei(
           transferParams.tokenAmount,
           transferParams.fromChainDecimal,
         ),
       });
 
-      if (!quotes.routes.length) {
+      if (!quotes?.routes.length) {
         // setError("");
         toast({
           variant: "destructive",
@@ -267,11 +294,11 @@ const Swap = () => {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const txData: any = {
-        data: transfer.tx.data,
-        from: transfer.tx.from,
-        to: transfer.tx.to,
-        value: transfer.tx.value,
-        gasLimit: transfer.tx.gas,
+        data: transfer?.tx.data,
+        from: transfer?.tx.from,
+        to: transfer?.tx.to,
+        value: transfer?.tx.value,
+        gasLimit: transfer?.tx.gas,
       };
 
       /***
@@ -285,11 +312,10 @@ const Swap = () => {
 
       let txResponse;
 
-      if (transfer.tx.meta) { 
+      if (transfer?.tx.meta) { 
         // For Bitcoin to ETH, the send endpoint will return an object called `meta`
 
-        const { from, recipient, amount, memo } = transfer.tx.meta;
-
+        const { from, recipient, amount, memo } = transfer?.tx.meta;
         (window.xfi as any)?.bitcoin.request( 
           // Here, we're prompting a users wallet using xDEFI injected SDK
           {
@@ -304,15 +330,27 @@ const Swap = () => {
             ],
           },
           (error: any, result: any) => {
-            console.debug(error, result);
+            console.log(error, result);
+
+            if(error) {
+              toast({
+                variant: "destructive",
+                title: "Something went wrong!",
+                description:
+                  "Something went wrong",
+              });
+        
+              setIsLoading(false);
+              setTransStatus(null)
+            }
             txResponse = result
-            pollTransactionStatus(transfer.id.toString(), txResponse?.hash!);
+            pollTransactionStatus(transfer.id.toString(), txResponse);
             console.log(txResponse)
           },
         );
       } else {
         txResponse = await signer?.sendTransaction(txData);
-        pollTransactionStatus(transfer.id.toString(), txResponse?.hash!);
+        pollTransactionStatus(transfer?.id?.toString()!, txResponse?.hash!);
         const receipt = await txResponse?.wait();
         console.log("Transaction receipt:", receipt);
       }
@@ -330,9 +368,6 @@ const Swap = () => {
           (error as Error).message ??
           "Something went wrong",
       });
-
-      setIsLoading(false);
-      setTransStatus(null)
     }
 
     setIsLoading(false);
@@ -380,7 +415,7 @@ const Swap = () => {
             </div>
           </div>
           <div className="p-1 bg-zinc-200 rounded-2xl">
-            <LiaExchangeAltSolid className="rounded-2xl w-8 h-8 font-bold text-black cursor-pointer" onClick={() => switchTransferParams()} />
+            <LiaExchangeAltSolid className="rounded-2xl w-8 h-8 font-bold text-zinc-400 cursor-pointer hover:text-zinc-950 transition-colors ease-in-out" onClick={() => switchTransferParams()} />
           </div>
           <div className="flex w-full">
             <div className="lg:w-auto w-full border-8 border-cyan-500 space-y-1 rounded-xl bg-zinc-900 p-3">
@@ -435,7 +470,7 @@ const Swap = () => {
                                             flex items-center cursor-pointer bg-zinc-600 
                                             active:bg-gray-800 active:text-white/80"
                 >
-                  Start Transfer
+                  {transStatus?.status ? "View Transaction" : "Start Transfer"}
                 </PopoverTrigger>
                 <PopoverContent className="rounded-2xl min-w-[300px]">
                   <div className="space-y-2">
