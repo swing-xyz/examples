@@ -314,8 +314,10 @@ const Swap = () => {
 
       if (transfer?.tx.meta) { 
         // For Bitcoin to ETH, the send endpoint will return an object called `meta`
-
-        const { from, recipient, amount, memo } = transfer?.tx.meta;
+        
+        const { from, recipient, amount, memo } = transfer.tx.meta;
+        
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window.xfi as any)?.bitcoin.request( 
           // Here, we're prompting a users wallet using xDEFI injected SDK
           {
@@ -329,6 +331,7 @@ const Swap = () => {
               },
             ],
           },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (error: any, result: any) => {
             console.log(error, result);
 
