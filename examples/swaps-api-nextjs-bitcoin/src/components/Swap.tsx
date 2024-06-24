@@ -141,7 +141,7 @@ const Swap = () => {
       console.error("Connect Wallet Error:", error);
       toast({
         variant: "destructive",
-        title: "Something went wrong!",
+        title: "Wallet connection error",
         description: (error as Error).message,
       });
     }
@@ -316,7 +316,7 @@ const Swap = () => {
         // For Bitcoin to ETH, the send endpoint will return an object called `meta`
         
         const { from, recipient, amount, memo } = transfer.tx.meta;
-        
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window.xfi as any)?.bitcoin.request( 
           // Here, we're prompting a users wallet using xDEFI injected SDK
@@ -340,7 +340,7 @@ const Swap = () => {
                 variant: "destructive",
                 title: "Something went wrong!",
                 description:
-                  "Something went wrong",
+                  "Swap error, please check your balance or swap config",
               });
         
               setIsLoading(false);
