@@ -3,9 +3,9 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/Button";
-import { useConnect, metamaskWallet } from "@thirdweb-dev/react";
+import { useConnect } from "@thirdweb-dev/react";
 import {
   useConnectionStatus,
   useAddress,
@@ -26,10 +26,8 @@ import { useToast } from "components/ui/use-toast";
 import { TransactionStatusAPIResponse } from "interfaces/status.interface";
 import { AxiosError } from "axios";
 
-const walletConfig = metamaskWallet();
-
-// import { xdefiWallet } from "@thirdweb-dev/react";
-// const xDefiConfig = xdefiWallet(); <- For connecting to a bitcoin supported wallet.
+import { xdefiWallet } from "@thirdweb-dev/react";
+const xDefiConfig = xdefiWallet(); //<- For connecting to a bitcoin supported wallet.
 
 interface ChainDecimals {
   fromChainDecimal?: number;
@@ -81,7 +79,7 @@ const Swap = () => {
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
-    useState<TransactionStatusAPIResponse>();
+    useState<TransactionStatusAPIResponse | null>();
 
   const connect = useConnect();
   const address = useAddress();
@@ -91,6 +89,8 @@ const Swap = () => {
   const signer = useSigner();
 
   const { toast } = useToast();
+
+  const sendInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setTransferParams((prev) => {
@@ -112,10 +112,21 @@ const Swap = () => {
     });
   }, [recipientAddress]);
 
+  useEffect(() => {
+    if(!xDefiConfig?.isInstalled!()) {
+      console.log('not installed')
+      toast({
+        variant: "destructive",
+        title: "xDefi Wallet not installed",
+        description: "Please install xDefi wallet in your browser",
+      });
+    }
+  }, [])
+
   async function connectWallet(chainId?: number) {
     try {
-      // Connect to MetaMask
-      await connect(walletConfig, { chainId });
+      // Connect to xDefiConfig
+      await connect(xDefiConfig, { chainId });
 
       // Connect wallet signer to Swing SDK
       const walletAddress = address;
@@ -130,21 +141,27 @@ const Swap = () => {
       console.error("Connect Wallet Error:", error);
       toast({
         variant: "destructive",
-        title: "Something went wrong!",
+        title: "Wallet connection error",
         description: (error as Error).message,
       });
     }
   }
 
-  async function getTransStatus(transId: string, txHash: string) {
-    const transactionStatus = await getTransationStatus({
-      id: transId,
-      txHash,
-    });
+  async function getTransStatus(transId: string, txHash: string): Promise<TransactionStatusAPIResponse> {
+    try {
 
-    setTransStatus(transactionStatus);
+      const transactionStatus = await getTransationStatus({
+        id: transId,
+        txHash,
+      });
+  
+      setTransStatus(transactionStatus);
+  
+      return transactionStatus!;
+    } catch(e) {
 
-    return transactionStatus;
+      return { status: 'Submitted' }
+    }
   }
 
   async function pollTransactionStatus(transId: string, txHash: string) {
@@ -157,7 +174,38 @@ const Swap = () => {
       );
     } else {
       setTransferRoute(null);
+      toast({
+        title: "Transaction Successful",
+        description: `Bridge Successful`,
+      });
     }
+
+    (sendInputRef.current as HTMLInputElement).value = "0.000";
+  }
+
+  function switchTransferParams() {
+    const tempTransferParams: TranferParams = Object.create(transferParams);
+
+    const newTransferParams: TranferParams = {
+      tokenAmount: "0",
+      fromChain: tempTransferParams.toChain,
+      tokenSymbol: tempTransferParams.toTokenSymbol!,
+      fromUserAddress: tempTransferParams.toUserAddress!,
+      fromTokenAddress: tempTransferParams.toTokenAddress!,
+      fromTokenIconUrl: tempTransferParams.toTokenIconUrl,
+      fromChainDecimal: tempTransferParams.toChainDecimal,
+      toTokenAddress: tempTransferParams.fromTokenAddress,
+      toTokenSymbol: tempTransferParams.tokenSymbol,
+      toChain: tempTransferParams.fromChain,
+      toTokenIconUrl: tempTransferParams.fromTokenIconUrl!,
+      toUserAddress: tempTransferParams.fromUserAddress,
+      toChainDecimal: tempTransferParams.fromChainDecimal,
+    };
+
+    setTransferRoute(null);
+    setTransferParams(newTransferParams);
+
+    (sendInputRef.current as HTMLInputElement).value = "0.000";
   }
 
   async function getQuote() {
@@ -166,14 +214,22 @@ const Swap = () => {
     try {
       // Get a quote from the Swing API
       const quotes = await getQuoteRequest({
-        ...transferParams,
+
+        fromChain: transferParams.fromChain,
+        fromTokenAddress: transferParams.fromTokenAddress,
+        fromUserAddress: transferParams.fromUserAddress,
+        toChain: transferParams.toChain,
+        tokenSymbol: transferParams.tokenSymbol,
+        toTokenAddress: transferParams.toTokenAddress,
+        toTokenSymbol: transferParams.toTokenSymbol,
+        toUserAddress: transferParams.toUserAddress,
         tokenAmount: convertEthToWei(
           transferParams.tokenAmount,
           transferParams.fromChainDecimal,
         ),
       });
 
-      if (!quotes.routes.length) {
+      if (!quotes?.routes.length) {
         // setError("");
         toast({
           variant: "destructive",
@@ -238,11 +294,11 @@ const Swap = () => {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const txData: any = {
-        data: transfer.tx.data,
-        from: transfer.tx.from,
-        to: transfer.tx.to,
-        value: transfer.tx.value,
-        gasLimit: transfer.tx.gas,
+        data: transfer?.tx.data,
+        from: transfer?.tx.from,
+        to: transfer?.tx.to,
+        value: transfer?.tx.value,
+        gasLimit: transfer?.tx.gas,
       };
 
       /***
@@ -252,46 +308,58 @@ const Swap = () => {
        * In this excerpt, here's how to
        */
 
-      // if (transfer.tx.meta) { <- For Bitcoin to ETH, the send endpoint will return an object called `meta`
-      //   const { from, recipient, amount, memo } = transfer.tx.meta;
-
-      //   (window.xfi as any)?.bitcoin.request( <- Here, we're prompting a users wallet using xDEFI injected SDK
-      //     {
-      //       method: "transfer",
-      //       params: [
-      //         {
-      //           from,
-      //           recipient,
-      //           amount,
-      //           memo,
-      //         },
-      //       ],
-      //     },
-      //     (error: any, result: any) => {
-      //       console.debug(error, result);
-      //     },
-      //   );
-
-      //   txData = {
-      //     from,
-      //     to: recipient,
-      //     amount: amount,
-      //     data: memo,
-      //   };
-      // } else {
-
-      // }
-
       setTransStatus({ status: "Wallet Interaction Required" });
 
-      const txResponse = await signer?.sendTransaction(txData);
+      let txResponse;
 
-      pollTransactionStatus(transfer.id.toString(), txResponse?.hash!);
+      if (transfer?.tx.meta) { 
+        // For Bitcoin to ETH, the send endpoint will return an object called `meta`
+        
+        const { from, recipient, amount, memo } = transfer.tx.meta;
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window.xfi as any)?.bitcoin.request( 
+          // Here, we're prompting a users wallet using xDEFI injected SDK
+          {
+            method: "transfer",
+            params: [
+              {
+                from,
+                recipient,
+                amount,
+                memo,
+              },
+            ],
+          },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (error: any, result: any) => {
+            console.log(error, result);
+
+            if(error) {
+              toast({
+                variant: "destructive",
+                title: "Something went wrong!",
+                description:
+                  "Swap error, please check your balance or swap config",
+              });
+        
+              setIsLoading(false);
+              setTransStatus(null)
+            }
+            txResponse = result
+            pollTransactionStatus(transfer.id.toString(), txResponse);
+            console.log(txResponse)
+          },
+        );
+      } else {
+        txResponse = await signer?.sendTransaction(txData);
+        pollTransactionStatus(transfer?.id?.toString()!, txResponse?.hash!);
+        const receipt = await txResponse?.wait();
+        console.log("Transaction receipt:", receipt);
+      }
+      
 
       // Wait for the transaction to be mined
-
-      const receipt = await txResponse?.wait();
-      console.log("Transaction receipt:", receipt);
     } catch (error) {
       console.error("Transfer Error:", error);
       toast({
@@ -325,6 +393,7 @@ const Swap = () => {
                       className="border-none text-white w-full h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
                       placeholder={"0"}
                       defaultValue={transferParams.tokenAmount}
+                      ref={sendInputRef}
                       onChange={(e) => {
                         setTransferRoute(null); // Reset transfer route
                         setTransferParams((prev) => ({
@@ -349,7 +418,7 @@ const Swap = () => {
             </div>
           </div>
           <div className="p-1 bg-zinc-200 rounded-2xl">
-            <LiaExchangeAltSolid className="rounded-2xl w-8 h-8 font-bold text-black" />
+            <LiaExchangeAltSolid className="rounded-2xl w-8 h-8 font-bold text-zinc-400 cursor-pointer hover:text-zinc-950 transition-colors ease-in-out" onClick={() => switchTransferParams()} />
           </div>
           <div className="flex w-full">
             <div className="lg:w-auto w-full border-8 border-cyan-500 space-y-1 rounded-xl bg-zinc-900 p-3">
@@ -404,13 +473,13 @@ const Swap = () => {
                                             flex items-center cursor-pointer bg-zinc-600 
                                             active:bg-gray-800 active:text-white/80"
                 >
-                  Start Transfer
+                  {transStatus?.status ? "View Transaction" : "Start Transfer"}
                 </PopoverTrigger>
                 <PopoverContent className="rounded-2xl min-w-[300px]">
                   <div className="space-y-2">
                     <div className="flex flex-col space-y-4 text-sm text-muted-foreground">
                       <Label htmlFor="width" className="text-zinc-700">
-                        Enter your Bitcoin wallet address
+                        Enter your {transferParams.toChain} wallet address
                       </Label>
                       <Input
                         id="width"
