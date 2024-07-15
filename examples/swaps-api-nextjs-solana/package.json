@@ -27,7 +27,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-toast": "^1.1.5",
     "@solana/web3.js": "^1.91.8",
-    "@swing.xyz/sdk": "^0.54.0",
+    "@swing.xyz/sdk": "^0.54.2",
     "@tailwindcss/forms": "^0.5.7",
     "@thirdweb-dev/react": "^4.4.17",
     "@thirdweb-dev/sdk": "^4.0.44",
