@@ -113,15 +113,15 @@ const Swap = () => {
   }, [recipientAddress]);
 
   useEffect(() => {
-    if(!xDefiConfig?.isInstalled!()) {
-      console.log('not installed')
+    if (!xDefiConfig?.isInstalled!()) {
+      console.log("not installed");
       toast({
         variant: "destructive",
         title: "xDefi Wallet not installed",
         description: "Please install xDefi wallet in your browser",
       });
     }
-  }, [])
+  }, []);
 
   async function connectWallet(chainId?: number) {
     try {
@@ -147,20 +147,21 @@ const Swap = () => {
     }
   }
 
-  async function getTransStatus(transId: string, txHash: string): Promise<TransactionStatusAPIResponse> {
+  async function getTransStatus(
+    transId: string,
+    txHash: string,
+  ): Promise<TransactionStatusAPIResponse> {
     try {
-
       const transactionStatus = await getTransationStatus({
         id: transId,
         txHash,
       });
-  
-      setTransStatus(transactionStatus);
-  
-      return transactionStatus!;
-    } catch(e) {
 
-      return { status: 'Submitted' }
+      setTransStatus(transactionStatus);
+
+      return transactionStatus!;
+    } catch (e) {
+      return { status: "Submitted" };
     }
   }
 
@@ -214,7 +215,6 @@ const Swap = () => {
     try {
       // Get a quote from the Swing API
       const quotes = await getQuoteRequest({
-
         fromChain: transferParams.fromChain,
         fromTokenAddress: transferParams.fromTokenAddress,
         fromUserAddress: transferParams.fromUserAddress,
@@ -312,13 +312,13 @@ const Swap = () => {
 
       let txResponse;
 
-      if (transfer?.tx.meta) { 
+      if (transfer?.tx.meta) {
         // For Bitcoin to ETH, the send endpoint will return an object called `meta`
-        
+
         const { from, recipient, amount, memo } = transfer.tx.meta;
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (window.xfi as any)?.bitcoin.request( 
+        (window.xfi as any)?.bitcoin.request(
           // Here, we're prompting a users wallet using xDEFI injected SDK
           {
             method: "transfer",
@@ -335,20 +335,20 @@ const Swap = () => {
           (error: any, result: any) => {
             console.log(error, result);
 
-            if(error) {
+            if (error) {
               toast({
                 variant: "destructive",
                 title: "Something went wrong!",
                 description:
                   "Swap error, please check your balance or swap config",
               });
-        
+
               setIsLoading(false);
-              setTransStatus(null)
+              setTransStatus(null);
             }
-            txResponse = result
+            txResponse = result;
             pollTransactionStatus(transfer.id.toString(), txResponse);
-            console.log(txResponse)
+            console.log(txResponse);
           },
         );
       } else {
@@ -357,7 +357,6 @@ const Swap = () => {
         const receipt = await txResponse?.wait();
         console.log("Transaction receipt:", receipt);
       }
-      
 
       // Wait for the transaction to be mined
     } catch (error) {
@@ -418,7 +417,10 @@ const Swap = () => {
             </div>
           </div>
           <div className="p-1 bg-zinc-200 rounded-2xl">
-            <LiaExchangeAltSolid className="rounded-2xl w-8 h-8 font-bold text-zinc-400 cursor-pointer hover:text-zinc-950 transition-colors ease-in-out" onClick={() => switchTransferParams()} />
+            <LiaExchangeAltSolid
+              className="rounded-2xl w-8 h-8 font-bold text-zinc-400 cursor-pointer hover:text-zinc-950 transition-colors ease-in-out"
+              onClick={() => switchTransferParams()}
+            />
           </div>
           <div className="flex w-full">
             <div className="lg:w-auto w-full border-8 border-cyan-500 space-y-1 rounded-xl bg-zinc-900 p-3">
