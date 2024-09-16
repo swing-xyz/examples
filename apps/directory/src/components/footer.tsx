@@ -1,15 +1,15 @@
-import { GithubIcon } from "./icons/github";
-import { TwitterIcon } from "./icons/twitter";
+import { GithubIcon } from './icons/github';
+import { TwitterIcon } from './icons/twitter';
 
 const footerNavigation = [
   {
-    name: "GitHub",
-    href: "https://github.com/swing-xyz/examples",
+    name: 'GitHub',
+    href: 'https://github.com/swing-xyz/examples',
     icon: GithubIcon,
   },
   {
-    name: "X",
-    href: "https://x.com/swing_xyz",
+    name: 'X',
+    href: 'https://x.com/swing_xyz',
     icon: TwitterIcon,
   },
 ];
@@ -27,14 +27,14 @@ export function Footer() {
             >
               <span className="sr-only">{item.name}</span>
               <item.icon
-                className="h-5 w-5 fill-muted hover:fill-muted/80"
+                className="fill-muted hover:fill-muted/80 h-5 w-5"
                 aria-hidden="true"
               />
             </a>
           ))}
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
-          <p className="text-center text-xs leading-5 text-muted">
+          <p className="text-muted text-center text-xs leading-5">
             &copy; {new Date().getFullYear()} Swing. All rights reserved.
           </p>
         </div>

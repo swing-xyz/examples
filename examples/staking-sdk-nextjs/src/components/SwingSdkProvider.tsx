@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { SwingSDK } from "@swing.xyz/sdk";
-import { useContext, useEffect, useState, createContext } from "react";
+import { SwingSDK } from '@swing.xyz/sdk';
+import { useContext, useEffect, useState, createContext } from 'react';
 
 const swingSdk = new SwingSDK({
-  projectId: "example-staking-sdk-nextjs",
+  projectId: 'example-staking-sdk-nextjs',
   debug: true,
   // environment: "testnet",
 });

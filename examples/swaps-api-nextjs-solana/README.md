@@ -54,14 +54,14 @@ We've included all the necessary request and response interfaces in the `src/int
 Navigating to our `src/services/requests.ts`, let's start by initializing Swing's SDK in our `SwingServiceAPI` class:
 
 ```typescript
-import { SwingSDK } from "@swing.xyz/sdk";
+import { SwingSDK } from '@swing.xyz/sdk';
 
 export class SwingServiceAPI implements ISwingServiceAPI {
   private readonly swingSDK: SwingSDK;
 
   constructor() {
     this.swingSDK = new SwingSDK({
-      projectId: "replug",
+      projectId: 'replug',
       debug: true,
     });
   }
@@ -224,26 +224,26 @@ Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransf
 
 ```typescript
 const defaultTransferParams: TransferParams = {
-  tokenAmount: "1",
-  fromChain: "ethereum",
-  tokenSymbol: "ETH",
-  fromUserAddress: "",
-  fromTokenAddress: "0x0000000000000000000000000000000000000000",
-  fromNativeTokenSymbol: "ETH",
+  tokenAmount: '1',
+  fromChain: 'ethereum',
+  tokenSymbol: 'ETH',
+  fromUserAddress: '',
+  fromTokenAddress: '0x0000000000000000000000000000000000000000',
+  fromNativeTokenSymbol: 'ETH',
   fromTokenIconUrl:
-    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png",
+    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png',
   fromChainIconUrl:
-    "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png",
+    'https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png',
   fromChainDecimal: 18,
-  toTokenAddress: "11111111111111111111111111111111",
-  toTokenSymbol: "SOL",
-  toNativeTokenSymbol: "SOL",
-  toChain: "solana",
+  toTokenAddress: '11111111111111111111111111111111',
+  toTokenSymbol: 'SOL',
+  toNativeTokenSymbol: 'SOL',
+  toChain: 'solana',
   toTokenIconUrl:
-    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
+    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg',
   toChainIconUrl:
-    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
-  toUserAddress: "", //solana wallet address
+    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg',
+  toUserAddress: '', //solana wallet address
   toChainDecimal: 9,
 };
 ```
@@ -272,7 +272,7 @@ Let's execute these steps:
 ```typescript
 if (
   transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol &&
-  transferParams.fromChain !== "solana"
+  transferParams.fromChain !== 'solana'
 ) {
   const checkAllowance = await getAllowanceRequest({
     bridge: transferRoute.quote.integration,
@@ -313,9 +313,9 @@ if (
     const txResponse = await signer?.sendTransaction(txData);
 
     const receipt = await txResponse?.wait();
-    console.log("Transaction receipt:", receipt);
+    console.log('Transaction receipt:', receipt);
 
-    setTransStatus({ status: "Token allowance approved" });
+    setTransStatus({ status: 'Token allowance approved' });
   }
 }
 ```
@@ -415,7 +415,7 @@ const transfer = await sendTransactionRequest({
     transferParams.fromChainDecimal,
   ),
   route: transferRoute.route,
-  type: "swap",
+  type: 'swap',
 });
 ```
 
@@ -442,7 +442,7 @@ const txResponse = await signer?.sendTransaction(txData); // <- `txResponse` con
 
 const receipt = await txResponse?.wait();
 
-console.log("Transaction receipt:", receipt);
+console.log('Transaction receipt:', receipt);
 ```
 
 The definition for the `sendTransactionRequest` response can be found in `src/interfaces/send.interface.ts.`
@@ -470,13 +470,13 @@ If you decided to perform a cross chain swap with Solana as the source chain, yo
 We will sign the `txData` returned from the `/send` endpoint using the `@solana/web3.js` library. To begin, let's include the necessary imports into our app:
 
 ```typescript
-import { Transaction, VersionedTransaction } from "@solana/web3.js";
+import { Transaction, VersionedTransaction } from '@solana/web3.js';
 ```
 
 For our next steps, we will read the raw transaction data by decoding the value of the `data` property in our `txData`:
 
 ```typescript
-const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
+const rawTx = Uint8Array.from(Buffer.from(txData.data as any, 'hex'));
 ```
 
 Next, we will create a transaction object by deserializing the raw transaction data. If it fails as a regular transaction, we attempt to deserialize it as a [Versioned Transaction](https://solana.com/docs/advanced/versions):
@@ -571,28 +571,28 @@ async function getTransStatus(transId: string, txHash: string) {
 async function pollTransactionStatus(transId: string, txHash: string) {
   const transactionStatus = await getTransStatus(transId, txHash);
 
-  if (transactionStatus?.status! === "Pending") {
+  if (transactionStatus?.status! === 'Pending') {
     setTimeout(
       () => pollTransactionStatus(transId, txHash),
       transactionPollingDuration,
     );
   } else {
-    if (transactionStatus?.status === "Success") {
+    if (transactionStatus?.status === 'Success') {
       toast({
-        title: "Transaction Successful",
+        title: 'Transaction Successful',
         description: `Bridge Successful`,
       });
-    } else if (transactionStatus?.status === "Failed") {
+    } else if (transactionStatus?.status === 'Failed') {
       toast({
-        variant: "destructive",
-        title: "Transaction Failed",
+        variant: 'destructive',
+        title: 'Transaction Failed',
         description: transStatus?.errorReason,
       });
     }
 
     setTransferRoute(null);
     setIsTransacting(false);
-    (sendInputRef.current as HTMLInputElement).value = "";
+    (sendInputRef.current as HTMLInputElement).value = '';
   }
 }
 ```
@@ -602,9 +602,9 @@ In our `startTransfer()` method, we will execute the `pollTransactionStatus()` r
 ```typescript
 // src/components/Swaps.tsx
 
-let txHash = "";
+let txHash = '';
 
-if (transferParams.fromChain === "solana") {
+if (transferParams.fromChain === 'solana') {
   const hash = await sendSolTrans({
     ...txData,
     from: transferParams.fromUserAddress,
@@ -621,7 +621,7 @@ if (transferParams.fromChain === "solana") {
   // Wait for the transaction to be mined
 
   const receipt = await txResponse?.wait();
-  console.log("Transaction receipt:", receipt);
+  console.log('Transaction receipt:', receipt);
   txHash = txResponse?.hash!;
 }
 

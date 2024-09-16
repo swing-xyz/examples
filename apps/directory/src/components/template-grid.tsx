@@ -4,10 +4,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "components/ui/card";
-import { Badge } from "./ui/badge";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
-import { cn } from "lib/utils";
+} from 'components/ui/card';
+import { Badge } from './ui/badge';
+import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { cn } from 'lib/utils';
 
 export type TemplateMeta = {
   id: string;
@@ -18,12 +18,12 @@ export type TemplateMeta = {
   integration?: string;
   framework?: string;
   wallet?: string;
-  "use-case"?: string;
+  'use-case'?: string;
 };
 
 export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 min-[960px]:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 min-[960px]:grid-cols-2 lg:grid-cols-3">
       {templates.map((template) => {
         const FrameworkIcon = template.framework
           ? FrameworkIcons[template.framework as keyof typeof FrameworkIcons]
@@ -32,7 +32,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
         return (
           <Card
             key={template.id}
-            className="sm:max-w-72 hover:scale-105 duration-300 mx-auto flex flex-col relative overflow-hidden bg-background"
+            className="bg-background relative mx-auto flex flex-col overflow-hidden duration-300 hover:scale-105 sm:max-w-72"
           >
             <a
               className="absolute inset-0"
@@ -42,20 +42,20 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
 
             <div
               className={cn(
-                "h-44 flex items-center justify-center bg-gradient-to-r",
+                'flex h-44 items-center justify-center bg-gradient-to-r',
                 {
-                  "to-slate-800": template.framework === "Next.js",
-                  "to-sky-500": template.framework === "Webpack",
-                  "to-red-500": template.framework === "Angular",
+                  'to-slate-800': template.framework === 'Next.js',
+                  'to-sky-500': template.framework === 'Webpack',
+                  'to-red-500': template.framework === 'Angular',
 
-                  "from-blue-400": template["use-case"] === "Swaps",
-                  "from-amber-300": template["use-case"] === "Staking",
-                  "from-emerald-500": template["use-case"] === "Withdraw",
-                  "from-rose-500": template["use-case"] === "Gas",
+                  'from-blue-400': template['use-case'] === 'Swaps',
+                  'from-amber-300': template['use-case'] === 'Staking',
+                  'from-emerald-500': template['use-case'] === 'Withdraw',
+                  'from-rose-500': template['use-case'] === 'Gas',
 
-                  "via-indigo-500": template.integration === "Widget",
-                  "via-emerald-500": template.integration === "SDK",
-                  "via-amber-500": template.integration === "API",
+                  'via-indigo-500': template.integration === 'Widget',
+                  'via-emerald-500': template.integration === 'SDK',
+                  'via-amber-500': template.integration === 'API',
                 },
               )}
             >
@@ -69,7 +69,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
               <CardDescription>{template.description}</CardDescription>
             </CardHeader>
 
-            <CardFooter className="gap-x-2 flex-wrap gap-y-2">
+            <CardFooter className="flex-wrap gap-x-2 gap-y-2">
               {template.framework ? (
                 <Badge variant="secondary">{template.framework}</Badge>
               ) : null}
@@ -90,7 +90,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
 }
 
 const FrameworkIcons = {
-  "Next.js": (props: React.SVGProps<SVGSVGElement>) => (
+  'Next.js': (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       role="img"
       viewBox="0 0 24 24"

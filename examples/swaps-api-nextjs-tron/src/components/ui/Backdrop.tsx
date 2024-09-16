@@ -1,7 +1,7 @@
 export const Backdrop = () => {
   return (
-    <div className="w-full h-full absolute inset-0 flex justify-center items-center -z-10">
-      <div className="w-[30%] h-[30%] bg-red-500 rounded-full blur-[190px] -z-10"></div>
+    <div className="absolute inset-0 -z-10 flex h-full w-full items-center justify-center">
+      <div className="-z-10 h-[30%] w-[30%] rounded-full bg-red-500 blur-[190px]"></div>
     </div>
   );
 };

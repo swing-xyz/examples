@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React from "react";
-import dynamic from "next/dynamic";
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-import { AppScreen } from "./AppScreen";
-import { Container } from "./Container";
+import { AppScreen } from './AppScreen';
+import { Container } from './Container';
 
-const SwapSDK = dynamic(() => import("../Swap"), {
+const SwapSDK = dynamic(() => import('../Swap'), {
   ssr: false,
 });
 
@@ -24,9 +24,9 @@ function AppDemo() {
 
 export function Hero() {
   return (
-    <div className="py-5 overflow-hidden">
+    <div className="overflow-hidden py-5">
       <Container>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <AppDemo />
         </div>
       </Container>

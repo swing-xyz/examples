@@ -1,4 +1,4 @@
-import { QuoteQueryParams } from "interfaces/quote.interface";
+import { QuoteQueryParams } from 'interfaces/quote.interface';
 
 interface ChainDecimals {
   fromChainDecimal?: number;

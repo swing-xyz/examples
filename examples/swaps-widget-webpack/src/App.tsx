@@ -1,5 +1,5 @@
-import { Swap } from "@swing.xyz/ui";
-import "@swing.xyz/ui/theme.css";
+import { Swap } from '@swing.xyz/ui';
+import '@swing.xyz/ui/theme.css';
 
 function App() {
   return (

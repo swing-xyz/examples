@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { createConfig, WagmiProvider } from "wagmi";
-import * as WagmiChains from "wagmi/chains";
-import { injected, coinbaseWallet } from "wagmi/connectors";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createClient, http } from "viem";
+import { createConfig, WagmiProvider } from 'wagmi';
+import * as WagmiChains from 'wagmi/chains';
+import { injected, coinbaseWallet } from 'wagmi/connectors';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createClient, http } from 'viem';
 
 const queryClient = new QueryClient();
 
@@ -22,7 +22,7 @@ const config = createConfig({
   connectors: [
     injected(),
     coinbaseWallet({
-      appName: "Swing Staking Widget Example",
+      appName: 'Swing Staking Widget Example',
     }),
   ],
 });

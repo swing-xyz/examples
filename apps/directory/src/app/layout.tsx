@@ -1,10 +1,10 @@
-import { ThemeProvider } from "components/theme-provider";
-import "styles/globals.css";
+import { ThemeProvider } from 'components/theme-provider';
+import 'styles/globals.css';
 
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Header } from "components/header";
-import { Footer } from "components/footer";
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+import { Header } from 'components/header';
+import { Footer } from 'components/footer';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,12 +12,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <head />
 
       <body
-        className={`bg-background font-sans relative antialiased max-h-screen min-h-full ${GeistSans.variable} ${GeistMono.variable}`}
+        className={`bg-background relative max-h-screen min-h-full font-sans antialiased ${GeistSans.variable} ${GeistMono.variable}`}
       >
         <ThemeProvider>
           <Header />
 
-          <main className="max-w-6xl mx-auto">{children}</main>
+          <main className="mx-auto max-w-6xl">{children}</main>
 
           <Footer />
         </ThemeProvider>

@@ -1,4 +1,4 @@
-import { TransferRoute } from "@swing.xyz/sdk";
+import { TransferRoute } from '@swing.xyz/sdk';
 
 export interface ISelectRoute {
   routes: TransferRoute[];

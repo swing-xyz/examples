@@ -1,13 +1,13 @@
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Sidebar from "components/Sidebar";
-import { Button } from "components/ui/button";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Sidebar from 'components/Sidebar';
+import { Button } from 'components/ui/button';
 
-import "styles/globals.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { WagmiProvider } from "components/WagmiProvider";
-import { ConnectWallet } from "components/ConnectWallet";
-import { SwingSdkProvider } from "components/SwingSdkProvider";
+import 'styles/globals.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { WagmiProvider } from 'components/WagmiProvider';
+import { ConnectWallet } from 'components/ConnectWallet';
+import { SwingSdkProvider } from 'components/SwingSdkProvider';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,8 +20,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <SwingSdkProvider>
             <Sidebar />
 
-            <main className="container relative flex flex-col w-full min-h-screen overflow-y-auto">
-              <div className="flex justify-end p-6 space-x-4">
+            <main className="container relative flex min-h-screen w-full flex-col overflow-y-auto">
+              <div className="flex justify-end space-x-4 p-6">
                 <ConnectWallet />
 
                 <Button className="space-x-2" variant="outline" asChild>

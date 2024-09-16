@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
 export function Container({
   className,
@@ -9,7 +9,7 @@ export function Container({
 }) {
   return (
     <div
-      className={clsx("mx-auto max-w-[100rem] px-4 sm:px-6 lg:px-8", className)}
+      className={clsx('mx-auto max-w-[100rem] px-4 sm:px-6 lg:px-8', className)}
     >
       {children}
     </div>

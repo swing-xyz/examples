@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faGear,
   faLineChart,
@@ -9,19 +9,19 @@ import {
   faQuestionCircle,
   faRotate,
   faStar,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 
 export default function Sidebar() {
   return (
-    <aside className="relative hidden h-screen py-5 pt-8 transition-all duration-700 ease-in-out group md:flex md:flex-col bg-slate-800 md:w-40 lg:w-52">
+    <aside className="group relative hidden h-screen bg-slate-800 py-5 pt-8 transition-all duration-700 ease-in-out md:flex md:w-40 md:flex-col lg:w-52">
       <Link
         id="sidebar-item-Home"
-        className="relative flex items-center px-4 py-2 text-orange-300 group hover:bg-slate-700"
+        className="group relative flex items-center px-4 py-2 text-orange-300 hover:bg-slate-700"
         href="/"
       >
-        <div className="flex items-center justify-center mr-2 text-orange-500">
+        <div className="mr-2 flex items-center justify-center text-orange-500">
           <FontAwesomeIcon icon={faOtter} />
         </div>
         <span className="truncate">MetaWallet</span>
@@ -32,10 +32,10 @@ export default function Sidebar() {
           <div className="space-y-3">
             <Link
               id="sidebar-item-Portfolio"
-              className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
+              className="group relative flex items-center px-4 py-2 text-white hover:bg-slate-700"
               href="/"
             >
-              <div className="flex items-center justify-center mr-2">
+              <div className="mr-2 flex items-center justify-center">
                 <FontAwesomeIcon icon={faLineChart} />
               </div>
               <span className="truncate">Portfolio</span>
@@ -43,12 +43,12 @@ export default function Sidebar() {
 
             <Link
               id="sidebar-item-Swap"
-              className="relative flex items-center px-4 py-2 font-semibold group bg-slate-700 text-midnight-primary dark:text-white"
+              className="text-midnight-primary group relative flex items-center bg-slate-700 px-4 py-2 font-semibold dark:text-white"
               href="/"
               aria-current="page"
             >
-              <div className="hidden md:inline-block h-6 w-0.5 bg-midnight-primary absolute right-0"></div>
-              <div className="flex items-center justify-center mr-2">
+              <div className="bg-midnight-primary absolute right-0 hidden h-6 w-0.5 md:inline-block"></div>
+              <div className="mr-2 flex items-center justify-center">
                 <FontAwesomeIcon icon={faRotate} />
               </div>
               <span className="truncate">Staking</span>
@@ -56,10 +56,10 @@ export default function Sidebar() {
 
             <Link
               id="sidebar-item-Watchlist"
-              className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
+              className="group relative flex items-center px-4 py-2 text-white hover:bg-slate-700"
               href="/"
             >
-              <div className="flex items-center justify-center mr-2">
+              <div className="mr-2 flex items-center justify-center">
                 <FontAwesomeIcon icon={faStar} />
               </div>
               <span className="truncate">Watchlist</span>
@@ -68,14 +68,14 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      <div className="flex flex-1 mt-3">
+      <div className="mt-3 flex flex-1">
         <div className="w-full">
           <Link
             id="sidebar-item-Settings"
-            className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
+            className="group relative flex items-center px-4 py-2 text-white hover:bg-slate-700"
             href="/"
           >
-            <div className="flex items-center justify-center mr-2">
+            <div className="mr-2 flex items-center justify-center">
               <FontAwesomeIcon icon={faGear} />
             </div>
             <span className="truncate">Settings</span>
@@ -85,12 +85,12 @@ export default function Sidebar() {
 
       <div className="mb-8 space-y-6">
         <div>
-          <div className="w-full mt-3">
+          <div className="mt-3 w-full">
             <Link
               href="/"
-              className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
+              className="group relative flex items-center px-4 py-2 text-white hover:bg-slate-700"
             >
-              <div className="flex items-center justify-center mr-2">
+              <div className="mr-2 flex items-center justify-center">
                 <FontAwesomeIcon icon={faQuestionCircle} />
               </div>
               <span className="truncate">FAQ</span>
@@ -99,9 +99,9 @@ export default function Sidebar() {
           <div className="mt-3">
             <Link
               href="/"
-              className="relative flex items-center px-4 py-2 text-white group hover:bg-slate-700"
+              className="group relative flex items-center px-4 py-2 text-white hover:bg-slate-700"
             >
-              <div className="flex items-center justify-center mr-2">
+              <div className="mr-2 flex items-center justify-center">
                 <FontAwesomeIcon icon={faMessage} />
               </div>
               <span className="truncate">Contact</span>
@@ -113,8 +113,8 @@ export default function Sidebar() {
       <Link
         id="fork-on-github"
         href="https://github.com/swing-xyz/examples"
-        className="flex items-center px-6 py-4 -mb-5 space-x-2 text-white border-t cursor-pointer border-slate-700 hover:bg-slate-700"
-        target={"_blank"}
+        className="-mb-5 flex cursor-pointer items-center space-x-2 border-t border-slate-700 px-6 py-4 text-white hover:bg-slate-700"
+        target={'_blank'}
       >
         <FontAwesomeIcon size="lg" icon={faGithub} />
         <div className="text-sm font-medium">Fork on Github</div>

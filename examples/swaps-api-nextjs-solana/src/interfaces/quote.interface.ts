@@ -41,13 +41,13 @@ export interface RouteStep {
   bridge: string;
   bridgeTokenAddress: string;
   steps: (
-    | "allowance"
-    | "approve"
-    | "send"
-    | "nativeStaking"
-    | "sign"
-    | "claim"
-    | "bridge"
+    | 'allowance'
+    | 'approve'
+    | 'send'
+    | 'nativeStaking'
+    | 'sign'
+    | 'claim'
+    | 'bridge'
   )[];
   name: string;
   part: number;
@@ -58,7 +58,7 @@ interface Quote {
   bridgeFeeInNativeToken: string;
   bridgeFee: string;
   integration: string;
-  type: "swap" | "custom_contract" | "deposit" | "withdraw" | "claim" | null;
+  type: 'swap' | 'custom_contract' | 'deposit' | 'withdraw' | 'claim' | null;
   fromAmount?: string;
   amount: string;
   decimals: number;
@@ -69,7 +69,7 @@ interface Quote {
 }
 
 interface Fee {
-  type: "bridge" | "gas" | "partner";
+  type: 'bridge' | 'gas' | 'partner';
   amount: string;
   amountUSD: string;
   tokenSymbol: string;
@@ -93,7 +93,7 @@ interface Chain {
   chainId: number;
   name?: string;
   slug: string;
-  protocolType: "evm" | "ibc" | "solana" | "multiversx";
+  protocolType: 'evm' | 'ibc' | 'solana' | 'multiversx';
   logo?: string;
   isSingleChainSupported?: boolean;
   blockExploreUrls?: string[];

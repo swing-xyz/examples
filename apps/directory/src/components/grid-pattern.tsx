@@ -5,7 +5,7 @@ export function GridPattern({
   y,
   squares,
   ...props
-}: React.ComponentPropsWithoutRef<"svg"> & {
+}: React.ComponentPropsWithoutRef<'svg'> & {
   width: number;
   height: number;
   x: string | number;

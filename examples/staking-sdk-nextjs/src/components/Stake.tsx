@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   TransferParams,
@@ -6,24 +6,24 @@ import {
   TransferRoute,
   TransferStepResult,
   TransferStepResults,
-} from "@swing.xyz/sdk";
-import { Button } from "components/ui/button";
-import { Fragment, useState } from "react";
+} from '@swing.xyz/sdk';
+import { Button } from 'components/ui/button';
+import { Fragment, useState } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "components/ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { useAccount, useSwitchChain } from "wagmi";
-import { useSwingSdk } from "./SwingSdkProvider";
-import { useConnectWallet } from "hooks/useConnectWallet";
+} from 'components/ui/dialog';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { useAccount, useSwitchChain } from 'wagmi';
+import { useSwingSdk } from './SwingSdkProvider';
+import { useConnectWallet } from 'hooks/useConnectWallet';
 
 export function Stake() {
   const [swingSDK, { isReady }] = useSwingSdk();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [status, setStatus] = useState<TransferStepResult | null>(null);
   const [results, setResults] = useState<TransferStepResults | null>(null);
   const [quote, setQuote] = useState<TransferQuote | null>(null);
@@ -39,28 +39,28 @@ export function Stake() {
     transferParams: TransferParams,
   ) {
     if (!transferRoute) {
-      setError("Choose a transfer route first.");
+      setError('Choose a transfer route first.');
       return;
     }
 
-    setError("");
+    setError('');
     setIsLoading(true);
 
     // Setup a transfer listener to handle user required interactions
     const removeTransferListener = swingSDK.on(
-      "TRANSFER",
+      'TRANSFER',
       async (transferStep, transferResults) => {
         setStatus(transferStep);
         setResults(transferResults);
 
-        console.log("TRANSFER", {
+        console.log('TRANSFER', {
           transferId: transferResults.transferId,
           transferStep,
           transferResults,
         });
 
         switch (transferStep.status) {
-          case "WALLET_CONNECTION_REQUIRED":
+          case 'WALLET_CONNECTION_REQUIRED':
             try {
               await connectWallet(transferStep.chain);
             } catch (error) {
@@ -69,7 +69,7 @@ export function Stake() {
             }
             break;
 
-          case "CHAIN_SWITCH_REQUIRED":
+          case 'CHAIN_SWITCH_REQUIRED':
             try {
               await switchChainAsync?.({ chainId: transferStep.chain.chainId });
             } catch (error) {
@@ -95,7 +95,7 @@ export function Stake() {
   }
 
   return (
-    <div className="container grid gap-4 pt-5 pb-20">
+    <div className="container grid gap-4 pb-20 pt-5">
       <div className="grid grid-cols-5">
         <div>Provider</div>
         <div>Chain</div>
@@ -136,7 +136,7 @@ export function Stake() {
                     setIsLoading(true);
 
                     const params = {
-                      amount: "1",
+                      amount: '1',
                       fromChain: contract.chain.slug,
                       fromToken: contract.inputToken.symbol,
                       fromUserAddress,
@@ -169,7 +169,7 @@ export function Stake() {
         <DialogContent className="max-w-4xl">
           <DialogHeader>
             {transferParams ? (
-              <DialogTitle className="flex items-center gap-4 mb-8">
+              <DialogTitle className="mb-8 flex items-center gap-4">
                 <div>Stake</div>
 
                 <NameLogo
@@ -198,7 +198,7 @@ export function Stake() {
           </DialogHeader>
 
           {quote?.routes.length ? (
-            <div className="grid items-center grid-cols-[minmax(50px,_100px)_2fr_3fr_3fr_160px] gap-4">
+            <div className="grid grid-cols-[minmax(50px,_100px)_2fr_3fr_3fr_160px] items-center gap-4">
               <div>Provider</div>
               <div>Fees</div>
               <div>Gas</div>
@@ -213,7 +213,7 @@ export function Stake() {
                 return (
                   <Fragment key={index}>
                     <NameLogo
-                      name={integration?.name || ""}
+                      name={integration?.name || ''}
                       logo={integration?.logo}
                     />
 
@@ -233,7 +233,7 @@ export function Stake() {
                         }
 
                         await startTransfer(route, {
-                          amount: "1",
+                          amount: '1',
                           fromChain: quote.fromChain.slug,
                           fromToken: quote.fromToken.symbol,
                           toChain: quote.toChain.slug,
@@ -252,8 +252,8 @@ export function Stake() {
           ) : (
             <div>
               {isLoading
-                ? "Searching for the best route..."
-                : "No Routes Available"}
+                ? 'Searching for the best route...'
+                : 'No Routes Available'}
             </div>
           )}
 
@@ -264,7 +264,7 @@ export function Stake() {
                   Transfer Status
                 </label>
                 <div className="capitalize">
-                  {status.step}: <b>{status.status || results?.status || ""}</b>
+                  {status.step}: <b>{status.status || results?.status || ''}</b>
                 </div>
               </div>
             )}
@@ -273,8 +273,8 @@ export function Stake() {
               <div className="mt-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Error
-                </label>{" "}
-                <div className="text-red-500 capitalize">{error}</div>
+                </label>{' '}
+                <div className="capitalize text-red-500">{error}</div>
               </div>
             ) : null}
           </div>
@@ -287,7 +287,7 @@ export function Stake() {
 function NameLogo({ logo, name }: { logo?: string; name: string }) {
   return (
     <div className="flex items-center gap-2">
-      <Avatar className="w-5 h-5">
+      <Avatar className="h-5 w-5">
         <AvatarImage src={logo} alt={name} />
         <AvatarFallback>{name.slice(0, 1)}</AvatarFallback>
       </Avatar>

@@ -1,30 +1,30 @@
-# Cross-chain Swaps using the Swing API in Next.js For Solana
+# Cross-chain Swaps using the Swing API in Next.js For Tron
 
 This example is built with:
 
 - [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk)
 - [@thirdweb-dev/react](https://portal.thirdweb.com/react)
 - [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
-- [@solana/web3.js](https://www.npmjs.com/package/@solana/web3.js)
+- [TronLink Wallet Adapter](https://github.com/tronprotocol/tronwallet-adapter?tab=readme-ov-file#adapters)
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
 ## Demo
 
-View the live demo [https://swaps-api-nextjs-solana.vercel.app](https://swaps-api-nextjs-solana.vercel.app/)
+View the live demo [https://swaps-api-nextjs-tron.vercel.app](https://swaps-api-nextjs-tron.vercel.app/)
 
 ## Swing Integration
 
 > The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) and [Platform API](https://developers.swing.xyz/reference/api/platform/a2glq2e1w44ad-project-configuration) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx)
 
-This example demonstrates how you can perform a cross-chain transaction between the Solana and Ethereum chains using Swing's Cross-Chain and Platform APIs via Swing's SDK.
+This example demonstrates how you can perform a cross-chain transaction between the Tron and Ethereum chains using Swing's Cross-Chain and Platform APIs via Swing's SDK.
 
-In this example, we will be using thirdweb's SDK and `@solana/web3.js` wallet connector to connect to a user's Ethereum and Solana wallets, respectively. We will also demonstrate how to utilize Swing's SDK exported API functions, namely `crossChainAPI` and `platformAPI`, to build out a fully functionaly cross-chain application.
+In this example, we will be using thirdweb's SDK and **TronLink's Wallet Adapter** connector to connect to a user's Ethereum and Tron wallets, respectively. We will also demonstrate how to utilize Swing's SDK exported API functions, namely `crossChainAPI` and `platformAPI`, to build out a fully functionaly cross-chain application.
 
 The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
-- Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens. (Optional for SOL > ETH Route)
+- Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens. (Optional for TRON > EVM Route)
 - Sending a [transaction](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
 
 > Although not essential for performing a swap transaction, providing your users with real-time updates on the transaction's status by polling the [status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status) can significantly enhance the user experience.
@@ -40,7 +40,7 @@ yarn install
 Next, launch the development server by running the following command:
 
 ```bash
-yarn dev --filter=swaps-api-nextjs-solana
+yarn dev --filter=swaps-api-nextjs-tron
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
@@ -87,18 +87,18 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz
 
 **Parameters**:
 
-| Property           | Example                                      | Description                                             |
-| ------------------ | -------------------------------------------- | ------------------------------------------------------- |
-| `tokenAmount`      | 1000000000000000000                          | Amount of the source token being sent (in wei for ETH). |
-| `fromChain`        | `ethereum`                                   | Source Chain slug                                       |
-| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb   | Sender's wallet address                                 |
-| `fromTokenAddress` | 0x0000000000000000000000000000000000000000   | Source Token Address                                    |
-| `tokenSymbol`      | `ETH`                                        | Source Token slug                                       |
-| `toTokenAddress`   | `11111111111111111111111111111111`           | Destination Token Address.                              |
-| `toTokenSymbol`    | `SOL`                                        | Destination Token slug                                  |
-| `toChain`          | `solana`                                     | Destination Chain slug                                  |
-| `toUserAddress`    | ELoruRy7quAskANEgC99XBYfEnCcrVGSqnwGETWKZtsU | Receiver's wallet address                               |
-| `projectId`        | `replug`                                     | [Your project's ID](https://platform.swing.xyz/)        |
+| Property           | Example                                    | Description                                             |
+| ------------------ | ------------------------------------------ | ------------------------------------------------------- |
+| `tokenAmount`      | 1000000000000000000                        | Amount of the source token being sent (in wei for ETH). |
+| `fromChain`        | `ethereum`                                 | Source Chain slug                                       |
+| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb | Sender's wallet address                                 |
+| `fromTokenAddress` | 0x0000000000000000000000000000000000000000 | Source Token Address                                    |
+| `tokenSymbol`      | `ETH`                                      | Source Token slug                                       |
+| `toTokenAddress`   | 0x0000000000000000000000000000000000000000 | Destination Token Address.                              |
+| `toTokenSymbol`    | `TRX`                                      | Destination Token slug                                  |
+| `toChain`          | `tron`                                     | Destination Chain slug                                  |
+| `toUserAddress`    | TV6ybRmqiUK6a7JVMRwPg2cDDkLqgR5MaZ         | Receiver's wallet address                               |
+| `projectId`        | `replug`                                   | [Your project's ID](https://platform.swing.xyz/)        |
 
 Navigating to our `src/services/requests.ts` file, you will find our method for getting a quote from Swing's Cross-Chain API called `getQuoteRequest()`.
 
@@ -143,81 +143,61 @@ Here's an example response that contains the route data:
 
 ```json
 "routes": [
-    {
-        "duration": 1,
-        "gas": "2770874189563960",
-        "quote": {
-            "integration": "debridge",
-            "type": "swap",
-            "bridgeFee": "20867118",
-            "bridgeFeeInNativeToken": "1000000000000000",
-            "amount": "482153281",
-            "decimals": 9,
-            "amountUSD": "69.869",
-            "bridgeFeeUSD": "3.024",
-            "bridgeFeeInNativeTokenUSD": "2.931",
-            "fees": [
+        {
+            "duration": 1,
+            "gas": "1260090989371730",
+            "quote": {
+                "integration": "symbiosis",
+                "type": "swap",
+                "bridgeFee": "125402496",
+                "bridgeFeeInNativeToken": "0",
+                "amount": "60720124077",
+                "decimals": 6,
+                "amountUSD": "9296.676",
+                "bridgeFeeUSD": "19.199",
+                "bridgeFeeInNativeTokenUSD": "0",
+                "fees": [
+                    {
+                        "type": "bridge",
+                        "amount": "125402496",
+                        "amountUSD": "19.199",
+                        "chainSlug": "tron",
+                        "tokenSymbol": "TRX",
+                        "tokenAddress": "0x0000000000000000000000000000000000000000",
+                        "decimals": 6,
+                        "deductedFromSourceToken": true
+                    },
+                    {
+                        "type": "gas",
+                        "amount": "1260090989371730",
+                        "amountUSD": "2.954",
+                        "chainSlug": "ethereum",
+                        "tokenSymbol": "ETH",
+                        "tokenAddress": "0x0000000000000000000000000000000000000000",
+                        "decimals": 18,
+                        "deductedFromSourceToken": false
+                    }
+                ]
+            },
+            "route": [
                 {
-                    "type": "bridge",
-                    "amount": "20867118",
-                    "amountUSD": "3.024",
-                    "chainSlug": "solana",
-                    "tokenSymbol": "SOL",
-                    "tokenAddress": "11111111111111111111111111111111",
-                    "decimals": 9,
-                    "deductedFromSourceToken": true
-                },
-                {
-                    "type": "bridge",
-                    "amount": "1000000000000000",
-                    "amountUSD": "2.931",
-                    "chainSlug": "ethereum",
-                    "tokenSymbol": "ETH",
-                    "tokenAddress": "0x0000000000000000000000000000000000000000",
-                    "decimals": 18,
-                    "deductedFromSourceToken": false
-                },
-                {
-                    "type": "gas",
-                    "amount": "2770874189563960",
-                    "amountUSD": "8.123",
-                    "chainSlug": "ethereum",
-                    "tokenSymbol": "ETH",
-                    "tokenAddress": "0x0000000000000000000000000000000000000000",
-                    "decimals": 18,
-                    "deductedFromSourceToken": false
-                },
-                {
-                    "type": "partner",
-                    "amount": "0",
-                    "amountUSD": "0",
-                    "chainSlug": "ethereum",
-                    "tokenSymbol": "ETH",
-                    "tokenAddress": "0x0000000000000000000000000000000000000000",
-                    "decimals": 18,
-                    "deductedFromSourceToken": true
+                    "bridge": "symbiosis",
+                    "bridgeTokenAddress": "0x0000000000000000000000000000000000000000",
+                    "steps": [
+                        "allowance",
+                        "approve",
+                        "send"
+                    ],
+                    "name": "ETH",
+                    "part": 100
                 }
-            ]
-        },
-        "route": [
-            {
-                "bridge": "debridge",
-                "bridgeTokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-                "steps": [
-                    "allowance",
-                    "approve",
-                    "send"
-                ],
-                "name": "USDC",
-                "part": 100
-            }
-        ],
-        "distribution": {
-            "debridge": 1
-        },
-        "gasUSD": "8.123"
-    }
-]
+            ],
+            "distribution": {
+                "symbiosis": 1
+            },
+            "gasUSD": "2.954"
+        }
+    ]
 ```
 
 Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransferParams` object which will store the default transaction config for our example:
@@ -236,33 +216,33 @@ const defaultTransferParams: TransferParams = {
     "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png",
   fromChainDecimal: 18,
   toTokenAddress: "11111111111111111111111111111111",
-  toTokenSymbol: "SOL",
-  toNativeTokenSymbol: "SOL",
-  toChain: "solana",
+  toTokenSymbol: "TRX",
+  toNativeTokenSymbol: "TRX",
+  toChain: "tron",
   toTokenIconUrl:
     "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
   toChainIconUrl:
     "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
-  toUserAddress: "", //solana wallet address
+  toUserAddress: "", //tron wallet address
   toChainDecimal: 9,
 };
 ```
 
-## Sending a Token Approval Request for ERC20 Tokens (Optional for SOL > ETH Route)
+## Sending a Token Approval Request for ERC20 Tokens (Optional for TRON > EVM Route)
 
-If you're attempting to bridge an ERC20 token from a user's wallet to Solana, you need to prompt the user to approve the required amount of tokens to be bridged.
+If you're attempting to bridge an ERC20 token from a user's wallet to Tron, you need to prompt the user to approve the required amount of tokens to be bridged.
 
 Navigating to our `src/components/Swap.tsx` file, inside our `startTransfer()` method, you will find our implementation of the `getAllowanceRequest()` and `getApprovalTxDataRequest()` methods. Before approving, you have to perform two checks:
 
 - First, we will check if we're performing a native currency swap by comparing the values of `tokenSymbol` and `fromNativeTokenSymbol` on the source chain. If we're not dealing with a native currency swap, we then proceed to ask for an allowance.
 - Next, we will check if an allowance has already been made by Swing on a user's wallet by calling the `getAllowanceRequest()` method. If no approved allowance is found, we will then proceed to make an approval request by calling the `getApprovalTxDataRequest()` method.
 
-Since the `/approval` and `/approve` endpoints are specific to EVM chains, we have to check that source chain via `fromChain` is anything but `solana`. Skipping this check will result in the `/approval` endpoint returning an error to the user:
+Since the `/approval` and `/approve` endpoints are specific to EVM chains, we have to check that source chain via `fromChain` is anything but `tron`. Skipping this check will result in the `/approval` endpoint returning an error to the user:
 
 ```json
 {
   "statusCode": 400,
-  "message": "Non-evm is not supported for approval method: solana",
+  "message": "Non-evm is not supported for approval method: tron",
   "error": "Bad Request"
 }
 ```
@@ -272,7 +252,7 @@ Let's execute these steps:
 ```typescript
 if (
   transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol &&
-  transferParams.fromChain !== "solana"
+  transferParams.fromChain !== "tron"
 ) {
   const checkAllowance = await getAllowanceRequest({
     bridge: transferRoute.quote.integration,
@@ -364,11 +344,11 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/send](https://swap.prod.swing.xyz/
 | `fromTokenAddress` | 0x0000000000000000000000000000000000000000       | Source Token Address                                    |
 | `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb       | Sender's wallet address                                 |
 | `tokenSymbol`      | ETH                                              | Source Token slug                                       |
-| `toTokenAddress`   | 11111111111111111111111111111111                 | Destination Token Address.                              |
-| `toChain`          | solana                                           | Destination Source slug                                 |
+| `toTokenAddress`   | 0x0000000000000000000000000000000000000000       | Destination Token Address.                              |
+| `toChain`          | tron                                             | Destination Source slug                                 |
 | `toTokenAmount`    | 4000000                                          | Amount of the destination token being received.         |
-| `toTokenSymbol`    | SOL                                              | Destination Chain slug                                  |
-| `toUserAddress`    | ELoruRy7quAskANEgC99XBYfEnCcrVGSqnwGETWKZtsU     | Receiver's wallet address                               |
+| `toTokenSymbol`    | TRX                                              | Destination Chain slug                                  |
+| `toUserAddress`    | TV6ybRmqiUK6a7JVMRwPg2cDDkLqgR5MaZ               | Receiver's wallet address                               |
 | `tokenAmount`      | 1000000000000000000                              | Amount of the source token being sent (in wei for ETH). |
 | `type`             | swap                                             | Type of transaction.                                    |
 | `projectId`        | `replug`                                         | [Your project's ID](https://platform.swing.xyz/)        |
@@ -461,16 +441,39 @@ export interface SendTransactionApiResponse {
 
 > The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need later for checking the status of a transaction.
 
-### Sending a Solana Transaction to the Network
+### Sending a Tron Transaction to the Network
 
-If you decided to perform a cross chain swap with Solana as the source chain, you'll need to sign the transaction using a wallet provider that supports Solana like [Phantom](https://phantom.app/).
+If you decided to perform a cross chain swap with Tron as the source chain, you'll need to sign the transaction using a wallet provider that supports Tron like [TronLink](https://www.tronlink.org/).
+,
 
 > Remember, you'll have to call the `/send` endpoint via `sendTransactionRequest` before signing the transaction.
 
-We will sign the `txData` returned from the `/send` endpoint using the `@solana/web3.js` library. To begin, let's include the necessary imports into our app:
+We will sign the `txData` returned from the `/send` endpoint using the inbuilt **Tronlink Wallet Adapter** library that comes installed in the browser with the TronLink Wallet.
+
+As a reminder, the `txData` from the `sendTransactionRequest` will look something like this:
+
+```json
+{
+   ....
+    "tx": {
+        "from": "0x018c15DA1239B84b08283799B89045CD476BBbBb",
+        "to": "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63",
+        "data": "0x301a3720000000000000000000000000eeeeeeeeeeee........",
+        "value": "0x0e35fa931a0000",
+        "gas": "0x06a02f"
+    }
+   ....
+}
+```
+
+To sign a callData, you have to make a request to your users TronLink Wallet:
 
 ```typescript
-import { Transaction, VersionedTransaction } from "@solana/web3.js";
+const transaction = await window.tronLink?.tronWeb.transactionBuilder.sendTrx(
+  txData.to, // Recipient address (in base58 format)
+  Number(txData.value), // Amount in SUN (1 TRX = 1,000,000 SUN)
+  window?.tronLink.tronWeb.defaultAddress.base58, // Sender's address (from TronLink)
+);
 ```
 
 For our next steps, we will read the raw transaction data by decoding the value of the `data` property in our `txData`:
@@ -604,7 +607,7 @@ In our `startTransfer()` method, we will execute the `pollTransactionStatus()` r
 
 let txHash = "";
 
-if (transferParams.fromChain === "solana") {
+if (transferParams.fromChain === "tron") {
   const hash = await sendSolTrans({
     ...txData,
     from: transferParams.fromUserAddress,

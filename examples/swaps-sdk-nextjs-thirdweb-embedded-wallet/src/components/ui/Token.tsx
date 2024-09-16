@@ -1,11 +1,11 @@
-import { Chain, Token } from "@swing.xyz/sdk";
-import { FC, useEffect, useState } from "react";
-import { useCustomSwingSdk } from "components/hooks/useSwingSDK";
-import { ISelectedChain } from "app/interfaces/IChainSelector";
+import { Chain, Token } from '@swing.xyz/sdk';
+import { FC, useEffect, useState } from 'react';
+import { useCustomSwingSdk } from 'components/hooks/useSwingSDK';
+import { ISelectedChain } from 'app/interfaces/IChainSelector';
 
 export const SingleToken: FC<IToken> = ({ chain, token, onSelectChain }) => {
   const { swingSDK, isConnected } = useCustomSwingSdk();
-  const [tokenBalance] = useState("");
+  const [tokenBalance] = useState('');
 
   useEffect(() => {
     if (!swingSDK?.isReady || !isConnected) {
@@ -21,15 +21,15 @@ export const SingleToken: FC<IToken> = ({ chain, token, onSelectChain }) => {
   return (
     <div
       key={token.symbol}
-      className="w-full mt-1 group hover:bg-slate-200 hover:rounded-md hover:cursor-pointer grayscale hover:grayscale-0 transition-all"
+      className="group mt-1 w-full grayscale transition-all hover:cursor-pointer hover:rounded-md hover:bg-slate-200 hover:grayscale-0"
       onClick={() => onSelectChain({ chain, token })}
     >
-      <div className="group flex justify-between items-center p-3">
-        <div className="flex justify-start items-center space-x-2">
+      <div className="group flex items-center justify-between p-3">
+        <div className="flex items-center justify-start space-x-2">
           <img
             src={token.logo}
             alt={token.symbol}
-            className="rounded-full w-8 h-8"
+            className="h-8 w-8 rounded-full"
           />
           <h2>{token.symbol}</h2>
         </div>

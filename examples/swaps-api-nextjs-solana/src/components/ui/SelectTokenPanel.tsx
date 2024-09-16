@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { Token } from "interfaces/token.interface";
-import { ChainTokenItem } from "./ChainTokenItem";
+import { useEffect, useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from './popover';
+import { Token } from 'interfaces/token.interface';
+import { ChainTokenItem } from './ChainTokenItem';
 
 export const SelectTokenPanel = ({
   tokens,
@@ -28,15 +28,15 @@ export const SelectTokenPanel = ({
 
   return (
     <Popover defaultOpen={false} open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger className="justify-center rounded-2xl flex items-center">
+      <PopoverTrigger className="flex items-center justify-center rounded-2xl">
         <span>{transferParams.token}</span>
       </PopoverTrigger>
-      <PopoverContent className="flex flex-col gap-y-2 rounded-2xl min-w-[50px] max-h-96 overflow-scroll">
+      <PopoverContent className="flex max-h-96 min-w-[50px] flex-col gap-y-2 overflow-scroll rounded-2xl">
         <input
           id="width"
           defaultValue=""
-          placeholder={"Search Token (e.g. USDC)"}
-          className="col-span-2 h-8 focus:border-2 focus:border-purple-300 rounded-xl border-none w-full"
+          placeholder={'Search Token (e.g. USDC)'}
+          className="col-span-2 h-8 w-full rounded-xl border-none focus:border-2 focus:border-purple-300"
           onChange={(e) => {
             const tokenResults = tokens?.filter((token) =>
               token.symbol

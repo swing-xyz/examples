@@ -322,7 +322,10 @@ const Swap = () => {
 
       setQuotes(quotes.routes);
       setTransferRoute(quotes.routes[0]);
-      changeSelectedItem(quotes.routes[0].quote.integration);
+      setTimeout(
+        () => changeSelectedItem(quotes.routes[0].quote.integration),
+        500,
+      );
     } catch (error) {
       console.error("Quote Error:", error);
       toast({
@@ -339,25 +342,40 @@ const Swap = () => {
     txData: TransactionData,
   ): Promise<string | undefined> {
     try {
-      // Assuming txData contains 'to' (recipient address) and 'amount' (in SUN)
-      const transaction =
-        await window.tronLink?.tronWeb.transactionBuilder.sendTrx(
-          txData.to, // Recipient address (in base58 format)
-          Number(txData.value), // Amount in SUN (1 TRX = 1,000,000 SUN)
-          window?.tronLink.tronWeb.defaultAddress.base58, // Sender's address (from TronLink)
-        );
+      if (!window.tronLink || !window.tronLink.tronWeb) {
+        throw new Error("TronLink is not available");
+      }
+
+      const tronWeb = window.tronLink.tronWeb;
+
+      // Extract function selector (first 4 bytes of data)
+      const dataWithoutPrefix = txData.data.startsWith("0x")
+        ? txData.data.slice(2)
+        : txData.data;
+      const functionSelector = dataWithoutPrefix.slice(0, 8);
+      const parametersData = dataWithoutPrefix.slice(8);
+
+      // Create a transaction using triggerSmartContract
+      const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
+        txData.to,
+        functionSelector,
+        {
+          feeLimit: 1000000000, // Adjust the fee limit if needed
+          callValue: parseInt(txData.value!, 16), // Convert value from hex to integer
+        },
+        [
+          // Directly pass the parameters data here. Ensure it is a properly formatted array if needed.
+          "0x" + parametersData, // You need to handle this more dynamically if there are multiple parameters
+        ],
+        txData.from, // Address of sender
+      );
 
       // Sign the transaction
-      const signedTransaction =
-        await window.tronLink?.tronWeb.trx.sign(transaction);
+      const signedTransaction = await tronWeb.trx.sign(transaction.transaction);
 
       // Broadcast the signed transaction
-      const response =
-        await window.tronLink?.tronWeb.trx.sendRawTransaction(
-          signedTransaction,
-        );
+      const response = await tronWeb.trx.sendRawTransaction(signedTransaction);
 
-      // If the transaction was successful, return the transaction ID (txid)
       if (response && response.result) {
         return response.txid;
       } else {
@@ -365,7 +383,7 @@ const Swap = () => {
         return undefined;
       }
     } catch (error) {
-      console.error("Error sending Tron transaction:", error);
+      console.error("Error sending complex Tron transaction:", error);
       return undefined;
     }
   }
@@ -395,8 +413,9 @@ const Swap = () => {
 
     setTransferRoute(null);
     setTransferParams(newTransferParams);
-
-    (sendInputRef.current as HTMLInputElement).value = "";
+    setQuotes([]);
+    changeSelectedItem("NON"),
+      ((sendInputRef.current as HTMLInputElement).value = "");
   }
 
   function onEVMChainSelect(chain: Chain) {
@@ -554,6 +573,7 @@ const Swap = () => {
           title: "Something went wrong!",
           description: "Transaction Failed",
         });
+
         setIsLoading(false);
         setIsTransacting(false);
         setTransStatus(null);
@@ -618,8 +638,8 @@ const Swap = () => {
   function SelectFromChainPanel() {
     return (
       <div
-        className={clsx("bg-zinc-500 relative z-10 transform -skew-x-2 h-12 grow", {
-          "hover:bg-gray-900 bg-pink-500 cursor-pointer p-2":
+        className={clsx("grow transform flex justify-center", {
+          "cursor-pointer p-2 hover:bg-gray-900":
             transferParams.fromChain !== "tron",
         })}
       >
@@ -649,9 +669,8 @@ const Swap = () => {
   function SelectToChainPanel() {
     return (
       <div
-        className={clsx("p-2 relative z-10 transform -skew-x-2 h-12 grow", {
-          "bg-zinc-500 hover:bg-pink-900 cursor-pointer":
-            transferParams.toChain !== "tron",
+        className={clsx("grow transform p-2", {
+          "cursor-pointer hover:bg-pink-900": transferParams.toChain !== "tron",
         })}
       >
         {transferParams.toChain === "tron" ? (
@@ -681,7 +700,7 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          "p-2 relative z-10 transform -skew-x-2 h-12 grow bg-purple-500 hover:bg-gray-900 cursor-pointer",
+          "relative z-10 h-12 grow -skew-x-2 transform cursor-pointer bg-purple-500 p-2 hover:bg-gray-900",
         )}
       >
         <SelectTokenPanel
@@ -701,7 +720,7 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          "p-2 text-black relative z-10 transform -skew-x-2 h-12 grow bg-yellow-500 hover:bg-gray-900 cursor-pointer",
+          "relative z-10 h-12 grow -skew-x-2 transform cursor-pointer bg-yellow-500 p-2 text-black hover:bg-gray-900",
         )}
       >
         <SelectTokenPanel
@@ -719,44 +738,43 @@ const Swap = () => {
 
   return (
     <div className="flex flex-row justify-center">
-      <div className="bg-white rounded-xl lg:max-w-96 w-96 shadow-md">
-        <div className="flex justify-between items-center mb-6 px-6 py-4">
+      <div className="w-96 rounded-xl bg-white shadow-md lg:max-w-96">
+        <div className="mb-6 flex items-center justify-between px-6 py-4">
           <h1 className="text-2xl font-bold">Tron Gate</h1>
-          <div className="w-5 h-5 rounded-full cursor-pointer">
+          <div className="h-5 w-5 cursor-pointer rounded-full">
             {" "}
             <FontAwesomeIcon className="ml-2" icon={faHistory} />
           </div>
         </div>
         <div className="space-y-5">
-          <div className="flex justify-center gap-x-2 font-bold text-md text-gray-200">
+          <div className="text-md flex justify-center gap-x-2 font-bold text-gray-200">
             {!isTransacting ? (
-              <div className="flex justify-between   bg-purple-200  w-full">
+              <div className="flex w-full   justify-between  bg-purple-200">
                 <div
-                  className="flex gap-x-2 px-3 text-sm font-semibold
-                                        outline-2 outline-offset-2 transition-colors text-white
-                                        items-center"
+                  className="flex items-center gap-x-2 px-3 text-sm
+                                        font-semibold text-white outline-2 outline-offset-2
+                                        transition-colors"
                 >
                   <p className="text-black">SRC</p>
                   <SelectFromChainPanel />
                   <SelectFromTokenPanel />
                 </div>
                 <div
-                  className="flex group p-1 bg-zinc-500 hover:bg-gray-900 px-3 text-sm font-semibold
-                                        outline-2 outline-offset-2 transition-colors text-white
-                                        items-center relative z-10 transform -skew-x-2"
+                  className="group relative z-10 flex -skew-x-2 transform items-center bg-zinc-500
+                                        p-1 px-3 text-sm font-semibold
+                                        text-white outline-2 outline-offset-2 transition-colors hover:bg-gray-900"
                   onClick={() => {
-                    switchTransferParams()
+                    switchTransferParams();
                   }}
                 >
                   <TbSwitchHorizontal className="size-8 group-hover:cursor-pointer" />
                 </div>
 
                 <div
-                  className="flex gap-x-2 px-3 text-sm font-semibold
-                                        outline-2 outline-offset-2 transition-colors text-white
-                                        items-center"
+                  className="flex items-center gap-x-2 px-3 text-sm
+                                        font-semibold text-white outline-2 outline-offset-2
+                                        transition-colors"
                 >
-                  
                   <SelectToTokenPanel />
                   <SelectToChainPanel />
                   <p className="text-black">DEST</p>
@@ -764,20 +782,20 @@ const Swap = () => {
               </div>
             ) : (
               <div
-                className="group rounded-2xl py-2 px-3 text-sm font-semibold
-                                 outline-2 outline-offset-2 transition-colors text-white hover:bg-gray-900
-                                 flex items-center cursor-pointer bg-zinc-600
-                                 active:bg-gray-800 active:text-white/80 justify-between gap-x-2"
+                className="group flex cursor-pointer items-center justify-between gap-x-2
+                                 rounded-2xl bg-zinc-600 px-3 py-2 text-sm
+                                 font-semibold text-white outline-2 outline-offset-2
+                                 transition-colors hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
               >
                 <span>{transStatus?.status}</span>
-                <span className="w-5 h-5 bg-cyan-400 rounded-full"></span>
+                <span className="h-5 w-5 rounded-full bg-cyan-400"></span>
               </div>
             )}
           </div>
-          <div className="flex justify-between items-center px-6">
+          <div className="flex items-center justify-between px-6">
             <input
               aria-label="deposit"
-              className="p-0 border-none grow w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-3xl m-0 text-3xl"
+              className="m-0 h-auto w-[50%] grow border-none bg-transparent p-0 text-3xl placeholder:m-0 placeholder:p-0 placeholder:text-3xl focus:border-none focus:ring-0"
               placeholder={"0 " + transferParams.tokenSymbol}
               ref={sendInputRef}
               disabled={!tronWalletAddress.length}
@@ -787,7 +805,7 @@ const Swap = () => {
               }}
               type="number"
             />
-            <div className="flex gap-x-1 items-center rounded-xl hover:cursor-pointer">
+            <div className="flex items-center gap-x-1 rounded-xl hover:cursor-pointer">
               <h4 className="w-full text-4xl font-bold text-zinc-700">
                 {transferParams.tokenSymbol}
               </h4>
@@ -801,7 +819,7 @@ const Swap = () => {
             <input
               aria-label="receive"
               disabled
-              className="p-0 border-none grow w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-3xl m-0 text-3xl"
+              className="m-0 h-auto w-[50%] grow border-none bg-transparent p-0 text-3xl placeholder:m-0 placeholder:p-0 placeholder:text-3xl focus:border-none focus:ring-0"
               placeholder={`0 ${transferParams.toChain}`}
               type="number"
               value={
@@ -818,7 +836,7 @@ const Swap = () => {
                 }));
               }}
             />
-            <div className="flex gap-x-1 items-center rounded-xl hover:cursor-pointer">
+            <div className="flex items-center gap-x-1 rounded-xl hover:cursor-pointer">
               <h4 className="w-full text-4xl font-bold text-zinc-700">
                 {transferParams.toTokenSymbol}
               </h4>
@@ -828,17 +846,17 @@ const Swap = () => {
               />
             </div>
           </div>
-          <p className="text-sm p-0 m-0 text-zinc-950/[0.6] px-6">
+          <p className="m-0 p-0 px-6 text-sm text-zinc-950/[0.6]">
             You'll receive: {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
           </p>
           <div className="px-6">
-            <label htmlFor="wallet" className="block font-semibold mb-1">
+            <label htmlFor="wallet" className="mb-1 block font-semibold">
               Select Route <span className="text-red-500">*</span>
             </label>
             <select
               id="route"
               ref={selectRef}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full rounded border border-gray-300 p-2"
               onChange={(e) => {
                 setTransferRoute(
                   quotes?.at(Number(e.currentTarget.value)) ?? null,
@@ -854,14 +872,14 @@ const Swap = () => {
             </select>
           </div>
           <div className="px-6">
-            <label htmlFor="wallet" className="block font-semibold mb-1">
+            <label htmlFor="wallet" className="mb-1 block font-semibold">
               Send to {transferParams.toChain} wallet{" "}
               <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               id="wallet"
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full rounded border border-gray-300 p-2"
               placeholder={`Enter your ${transferParams.toChain} wallet address`}
             />
           </div>
@@ -874,7 +892,7 @@ const Swap = () => {
               (connectionStatus === "connected" && !transferRoute)
             }
             className={clsx(
-              "w-full mt-6 bg-purple-800 text-white px-2 py-4 font-semibold hover:bg-purple-600 transition-colors rounded-xl ",
+              "mt-6 w-full rounded-xl bg-purple-800 px-2 py-4 font-semibold text-white transition-colors hover:bg-purple-600 ",
               {
                 "hover:bg-blue-200":
                   connectionStatus === "connected" && transferRoute,

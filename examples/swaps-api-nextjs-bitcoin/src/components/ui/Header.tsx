@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Popover } from "@headlessui/react";
-import { AnimatePresence, motion } from "framer-motion";
+import Link from 'next/link';
+import { Popover } from '@headlessui/react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { Button } from "./Button";
-import { Container } from "./Container";
-import { NavLinks } from "./NavLinks";
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { Button } from './Button';
+import { Container } from './Container';
+import { NavLinks } from './NavLinks';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function MenuIcon({ className }: { className?: string }) {
   return (
@@ -69,7 +69,7 @@ export function Header() {
   return (
     <header>
       <nav>
-        <Container className="relative z-50 flex justify-between items-center py-8">
+        <Container className="relative z-50 flex items-center justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
             <Link href="/" aria-label="Home" className="text-2xl">
               BitZa<span className="text-cyan-500">pp</span>er
@@ -88,9 +88,9 @@ export function Header() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="w-6 h-6" />
+                        <ChevronUpIcon className="h-6 w-6" />
                       ) : (
-                        <MenuIcon className="w-6 h-6" />
+                        <MenuIcon className="h-6 w-6" />
                       )
                     }
                   </Popover.Button>
@@ -115,7 +115,7 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
                         >
                           <div className="space-y-4">
                             <MobileNavLink href="#">Swap</MobileNavLink>
@@ -123,7 +123,7 @@ export function Header() {
                             <MobileNavLink href="#">Docs</MobileNavLink>
                           </div>
 
-                          <div className="flex flex-col mt-4 space-y-4">
+                          <div className="mt-4 flex flex-col space-y-4">
                             <Button
                               href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-bitcoin"
                               className="space-x-2"

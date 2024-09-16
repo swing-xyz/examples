@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import { SVGProps } from "react";
+import clsx from 'clsx';
+import { SVGProps } from 'react';
 
 export function Logomark({
   className,
@@ -23,7 +23,7 @@ export function Logomark({
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <div className={clsx("flex items-center space-x-2", className)}>
+    <div className={clsx('flex items-center space-x-2', className)}>
       <Logomark width="30" height="30" className="fill-cyan-500" />
       <div>Altcoin</div>
     </div>

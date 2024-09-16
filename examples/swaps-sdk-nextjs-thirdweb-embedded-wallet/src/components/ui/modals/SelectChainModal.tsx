@@ -1,6 +1,6 @@
-import { SelectChain } from "../SelectChain";
-import { ISelectChain } from "app/interfaces/IChainSelector";
-import { IModalContext } from "app/interfaces/IModal";
+import { SelectChain } from '../SelectChain';
+import { ISelectChain } from 'app/interfaces/IChainSelector';
+import { IModalContext } from 'app/interfaces/IModal';
 
 export const openSelectChainModal = (
   { openModal }: IModalContext,
@@ -14,6 +14,6 @@ export const openSelectChainModal = (
         onChainAndTokenSelected={onChainAndTokenSelected}
       />
     ),
-    title: title ?? "",
+    title: title ?? '',
   });
 };

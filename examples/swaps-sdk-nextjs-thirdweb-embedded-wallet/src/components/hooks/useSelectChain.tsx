@@ -2,14 +2,14 @@ import {
   ISelectChainContext,
   ISelectChainProvider,
   ISelectedChain,
-} from "app/interfaces/IChainSelector";
+} from 'app/interfaces/IChainSelector';
 import React, {
   createContext,
   useContext,
   useState,
   FC,
   useCallback,
-} from "react";
+} from 'react';
 
 const defaultSelectChainContext: ISelectChainContext = {
   setChainAndToken: () => {},
@@ -46,7 +46,7 @@ export const SelectChainProvider: FC<ISelectChainProvider> = ({ children }) => {
 export const useSelectChain = () => {
   const contextValue = useContext<ISelectChainContext>(SelectChainContext);
   if (contextValue === null) {
-    throw new Error("useSelectChain must be used within a SelectChainProvider");
+    throw new Error('useSelectChain must be used within a SelectChainProvider');
   }
   return contextValue;
 };

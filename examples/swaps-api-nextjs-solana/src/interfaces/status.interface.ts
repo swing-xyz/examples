@@ -1,14 +1,14 @@
 export interface TransactionStatusAPIResponse {
   type?:
-    | "swap"
-    | "deposit"
-    | "withdraw"
-    | "claim"
-    | "custom_contract"
+    | 'swap'
+    | 'deposit'
+    | 'withdraw'
+    | 'claim'
+    | 'custom_contract'
     | null
     | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  status: "Pending" | "Success" | "Failed" | any;
+  status: 'Pending' | 'Success' | 'Failed' | any;
   reason?: string;
   bridge?: string | undefined;
   txId?: string | undefined;

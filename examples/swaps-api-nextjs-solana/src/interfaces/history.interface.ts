@@ -1,24 +1,24 @@
 export interface Transaction {
   type?:
-    | "swap"
-    | "deposit"
-    | "withdraw"
-    | "claim"
-    | "custom_contract"
+    | 'swap'
+    | 'deposit'
+    | 'withdraw'
+    | 'claim'
+    | 'custom_contract'
     | null
     | undefined;
   status:
-    | "Submitted"
-    | "Pending Source Chain"
-    | "Pending Destination Chain"
-    | "Completed"
-    | "Refund Required"
-    | "Refunded"
-    | "Failed Source Chain"
-    | "Failed Destination Chain"
-    | "Fallback"
-    | "Not Sent"
-    | "Claim Required";
+    | 'Submitted'
+    | 'Pending Source Chain'
+    | 'Pending Destination Chain'
+    | 'Completed'
+    | 'Refund Required'
+    | 'Refunded'
+    | 'Failed Source Chain'
+    | 'Failed Destination Chain'
+    | 'Fallback'
+    | 'Not Sent'
+    | 'Claim Required';
   reason?: string;
   bridge?: string | undefined;
   txId?: string | undefined;

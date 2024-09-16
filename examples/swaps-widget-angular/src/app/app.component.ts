@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import "@swing.xyz/ui/web-components";
+import '@swing.xyz/ui/web-components';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
+  selector: 'app-root',
+  templateUrl: './app.component.html',
 })
 export class AppComponent {}
