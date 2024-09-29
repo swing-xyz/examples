@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { MdArrowDropUp } from 'react-icons/md';
-import { Container } from './Container';
+import { MdArrowDropUp } from "react-icons/md";
+import { Container } from "./Container";
 
-import { FaMoon } from 'react-icons/fa';
-import { FiMoreHorizontal, FiSettings, FiSun } from 'react-icons/fi';
+import { FaMoon } from "react-icons/fa";
+import { FiMoreHorizontal, FiSettings, FiSun } from "react-icons/fi";
 
 export function Footer() {
   return (

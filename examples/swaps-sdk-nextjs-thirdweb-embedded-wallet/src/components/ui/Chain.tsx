@@ -1,6 +1,6 @@
-import { Chain } from '@swing.xyz/sdk';
-import { ISelectedChain } from 'app/interfaces/IChainSelector';
-import { FC } from 'react';
+import { Chain } from "@swing.xyz/sdk";
+import { ISelectedChain } from "app/interfaces/IChainSelector";
+import { FC } from "react";
 
 export const SingleChain: FC<IChain> = ({ chain, onSelectChain }) => {
   return (

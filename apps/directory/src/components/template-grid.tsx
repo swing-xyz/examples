@@ -4,10 +4,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from 'components/ui/card';
-import { Badge } from './ui/badge';
-import { ExternalLinkIcon } from '@radix-ui/react-icons';
-import { cn } from 'lib/utils';
+} from "components/ui/card";
+import { Badge } from "./ui/badge";
+import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import { cn } from "lib/utils";
 
 export type TemplateMeta = {
   id: string;
@@ -18,7 +18,7 @@ export type TemplateMeta = {
   integration?: string;
   framework?: string;
   wallet?: string;
-  'use-case'?: string;
+  "use-case"?: string;
 };
 
 export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
@@ -42,20 +42,20 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
 
             <div
               className={cn(
-                'flex h-44 items-center justify-center bg-gradient-to-r',
+                "flex h-44 items-center justify-center bg-gradient-to-r",
                 {
-                  'to-slate-800': template.framework === 'Next.js',
-                  'to-sky-500': template.framework === 'Webpack',
-                  'to-red-500': template.framework === 'Angular',
+                  "to-slate-800": template.framework === "Next.js",
+                  "to-sky-500": template.framework === "Webpack",
+                  "to-red-500": template.framework === "Angular",
 
-                  'from-blue-400': template['use-case'] === 'Swaps',
-                  'from-amber-300': template['use-case'] === 'Staking',
-                  'from-emerald-500': template['use-case'] === 'Withdraw',
-                  'from-rose-500': template['use-case'] === 'Gas',
+                  "from-blue-400": template["use-case"] === "Swaps",
+                  "from-amber-300": template["use-case"] === "Staking",
+                  "from-emerald-500": template["use-case"] === "Withdraw",
+                  "from-rose-500": template["use-case"] === "Gas",
 
-                  'via-indigo-500': template.integration === 'Widget',
-                  'via-emerald-500': template.integration === 'SDK',
-                  'via-amber-500': template.integration === 'API',
+                  "via-indigo-500": template.integration === "Widget",
+                  "via-emerald-500": template.integration === "SDK",
+                  "via-amber-500": template.integration === "API",
                 },
               )}
             >
@@ -90,7 +90,7 @@ export function TemplateGrid({ templates }: { templates: TemplateMeta[] }) {
 }
 
 const FrameworkIcons = {
-  'Next.js': (props: React.SVGProps<SVGSVGElement>) => (
+  "Next.js": (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       role="img"
       viewBox="0 0 24 24"

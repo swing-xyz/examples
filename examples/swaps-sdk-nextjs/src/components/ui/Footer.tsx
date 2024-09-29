@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Button } from './Button';
-import { Container } from './Container';
-import { TextField } from './Fields';
-import { Logomark } from './Logo';
-import { NavLinks } from './NavLinks';
+import { Button } from "./Button";
+import { Container } from "./Container";
+import { TextField } from "./Fields";
+import { Logomark } from "./Logo";
+import { NavLinks } from "./NavLinks";
 
 export function Footer() {
   return (

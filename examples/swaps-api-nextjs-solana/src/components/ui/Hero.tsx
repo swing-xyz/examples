@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Container } from './Container';
+import React from "react";
+import { Container } from "./Container";
 
-import sols from 'images/logos/sols.png';
+import sols from "images/logos/sols.png";
 
-import SwapSDK from '../Swap';
-import Image from 'next/image';
+import SwapSDK from "../Swap";
+import Image from "next/image";
 
 export function Hero() {
   return (
@@ -16,13 +16,13 @@ export function Hero() {
           <div className="relative flex max-h-[50%] w-full justify-center">
             <Image
               src={sols}
-              alt={'sols'}
+              alt={"sols"}
               className="absolute left-20 top-20 w-72 xl:top-28 xl:w-96"
               unoptimized
             />
             <Image
               src={sols}
-              alt={'sols2'}
+              alt={"sols2"}
               className="absolute w-72 rotate-90 xl:top-32 xl:w-96"
               unoptimized
             />

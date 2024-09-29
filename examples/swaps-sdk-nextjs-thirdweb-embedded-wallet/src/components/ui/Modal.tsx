@@ -1,8 +1,8 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { useModal } from 'components/hooks/useModal';
-import { motion } from 'framer-motion';
-import React from 'react';
-import { MdOutlineClose } from 'react-icons/md';
+import { Dialog, Transition } from "@headlessui/react";
+import { useModal } from "components/hooks/useModal";
+import { motion } from "framer-motion";
+import React from "react";
+import { MdOutlineClose } from "react-icons/md";
 
 export const Modal: React.FC<IModal> = () => {
   const {

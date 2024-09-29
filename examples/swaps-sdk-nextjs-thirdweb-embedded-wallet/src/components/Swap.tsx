@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SwingSDK, {
   TransferStepResults,
   TransferStepResult,
@@ -10,13 +10,13 @@ import SwingSDK, {
   Chain,
   Token,
   type TransferQuote,
-} from '@swing.xyz/sdk';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Button } from './ui/Button';
-import { shortenAddress } from '@thirdweb-dev/react';
-import { useCustomSwingSdk } from './hooks/useSwingSDK';
-import { useModal } from './hooks/useModal';
+} from "@swing.xyz/sdk";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { Button } from "./ui/Button";
+import { shortenAddress } from "@thirdweb-dev/react";
+import { useCustomSwingSdk } from "./hooks/useSwingSDK";
+import { useModal } from "./hooks/useModal";
 import {
   MdCheckCircle,
   MdLocalGasStation,
@@ -24,14 +24,14 @@ import {
   MdOutlineArrowForward,
   MdOutlineTimelapse,
   MdOutlineTransform,
-} from 'react-icons/md';
+} from "react-icons/md";
 
-import { LiaExchangeAltSolid } from 'react-icons/lia';
-import { useDebouncedCallback } from 'use-debounce';
-import { openSelectChainModal } from './ui/modals/SelectChainModal';
-import { openSelectRouteModal } from './ui/modals/SelectRouteModal';
-import { useToast } from '@/ui/use-toast';
-import { ToastAction } from '@radix-ui/react-toast';
+import { LiaExchangeAltSolid } from "react-icons/lia";
+import { useDebouncedCallback } from "use-debounce";
+import { openSelectChainModal } from "./ui/modals/SelectChainModal";
+import { openSelectRouteModal } from "./ui/modals/SelectRouteModal";
+import { useToast } from "@/ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 
 function calculateTokenAmount({
   amount,
@@ -73,17 +73,17 @@ const Swap = () => {
   const [transferRoute, setTransferRoute] = useState<TransferRoute | null>(
     null,
   );
-  const [receiveAmount, setReceiveAmount] = useState('');
+  const [receiveAmount, setReceiveAmount] = useState("");
   const [sendChains, setSendChains] = useState<Chain[]>();
   const [receiveChains, setReceiveChains] = useState<Chain[]>();
   const [fromChain, setFromChain] = useState<Chain>();
   const [toChain, setToChain] = useState<Chain>();
   const [fromToken, setFromToken] = useState<Token>();
-  const [fromTokenBalance, setFromTokenBalance] = useState('0');
+  const [fromTokenBalance, setFromTokenBalance] = useState("0");
   const [toToken, setToToken] = useState<Token>();
-  const [toTokenBalance, setToTokenBalance] = useState('0');
-  const [toTokenLocalAmount, setToTokenLocalAmount] = useState('');
-  const [quotes, setQuotes] = useState<TransferQuote['routes']>([]);
+  const [toTokenBalance, setToTokenBalance] = useState("0");
+  const [toTokenLocalAmount, setToTokenLocalAmount] = useState("");
+  const [quotes, setQuotes] = useState<TransferQuote["routes"]>([]);
   const modalContext = useModal();
 
   const { toast } = useToast();
@@ -108,8 +108,8 @@ const Swap = () => {
 
   useEffect(() => {
     const swing = new SwingSDK({
-      projectId: 'replug',
-      environment: 'production',
+      projectId: "replug",
+      environment: "production",
       debug: true,
     });
 
@@ -122,7 +122,7 @@ const Swap = () => {
         setSwingSDK(swing);
 
         const _sendChains = await swing.getAvailableSendChains({
-          type: 'swap',
+          type: "swap",
         });
         // _sendChains = _sendChains.filter((chain: Chain) => allowedChains.includes(chain.slug));
 
@@ -132,10 +132,10 @@ const Swap = () => {
           _sendChains[Math.floor(Math.random() * _sendChains.length)];
 
         const _sendChainTokens = await swing.getAvailableSendTokens({
-          type: 'swap',
+          type: "swap",
           fromChainSlug: _fromChain.slug,
         });
-        console.log('send', _sendChainTokens);
+        console.log("send", _sendChainTokens);
         const _fromToken =
           _sendChainTokens[Math.floor(Math.random() * _sendChainTokens.length)];
 
@@ -143,7 +143,7 @@ const Swap = () => {
         setFromChain(_fromChain);
 
         const _receiveChains = await swing.getAvailableReceiveChains({
-          type: 'swap',
+          type: "swap",
           fromChainSlug: _fromChain.slug,
           fromTokenSymbol: _fromToken.symbol,
         });
@@ -155,7 +155,7 @@ const Swap = () => {
           _receiveChains[Math.floor(Math.random() * _receiveChains.length)];
 
         const _receiveChainsTokens = await swing.getAvailableReceiveTokens({
-          type: 'swap',
+          type: "swap",
           toChainSlug: _toChain.slug,
           fromChainSlug: _fromChain?.slug,
           fromTokenSymbol: _fromToken.symbol,
@@ -173,8 +173,8 @@ const Swap = () => {
       .catch((error) => {
         setIsLoading(false);
         toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
           description: error.message,
           // action: <ToastAction altText="Try again">Try again</ToastAction>,
         });
@@ -229,10 +229,10 @@ const Swap = () => {
         };
       });
     } catch (error) {
-      console.error('Switch Chain Error:', error);
+      console.error("Switch Chain Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
         description: (error as Error).message,
         action: (
           <ToastAction altText="Try again" onClick={() => switchChain(chain)}>
@@ -257,9 +257,9 @@ const Swap = () => {
 
       if (!_quotes.routes.length) {
         toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'No routes available. Try a different token pair.',
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "No routes available. Try a different token pair.",
           action: (
             <ToastAction altText="Try again" onClick={() => openSendDialog()}>
               Change Chain
@@ -284,10 +284,10 @@ const Swap = () => {
       setQuotes(_quotes.routes);
       setTransferRoute({ ...bestQuote, ...quoteIntegration });
     } catch (error) {
-      console.error('Quote Error:', error);
+      console.error("Quote Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
         description: (error as Error).message,
         action: (
           <ToastAction altText="Try again" onClick={() => openSendDialog()}>
@@ -306,9 +306,9 @@ const Swap = () => {
 
     if (!transferRoute) {
       toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'Choose a transfer route first.',
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Choose a transfer route first.",
         action: (
           <ToastAction altText="Try again" onClick={() => openSendDialog()}>
             Choose Chain
@@ -319,11 +319,11 @@ const Swap = () => {
     }
 
     const transferListener = swingSDK.on(
-      'TRANSFER',
+      "TRANSFER",
       async (transferStepStatus, transferResults) => {
         setStatus(transferStepStatus);
         toast({
-          title: 'Swapping!',
+          title: "Swapping!",
           description: transferStepStatus.status,
           action: (
             <ToastAction altText="Try again" onClick={() => {}}>
@@ -333,14 +333,14 @@ const Swap = () => {
         });
         setResults(transferResults);
 
-        console.log('TRANSFER:', transferStepStatus, transferResults);
+        console.log("TRANSFER:", transferStepStatus, transferResults);
 
         switch (transferStepStatus.status) {
-          case 'CHAIN_SWITCH_REQUIRED':
+          case "CHAIN_SWITCH_REQUIRED":
             await switchChain(transferStepStatus.chain);
             break;
 
-          case 'WALLET_CONNECTION_REQUIRED':
+          case "WALLET_CONNECTION_REQUIRED":
             await connectWallet();
             break;
         }
@@ -352,10 +352,10 @@ const Swap = () => {
     try {
       await swingSDK.transfer(transferRoute, transferParams);
     } catch (error) {
-      console.error('Transfer Error:', error);
+      console.error("Transfer Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
         description: (error as Error).message,
         action: (
           <ToastAction altText="Try again" onClick={() => startTransfer()}>
@@ -375,7 +375,7 @@ const Swap = () => {
     openSelectChainModal(modalContext, {
       chains: receiveChains ?? [],
       toChain,
-      title: 'Select Destination Chain',
+      title: "Select Destination Chain",
       onChainAndTokenSelected: ({ chain, token }) => {
         setTransferParams((prev: TransferParams) => {
           return {
@@ -396,7 +396,7 @@ const Swap = () => {
   const openSendDialog = () => {
     openSelectChainModal(modalContext, {
       chains: sendChains ?? [],
-      title: 'Select Source Chain',
+      title: "Select Source Chain",
       onChainAndTokenSelected: ({ chain, token }) => {
         setTransferParams((prev: TransferParams) => {
           return {
@@ -409,7 +409,7 @@ const Swap = () => {
           swingSDK?.getAvailableReceiveChains({
             fromChainSlug: chain?.slug!,
             fromTokenSymbol: token?.symbol!,
-            type: 'swap',
+            type: "swap",
           }),
           // .filter((_chain) => allowedChains.includes(_chain.slug)),
         );
@@ -509,7 +509,7 @@ const Swap = () => {
             <input
               aria-label="deposit"
               className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
-              placeholder={'0'}
+              placeholder={"0"}
               disabled={!isConnected}
               onChange={(e) => debounced(e.target.value)}
               type="number"
@@ -519,7 +519,7 @@ const Swap = () => {
               onClick={openSendDialog}
             >
               <img
-                src={fromToken?.logo ?? ''}
+                src={fromToken?.logo ?? ""}
                 alt={fromToken?.symbol ?? defaultTransferParams.fromChain}
                 className="h-4 w-4 rounded-full"
               />
@@ -535,7 +535,7 @@ const Swap = () => {
               {!transferRoute ? <>$0</> : <>{}</>}
             </p>
             <p className="m-0 p-0 text-[10px] text-zinc-950/[0.6]">
-              {Number(fromTokenBalance).toFixed(3)}{' '}
+              {Number(fromTokenBalance).toFixed(3)}{" "}
               {fromToken?.symbol ?? <>USDC</>} available
             </p>
           </div>
@@ -550,7 +550,7 @@ const Swap = () => {
               aria-label="receive"
               disabled
               className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
-              placeholder={'0'}
+              placeholder={"0"}
               type="number"
               value={receiveAmount}
             />
@@ -559,7 +559,7 @@ const Swap = () => {
               onClick={openReceiveDialog}
             >
               <img
-                src={toToken?.logo ?? ''}
+                src={toToken?.logo ?? ""}
                 alt={toToken?.symbol ?? defaultTransferParams.fromChain}
                 className="h-4 w-4 rounded-full"
               />
@@ -572,14 +572,14 @@ const Swap = () => {
 
           <div className="flex items-center justify-between">
             <p className="m-0 p-0 text-xs text-zinc-950/[0.6]">
-              {!transferRoute || receiveAmount === '0' ? (
+              {!transferRoute || receiveAmount === "0" ? (
                 <>$0</>
               ) : (
                 <>{formatUSD(toTokenLocalAmount)}</>
               )}
             </p>
             <p className="m-0 p-0 text-[10px] text-zinc-950/[0.6]">
-              {Number(toTokenBalance).toFixed(3)} {toToken?.symbol ?? <>USDC</>}{' '}
+              {Number(toTokenBalance).toFixed(3)} {toToken?.symbol ?? <>USDC</>}{" "}
               available
             </p>
           </div>
@@ -615,7 +615,7 @@ const Swap = () => {
                   className="flex w-full items-center space-x-1 rounded-full bg-red-200 px-2 py-1 text-[10px] font-bold text-red-600 hover:cursor-pointer"
                   onClick={() => {
                     openSelectRouteModal(modalContext, {
-                      title: 'Select Route',
+                      title: "Select Route",
                       routes: quotes,
                       onRouteSelected(route) {
                         console.log(route);
@@ -683,23 +683,23 @@ const Swap = () => {
       <div className="">
         {isConnected ? (
           <Button
-            className={clsx('mt-4 flex w-full cursor-pointer items-center', {
-              'opacity-60': isLoading,
+            className={clsx("mt-4 flex w-full cursor-pointer items-center", {
+              "opacity-60": isLoading,
             })}
             disabled={isLoading || !(fromTokenBalance >= transferParams.amount)}
             onClick={() => (transferRoute ? startTransfer() : getQuote())}
           >
             {fromTokenBalance >= transferParams.amount
-              ? 'Start transfer'
-              : 'Insufficient Balance'}
+              ? "Start transfer"
+              : "Insufficient Balance"}
             {isLoading && (
               <FontAwesomeIcon className="ml-2" icon={faCircleNotch} spin />
             )}
           </Button>
         ) : (
           <Button
-            className={clsx('flex w-full cursor-pointer items-center', {
-              'opacity-60': isLoading,
+            className={clsx("flex w-full cursor-pointer items-center", {
+              "opacity-60": isLoading,
             })}
             disabled={isLoading || !swingSDK?.isReady}
             onClick={connectWallet}
@@ -713,10 +713,10 @@ const Swap = () => {
 };
 
 function formatUSD(amount: string) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'narrowSymbol',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
   }).format(Number(amount));
 }
 

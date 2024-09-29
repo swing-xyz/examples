@@ -1,10 +1,10 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '../components/Button';
-import Sidebar from '../components/Sidebar';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button } from "../components/Button";
+import Sidebar from "../components/Sidebar";
 
-import 'styles/globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "styles/globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

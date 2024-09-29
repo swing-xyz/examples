@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useSearchParams } from 'next/navigation';
-import { useMemo } from 'react';
-import { keywordEntries } from 'lib/keywords';
-import { slugify } from 'lib/slugify';
-import { TemplateGrid } from './template-grid';
+import { useSearchParams } from "next/navigation";
+import { useMemo } from "react";
+import { keywordEntries } from "lib/keywords";
+import { slugify } from "lib/slugify";
+import { TemplateGrid } from "./template-grid";
 
 export type TemplateMeta = {
   id: string;
@@ -15,7 +15,7 @@ export type TemplateMeta = {
   integration?: string;
   framework?: string;
   wallet?: string;
-  'use-case'?: string;
+  "use-case"?: string;
 };
 
 export function Templates({ templates }: { templates: TemplateMeta[] }) {

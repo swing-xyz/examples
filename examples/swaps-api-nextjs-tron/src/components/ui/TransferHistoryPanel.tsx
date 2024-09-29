@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from './popover';
+import { useEffect, useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import {
   Transaction,
   TransactionResponseAPIResponse,
-} from 'interfaces/history.interface';
-import { MdOutlineHistory } from 'react-icons/md';
-import clsx from 'clsx';
-import { pendingStatuses } from 'interfaces/send.interface';
-import { ISwingServiceAPI } from 'interfaces/swing-service.interface';
+} from "interfaces/history.interface";
+import { MdOutlineHistory } from "react-icons/md";
+import clsx from "clsx";
+import { pendingStatuses } from "interfaces/send.interface";
+import { ISwingServiceAPI } from "interfaces/swing-service.interface";
 
 export const TransferHistoryPanel = ({
   swingServiceAPI,
-  userAddress = '',
+  userAddress = "",
   className,
   onItemSelect,
 }: {
@@ -47,7 +47,7 @@ export const TransferHistoryPanel = ({
         <input
           id="width"
           defaultValue=""
-          placeholder={'Search by status'}
+          placeholder={"Search by status"}
           className="col-span-2 h-8 w-full rounded-xl border-none focus:border-2 focus:border-purple-300"
           onChange={(e) => {
             const historyResults = historyList?.filter(
@@ -75,7 +75,7 @@ export const TransferHistoryPanel = ({
               <span className="text-xs font-bold">ROUTE</span>
               <span className="text-xs">
                 {transaction.fromChainSlug?.toUpperCase().substring(0, 3)} (
-                {transaction.fromTokenSymbol}) {'>'}{' '}
+                {transaction.fromTokenSymbol}) {">"}{" "}
                 {transaction.toChainSlug?.toUpperCase().substring(0, 3)} (
                 {transaction.toTokenSymbol})
               </span>
@@ -91,14 +91,14 @@ export const TransferHistoryPanel = ({
             <div className="flex flex-col justify-between rounded-xl bg-cyan-100 p-1">
               <span className="text-xs font-bold">STATUS</span>
               <span
-                className={clsx('rounded-xl p-1 text-xs font-bold', {
-                  'bg-green-400': transaction.status === 'Completed',
-                  'bg-yellow-400 text-black': pendingStatuses.includes(
+                className={clsx("rounded-xl p-1 text-xs font-bold", {
+                  "bg-green-400": transaction.status === "Completed",
+                  "bg-yellow-400 text-black": pendingStatuses.includes(
                     transaction.status,
                   ),
-                  'bg-red-400 text-white':
-                    transaction.status === 'Failed Source Chain' ||
-                    'Failed Destination Chain',
+                  "bg-red-400 text-white":
+                    transaction.status === "Failed Source Chain" ||
+                    "Failed Destination Chain",
                 })}
               >
                 {transaction.status}

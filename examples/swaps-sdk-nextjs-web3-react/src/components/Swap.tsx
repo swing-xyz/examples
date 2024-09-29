@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SwingSDK, {
   TransferStepResults,
   TransferStepResult,
   TransferRoute,
   TransferParams,
   Chain,
-} from '@swing.xyz/sdk';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Button } from './ui/Button';
-import { useWeb3React } from '@web3-react/core';
+} from "@swing.xyz/sdk";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { Button } from "./ui/Button";
+import { useWeb3React } from "@web3-react/core";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/ui/select';
-import { useToast } from '@/ui/use-toast';
-import { LiaExchangeAltSolid } from 'react-icons/lia';
-import { StatusSheet } from './ui/StatusSheet';
+} from "@/ui/select";
+import { useToast } from "@/ui/use-toast";
+import { LiaExchangeAltSolid } from "react-icons/lia";
+import { StatusSheet } from "./ui/StatusSheet";
 
 const defaultTransferParams: TransferParams = {
-  amount: '1',
-  fromChain: 'polygon',
-  fromToken: 'MATIC',
-  fromUserAddress: '',
-  toChain: 'polygon',
-  toToken: 'USDC',
-  toUserAddress: '',
+  amount: "1",
+  fromChain: "polygon",
+  fromToken: "MATIC",
+  fromUserAddress: "",
+  toChain: "polygon",
+  toToken: "USDC",
+  toUserAddress: "",
 };
 
 const Swap = () => {
@@ -76,8 +76,8 @@ const Swap = () => {
 
   useEffect(() => {
     const swing = new SwingSDK({
-      projectId: 'replug',
-      environment: 'production',
+      projectId: "replug",
+      environment: "production",
       debug: true,
     });
 
@@ -98,8 +98,8 @@ const Swap = () => {
 
   function showError(description: string) {
     toast({
-      title: 'An Error Occured',
-      variant: 'destructive',
+      title: "An Error Occured",
+      variant: "destructive",
       description,
     });
   }
@@ -111,7 +111,7 @@ const Swap = () => {
       // Connect to MetaMask
       await connector.activate();
     } catch (error) {
-      console.error('Connect Wallet Error:', error);
+      console.error("Connect Wallet Error:", error);
       showError((error as Error).message);
     }
   }
@@ -126,7 +126,7 @@ const Swap = () => {
       //   rpcUrls: [chain.rpcUrl]}) // <--- To suggest user add chain to wallet
       await connector.activate(chain.id);
     } catch (error) {
-      console.error('Switch Chain Error:', error);
+      console.error("Switch Chain Error:", error);
       showError((error as Error).message);
     }
   }
@@ -141,7 +141,7 @@ const Swap = () => {
       const quotes = await swingSDK.getQuote(transferParams);
 
       if (!quotes.routes.length) {
-        showError('No routes available. Try a different token pair.');
+        showError("No routes available. Try a different token pair.");
         setIsLoading(false);
         return;
       }
@@ -149,7 +149,7 @@ const Swap = () => {
       // setTransferRoute(quotes.routes[0]!);
       setRoutes(quotes.routes);
     } catch (error) {
-      console.error('Quote Error:', error);
+      console.error("Quote Error:", error);
       showError((error as Error).message);
     }
 
@@ -160,56 +160,56 @@ const Swap = () => {
     if (!swingSDK) return;
 
     if (!transferRoute) {
-      showError('Choose a transfer route first.');
+      showError("Choose a transfer route first.");
       return;
     }
 
     const transferListener = swingSDK.on(
-      'TRANSFER',
+      "TRANSFER",
       async (transferStepStatus, transferResults) => {
         setResultLogs((prevItems) => [
           ...prevItems!,
           {
             time: new Date().toISOString(),
             log: `Transaction Status -> ${transferStepStatus.status}`,
-            logType: 'MESSAGE',
+            logType: "MESSAGE",
           },
           {
             time: new Date().toISOString(),
             log: `Transfer Step -> ${transferStepStatus.step}`,
-            logType: 'MESSAGE',
+            logType: "MESSAGE",
           },
         ]);
 
         setStatus(transferStepStatus);
         setResults(transferResults);
 
-        console.log('TRANSFER:', transferStepStatus, transferResults);
+        console.log("TRANSFER:", transferStepStatus, transferResults);
 
         switch (transferStepStatus.status) {
-          case 'ACTION_REQUIRED':
+          case "ACTION_REQUIRED":
             setResultLogs((prevItems) => [
               ...prevItems!,
               {
                 time: new Date().toISOString(),
                 log: `ACTION REQUIRED: Prompting MetaMask`,
-                logType: 'ACTION_REQUIRED',
+                logType: "ACTION_REQUIRED",
               },
             ]);
             break;
-          case 'CHAIN_SWITCH_REQUIRED':
+          case "CHAIN_SWITCH_REQUIRED":
             setResultLogs((prevItems) => [
               ...prevItems!,
               {
                 time: new Date().toISOString(),
                 log: `CHAIN SWITCH REQUIRED: Prompting MetaMask`,
-                logType: 'CHAIN_SWITCH',
+                logType: "CHAIN_SWITCH",
               },
             ]);
             await switchChain(transferStepStatus.chain);
             break;
 
-          case 'WALLET_CONNECTION_REQUIRED':
+          case "WALLET_CONNECTION_REQUIRED":
             await connectWallet();
             break;
         }
@@ -221,13 +221,13 @@ const Swap = () => {
     try {
       await swingSDK.transfer(transferRoute, transferParams);
     } catch (error) {
-      console.error('Transfer Error:', error);
+      console.error("Transfer Error:", error);
       setResultLogs((prevItems) => [
         ...prevItems!,
         {
           time: new Date().toISOString(),
           log: `Error -> ${(error as Error).message}`,
-          logType: 'ERROR',
+          logType: "ERROR",
         },
       ]);
     }
@@ -245,9 +245,9 @@ const Swap = () => {
           <div className="mr-auto flex items-center space-x-1 p-3 hover:cursor-pointer hover:rounded-lg hover:bg-zinc-300/[0.2]">
             <img
               src={
-                'https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/polygon/info/logo.png'
+                "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/polygon/info/logo.png"
               }
-              alt={''}
+              alt={""}
               className="h-7 w-7 rounded-full"
             />
             <div className="flex flex-col">
@@ -267,9 +267,9 @@ const Swap = () => {
             </div>
             <img
               src={
-                'https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/assets/usdc/0c7e4c2dc978757682eed00e438afa3eab3a97bdb63ad57abfbb9d79eb42f006.png'
+                "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/assets/usdc/0c7e4c2dc978757682eed00e438afa3eab3a97bdb63ad57abfbb9d79eb42f006.png"
               }
-              alt={''}
+              alt={""}
               className="h-7 w-7 rounded-full"
             />
           </div>
@@ -283,7 +283,7 @@ const Swap = () => {
               <input
                 aria-label="deposit"
                 className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
-                placeholder={'0'}
+                placeholder={"0"}
                 value={transferParams.amount}
                 onChange={(e) => {
                   setTransferRoute(null); // Reset transfer route
@@ -307,7 +307,7 @@ const Swap = () => {
               <input
                 aria-label="receive"
                 className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
-                placeholder={'0'}
+                placeholder={"0"}
                 value={transferRoute?.quote?.amountUSD! ?? 0}
                 type="number"
               />
@@ -345,21 +345,21 @@ const Swap = () => {
 
       {isConnected ? (
         <Button
-          className={clsx('flex w-full cursor-pointer items-center', {
-            'opacity-60': isLoading,
+          className={clsx("flex w-full cursor-pointer items-center", {
+            "opacity-60": isLoading,
           })}
           disabled={isLoading}
           onClick={() => (transferRoute ? startTransfer() : getQuote())}
         >
-          {transferRoute ? 'Start transfer' : 'Find the best price'}
+          {transferRoute ? "Start transfer" : "Find the best price"}
           {isLoading && (
             <FontAwesomeIcon className="ml-2" icon={faCircleNotch} spin />
           )}
         </Button>
       ) : (
         <Button
-          className={clsx('flex w-full cursor-pointer items-center', {
-            'opacity-60': isLoading,
+          className={clsx("flex w-full cursor-pointer items-center", {
+            "opacity-60": isLoading,
           })}
           disabled={isLoading}
           onClick={() => connectWallet()}

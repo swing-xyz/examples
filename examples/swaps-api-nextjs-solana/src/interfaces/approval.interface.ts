@@ -29,5 +29,5 @@ interface Chain {
   chainId: number;
   name?: string | undefined;
   slug: string;
-  protocolType: 'evm' | 'ibc' | 'solana' | 'multiversx';
+  protocolType: "evm" | "ibc" | "solana" | "multiversx";
 }

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Popover } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import Link from "next/link";
+import { Popover } from "@headlessui/react";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { Button } from './Button';
-import { Container } from './Container';
-import { NavLinks } from './NavLinks';
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { useCustomSwingSdk } from 'components/hooks/useSwingSDK';
-import { shortenAddress } from '@thirdweb-dev/react';
+import { Button } from "./Button";
+import { Container } from "./Container";
+import { NavLinks } from "./NavLinks";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { useCustomSwingSdk } from "components/hooks/useSwingSDK";
+import { shortenAddress } from "@thirdweb-dev/react";
 
 function MenuIcon({ className }: { className?: string }) {
   return (
@@ -77,7 +77,7 @@ function ConnectButtonMobile() {
           className="block bg-[#06b6d4]"
           onClick={async () => {
             await navigator.clipboard.writeText(walletAddress);
-            alert('Wallet address copied to clipboard! 🚀');
+            alert("Wallet address copied to clipboard! 🚀");
           }}
         >
           {shortenAddress(walletAddress)}
@@ -101,7 +101,7 @@ function ConnectButton() {
           className="hidden bg-[#06b6d4] lg:block"
           onClick={async () => {
             await navigator.clipboard.writeText(walletAddress);
-            alert('Wallet address copied to clipboard! 🚀');
+            alert("Wallet address copied to clipboard! 🚀");
           }}
         >
           {shortenAddress(walletAddress)}

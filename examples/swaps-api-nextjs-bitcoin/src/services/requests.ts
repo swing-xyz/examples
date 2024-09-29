@@ -1,16 +1,16 @@
-import axios from 'axios';
-import { QuoteAPIResponse, QuoteQueryParams } from 'interfaces/quote.interface';
+import axios from "axios";
+import { QuoteAPIResponse, QuoteQueryParams } from "interfaces/quote.interface";
 import {
   SendTransactionApiResponse,
   SendTransactionPayload,
-} from 'interfaces/send.interface';
+} from "interfaces/send.interface";
 import {
   TransactionStatusAPIResponse,
   TransactionStatusParams,
-} from 'interfaces/status.interface';
+} from "interfaces/status.interface";
 
-const baseUrl = 'https://swap.prod.swing.xyz/v0';
-const projectId = 'replug';
+const baseUrl = "https://swap.prod.swing.xyz/v0";
+const projectId = "replug";
 
 export const getQuoteRequest = async (
   queryParams: QuoteQueryParams,
@@ -22,7 +22,7 @@ export const getQuoteRequest = async (
     );
     return response.data;
   } catch (error) {
-    console.error('Error fetching quote:', error);
+    console.error("Error fetching quote:", error);
     throw error;
   }
 };
@@ -38,7 +38,7 @@ export const getTransationStatus = async (
 
     return response.data;
   } catch (error) {
-    console.error('Error fetching transaction status:', error);
+    console.error("Error fetching transaction status:", error);
 
     throw error;
   }
@@ -53,13 +53,13 @@ export const sendTransactionRequest = async (
       { ...payload, projectId },
       {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       },
     );
     return response.data;
   } catch (error) {
-    console.error('Error sending transaction:', error);
+    console.error("Error sending transaction:", error);
     throw error;
   }
 };

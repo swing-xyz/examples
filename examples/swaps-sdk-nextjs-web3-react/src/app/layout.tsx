@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import 'styles/globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "styles/globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
-import { Header } from '../components/ui/Header';
-import { Footer } from '../components/ui/Footer';
+import { Header } from "../components/ui/Header";
+import { Footer } from "../components/ui/Footer";
 
 import {
   Web3ReactHooks,
   Web3ReactProvider,
   initializeConnector,
-} from '@web3-react/core';
-import { MetaMask } from '@web3-react/metamask';
+} from "@web3-react/core";
+import { MetaMask } from "@web3-react/metamask";
 
-import { Toaster } from '../components/ui/toaster';
+import { Toaster } from "../components/ui/toaster";
 
 export const [metaMask, hooks] = initializeConnector<MetaMask>(
   (actions) => new MetaMask({ actions }),

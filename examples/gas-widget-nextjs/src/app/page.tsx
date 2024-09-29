@@ -1,5 +1,5 @@
-import { Gas } from '@swing.xyz/ui';
-import '@swing.xyz/ui/theme.css';
+import { Gas } from "@swing.xyz/ui";
+import "@swing.xyz/ui/theme.css";
 
 export default function SwapPage() {
   return (

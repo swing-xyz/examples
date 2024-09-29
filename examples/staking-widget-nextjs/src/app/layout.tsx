@@ -1,5 +1,5 @@
-import 'styles/globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "styles/globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

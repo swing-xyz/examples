@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Fragment,
@@ -7,16 +7,16 @@ import {
   useRef,
   useState,
   type SVGProps,
-} from 'react';
-import { Tab } from '@headlessui/react';
-import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useDebouncedCallback } from 'use-debounce';
+} from "react";
+import { Tab } from "@headlessui/react";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
+import { useDebouncedCallback } from "use-debounce";
 
-import { AppScreen } from './AppScreen';
-import { CircleBackground } from './CircleBackground';
-import { Container } from './Container';
-import { PhoneFrame } from './PhoneFrame';
+import { AppScreen } from "./AppScreen";
+import { CircleBackground } from "./CircleBackground";
+import { Container } from "./Container";
+import { PhoneFrame } from "./PhoneFrame";
 import {
   DiageoLogo,
   LaravelLogo,
@@ -26,31 +26,31 @@ import {
   StaticKitLogo,
   TransistorLogo,
   TupleLogo,
-} from './StockLogos';
-import Swap from '../Swap';
+} from "./StockLogos";
+import Swap from "../Swap";
 
 const MotionAppScreenHeader = motion(AppScreen.Header);
 const MotionAppScreenBody = motion(AppScreen.Body);
 
 const features = [
   {
-    name: 'Invite friends for better returns',
+    name: "Invite friends for better returns",
     description:
-      'For every friend you invite to Altcoin, you get insider notifications 5 seconds sooner. And it’s 10 seconds if you invite an insider.',
+      "For every friend you invite to Altcoin, you get insider notifications 5 seconds sooner. And it’s 10 seconds if you invite an insider.",
     icon: DeviceUserIcon,
     screen: InviteScreen,
   },
   {
-    name: 'Notifications on stock dips',
+    name: "Notifications on stock dips",
     description:
-      'Get a push notification every time we find out something that’s going to lower the share price on your holdings so you can sell before the information hits the public markets.',
+      "Get a push notification every time we find out something that’s going to lower the share price on your holdings so you can sell before the information hits the public markets.",
     icon: DeviceNotificationIcon,
     screen: StocksScreen,
   },
   {
-    name: 'Invest what you want',
+    name: "Invest what you want",
     description:
-      'We hide your stock purchases behind thousands of anonymous trading accounts, so suspicious activity can never be traced back to you.',
+      "We hide your stock purchases behind thousands of anonymous trading accounts, so suspicious activity can never be traced back to you.",
     icon: DeviceTouchIcon,
     screen: InvestScreen,
   },
@@ -146,29 +146,29 @@ const bodyVariantBackwards = {
   opacity: 0.4,
   scale: 0.8,
   zIndex: 0,
-  filter: 'blur(4px)',
+  filter: "blur(4px)",
   transition: { duration: 0.4 },
 };
 
 const bodyVariantForwards = (custom: { changeCount: number }) => ({
-  y: '100%',
+  y: "100%",
   zIndex: maxZIndex - custom.changeCount,
   transition: { duration: 0.4 },
 });
 
 const bodyAnimation = {
-  initial: 'initial',
-  animate: 'animate',
-  exit: 'exit',
+  initial: "initial",
+  animate: "animate",
+  exit: "exit",
   variants: {
     initial: (custom: { isForwards: boolean; changeCount: number }) =>
       custom.isForwards ? bodyVariantForwards(custom) : bodyVariantBackwards,
     animate: (custom: { changeCount: number }) => ({
-      y: '0%',
+      y: "0%",
       opacity: 1,
       scale: 1,
       zIndex: maxZIndex / 2 - custom.changeCount,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       transition: { duration: 0.4 },
     }),
     exit: (custom: { isForwards: boolean; changeCount: number }) =>
@@ -196,8 +196,8 @@ function InviteScreen({
         <div className="px-4 py-6">
           <div className="space-y-6">
             {[
-              { label: 'Full name', value: 'Albert H. Wiggin' },
-              { label: 'Email address', value: 'awiggin@chase.com' },
+              { label: "Full name", value: "Albert H. Wiggin" },
+              { label: "Email address", value: "awiggin@chase.com" },
             ].map((field) => (
               <div key={field.label}>
                 <div className="text-sm text-gray-500">{field.label}</div>
@@ -233,59 +233,59 @@ function StocksScreen({
         <div className="divide-y divide-gray-100">
           {[
             {
-              name: 'Laravel',
-              price: '4,098.01',
-              change: '+4.98%',
-              color: '#F9322C',
+              name: "Laravel",
+              price: "4,098.01",
+              change: "+4.98%",
+              color: "#F9322C",
               logo: LaravelLogo,
             },
             {
-              name: 'Tuple',
-              price: '5,451.10',
-              change: '-3.38%',
-              color: '#5A67D8',
+              name: "Tuple",
+              price: "5,451.10",
+              change: "-3.38%",
+              color: "#5A67D8",
               logo: TupleLogo,
             },
             {
-              name: 'Transistor',
-              price: '4,098.41',
-              change: '+6.25%',
-              color: '#2A5B94',
+              name: "Transistor",
+              price: "4,098.41",
+              change: "+6.25%",
+              color: "#2A5B94",
               logo: TransistorLogo,
             },
             {
-              name: 'Diageo',
-              price: '250.65',
-              change: '+1.25%',
-              color: '#3320A7',
+              name: "Diageo",
+              price: "250.65",
+              change: "+1.25%",
+              color: "#3320A7",
               logo: DiageoLogo,
             },
             {
-              name: 'StaticKit',
-              price: '250.65',
-              change: '-3.38%',
-              color: '#2A3034',
+              name: "StaticKit",
+              price: "250.65",
+              change: "-3.38%",
+              color: "#2A3034",
               logo: StaticKitLogo,
             },
             {
-              name: 'Statamic',
-              price: '5,040.85',
-              change: '-3.11%',
-              color: '#0EA5E9',
+              name: "Statamic",
+              price: "5,040.85",
+              change: "-3.11%",
+              color: "#0EA5E9",
               logo: StatamicLogo,
             },
             {
-              name: 'Mirage',
-              price: '140.44',
-              change: '+9.09%',
-              color: '#16A34A',
+              name: "Mirage",
+              price: "140.44",
+              change: "+9.09%",
+              color: "#16A34A",
               logo: MirageLogo,
             },
             {
-              name: 'Reversable',
-              price: '550.60',
-              change: '-1.25%',
-              color: '#8D8D8D',
+              name: "Reversable",
+              price: "550.60",
+              change: "-1.25%",
+              color: "#8D8D8D",
               logo: ReversableLogo,
             },
           ].map((stock) => (
@@ -305,10 +305,10 @@ function StocksScreen({
                 </div>
                 <div
                   className={clsx(
-                    'text-xs leading-5',
-                    stock.change.startsWith('+')
-                      ? 'text-cyan-500'
-                      : 'text-gray-500',
+                    "text-xs leading-5",
+                    stock.change.startsWith("+")
+                      ? "text-cyan-500"
+                      : "text-gray-500",
                   )}
                 >
                   {stock.change}
@@ -341,9 +341,9 @@ function InvestScreen({
         <div className="px-4 py-6">
           <div className="space-y-4">
             {[
-              { label: 'Number of shares', value: '100' },
+              { label: "Number of shares", value: "100" },
               {
-                label: 'Current market price',
+                label: "Current market price",
                 value: (
                   <div className="flex">
                     $34.28
@@ -359,7 +359,7 @@ function InvestScreen({
                   </div>
                 ),
               },
-              { label: 'Estimated cost', value: '$3,428.00' },
+              { label: "Estimated cost", value: "$3,428.00" },
             ].map((item) => (
               <div
                 key={item.label}
@@ -505,7 +505,7 @@ function FeaturesMobile() {
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <CircleBackground
                   color="#13B5C8"
-                  className={featureIndex % 2 === 1 ? 'rotate-180' : undefined}
+                  className={featureIndex % 2 === 1 ? "rotate-180" : undefined}
                 />
               </div>
               <PhoneFrame className="relative mx-auto w-full max-w-[366px]">
@@ -531,14 +531,14 @@ function FeaturesMobile() {
             type="button"
             key={featureIndex}
             className={clsx(
-              'relative h-0.5 w-4 rounded-full',
-              featureIndex === activeIndex ? 'bg-gray-300' : 'bg-gray-500',
+              "relative h-0.5 w-4 rounded-full",
+              featureIndex === activeIndex ? "bg-gray-300" : "bg-gray-500",
             )}
             aria-label={`Go to slide ${featureIndex + 1}`}
             onClick={() => {
               slideRefs.current[featureIndex].scrollIntoView({
-                block: 'nearest',
-                inline: 'nearest',
+                block: "nearest",
+                inline: "nearest",
               });
             }}
           >

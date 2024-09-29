@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from './popover';
-import { Token } from 'interfaces/token.interface';
-import { ChainTokenItem } from './ChainTokenItem';
+import { useEffect, useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Token } from "interfaces/token.interface";
+import { ChainTokenItem } from "./ChainTokenItem";
 
 export const SelectTokenPanel = ({
   tokens,
@@ -35,7 +35,7 @@ export const SelectTokenPanel = ({
         <input
           id="width"
           defaultValue=""
-          placeholder={'Search Token (e.g. USDC)'}
+          placeholder={"Search Token (e.g. USDC)"}
           className="col-span-2 h-8 w-full rounded-xl border-none focus:border-2 focus:border-purple-300"
           onChange={(e) => {
             const tokenResults = tokens?.filter((token) =>

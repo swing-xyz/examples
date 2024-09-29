@@ -1,40 +1,40 @@
-import { useToast } from '@/ui/use-toast';
-import { ToastAction } from '@radix-ui/react-toast';
-import SwingSDK, { TransferParams } from '@swing.xyz/sdk';
+import { useToast } from "@/ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
+import SwingSDK, { TransferParams } from "@swing.xyz/sdk";
 import {
   EmbeddedWallet,
   useEmbeddedWallet,
   useSigner,
   useWallet,
-} from '@thirdweb-dev/react';
-import React, { useContext, type SetStateAction, type Dispatch } from 'react';
+} from "@thirdweb-dev/react";
+import React, { useContext, type SetStateAction, type Dispatch } from "react";
 
 const CustomSwingSdkContext = React.createContext<ISwingSdkContext | null>(
   null,
 );
 
 const allowedChains = [
-  'ethereum',
-  'polygon',
-  'axelar',
-  'osmosis-1',
-  'optimism',
-  'avalanche',
-  'aurora',
-  'solana',
-  'celo',
-  'arbitrum',
+  "ethereum",
+  "polygon",
+  "axelar",
+  "osmosis-1",
+  "optimism",
+  "avalanche",
+  "aurora",
+  "solana",
+  "celo",
+  "arbitrum",
 ];
-const allowedTokens = ['USDC', 'USDT', 'MATIC', 'OSMA', 'AXL', 'SOL'];
+const allowedTokens = ["USDC", "USDT", "MATIC", "OSMA", "AXL", "SOL"];
 
 const defaultTransferParams: TransferParams = {
-  amount: '0',
-  fromChain: 'polygon',
-  fromToken: 'MATIC',
-  fromUserAddress: '',
-  toChain: 'polygon',
-  toToken: 'USDT',
-  toUserAddress: '',
+  amount: "0",
+  fromChain: "polygon",
+  fromToken: "MATIC",
+  fromUserAddress: "",
+  toChain: "polygon",
+  toToken: "USDT",
+  toUserAddress: "",
 };
 
 export const CustomSwingSdkProvider: React.FC<ISwingSdkProvider> = ({
@@ -42,13 +42,13 @@ export const CustomSwingSdkProvider: React.FC<ISwingSdkProvider> = ({
 }) => {
   const { connect } = useEmbeddedWallet();
   const signer = useSigner();
-  const embeddedWallet = useWallet('embeddedWallet');
+  const embeddedWallet = useWallet("embeddedWallet");
 
-  const [walletAddress, setWalletAddress] = React.useState<string>('');
+  const [walletAddress, setWalletAddress] = React.useState<string>("");
   const [swingSDK, setSwingSDK] = React.useState<SwingSDK | null>(null);
   const isConnected = swingSDK?.wallet.isConnected();
-  const [balance, setBalance] = React.useState<string>('');
-  const [error, setError] = React.useState('');
+  const [balance, setBalance] = React.useState<string>("");
+  const [error, setError] = React.useState("");
   const [transferParams, setTransferParams] = React.useState<TransferParams>(
     defaultTransferParams,
   );
@@ -60,7 +60,7 @@ export const CustomSwingSdkProvider: React.FC<ISwingSdkProvider> = ({
 
     try {
       await connect({
-        strategy: 'iframe',
+        strategy: "iframe",
       });
 
       const walletAddress = await swingSDK.wallet.connect(
@@ -82,14 +82,14 @@ export const CustomSwingSdkProvider: React.FC<ISwingSdkProvider> = ({
           ...prev,
           fromUserAddress: walletAddress,
           toUserAddress: walletAddress,
-          amount: '1',
+          amount: "1",
         };
       });
     } catch (error) {
-      console.error('Connect Wallet Error:', error);
+      console.error("Connect Wallet Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
         description: (error as Error).message,
         action: (
           <ToastAction altText="Try again" onClick={connectWallet}>
@@ -160,7 +160,7 @@ export const useCustomSwingSdk = () => {
   const contextValue = useContext(CustomSwingSdkContext);
   if (contextValue === null) {
     throw new Error(
-      'useCustomSwingSdk must be used within a CustomSwingSdkProvider',
+      "useCustomSwingSdk must be used within a CustomSwingSdkProvider",
     );
   }
   return contextValue;

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import dynamic from 'next/dynamic';
+import React from "react";
+import dynamic from "next/dynamic";
 
-import { Container } from './Container';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
-import { CircleBackground } from './CircleBackground';
+import { Container } from "./Container";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
+import { CircleBackground } from "./CircleBackground";
 
-const SwapSDK = dynamic(() => import('../Swap'), {
+const SwapSDK = dynamic(() => import("../Swap"), {
   ssr: false,
 });
 

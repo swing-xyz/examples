@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { forwardRef } from 'react';
+import clsx from "clsx";
+import { forwardRef } from "react";
 
 export function AppScreen({
   children,
@@ -8,7 +8,7 @@ export function AppScreen({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <div className={clsx('flex flex-col', className)}>{children}</div>;
+  return <div className={clsx("flex flex-col", className)}>{children}</div>;
 }
 
 AppScreen.Header = forwardRef(function AppScreenHeader(
@@ -53,7 +53,7 @@ AppScreen.Body = forwardRef(function AppScreenBody(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <div ref={ref} className={clsx('mt-6 flex-auto rounded-t-2xl', className)}>
+    <div ref={ref} className={clsx("mt-6 flex-auto rounded-t-2xl", className)}>
       {children}
     </div>
   );

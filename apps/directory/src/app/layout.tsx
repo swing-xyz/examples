@@ -1,10 +1,10 @@
-import { ThemeProvider } from 'components/theme-provider';
-import 'styles/globals.css';
+import { ThemeProvider } from "components/theme-provider";
+import "styles/globals.css";
 
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
-import { Header } from 'components/header';
-import { Footer } from 'components/footer';
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Header } from "components/header";
+import { Footer } from "components/footer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

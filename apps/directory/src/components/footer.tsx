@@ -1,15 +1,15 @@
-import { GithubIcon } from './icons/github';
-import { TwitterIcon } from './icons/twitter';
+import { GithubIcon } from "./icons/github";
+import { TwitterIcon } from "./icons/twitter";
 
 const footerNavigation = [
   {
-    name: 'GitHub',
-    href: 'https://github.com/swing-xyz/examples',
+    name: "GitHub",
+    href: "https://github.com/swing-xyz/examples",
     icon: GithubIcon,
   },
   {
-    name: 'X',
-    href: 'https://x.com/swing_xyz',
+    name: "X",
+    href: "https://x.com/swing_xyz",
     icon: TwitterIcon,
   },
 ];

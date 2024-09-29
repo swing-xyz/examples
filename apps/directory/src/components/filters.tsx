@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from 'components/ui/accordion';
-import { Checkbox } from 'components/ui/checkbox';
-import { slugify } from 'lib/slugify';
-import { usePathname, useSearchParams, useRouter } from 'next/navigation';
-import { Button } from './ui/button';
+} from "components/ui/accordion";
+import { Checkbox } from "components/ui/checkbox";
+import { slugify } from "lib/slugify";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
-import { XCircle } from 'lucide-react';
-import { cn } from 'lib/utils';
-import { keywordEntries } from 'lib/keywords';
-import { useMediaQuery } from 'hooks/use-media-query';
-import { Drawer, DrawerContent, DrawerTrigger } from './ui/drawer';
-import { useState } from 'react';
+import { XCircle } from "lucide-react";
+import { cn } from "lib/utils";
+import { keywordEntries } from "lib/keywords";
+import { useMediaQuery } from "hooks/use-media-query";
+import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
+import { useState } from "react";
 
 export function Filters() {
   const [open, setOpen] = useState(false);
-  const isDesktop = useMediaQuery('(min-width: 960px)');
+  const isDesktop = useMediaQuery("(min-width: 960px)");
 
   if (isDesktop) return <Filter />;
 
@@ -105,7 +105,7 @@ function Filter() {
                             }
 
                             router.push(
-                              pathname + '?' + nextSearchParams.toString(),
+                              pathname + "?" + nextSearchParams.toString(),
                               {
                                 scroll: false,
                               },

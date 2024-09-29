@@ -2,18 +2,18 @@ import {
   IModalContent,
   IModalContext,
   IModalProvider,
-} from 'app/interfaces/IModal';
+} from "app/interfaces/IModal";
 import React, {
   createContext,
   useContext,
   useState,
   useCallback,
   FC,
-} from 'react';
+} from "react";
 
 const defaultModelContent: IModalContent = {
   content: <></>,
-  title: '',
+  title: "",
 };
 
 const defaultModalContext: IModalContext = {
@@ -52,7 +52,7 @@ export const ModalProvider: FC<IModalProvider> = ({ children }) => {
 export const useModal = () => {
   const contextValue = useContext<IModalContext>(ModalContext);
   if (contextValue === null) {
-    throw new Error('useModal must be used within a ModalProvider');
+    throw new Error("useModal must be used within a ModalProvider");
   }
   return contextValue;
 };

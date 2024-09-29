@@ -1,3 +1,3 @@
-'use client';
+"use client";
 
-export { ThirdwebProvider } from '@thirdweb-dev/react';
+export { ThirdwebProvider } from "@thirdweb-dev/react";

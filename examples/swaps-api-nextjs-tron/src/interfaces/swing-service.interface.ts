@@ -1,26 +1,26 @@
 import {
   AllowanceQueryParams,
   AllowanceAPIResponse,
-} from './allowance.interface';
+} from "./allowance.interface";
 import {
   ApprovalTxDataQueryParams,
   ApprovalTxDataAPIResponse,
-} from './approval.interface';
-import { ChainsQueryParams, Chain } from './chain.interface';
+} from "./approval.interface";
+import { ChainsQueryParams, Chain } from "./chain.interface";
 import {
   TransactionQueryParams,
   TransactionResponseAPIResponse,
-} from './history.interface';
-import { QuoteAPIResponse, QuoteQueryParams } from './quote.interface';
+} from "./history.interface";
+import { QuoteAPIResponse, QuoteQueryParams } from "./quote.interface";
 import {
   SendTransactionPayload,
   SendTransactionApiResponse,
-} from './send.interface';
+} from "./send.interface";
 import {
   TransactionStatusParams,
   TransactionStatusAPIResponse,
-} from './status.interface';
-import { TokenQueryParams, Token } from './token.interface';
+} from "./status.interface";
+import { TokenQueryParams, Token } from "./token.interface";
 
 export interface ISwingServiceAPI {
   getQuoteRequest(

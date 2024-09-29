@@ -18,15 +18,15 @@ import { Chain } from "interfaces/chain.interface";
 import { Token } from "interfaces/token.interface";
 import { SelectTokenPanel } from "./ui/SelectTokenPanel";
 import { SelectChainPanel } from "./ui/SelectChainPanel";
-import { TbSwitchVertical, TbSwitchHorizontal } from "react-icons/tb";
+import { TbSwitchHorizontal } from "react-icons/tb";
 import { faCircleNotch, faHistory } from "@fortawesome/free-solid-svg-icons";
 import { TransferParams } from "types/transfer.types";
-import { TransferHistoryPanel } from "./ui/TransferHistoryPanel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ISwingServiceAPI } from "interfaces/swing-service.interface";
-import { QuoteAPIResponse, Route } from "interfaces/quote.interface";
+import { Route } from "interfaces/quote.interface";
 import { TransactionData } from "interfaces/approval.interface";
-import { TransferQuote } from "@swing.xyz/sdk";
+
+import { useWallet } from "@tronweb3/tronwallet-adapter-react-hooks";
 
 const walletConfig = metamaskWallet();
 
@@ -89,7 +89,16 @@ const Swap = () => {
   const { toast } = useToast();
   const sendInputRef = useRef<HTMLInputElement>(null);
 
-  // const { wallet, address, connected, select, connect, disconnect, signMessage, signTransaction } = useWallet();
+  const {
+    wallet,
+    connected: tronConnected,
+    address: tronAddress,
+    select,
+    connect: connectToTron,
+    disconnect,
+    signMessage,
+    signTransaction,
+  } = useWallet();
 
   const debounced = useDebouncedCallback((value) => {
     setTransferParams((prev: TransferParams) => ({
@@ -100,29 +109,17 @@ const Swap = () => {
   }, 1000);
 
   //Initialize Swing Service API from service.ts file and connect to tron wallet if installed
+  // Replace the TronLink connection logic in useEffect
   useEffect(() => {
     setSwingServiceAPI(new SwingServiceAPI());
-    if (window.tronLink) {
-      window.tronLink
-        .request({ method: "tron_requestAccounts" })
-        .then(() => {
-          const isConnected = window.tronLink?.ready;
-          if (isConnected) {
-            // Get user's wallet address
-            const walletAddress =
-              window.tronLink?.tronWeb.defaultAddress.base58;
-            setTronWalletAddress(walletAddress!);
-            setTransferParams((prev) => ({
-              ...prev,
-              toUserAddress: walletAddress!,
-            }));
-          } else {
-            console.log("TronLink is not connected.");
-          }
-        })
-        .catch((err) => console.error("Failed to connect Tron wallet:", err));
+    if (tronConnected && tronAddress) {
+      setTronWalletAddress(tronAddress);
+      setTransferParams((prev) => ({
+        ...prev,
+        toUserAddress: tronAddress,
+      }));
     }
-  }, []);
+  }, [tronConnected, tronAddress]);
 
   //Fetch chains and tokens whenever wallet address changes
   useEffect(() => {
@@ -193,43 +190,15 @@ const Swap = () => {
     }
   }
 
-  //Connect to Tron Wallet
-  const connectToTron = async () => {
+  const runTx = async (tx: any) => {
     try {
-      const { tronLink } = window;
-      if (tronLink) {
-        const response = await tronLink.request({
-          method: "tron_requestAccounts",
-        });
-        const isConnected = window.tronLink?.ready;
-        if (isConnected) {
-          // Get user's wallet address
-          const walletAddress = window.tronLink?.tronWeb.defaultAddress.base58;
-          console.log("Connected to TronLink wallet:", walletAddress);
-          return walletAddress;
-        } else {
-          console.log("TronLink is not connected.");
-        }
-
-        setTronWalletAddress(response.publicKey.toString());
-        setTransferParams((prev) => ({
-          ...prev,
-          toUserAddress: response.publicKey.toString(),
-        }));
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Something went wrong!",
-          description: "Tron wallet not found. Please install it.",
-        });
-      }
-    } catch (error) {
-      console.error("Failed to connect to Tron wallet:", error);
-      toast({
-        variant: "destructive",
-        title: "Something went wrong!",
-        description: `Failed to connect to Tron wallet: ${(error as Error).message}`,
-      });
+      const txObj = JSON.parse(tx);
+      const meta = txObj.meta;
+      const tronTx = await signTransaction(meta);
+      console.log("tx:", tronTx);
+      return tronTx.txID;
+    } catch (e) {
+      console.log("Tx running error:", e);
     }
   };
 
@@ -338,53 +307,29 @@ const Swap = () => {
     setIsLoading(false);
   }
 
+  // Update the sendTronTrans function
   async function sendTronTrans(
     txData: TransactionData,
   ): Promise<string | undefined> {
     try {
-      if (!window.tronLink || !window.tronLink.tronWeb) {
-        throw new Error("TronLink is not available");
+      if (!tronConnected || !wallet) {
+        throw new Error("Tron wallet is not connected");
       }
 
-      const tronWeb = window.tronLink.tronWeb;
+      console.log(txData.meta!);
 
-      // Extract function selector (first 4 bytes of data)
-      const dataWithoutPrefix = txData.data.startsWith("0x")
-        ? txData.data.slice(2)
-        : txData.data;
-      const functionSelector = dataWithoutPrefix.slice(0, 8);
-      const parametersData = dataWithoutPrefix.slice(8);
+      // Create and sign the transaction
+      const signedTx = await wallet.adapter.signTransaction(txData.meta!);
 
-      // Create a transaction using triggerSmartContract
-      const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
-        txData.to,
-        functionSelector,
-        {
-          feeLimit: 1000000000, // Adjust the fee limit if needed
-          callValue: parseInt(txData.value!, 16), // Convert value from hex to integer
-        },
-        [
-          // Directly pass the parameters data here. Ensure it is a properly formatted array if needed.
-          "0x" + parametersData, // You need to handle this more dynamically if there are multiple parameters
-        ],
-        txData.from, // Address of sender
-      );
+      // Broadcasting the transaction
+      const broadcast =
+        await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
+      console.log(`broadcast: ${broadcast?.result}`);
 
-      // Sign the transaction
-      const signedTransaction = await tronWeb.trx.sign(transaction.transaction);
-
-      // Broadcast the signed transaction
-      const response = await tronWeb.trx.sendRawTransaction(signedTransaction);
-
-      if (response && response.result) {
-        return response.txid;
-      } else {
-        console.error("Transaction failed:", response);
-        return undefined;
-      }
+      return signedTx.txID as string;
     } catch (error) {
-      console.error("Error sending complex Tron transaction:", error);
-      return undefined;
+      console.error("Error sending Tron transaction:", error);
+      throw new Error((error as Error).message);
     }
   }
 
@@ -588,6 +533,7 @@ const Swap = () => {
         value: transfer?.tx?.value!,
         txId: transfer?.tx?.txId!,
         gasLimit: transfer?.tx?.gas!,
+        meta: transfer?.tx?.meta,
       };
 
       setTransStatus({
@@ -597,11 +543,8 @@ const Swap = () => {
       let txHash = "";
 
       if (transferParams.fromChain === "tron") {
-        const hash = await sendTronTrans({
-          ...txData,
-          from: transferParams.fromUserAddress,
-        });
-        txHash = hash!;
+        const txId = await sendTronTrans(txData);
+        txHash = txId!;
       } else {
         const txResponse = await signer?.sendTransaction({
           data: txData.data,
@@ -638,7 +581,7 @@ const Swap = () => {
   function SelectFromChainPanel() {
     return (
       <div
-        className={clsx("grow transform flex justify-center", {
+        className={clsx("flex grow transform justify-center", {
           "cursor-pointer p-2 hover:bg-gray-900":
             transferParams.fromChain !== "tron",
         })}
@@ -741,9 +684,27 @@ const Swap = () => {
       <div className="w-96 rounded-xl bg-white shadow-md lg:max-w-96">
         <div className="mb-6 flex items-center justify-between px-6 py-4">
           <h1 className="text-2xl font-bold">Tron Gate</h1>
-          <div className="h-5 w-5 cursor-pointer rounded-full">
-            {" "}
-            <FontAwesomeIcon className="ml-2" icon={faHistory} />
+
+          <div className="flex items-center">
+            <button
+              className="flex items-center gap-1 rounded-xl bg-purple-300 p-2 text-xs font-bold ring-1 ring-purple-600"
+              onClick={() =>
+                tronConnected ? disconnect() : select("TronLink" as any)
+              }
+            >
+              <span
+                className={clsx("p4 h-4 w-4 rounded-full", {
+                  "bg-red-500": !tronConnected,
+                  "bg-green-500": tronConnected,
+                })}
+              ></span>
+              <span>
+                {tronConnected ? <>Tron Connected</> : <>Connect Tron</>}
+              </span>
+            </button>
+            <div className="h-5 w-5 cursor-pointer rounded-full">
+              <FontAwesomeIcon className="ml-2" icon={faHistory} />
+            </div>
           </div>
         </div>
         <div className="space-y-5">
@@ -782,12 +743,12 @@ const Swap = () => {
               </div>
             ) : (
               <div
-                className="group flex cursor-pointer items-center justify-between gap-x-2
-                                 rounded-2xl bg-zinc-600 px-3 py-2 text-sm
-                                 font-semibold text-white outline-2 outline-offset-2
-                                 transition-colors hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
+                className="group flex w-full cursor-pointer items-center justify-between
+                                 gap-x-2 bg-zinc-600 px-3 py-2
+                                 text-xs font-semibold text-white
+                                 outline-2 outline-offset-2 transition-colors hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
               >
-                <span>{transStatus?.status}</span>
+                <span>{transStatus?.status ?? "Sending"}</span>
                 <span className="h-5 w-5 rounded-full bg-cyan-400"></span>
               </div>
             )}
@@ -934,8 +895,8 @@ function formatUSD(amount: string) {
   }).format(Number(amount));
 }
 
-function shortentronAddress(address: string) {
-  return address.slice(0, 4) + "..." + address.slice(-4);
-}
+// function shortentronAddress(address: string) {
+//   return address.slice(0, 4) + "..." + address.slice(-4);
+// }
 
 export default Swap;

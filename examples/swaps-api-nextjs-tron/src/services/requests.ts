@@ -32,7 +32,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   constructor() {
     this.swingSDK = new SwingSDK({
       projectId: "replug",
-      // environment: 'testnet',
+      // environment: "testnet",
       debug: true,
     });
   }

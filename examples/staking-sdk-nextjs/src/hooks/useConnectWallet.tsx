@@ -1,7 +1,7 @@
-import { Chain } from '@swing.xyz/sdk';
-import { useSwingSdk } from 'components/SwingSdkProvider';
-import { useCallback } from 'react';
-import { useAccount, useConnect } from 'wagmi';
+import { Chain } from "@swing.xyz/sdk";
+import { useSwingSdk } from "components/SwingSdkProvider";
+import { useCallback } from "react";
+import { useAccount, useConnect } from "wagmi";
 
 export function useConnectWallet() {
   const { address, isConnected } = useAccount();

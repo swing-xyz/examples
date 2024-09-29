@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Button } from './Button';
-import { CircleBackground } from './CircleBackground';
-import { Container } from './Container';
+import { Button } from "./Button";
+import { CircleBackground } from "./CircleBackground";
+import { Container } from "./Container";
 
 export function CallToAction() {
   return (

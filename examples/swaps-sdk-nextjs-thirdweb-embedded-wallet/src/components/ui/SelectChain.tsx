@@ -1,11 +1,11 @@
-import { Chain, Token } from '@swing.xyz/sdk';
-import { FC, useEffect, useState } from 'react';
-import { SingleChain } from './Chain';
-import { useSelectChain } from 'components/hooks/useSelectChain';
-import { MdOutlineArrowBack } from 'react-icons/md';
-import { SingleToken } from './Token';
-import { useCustomSwingSdk } from 'components/hooks/useSwingSDK';
-import { ISelectChain, ISelectedChain } from 'app/interfaces/IChainSelector';
+import { Chain, Token } from "@swing.xyz/sdk";
+import { FC, useEffect, useState } from "react";
+import { SingleChain } from "./Chain";
+import { useSelectChain } from "components/hooks/useSelectChain";
+import { MdOutlineArrowBack } from "react-icons/md";
+import { SingleToken } from "./Token";
+import { useCustomSwingSdk } from "components/hooks/useSwingSDK";
+import { ISelectChain, ISelectedChain } from "app/interfaces/IChainSelector";
 
 export const SelectChain: FC<ISelectChain> = ({
   chains,
@@ -23,19 +23,19 @@ export const SelectChain: FC<ISelectChain> = ({
       const sendTokens = !toChain
         ? swingSDK?.getAvailableSendTokens({
             fromChainSlug: selectedChain.chain.slug,
-            type: 'swap',
+            type: "swap",
           })
         : swingSDK?.getAvailableReceiveTokens({
             fromChainSlug: selectedChain.chain.slug,
             fromTokenSymbol: selectedChain.token?.symbol!,
-            type: 'swap',
+            type: "swap",
             toChainSlug: toChain.slug,
           });
       const nativeToken = sendTokens?.filter(
         (token: Token) =>
           token.symbol == selectedChain.chain?.nativeToken?.symbol,
       );
-      console.log('native token', nativeToken);
+      console.log("native token", nativeToken);
 
       setTokens([...nativeToken!, ...sendTokens!]);
     }

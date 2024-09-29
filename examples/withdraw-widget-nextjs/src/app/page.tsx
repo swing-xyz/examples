@@ -1,5 +1,5 @@
-import { Withdraw } from '@swing.xyz/ui';
-import '@swing.xyz/ui/theme.css';
+import { Withdraw } from "@swing.xyz/ui";
+import "@swing.xyz/ui/theme.css";
 
 export default function SwapPage() {
   return (

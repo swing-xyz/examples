@@ -5,10 +5,10 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from '@/ui/drawer';
-import { Button } from '../ui/Button';
-import clsx from 'clsx';
-import { ScrollArea } from '@/ui/scroll-area';
+} from "@/ui/drawer";
+import { Button } from "../ui/Button";
+import clsx from "clsx";
+import { ScrollArea } from "@/ui/scroll-area";
 
 export interface MessageLog {
   time: string;
@@ -28,31 +28,31 @@ export const StatusSheet = ({
   const LogMessage = ({ logMessage }: { logMessage: MessageLog }) => {
     const { time, log, logType } = logMessage;
 
-    if (logType === 'CHAIN_SWITCH') {
+    if (logType === "CHAIN_SWITCH") {
       return (
         <div className="mb-2 flex min-h-[50px] gap-4 sm:flex-col">
-          <span className={clsx('text-yellow-400')}>{time}</span>
+          <span className={clsx("text-yellow-400")}>{time}</span>
           <div className="rounded-xl bg-zinc-700 p-1">
             <h3 className="text-sm sm:text-xs">{log}</h3>
           </div>
         </div>
       );
-    } else if (logType === 'ACTION_REQUIRED') {
+    } else if (logType === "ACTION_REQUIRED") {
       return (
         <div className="mb-2 min-h-[50px] gap-4 sm:block lg:flex">
-          <span className={clsx('text-yellow-400')}>{time}</span>
+          <span className={clsx("text-yellow-400")}>{time}</span>
           <div className="rounded-xl bg-zinc-700 p-2">
             <h3 className="text-sm sm:text-xs">{log}</h3>
           </div>
         </div>
       );
-    } else if (logType === 'ERROR') {
+    } else if (logType === "ERROR") {
       <div>
-        <span className={clsx('text-red-400')}>{time}</span>: {log}
+        <span className={clsx("text-red-400")}>{time}</span>: {log}
       </div>;
     } else {
       <div>
-        <span className={clsx('text-zinc-400')}>{time}</span>: {log}
+        <span className={clsx("text-zinc-400")}>{time}</span>: {log}
       </div>;
     }
   };
@@ -83,7 +83,7 @@ export const StatusSheet = ({
           <DrawerFooter>
             <Button
               className={clsx(
-                'flex w-full cursor-pointer items-center bg-red-400',
+                "flex w-full cursor-pointer items-center bg-red-400",
               )}
               onClick={onCancel}
             >

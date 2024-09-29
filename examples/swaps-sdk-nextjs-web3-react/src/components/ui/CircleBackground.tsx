@@ -1,4 +1,4 @@
-import { useId, type SVGProps } from 'react';
+import { useId, type SVGProps } from "react";
 
 export function CircleBackground({
   color,

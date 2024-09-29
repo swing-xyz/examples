@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import dynamic from 'next/dynamic';
+import React from "react";
+import dynamic from "next/dynamic";
 
-import { AppScreen } from './AppScreen';
-import { Container } from './Container';
+import { AppScreen } from "./AppScreen";
+import { Container } from "./Container";
 
-const SwapSDK = dynamic(() => import('../Swap'), {
+const SwapSDK = dynamic(() => import("../Swap"), {
   ssr: false,
 });
 

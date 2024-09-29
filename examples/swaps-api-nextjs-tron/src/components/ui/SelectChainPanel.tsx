@@ -3,7 +3,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { ChainTokenItem } from "./ChainTokenItem";
 import { Chain } from "interfaces/chain.interface";
 
-const allowedChains = ["ethereum", "polygon", "avalanche", "arbitrum"];
+const allowedChains = [
+  "ethereum",
+  "polygon",
+  "avalanche",
+  "arbitrum",
+  "sepolia",
+];
 
 export const SelectChainPanel = ({
   chains,

@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Popover } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import Link from "next/link";
+import { Popover } from "@headlessui/react";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { Button } from './Button';
-import { Container } from './Container';
-import { Logo } from './Logo';
-import { NavLinks } from './NavLinks';
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { Button } from "./Button";
+import { Container } from "./Container";
+import { Logo } from "./Logo";
+import { NavLinks } from "./NavLinks";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function MenuIcon({ className }: { className?: string }) {
   return (

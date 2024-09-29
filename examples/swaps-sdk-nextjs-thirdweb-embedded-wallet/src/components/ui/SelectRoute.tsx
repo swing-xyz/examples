@@ -1,7 +1,7 @@
-import { TransferRoute } from '@swing.xyz/sdk';
-import { FC } from 'react';
-import { ISelectRoute } from 'app/interfaces/IRouteSelector';
-import { Route } from './Route';
+import { TransferRoute } from "@swing.xyz/sdk";
+import { FC } from "react";
+import { ISelectRoute } from "app/interfaces/IRouteSelector";
+import { Route } from "./Route";
 
 export const SelectRoute: FC<ISelectRoute> = ({
   routes,
@@ -11,7 +11,7 @@ export const SelectRoute: FC<ISelectRoute> = ({
     (a, b) => Number(a.quote.amount) - Number(b.quote.amount),
   ) as TransferRoute[];
   // @ts-expect-error ignore
-  groupedRoutes[0]['isBest'] = true;
+  groupedRoutes[0]["isBest"] = true;
 
   return (
     <div className="w-full">

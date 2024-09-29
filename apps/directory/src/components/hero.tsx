@@ -1,5 +1,5 @@
-import { GridPattern } from './grid-pattern';
-import { Button } from './ui/button';
+import { GridPattern } from "./grid-pattern";
+import { Button } from "./ui/button";
 
 export function Hero() {
   return (

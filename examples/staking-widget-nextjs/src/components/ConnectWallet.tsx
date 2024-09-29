@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useAccount, useEnsName, useConnect, useConnectors } from 'wagmi';
-import { Button } from './ui/button';
+import { useAccount, useEnsName, useConnect, useConnectors } from "wagmi";
+import { Button } from "./ui/button";
 
 export function ConnectWallet() {
   const { address, isConnected } = useAccount();
@@ -17,7 +17,7 @@ export function ConnectWallet() {
         connect({ connector: connectors[0] });
       }}
     >
-      {isConnected ? ensName ?? address : 'Connect Wallet'}
+      {isConnected ? ensName ?? address : "Connect Wallet"}
     </Button>
   );
 }

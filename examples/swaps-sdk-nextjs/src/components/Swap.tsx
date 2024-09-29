@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SwingSDK, {
   TransferStepResults,
   TransferStepResult,
   TransferRoute,
   TransferParams,
   Chain,
-} from '@swing.xyz/sdk';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Button } from './ui/Button';
-import { useConnect, useWallet, metamaskWallet } from '@thirdweb-dev/react';
+} from "@swing.xyz/sdk";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { Button } from "./ui/Button";
+import { useConnect, useWallet, metamaskWallet } from "@thirdweb-dev/react";
 
 const walletConfig = metamaskWallet();
 
 const defaultTransferParams: TransferParams = {
-  amount: '1',
-  fromChain: 'goerli',
-  fromToken: 'ETH',
-  fromUserAddress: '',
-  toChain: 'goerli',
-  toToken: 'USDC',
-  toUserAddress: '',
+  amount: "1",
+  fromChain: "goerli",
+  fromToken: "ETH",
+  fromUserAddress: "",
+  toChain: "goerli",
+  toToken: "USDC",
+  toUserAddress: "",
 };
 
 const Swap = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [status, setStatus] = useState<TransferStepResult | null>(null);
   const [results, setResults] = useState<TransferStepResults | null>(null);
   const [transferParams, setTransferParams] = useState<TransferParams>(
@@ -44,8 +44,8 @@ const Swap = () => {
 
   useEffect(() => {
     const swing = new SwingSDK({
-      projectId: 'example-swaps-sdk-nextjs',
-      environment: 'testnet',
+      projectId: "example-swaps-sdk-nextjs",
+      environment: "testnet",
       debug: true,
     });
 
@@ -86,7 +86,7 @@ const Swap = () => {
         };
       });
     } catch (error) {
-      console.error('Connect Wallet Error:', error);
+      console.error("Connect Wallet Error:", error);
       setError((error as Error).message);
     }
   }
@@ -112,7 +112,7 @@ const Swap = () => {
         };
       });
     } catch (error) {
-      console.error('Switch Chain Error:', error);
+      console.error("Switch Chain Error:", error);
       setError((error as Error).message);
     }
   }
@@ -127,14 +127,14 @@ const Swap = () => {
       const quotes = await swingSDK.getQuote(transferParams);
 
       if (!quotes.routes.length) {
-        setError('No routes available. Try a different token pair.');
+        setError("No routes available. Try a different token pair.");
         setIsLoading(false);
         return;
       }
 
       setTransferRoute(quotes.routes[0]!);
     } catch (error) {
-      console.error('Quote Error:', error);
+      console.error("Quote Error:", error);
       setError((error as Error).message);
     }
 
@@ -145,24 +145,24 @@ const Swap = () => {
     if (!swingSDK) return;
 
     if (!transferRoute) {
-      setError('Choose a transfer route first.');
+      setError("Choose a transfer route first.");
       return;
     }
 
     const transferListener = swingSDK.on(
-      'TRANSFER',
+      "TRANSFER",
       async (transferStepStatus, transferResults) => {
         setStatus(transferStepStatus);
         setResults(transferResults);
 
-        console.log('TRANSFER:', transferStepStatus, transferResults);
+        console.log("TRANSFER:", transferStepStatus, transferResults);
 
         switch (transferStepStatus.status) {
-          case 'CHAIN_SWITCH_REQUIRED':
+          case "CHAIN_SWITCH_REQUIRED":
             await switchChain(transferStepStatus.chain);
             break;
 
-          case 'WALLET_CONNECTION_REQUIRED':
+          case "WALLET_CONNECTION_REQUIRED":
             await connectWallet(transferStepStatus.chain.chainId);
             break;
         }
@@ -174,7 +174,7 @@ const Swap = () => {
     try {
       await swingSDK.transfer(transferRoute, transferParams);
     } catch (error) {
-      console.error('Transfer Error:', error);
+      console.error("Transfer Error:", error);
       setError((error as Error).message);
     }
 
@@ -220,21 +220,21 @@ const Swap = () => {
       <div>
         {isConnected ? (
           <Button
-            className={clsx('flex cursor-pointer items-center', {
-              'opacity-60': isLoading,
+            className={clsx("flex cursor-pointer items-center", {
+              "opacity-60": isLoading,
             })}
             disabled={isLoading}
             onClick={() => (transferRoute ? startTransfer() : getQuote())}
           >
-            {transferRoute ? 'Start transfer' : 'Find the best price'}
+            {transferRoute ? "Start transfer" : "Find the best price"}
             {isLoading && (
               <FontAwesomeIcon className="ml-2" icon={faCircleNotch} spin />
             )}
           </Button>
         ) : (
           <Button
-            className={clsx('flex cursor-pointer items-center', {
-              'opacity-60': isLoading,
+            className={clsx("flex cursor-pointer items-center", {
+              "opacity-60": isLoading,
             })}
             disabled={isLoading}
             onClick={() => connectWallet()}
@@ -290,18 +290,18 @@ const Swap = () => {
                 Transfer Status
               </label>
               <div className="capitalize">
-                {status.step}: <b>{status.status || results?.status || ''}</b>
+                {status.step}: <b>{status.status || results?.status || ""}</b>
               </div>
             </div>
           )}
 
-          {status?.status === 'FAILED' || error ? (
+          {status?.status === "FAILED" || error ? (
             <div className="mt-2">
               <label className="block text-sm font-medium text-gray-700">
                 Error
-              </label>{' '}
+              </label>{" "}
               <div className="capitalize text-red-500">
-                {status?.status === 'FAILED' ? status.error : error}
+                {status?.status === "FAILED" ? status.error : error}
               </div>
             </div>
           ) : null}
@@ -312,10 +312,10 @@ const Swap = () => {
 };
 
 function formatUSD(amount: string) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'narrowSymbol',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
   }).format(Number(amount));
 }
 

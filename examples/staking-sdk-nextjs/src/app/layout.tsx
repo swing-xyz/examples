@@ -1,13 +1,13 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Sidebar from 'components/Sidebar';
-import { Button } from 'components/ui/button';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Sidebar from "components/Sidebar";
+import { Button } from "components/ui/button";
 
-import 'styles/globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { WagmiProvider } from 'components/WagmiProvider';
-import { ConnectWallet } from 'components/ConnectWallet';
-import { SwingSdkProvider } from 'components/SwingSdkProvider';
+import "styles/globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { WagmiProvider } from "components/WagmiProvider";
+import { ConnectWallet } from "components/ConnectWallet";
+import { SwingSdkProvider } from "components/SwingSdkProvider";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

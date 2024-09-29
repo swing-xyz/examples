@@ -74,7 +74,7 @@ export const getQuoteRequest = async (
     );
     return response.data;
   } catch (error) {
-    console.error('Error fetching quote:', error);
+    console.error("Error fetching quote:", error);
     throw error;
   }
 };
@@ -161,20 +161,20 @@ Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransf
 
 ```typescript
 const defaultTransferParams: TransferParams = {
-  tokenAmount: '1',
-  fromChain: 'ethereum',
-  fromUserAddress: '',
-  fromTokenAddress: '0x0000000000000000000000000000000000000000',
+  tokenAmount: "1",
+  fromChain: "ethereum",
+  fromUserAddress: "",
+  fromTokenAddress: "0x0000000000000000000000000000000000000000",
   fromTokenIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png',
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png",
   fromChainDecimal: 18,
-  tokenSymbol: 'ETH',
-  toTokenAddress: 'btc',
-  toTokenSymbol: 'BTC',
-  toChain: 'bitcoin',
+  tokenSymbol: "ETH",
+  toTokenAddress: "btc",
+  toTokenSymbol: "BTC",
+  toChain: "bitcoin",
   toTokenIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/btc.png',
-  toUserAddress: 'bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x', // enter your bitcoin wallet here
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/btc.png",
+  toUserAddress: "bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x", // enter your bitcoin wallet here
   toChainDecimal: 8,
 };
 ```
@@ -202,13 +202,13 @@ export const sendTransactionRequest = async (
       { ...payload, projectId },
       {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       },
     );
     return response.data;
   } catch (error) {
-    console.error('Error sending transaction:', error);
+    console.error("Error sending transaction:", error);
     throw error;
   }
 };
@@ -277,7 +277,7 @@ const transfer = await sendTransactionRequest({
     transferParams.fromChainDecimal,
   ),
   route: transferRoute.route,
-  type: 'swap',
+  type: "swap",
 });
 ```
 
@@ -304,7 +304,7 @@ const txResponse = await signer?.sendTransaction(txData); // <- `txResponse` con
 
 const receipt = await txResponse?.wait();
 
-console.log('Transaction receipt:', receipt);
+console.log("Transaction receipt:", receipt);
 ```
 
 The definition for the `sendTransactionRequest` response can be found in `src/interfaces/send.interface.ts.`
@@ -342,7 +342,7 @@ if (transfer.tx.meta) {
   window.xfi?.bitcoin.request(
     //<- Here, we're prompting a users wallet using xDEFI injected SDK
     {
-      method: 'transfer',
+      method: "transfer",
       params: [
         {
           from,
@@ -358,7 +358,7 @@ if (transfer.tx.meta) {
   );
 } else {
   console.warn(
-    'Please install xDEFI Wallet or any wallet that supports Bitcoin',
+    "Please install xDEFI Wallet or any wallet that supports Bitcoin",
   );
 }
 ```
@@ -380,13 +380,13 @@ export const getTransationStatus = async (
     );
 
     if (response.status === 404) {
-      return { status: 'Not Found ' };
+      return { status: "Not Found " };
     }
     return response.data;
   } catch (error) {
-    console.error('Error fetching transaction status:', error);
+    console.error("Error fetching transaction status:", error);
 
-    return { status: 'Transaction Failed' };
+    return { status: "Transaction Failed" };
   }
 };
 ```
@@ -442,7 +442,7 @@ In our `startTransfer()` method, we will execute the `pollTransactionStatus()` r
 ```typescript
 // src/components/Swaps.tsx
 
-setTransStatus({ status: 'Wallet Interaction Required' });
+setTransStatus({ status: "Wallet Interaction Required" });
 
 const txResponse = await signer?.sendTransaction(txData);
 

@@ -1,9 +1,9 @@
-import 'styles/globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "styles/globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
-import { Header } from '../components/ui/Header';
+import { Header } from "../components/ui/Header";
 
-import { Toaster } from 'components/ui/toaster';
+import { Toaster } from "components/ui/toaster";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

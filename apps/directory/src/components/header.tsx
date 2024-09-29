@@ -1,6 +1,6 @@
-import { GithubIcon } from './icons/github';
-import { SwingLogo } from './icons/swing';
-import { Button } from './ui/button';
+import { GithubIcon } from "./icons/github";
+import { SwingLogo } from "./icons/swing";
+import { Button } from "./ui/button";
 
 export function Header() {
   return (

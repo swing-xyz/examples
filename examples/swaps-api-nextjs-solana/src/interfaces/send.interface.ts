@@ -1,8 +1,8 @@
 export const pendingStatuses = [
-  'Submitted',
-  'Not Sent',
-  'Pending Source Chain',
-  'Pending Destination Chain',
+  "Submitted",
+  "Not Sent",
+  "Pending Source Chain",
+  "Pending Destination Chain",
 ];
 
 export interface SendTransactionApiResponse {
@@ -63,13 +63,13 @@ interface Route {
   bridge: string;
   bridgeTokenAddress: string;
   steps: (
-    | 'allowance'
-    | 'approve'
-    | 'send'
-    | 'nativeStaking'
-    | 'sign'
-    | 'claim'
-    | 'bridge'
+    | "allowance"
+    | "approve"
+    | "send"
+    | "nativeStaking"
+    | "sign"
+    | "claim"
+    | "bridge"
   )[];
   name: string;
   part: number;

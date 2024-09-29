@@ -1,11 +1,11 @@
-import { Chain, Token } from '@swing.xyz/sdk';
-import { FC, useEffect, useState } from 'react';
-import { useCustomSwingSdk } from 'components/hooks/useSwingSDK';
-import { ISelectedChain } from 'app/interfaces/IChainSelector';
+import { Chain, Token } from "@swing.xyz/sdk";
+import { FC, useEffect, useState } from "react";
+import { useCustomSwingSdk } from "components/hooks/useSwingSDK";
+import { ISelectedChain } from "app/interfaces/IChainSelector";
 
 export const SingleToken: FC<IToken> = ({ chain, token, onSelectChain }) => {
   const { swingSDK, isConnected } = useCustomSwingSdk();
-  const [tokenBalance] = useState('');
+  const [tokenBalance] = useState("");
 
   useEffect(() => {
     if (!swingSDK?.isReady || !isConnected) {

@@ -1,5 +1,5 @@
-import { Chain, Token } from '@swing.xyz/sdk';
-import { ReactNode } from 'react';
+import { Chain, Token } from "@swing.xyz/sdk";
+import { ReactNode } from "react";
 
 export interface ISelectChain {
   title?: string;

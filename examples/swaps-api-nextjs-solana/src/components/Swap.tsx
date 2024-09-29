@@ -1,57 +1,57 @@
-'use client';
+"use client";
 
-import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
-import { useConnect, metamaskWallet } from '@thirdweb-dev/react';
+import clsx from "clsx";
+import { useEffect, useRef, useState } from "react";
+import { useConnect, metamaskWallet } from "@thirdweb-dev/react";
 import {
   useConnectionStatus,
   useAddress,
   useSigner,
-} from '@thirdweb-dev/react';
-import { SwingServiceAPI } from 'services/requests';
-import { convertEthToWei, convertWeiToEth } from 'utils/ethToWei';
-import { useDebouncedCallback } from 'use-debounce';
-import { useToast } from 'components/ui/use-toast';
-import { TransactionStatusAPIResponse } from 'interfaces/status.interface';
-import { AxiosError } from 'axios';
-import { Chain } from 'interfaces/chain.interface';
-import { Token } from 'interfaces/token.interface';
-import { SelectTokenPanel } from './ui/SelectTokenPanel';
-import { SelectChainPanel } from './ui/SelectChainPanel';
-import { TbSwitchVertical, TbSwitchHorizontal } from 'react-icons/tb';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+} from "@thirdweb-dev/react";
+import { SwingServiceAPI } from "services/requests";
+import { convertEthToWei, convertWeiToEth } from "utils/ethToWei";
+import { useDebouncedCallback } from "use-debounce";
+import { useToast } from "components/ui/use-toast";
+import { TransactionStatusAPIResponse } from "interfaces/status.interface";
+import { AxiosError } from "axios";
+import { Chain } from "interfaces/chain.interface";
+import { Token } from "interfaces/token.interface";
+import { SelectTokenPanel } from "./ui/SelectTokenPanel";
+import { SelectChainPanel } from "./ui/SelectChainPanel";
+import { TbSwitchVertical, TbSwitchHorizontal } from "react-icons/tb";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
-import { Transaction, VersionedTransaction } from '@solana/web3.js';
-import { TransferParams } from 'types/transfer.types';
-import { TransferHistoryPanel } from './ui/TransferHistoryPanel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ISwingServiceAPI } from 'interfaces/swing-service.interface';
-import { Route } from 'interfaces/quote.interface';
-import { TransactionData } from 'interfaces/approval.interface';
+import { Transaction, VersionedTransaction } from "@solana/web3.js";
+import { TransferParams } from "types/transfer.types";
+import { TransferHistoryPanel } from "./ui/TransferHistoryPanel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ISwingServiceAPI } from "interfaces/swing-service.interface";
+import { Route } from "interfaces/quote.interface";
+import { TransactionData } from "interfaces/approval.interface";
 
 const walletConfig = metamaskWallet();
 
 const defaultTransferParams: TransferParams = {
-  tokenAmount: '1',
-  fromChain: 'ethereum',
-  tokenSymbol: 'ETH',
-  fromUserAddress: '',
-  fromTokenAddress: '0x0000000000000000000000000000000000000000',
-  fromNativeTokenSymbol: 'ETH',
+  tokenAmount: "1",
+  fromChain: "ethereum",
+  tokenSymbol: "ETH",
+  fromUserAddress: "",
+  fromTokenAddress: "0x0000000000000000000000000000000000000000",
+  fromNativeTokenSymbol: "ETH",
   fromTokenIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png',
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png",
   fromChainIconUrl:
-    'https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png',
+    "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png",
   fromChainDecimal: 18,
-  toTokenAddress: '11111111111111111111111111111111',
-  toTokenSymbol: 'SOL',
-  toNativeTokenSymbol: 'SOL',
-  toChain: 'solana',
+  toTokenAddress: "11111111111111111111111111111111",
+  toTokenSymbol: "SOL",
+  toNativeTokenSymbol: "SOL",
+  toChain: "solana",
   toTokenIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg',
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
   toChainIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg',
-  toUserAddress: '', // solana wallet address
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
+  toUserAddress: "", // solana wallet address
   toChainDecimal: 9,
 };
 
@@ -65,7 +65,7 @@ const Swap = () => {
     defaultTransferParams,
   );
 
-  const [solWalletAddress, setSolWalletAddress] = useState<string>('');
+  const [solWalletAddress, setSolWalletAddress] = useState<string>("");
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
@@ -109,7 +109,7 @@ const Swap = () => {
           }));
         })
         .catch((err) =>
-          console.error('Failed to connect Phantom wallet:', err),
+          console.error("Failed to connect Phantom wallet:", err),
         );
     }
   }, []);
@@ -128,7 +128,7 @@ const Swap = () => {
     setSolTokens([]);
 
     swingServiceAPI
-      ?.getChainsRequest({ type: 'evm' })
+      ?.getChainsRequest({ type: "evm" })
       .then((chains: Chain[] | undefined) => {
         setChains(chains!);
       });
@@ -140,7 +140,7 @@ const Swap = () => {
       });
 
     swingServiceAPI
-      ?.getTokensRequest({ chain: 'solana' })
+      ?.getTokensRequest({ chain: "solana" })
       .then((tokens: Token[] | undefined) => {
         setSolTokens(tokens!);
       });
@@ -162,10 +162,10 @@ const Swap = () => {
         };
       });
     } catch (error) {
-      console.error('Connect Wallet Error:', error);
+      console.error("Connect Wallet Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
+        variant: "destructive",
+        title: "Something went wrong!",
         description: (error as Error).message,
       });
     }
@@ -184,16 +184,16 @@ const Swap = () => {
         }));
       } else {
         toast({
-          variant: 'destructive',
-          title: 'Something went wrong!',
-          description: 'Phantom wallet not found. Please install it.',
+          variant: "destructive",
+          title: "Something went wrong!",
+          description: "Phantom wallet not found. Please install it.",
         });
       }
     } catch (error) {
-      console.error('Failed to connect to Phantom wallet:', error);
+      console.error("Failed to connect to Phantom wallet:", error);
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
+        variant: "destructive",
+        title: "Something went wrong!",
         description: `Failed to connect to Phantom wallet: ${(error as Error).message}`,
       });
     }
@@ -215,21 +215,21 @@ const Swap = () => {
   async function pollTransactionStatus(transId: string, txHash: string) {
     const transactionStatus = await getTransStatus(transId, txHash);
 
-    if (transactionStatus?.status! === 'Pending') {
+    if (transactionStatus?.status! === "Pending") {
       setTimeout(
         () => pollTransactionStatus(transId, txHash),
         transactionPollingDuration,
       );
     } else {
-      if (transactionStatus?.status === 'Success') {
+      if (transactionStatus?.status === "Success") {
         toast({
-          title: 'Transaction Successful',
+          title: "Transaction Successful",
           description: `Bridge Successful`,
         });
-      } else if (transactionStatus?.status === 'Failed') {
+      } else if (transactionStatus?.status === "Failed") {
         toast({
-          variant: 'destructive',
-          title: 'Transaction Failed',
+          variant: "destructive",
+          title: "Transaction Failed",
           description: transStatus?.errorReason,
         });
       }
@@ -238,7 +238,7 @@ const Swap = () => {
       setTransStatus(null);
       setIsTransacting(false);
       setIsLoading(false);
-      (sendInputRef.current as HTMLInputElement).value = '';
+      (sendInputRef.current as HTMLInputElement).value = "";
     }
   }
 
@@ -250,11 +250,11 @@ const Swap = () => {
     setIsLoading(true);
 
     try {
-      if (transferParams.toUserAddress === '') {
+      if (transferParams.toUserAddress === "") {
         toast({
-          variant: 'destructive',
-          title: 'SOL Address Not Set',
-          description: 'Please connect your SOL wallet',
+          variant: "destructive",
+          title: "SOL Address Not Set",
+          description: "Please connect your SOL wallet",
         });
         return;
       }
@@ -273,9 +273,9 @@ const Swap = () => {
 
       if (!quotes?.routes?.length) {
         toast({
-          variant: 'destructive',
-          title: 'No routes found',
-          description: 'No routes available. Try increasing the send amount.',
+          variant: "destructive",
+          title: "No routes found",
+          description: "No routes available. Try increasing the send amount.",
         });
         setIsLoading(false);
         return;
@@ -283,10 +283,10 @@ const Swap = () => {
 
       setTransferRoute(quotes.routes.at(0)!);
     } catch (error) {
-      console.error('Quote Error:', error);
+      console.error("Quote Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
+        variant: "destructive",
+        title: "Something went wrong!",
         description: (error as Error).message,
       });
     }
@@ -298,7 +298,7 @@ const Swap = () => {
     txData: TransactionData,
   ): Promise<string | undefined> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rawTx = Uint8Array.from(Buffer.from(txData.data as any, 'hex'));
+    const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
 
     let transaction: Transaction | VersionedTransaction;
     try {
@@ -318,7 +318,7 @@ const Swap = () => {
     const tempTransferParams: TransferParams = Object.create(transferParams);
 
     const newTransferParams: TransferParams = {
-      tokenAmount: '0',
+      tokenAmount: "0",
       fromChain: tempTransferParams.toChain,
       tokenSymbol: tempTransferParams.toTokenSymbol!,
       fromUserAddress: tempTransferParams.toUserAddress!,
@@ -340,7 +340,7 @@ const Swap = () => {
     setTransferRoute(null);
     setTransferParams(newTransferParams);
 
-    (sendInputRef.current as HTMLInputElement).value = '';
+    (sendInputRef.current as HTMLInputElement).value = "";
   }
 
   function onEVMChainSelect(chain: Chain) {
@@ -350,10 +350,10 @@ const Swap = () => {
         setTokens(tokens!);
       });
 
-    if (transferParams.fromChain !== 'solana') {
+    if (transferParams.fromChain !== "solana") {
       setTransferParams((prev) => ({
         ...prev,
-        tokenAmount: '0',
+        tokenAmount: "0",
         fromChain: chain.slug,
         fromChainIconUrl: chain.logo,
 
@@ -366,7 +366,7 @@ const Swap = () => {
     } else {
       setTransferParams((prev) => ({
         ...prev,
-        tokenAmount: '0',
+        tokenAmount: "0",
         toChain: chain.slug,
         toChainIconUrl: chain.logo,
 
@@ -384,7 +384,7 @@ const Swap = () => {
   function onFromTokenSelect(token: Token) {
     setTransferParams((prev) => ({
       ...prev,
-      tokenAmount: '0',
+      tokenAmount: "0",
       tokenSymbol: token.symbol,
       fromTokenAddress: token.address,
       fromTokenIconUrl: token.logo,
@@ -396,7 +396,7 @@ const Swap = () => {
   function onToTokenSelect(token: Token) {
     setTransferParams((prev) => ({
       ...prev,
-      tokenAmount: '0',
+      tokenAmount: "0",
       toTokenSymbol: token.symbol,
       toTokenAddress: token.address,
       toTokenIconUrl: token.logo,
@@ -408,9 +408,9 @@ const Swap = () => {
   async function startTransfer() {
     if (!transferRoute) {
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
-        description: 'Please get a route first before attempting a transaction',
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: "Please get a route first before attempting a transaction",
       });
       return;
     }
@@ -426,7 +426,7 @@ const Swap = () => {
     try {
       if (
         transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol &&
-        transferParams.fromChain !== 'solana'
+        transferParams.fromChain !== "solana"
       ) {
         const checkAllowance = await swingServiceAPI?.getAllowanceRequest({
           bridge: transferRoute.quote.integration,
@@ -468,9 +468,9 @@ const Swap = () => {
           const txResponse = await signer?.sendTransaction(txData);
 
           const receipt = await txResponse?.wait();
-          console.log('Transaction receipt:', receipt);
+          console.log("Transaction receipt:", receipt);
 
-          setTransStatus({ status: 'Token allowance approved' });
+          setTransStatus({ status: "Token allowance approved" });
         }
       }
 
@@ -489,14 +489,14 @@ const Swap = () => {
 
         tokenAmount,
         route: transferRoute.route,
-        type: 'swap',
+        type: "swap",
       });
 
       if (!transfer) {
         toast({
-          variant: 'destructive',
-          title: 'Something went wrong!',
-          description: 'Transaction Failed',
+          variant: "destructive",
+          title: "Something went wrong!",
+          description: "Transaction Failed",
         });
         setIsLoading(false);
         setIsTransacting(false);
@@ -515,12 +515,12 @@ const Swap = () => {
       };
 
       setTransStatus({
-        status: 'Wallet Interaction Required: Approve Transaction',
+        status: "Wallet Interaction Required: Approve Transaction",
       });
 
-      let txHash = '';
+      let txHash = "";
 
-      if (transferParams.fromChain === 'solana') {
+      if (transferParams.fromChain === "solana") {
         const hash = await sendSolTrans({
           ...txData,
           from: transferParams.fromUserAddress,
@@ -537,21 +537,21 @@ const Swap = () => {
         // Wait for the transaction to be mined
 
         const receipt = await txResponse?.wait();
-        console.log('Transaction receipt:', receipt);
+        console.log("Transaction receipt:", receipt);
         txHash = txResponse?.hash!;
       }
 
       pollTransactionStatus(transfer?.id.toString()!, txHash);
     } catch (error) {
-      console.error('Transfer Error:', error);
+      console.error("Transfer Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
+        variant: "destructive",
+        title: "Something went wrong!",
         description:
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           `${(error as AxiosError & any)?.response?.data?.error} : ${(error as AxiosError & any)?.response?.data?.message}` ??
           (error as Error).message ??
-          'Something went wrong',
+          "Something went wrong",
       });
 
       setIsTransacting(false);
@@ -562,12 +562,12 @@ const Swap = () => {
   function SelectFromChainPanel() {
     return (
       <div
-        className={clsx('rounded-full bg-zinc-500', {
-          'cursor-pointer bg-zinc-500 p-2 hover:bg-gray-900':
-            transferParams.fromChain !== 'solana',
+        className={clsx("rounded-full bg-zinc-500", {
+          "cursor-pointer bg-zinc-500 p-2 hover:bg-gray-900":
+            transferParams.fromChain !== "solana",
         })}
       >
-        {transferParams.fromChain === 'solana' ? (
+        {transferParams.fromChain === "solana" ? (
           <img
             src={transferParams.fromChainIconUrl}
             className="w-7 rounded-full"
@@ -577,7 +577,7 @@ const Swap = () => {
             onChainSelect={onEVMChainSelect}
             chains={chains!}
             transferParams={
-              transferParams.fromChain !== 'solana'
+              transferParams.fromChain !== "solana"
                 ? {
                     chain: transferParams.fromChain,
                     chainIconUrl: transferParams.fromChainIconUrl!,
@@ -596,12 +596,12 @@ const Swap = () => {
   function SelectToChainPanel() {
     return (
       <div
-        className={clsx('rounded-xl  p-2', {
-          'cursor-pointer bg-zinc-500 hover:bg-gray-900':
-            transferParams.toChain !== 'solana',
+        className={clsx("rounded-xl  p-2", {
+          "cursor-pointer bg-zinc-500 hover:bg-gray-900":
+            transferParams.toChain !== "solana",
         })}
       >
-        {transferParams.toChain === 'solana' ? (
+        {transferParams.toChain === "solana" ? (
           <img
             src={transferParams.toChainIconUrl}
             className="w-7 rounded-full"
@@ -611,7 +611,7 @@ const Swap = () => {
             onChainSelect={onEVMChainSelect}
             chains={chains!}
             transferParams={
-              transferParams.fromChain !== 'solana'
+              transferParams.fromChain !== "solana"
                 ? {
                     chain: transferParams.fromChain,
                     chainIconUrl: transferParams.fromChainIconUrl!,
@@ -631,12 +631,12 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          'cursor-pointer rounded-xl bg-zinc-500 p-2 hover:bg-gray-900',
+          "cursor-pointer rounded-xl bg-zinc-500 p-2 hover:bg-gray-900",
         )}
       >
         <SelectTokenPanel
           onTokenSelect={onFromTokenSelect}
-          tokens={transferParams.fromChain === 'solana' ? solTokens! : tokens}
+          tokens={transferParams.fromChain === "solana" ? solTokens! : tokens}
           transferParams={{
             chain: transferParams.fromChain,
             token: transferParams.tokenSymbol,
@@ -651,12 +651,12 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          'cursor-pointer  rounded-xl bg-zinc-500 p-2 hover:bg-gray-900',
+          "cursor-pointer  rounded-xl bg-zinc-500 p-2 hover:bg-gray-900",
         )}
       >
         <SelectTokenPanel
           onTokenSelect={onToTokenSelect}
-          tokens={transferParams.toChain === 'solana' ? solTokens! : tokens}
+          tokens={transferParams.toChain === "solana" ? solTokens! : tokens}
           transferParams={{
             chain: transferParams.toChain,
             token: transferParams.toTokenSymbol,
@@ -719,7 +719,7 @@ const Swap = () => {
         <div className="mb-3 flex flex-col items-center justify-between gap-y-5 lg:gap-y-2 xl:flex-row">
           <h4 className="text-xl font-bold text-zinc-700">SEND</h4>
           <div className="text-md flex gap-x-2 font-bold text-gray-200">
-            {transferParams.fromChain === 'solana' && (
+            {transferParams.fromChain === "solana" && (
               <>
                 <button
                   className="group flex cursor-pointer items-center justify-between gap-x-2
@@ -729,8 +729,8 @@ const Swap = () => {
                   onClick={connectToPhantom}
                 >
                   <span>
-                    {solWalletAddress === ''
-                      ? 'Connect SOL Wallet'
+                    {solWalletAddress === ""
+                      ? "Connect SOL Wallet"
                       : shortenSolanaAddress(solWalletAddress)}
                   </span>
                   <span className="h-5 w-5 rounded-full bg-purple-400"></span>
@@ -743,7 +743,7 @@ const Swap = () => {
           <input
             aria-label="deposit"
             className="m-0 h-auto w-[50%] border-none bg-transparent p-2 text-4xl placeholder:m-0 placeholder:p-0 placeholder:text-4xl focus:border-none focus:ring-0"
-            placeholder={'0 ' + transferParams.tokenSymbol}
+            placeholder={"0 " + transferParams.tokenSymbol}
             ref={sendInputRef}
             disabled={!solWalletAddress.length}
             onChange={(e) => {
@@ -783,7 +783,7 @@ const Swap = () => {
         <div className="mb-3 flex flex-col items-center justify-between gap-y-5 lg:gap-y-2 xl:flex-row">
           <h4 className="text-xl font-bold text-zinc-700">RECEIVE</h4>
           <div className="text-md flex gap-x-2 font-bold text-gray-200">
-            {transferParams.toChain === 'solana' && (
+            {transferParams.toChain === "solana" && (
               <button
                 className="group flex cursor-pointer items-center justify-between gap-x-2
                                  rounded-2xl bg-zinc-600 px-3 py-2 text-sm
@@ -792,8 +792,8 @@ const Swap = () => {
                 onClick={connectToPhantom}
               >
                 <span>
-                  {solWalletAddress === ''
-                    ? 'Connect SOL Wallet'
+                  {solWalletAddress === ""
+                    ? "Connect SOL Wallet"
                     : shortenSolanaAddress(solWalletAddress)}
                 </span>
                 <span className="h-5 w-5 rounded-full bg-purple-400"></span>
@@ -806,7 +806,7 @@ const Swap = () => {
             aria-label="receive"
             disabled
             className="m-0 h-auto w-[50%] border-none bg-transparent text-4xl placeholder:m-0 placeholder:p-0 placeholder:text-4xl focus:border-none focus:ring-0"
-            placeholder={'0 SOL'}
+            placeholder={"0 SOL"}
             type="number"
             value={
               convertWeiToEth(
@@ -843,13 +843,13 @@ const Swap = () => {
       <div className="mb-3 grid min-h-[150px] w-full gap-3 lg:grid-cols-3">
         <div
           className={clsx(
-            'flex grow flex-col rounded-xl bg-pink-300 p-3 transition-all ease-in-out',
+            "flex grow flex-col rounded-xl bg-pink-300 p-3 transition-all ease-in-out",
             {
-              'hover:cursor-pointer hover:bg-pink-200': !transferRoute,
+              "hover:cursor-pointer hover:bg-pink-200": !transferRoute,
             },
           )}
         >
-          <h4 className={clsx('w-full grow font-bold text-zinc-700')}>
+          <h4 className={clsx("w-full grow font-bold text-zinc-700")}>
             BEST ROUTE
           </h4>
           {!transferRoute ? (
@@ -862,10 +862,10 @@ const Swap = () => {
         </div>
         <div
           className={clsx(
-            'flex grow flex-col rounded-xl bg-zinc-300 p-3 transition-all ease-in-out',
+            "flex grow flex-col rounded-xl bg-zinc-300 p-3 transition-all ease-in-out",
           )}
         >
-          <h4 className={clsx('w-full grow font-bold text-zinc-700')}>
+          <h4 className={clsx("w-full grow font-bold text-zinc-700")}>
             GAS FEE
           </h4>
           <div className="text-xl font-medium">
@@ -874,10 +874,10 @@ const Swap = () => {
         </div>
         <div
           className={clsx(
-            'flex grow flex-col rounded-xl bg-cyan-200 p-3 transition-all ease-in-out',
+            "flex grow flex-col rounded-xl bg-cyan-200 p-3 transition-all ease-in-out",
           )}
         >
-          <h4 className={clsx('w-full grow font-bold text-zinc-700')}>TOTAL</h4>
+          <h4 className={clsx("w-full grow font-bold text-zinc-700")}>TOTAL</h4>
           <div className="text-xl font-medium">
             {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
           </div>
@@ -887,31 +887,31 @@ const Swap = () => {
       <div className="flex min-h-[150px] w-full justify-between gap-3">
         <button
           disabled={
-            (connectionStatus === 'connected' && isLoading) ||
-            (connectionStatus === 'connected' && isTransacting) ||
-            (connectionStatus === 'connected' && !transferRoute)
+            (connectionStatus === "connected" && isLoading) ||
+            (connectionStatus === "connected" && isTransacting) ||
+            (connectionStatus === "connected" && !transferRoute)
           }
           className={clsx(
-            'flex grow flex-col justify-center rounded-xl bg-zinc-300 p-3 transition-all ease-in-out hover:cursor-pointer',
+            "flex grow flex-col justify-center rounded-xl bg-zinc-300 p-3 transition-all ease-in-out hover:cursor-pointer",
             {
-              'hover:bg-blue-200':
-                connectionStatus === 'connected' && transferRoute,
-              'opacity-30':
+              "hover:bg-blue-200":
+                connectionStatus === "connected" && transferRoute,
+              "opacity-30":
                 (isLoading || !transferRoute || isTransacting) &&
-                connectionStatus === 'connected',
+                connectionStatus === "connected",
             },
           )}
           onClick={() =>
-            connectionStatus === 'connected' ? startTransfer() : connectWallet()
+            connectionStatus === "connected" ? startTransfer() : connectWallet()
           }
         >
           <h4 className="w-full font-bold text-zinc-700">
             <>
-              {connectionStatus === 'connected'
+              {connectionStatus === "connected"
                 ? isLoading && !transferRoute
-                  ? 'FETCHING QUOTE'
-                  : 'START TRANSFER'
-                : 'CONNECT ETHEREUM WALLET'}
+                  ? "FETCHING QUOTE"
+                  : "START TRANSFER"
+                : "CONNECT ETHEREUM WALLET"}
               {(isLoading || isTransacting) && (
                 <FontAwesomeIcon className="ml-2" icon={faCircleNotch} spin />
               )}
@@ -924,15 +924,15 @@ const Swap = () => {
 };
 
 function formatUSD(amount: string) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'narrowSymbol',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
   }).format(Number(amount));
 }
 
 function shortenSolanaAddress(address: string) {
-  return address.slice(0, 4) + '...' + address.slice(-4);
+  return address.slice(0, 4) + "..." + address.slice(-4);
 }
 
 export default Swap;

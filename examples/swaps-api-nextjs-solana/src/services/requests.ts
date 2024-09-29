@@ -1,37 +1,37 @@
-import { SwingSDK } from '@swing.xyz/sdk';
+import { SwingSDK } from "@swing.xyz/sdk";
 import {
   AllowanceAPIResponse,
   AllowanceQueryParams,
-} from 'interfaces/allowance.interface';
+} from "interfaces/allowance.interface";
 import {
   ApprovalTxDataAPIResponse,
   ApprovalTxDataQueryParams,
-} from 'interfaces/approval.interface';
-import { Chain, ChainsQueryParams } from 'interfaces/chain.interface';
+} from "interfaces/approval.interface";
+import { Chain, ChainsQueryParams } from "interfaces/chain.interface";
 import {
   TransactionQueryParams,
   TransactionResponseAPIResponse,
-} from 'interfaces/history.interface';
-import { QuoteAPIResponse, QuoteQueryParams } from 'interfaces/quote.interface';
+} from "interfaces/history.interface";
+import { QuoteAPIResponse, QuoteQueryParams } from "interfaces/quote.interface";
 import {
   SendTransactionApiResponse,
   SendTransactionPayload,
-} from 'interfaces/send.interface';
+} from "interfaces/send.interface";
 import {
   TransactionStatusAPIResponse,
   TransactionStatusParams,
-} from 'interfaces/status.interface';
-import { ISwingServiceAPI } from 'interfaces/swing-service.interface';
-import { Token, TokenQueryParams } from 'interfaces/token.interface';
+} from "interfaces/status.interface";
+import { ISwingServiceAPI } from "interfaces/swing-service.interface";
+import { Token, TokenQueryParams } from "interfaces/token.interface";
 
-const projectId = 'replug';
+const projectId = "replug";
 
 export class SwingServiceAPI implements ISwingServiceAPI {
   private readonly swingSDK: SwingSDK;
 
   constructor() {
     this.swingSDK = new SwingSDK({
-      projectId: 'replug',
+      projectId: "replug",
       debug: true,
     });
   }
@@ -41,7 +41,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   ): Promise<QuoteAPIResponse | undefined> {
     try {
       const response = await this.swingSDK.crossChainAPI.GET(
-        '/v0/transfer/quote',
+        "/v0/transfer/quote",
         {
           params: {
             query: queryParams,
@@ -50,7 +50,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Error fetching quote:', error);
+      console.error("Error fetching quote:", error);
       throw error;
     }
   }
@@ -60,7 +60,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   ): Promise<AllowanceAPIResponse | undefined> {
     try {
       const response = await this.swingSDK.crossChainAPI.GET(
-        '/v0/transfer/allowance',
+        "/v0/transfer/allowance",
         {
           params: {
             query: queryParams,
@@ -70,7 +70,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
 
       return response.data;
     } catch (error) {
-      console.error('Error fetching allowance:', error);
+      console.error("Error fetching allowance:", error);
       throw error;
     }
   }
@@ -80,7 +80,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   ): Promise<ApprovalTxDataAPIResponse | undefined> {
     try {
       const response = await this.swingSDK.crossChainAPI.GET(
-        '/v0/transfer/approve',
+        "/v0/transfer/approve",
         {
           params: {
             query: queryParams,
@@ -89,7 +89,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Error fetching approval:', error);
+      console.error("Error fetching approval:", error);
       throw error;
     }
   }
@@ -98,14 +98,14 @@ export class SwingServiceAPI implements ISwingServiceAPI {
     queryParams: ChainsQueryParams,
   ): Promise<Chain[] | undefined> {
     try {
-      const response = await this.swingSDK.platformAPI.GET('/chains', {
+      const response = await this.swingSDK.platformAPI.GET("/chains", {
         params: {
           query: queryParams,
         },
       });
       return response.data;
     } catch (error) {
-      console.error('Error fetching approval:', error);
+      console.error("Error fetching approval:", error);
       throw error;
     }
   }
@@ -114,14 +114,14 @@ export class SwingServiceAPI implements ISwingServiceAPI {
     queryParams: TokenQueryParams,
   ): Promise<Token[] | undefined> {
     try {
-      const response = await this.swingSDK.platformAPI.GET('/tokens', {
+      const response = await this.swingSDK.platformAPI.GET("/tokens", {
         params: {
           query: queryParams,
         },
       });
       return response.data;
     } catch (error) {
-      console.error('Error fetching approval:', error);
+      console.error("Error fetching approval:", error);
       throw error;
     }
   }
@@ -131,7 +131,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   ): Promise<TransactionResponseAPIResponse | undefined> {
     try {
       const response = await this.swingSDK.crossChainAPI.GET(
-        '/v0/transfer/history',
+        "/v0/transfer/history",
         {
           params: {
             query: queryParams,
@@ -141,7 +141,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
 
       return response.data;
     } catch (error) {
-      console.error('Error fetching transaction status:', error);
+      console.error("Error fetching transaction status:", error);
 
       throw error;
     }
@@ -152,7 +152,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   ): Promise<TransactionStatusAPIResponse | undefined> {
     try {
       const response = await this.swingSDK.platformAPI.GET(
-        '/projects/{projectId}/transactions/{transactionId}',
+        "/projects/{projectId}/transactions/{transactionId}",
         {
           params: {
             path: {
@@ -168,7 +168,7 @@ export class SwingServiceAPI implements ISwingServiceAPI {
 
       return response.data;
     } catch (error) {
-      console.error('Error fetching transaction status:', error);
+      console.error("Error fetching transaction status:", error);
       throw error;
     }
   }
@@ -178,14 +178,14 @@ export class SwingServiceAPI implements ISwingServiceAPI {
   ): Promise<SendTransactionApiResponse | undefined> {
     try {
       const response = await this.swingSDK.crossChainAPI.POST(
-        '/v0/transfer/send',
+        "/v0/transfer/send",
         {
           body: payload,
         },
       );
       return response.data;
     } catch (error) {
-      console.error('Error sending transaction:', error);
+      console.error("Error sending transaction:", error);
       throw error;
     }
   }

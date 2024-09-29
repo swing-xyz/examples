@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Container } from './Container';
+import React from "react";
+import { Container } from "./Container";
 
-import logoCnn from 'images/logos/cnn.svg';
-import logoForbes from 'images/logos/forbes.svg';
-import logoTechcrunch from 'images/logos/techcrunch.svg';
-import logoWired from 'images/logos/wired.svg';
+import logoCnn from "images/logos/cnn.svg";
+import logoForbes from "images/logos/forbes.svg";
+import logoTechcrunch from "images/logos/techcrunch.svg";
+import logoWired from "images/logos/wired.svg";
 
-import SwapSDK from '../Swap';
-import Image from 'next/image';
-import clsx from 'clsx';
+import SwapSDK from "../Swap";
+import Image from "next/image";
+import clsx from "clsx";
 
 export function Hero() {
   return (
@@ -20,7 +20,7 @@ export function Hero() {
           <div className="relative z-10 mx-auto flex flex-col items-center justify-center">
             <h1 className="text-center text-4xl font-medium tracking-tight text-gray-900">
               <div>
-                ETH to BTC Crypto{' '}
+                ETH to BTC Crypto{" "}
                 <span className="text-cyan-500">Exchange</span>
               </div>
             </h1>
@@ -44,12 +44,12 @@ export function Hero() {
             className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8"
           >
             {[
-              ['Forbes', logoForbes],
-              ['TechCrunch', logoTechcrunch],
-              ['Wired', logoWired],
-              ['CNN', logoCnn, 'hidden xl:block'],
+              ["Forbes", logoForbes],
+              ["TechCrunch", logoTechcrunch],
+              ["Wired", logoWired],
+              ["CNN", logoCnn, "hidden xl:block"],
             ].map(([name, logo, className]) => (
-              <li key={name} className={clsx('flex', className)}>
+              <li key={name} className={clsx("flex", className)}>
                 <Image src={logo} alt={name} className="h-8" unoptimized />
               </li>
             ))}

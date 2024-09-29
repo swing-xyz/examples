@@ -1,32 +1,32 @@
-'use client';
+"use client";
 
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
-import { Button } from './ui/Button';
-import { useConnect } from '@thirdweb-dev/react';
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "./ui/Button";
+import { useConnect } from "@thirdweb-dev/react";
 import {
   useConnectionStatus,
   useAddress,
   useSigner,
-} from '@thirdweb-dev/react';
-import { LiaExchangeAltSolid } from 'react-icons/lia';
-import { QuoteQueryParams, Route } from 'interfaces/quote.interface';
+} from "@thirdweb-dev/react";
+import { LiaExchangeAltSolid } from "react-icons/lia";
+import { QuoteQueryParams, Route } from "interfaces/quote.interface";
 import {
   getQuoteRequest,
   getTransationStatus,
   sendTransactionRequest,
-} from 'services/requests';
-import { convertEthToWei, convertWeiToEth } from 'utils/ethToWei';
-import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
-import { Label } from './ui/label';
-import { Input } from './ui/input';
-import { useToast } from 'components/ui/use-toast';
-import { TransactionStatusAPIResponse } from 'interfaces/status.interface';
-import { AxiosError } from 'axios';
+} from "services/requests";
+import { convertEthToWei, convertWeiToEth } from "utils/ethToWei";
+import { Popover, PopoverContent, PopoverTrigger } from "components/ui/popover";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
+import { useToast } from "components/ui/use-toast";
+import { TransactionStatusAPIResponse } from "interfaces/status.interface";
+import { AxiosError } from "axios";
 
-import { xdefiWallet } from '@thirdweb-dev/react';
+import { xdefiWallet } from "@thirdweb-dev/react";
 const xDefiConfig = xdefiWallet(); //<- For connecting to a bitcoin supported wallet.
 
 interface ChainDecimals {
@@ -42,28 +42,28 @@ interface ChainIcons {
 type TranferParams = QuoteQueryParams & ChainDecimals & ChainIcons;
 
 const defaultTransferParams: TranferParams = {
-  tokenAmount: '1',
-  fromChain: 'ethereum',
-  fromUserAddress: '',
-  fromTokenAddress: '0x0000000000000000000000000000000000000000',
+  tokenAmount: "1",
+  fromChain: "ethereum",
+  fromUserAddress: "",
+  fromTokenAddress: "0x0000000000000000000000000000000000000000",
   fromTokenIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png',
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/eth.png",
   fromChainDecimal: 18,
-  tokenSymbol: 'ETH',
-  toTokenAddress: 'btc',
-  toTokenSymbol: 'BTC',
-  toChain: 'bitcoin',
+  tokenSymbol: "ETH",
+  toTokenAddress: "btc",
+  toTokenSymbol: "BTC",
+  toChain: "bitcoin",
   toTokenIconUrl:
-    'https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/btc.png',
-  toUserAddress: 'bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x', // enter your bitcoin wallet here
+    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/PNG/btc.png",
+  toUserAddress: "bc1qeegt8mserjpwmaylfmprfswcx6twa4psusas8x", // enter your bitcoin wallet here
   toChainDecimal: 8,
 };
 
 const pendingStatuses = [
-  'Submitted',
-  'Not Sent',
-  'Pending Source Chain',
-  'Pending Destination Chain',
+  "Submitted",
+  "Not Sent",
+  "Pending Source Chain",
+  "Pending Destination Chain",
 ];
 
 const transactionPollingDuration = 10000;
@@ -75,7 +75,7 @@ const Swap = () => {
     defaultTransferParams,
   );
 
-  const [recipientAddress] = useState('');
+  const [recipientAddress] = useState("");
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
@@ -114,11 +114,11 @@ const Swap = () => {
 
   useEffect(() => {
     if (!xDefiConfig?.isInstalled!()) {
-      console.log('not installed');
+      console.log("not installed");
       toast({
-        variant: 'destructive',
-        title: 'xDefi Wallet not installed',
-        description: 'Please install xDefi wallet in your browser',
+        variant: "destructive",
+        title: "xDefi Wallet not installed",
+        description: "Please install xDefi wallet in your browser",
       });
     }
   }, []);
@@ -138,10 +138,10 @@ const Swap = () => {
         };
       });
     } catch (error) {
-      console.error('Connect Wallet Error:', error);
+      console.error("Connect Wallet Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Wallet connection error',
+        variant: "destructive",
+        title: "Wallet connection error",
         description: (error as Error).message,
       });
     }
@@ -161,7 +161,7 @@ const Swap = () => {
 
       return transactionStatus!;
     } catch (e) {
-      return { status: 'Submitted' };
+      return { status: "Submitted" };
     }
   }
 
@@ -176,19 +176,19 @@ const Swap = () => {
     } else {
       setTransferRoute(null);
       toast({
-        title: 'Transaction Successful',
+        title: "Transaction Successful",
         description: `Bridge Successful`,
       });
     }
 
-    (sendInputRef.current as HTMLInputElement).value = '0.000';
+    (sendInputRef.current as HTMLInputElement).value = "0.000";
   }
 
   function switchTransferParams() {
     const tempTransferParams: TranferParams = Object.create(transferParams);
 
     const newTransferParams: TranferParams = {
-      tokenAmount: '0',
+      tokenAmount: "0",
       fromChain: tempTransferParams.toChain,
       tokenSymbol: tempTransferParams.toTokenSymbol!,
       fromUserAddress: tempTransferParams.toUserAddress!,
@@ -206,7 +206,7 @@ const Swap = () => {
     setTransferRoute(null);
     setTransferParams(newTransferParams);
 
-    (sendInputRef.current as HTMLInputElement).value = '0.000';
+    (sendInputRef.current as HTMLInputElement).value = "0.000";
   }
 
   async function getQuote() {
@@ -232,9 +232,9 @@ const Swap = () => {
       if (!quotes?.routes.length) {
         // setError("");
         toast({
-          variant: 'destructive',
-          title: 'No routes found',
-          description: 'No routes available. Try increasing the send amount.',
+          variant: "destructive",
+          title: "No routes found",
+          description: "No routes available. Try increasing the send amount.",
         });
         setIsLoading(false);
         return;
@@ -244,10 +244,10 @@ const Swap = () => {
 
       console.log(transferRoute);
     } catch (error) {
-      console.error('Quote Error:', error);
+      console.error("Quote Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
+        variant: "destructive",
+        title: "Something went wrong!",
         description: (error as Error).message,
       });
     }
@@ -258,9 +258,9 @@ const Swap = () => {
   async function startTransfer() {
     if (!transferRoute) {
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
-        description: 'Please get a route first before attempting a transaction',
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: "Please get a route first before attempting a transaction",
       });
       return;
     }
@@ -289,7 +289,7 @@ const Swap = () => {
           transferParams.fromChainDecimal,
         ),
         route: transferRoute.route,
-        type: 'swap',
+        type: "swap",
       });
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -308,7 +308,7 @@ const Swap = () => {
        * In this excerpt, here's how to
        */
 
-      setTransStatus({ status: 'Wallet Interaction Required' });
+      setTransStatus({ status: "Wallet Interaction Required" });
 
       let txResponse;
 
@@ -321,7 +321,7 @@ const Swap = () => {
         (window.xfi as any)?.bitcoin.request(
           // Here, we're prompting a users wallet using xDEFI injected SDK
           {
-            method: 'transfer',
+            method: "transfer",
             params: [
               {
                 from,
@@ -337,10 +337,10 @@ const Swap = () => {
 
             if (error) {
               toast({
-                variant: 'destructive',
-                title: 'Something went wrong!',
+                variant: "destructive",
+                title: "Something went wrong!",
                 description:
-                  'Swap error, please check your balance or swap config',
+                  "Swap error, please check your balance or swap config",
               });
 
               setIsLoading(false);
@@ -355,20 +355,20 @@ const Swap = () => {
         txResponse = await signer?.sendTransaction(txData);
         pollTransactionStatus(transfer?.id?.toString()!, txResponse?.hash!);
         const receipt = await txResponse?.wait();
-        console.log('Transaction receipt:', receipt);
+        console.log("Transaction receipt:", receipt);
       }
 
       // Wait for the transaction to be mined
     } catch (error) {
-      console.error('Transfer Error:', error);
+      console.error("Transfer Error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Something went wrong!',
+        variant: "destructive",
+        title: "Something went wrong!",
         description:
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           `${(error as AxiosError & any)?.response?.data?.error} : ${(error as AxiosError & any)?.response?.data?.message}` ??
           (error as Error).message ??
-          'Something went wrong',
+          "Something went wrong",
       });
     }
 
@@ -390,7 +390,7 @@ const Swap = () => {
                     <input
                       aria-label="deposit"
                       className="m-0 h-auto w-full border-none bg-transparent p-0 text-white placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
-                      placeholder={'0'}
+                      placeholder={"0"}
                       defaultValue={transferParams.tokenAmount}
                       ref={sendInputRef}
                       onChange={(e) => {
@@ -442,7 +442,7 @@ const Swap = () => {
                     <input
                       aria-label="receive"
                       className="m-0 h-auto w-full border-none bg-transparent p-0 text-right text-white placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
-                      placeholder={'0'}
+                      placeholder={"0"}
                       value={
                         convertWeiToEth(
                           transferRoute?.quote.amount! ?? 0,
@@ -465,7 +465,7 @@ const Swap = () => {
           </div>
         </div>
 
-        {connectionStatus === 'connected' ? (
+        {connectionStatus === "connected" ? (
           <>
             {transferRoute ? (
               <Popover defaultOpen={false}>
@@ -475,7 +475,7 @@ const Swap = () => {
                                             outline-2 outline-offset-2 transition-colors hover:bg-gray-900 
                                             active:bg-gray-800 active:text-white/80"
                 >
-                  {transStatus?.status ? 'View Transaction' : 'Start Transfer'}
+                  {transStatus?.status ? "View Transaction" : "Start Transfer"}
                 </PopoverTrigger>
                 <PopoverContent className="min-w-[300px] rounded-2xl">
                   <div className="space-y-2">
@@ -499,8 +499,8 @@ const Swap = () => {
                         <div className="flex min-h-[30px] w-full flex-col rounded bg-zinc-700 p-2 text-white">
                           <h4 className="text-md">Transaction Processing</h4>
                           <div className="flex items-center text-zinc-200">
-                            {transStatus.status}{' '}
-                            {transStatus.status !== 'Completed' ? (
+                            {transStatus.status}{" "}
+                            {transStatus.status !== "Completed" ? (
                               <FontAwesomeIcon
                                 className="ml-2"
                                 icon={faCircleNotch}
@@ -516,9 +516,9 @@ const Swap = () => {
                       )}
                       <Button
                         className={clsx(
-                          'flex cursor-pointer items-center rounded-xl bg-zinc-600',
+                          "flex cursor-pointer items-center rounded-xl bg-zinc-600",
                           {
-                            'opacity-60': isLoading,
+                            "opacity-60": isLoading,
                           },
                         )}
                         disabled={isLoading || !recipientAddress.length}
@@ -540,9 +540,9 @@ const Swap = () => {
             ) : (
               <Button
                 className={clsx(
-                  'flex cursor-pointer items-center bg-zinc-600 sm:rounded',
+                  "flex cursor-pointer items-center bg-zinc-600 sm:rounded",
                   {
-                    'opacity-60': isLoading,
+                    "opacity-60": isLoading,
                   },
                 )}
                 disabled={isLoading}
@@ -557,8 +557,8 @@ const Swap = () => {
           </>
         ) : (
           <Button
-            className={clsx('flex cursor-pointer items-center sm:rounded', {
-              'opacity-60': isLoading,
+            className={clsx("flex cursor-pointer items-center sm:rounded", {
+              "opacity-60": isLoading,
             })}
             disabled={isLoading}
             onClick={() => connectWallet()}
@@ -611,10 +611,10 @@ const Swap = () => {
 };
 
 function formatUSD(amount: string) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'narrowSymbol',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
   }).format(Number(amount));
 }
 

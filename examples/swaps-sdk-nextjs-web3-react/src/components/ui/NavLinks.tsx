@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from "react";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function NavLinks() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -8,8 +8,8 @@ export function NavLinks() {
   return (
     <>
       {[
-        ['Governance', '#gov'],
-        ['Docs', '#docs'],
+        ["Governance", "#gov"],
+        ["Docs", "#docs"],
       ].map(([label, href], index) => (
         <Link
           key={label}

@@ -1,14 +1,14 @@
-import '@swing.xyz/ui/theme.css';
+import "@swing.xyz/ui/theme.css";
 
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Sidebar from 'components/Sidebar';
-import { Button } from 'components/ui/button';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Sidebar from "components/Sidebar";
+import { Button } from "components/ui/button";
 
-import { Provider } from 'components/WagmiProvider';
-import { ConnectWallet } from 'components/ConnectWallet';
+import { Provider } from "components/WagmiProvider";
+import { ConnectWallet } from "components/ConnectWallet";
 
-import { Stake } from '@swing.xyz/ui';
+import { Stake } from "@swing.xyz/ui";
 
 export default function StakePage() {
   return (

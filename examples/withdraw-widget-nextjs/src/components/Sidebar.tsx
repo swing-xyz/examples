@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faGear,
   faLineChart,
@@ -9,9 +9,9 @@ import {
   faQuestionCircle,
   faRotate,
   faStar,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 export default function Sidebar() {
   return (
@@ -114,7 +114,7 @@ export default function Sidebar() {
         id="fork-on-github"
         href="https://github.com/swing-xyz/examples"
         className="-mb-5 flex cursor-pointer items-center space-x-2 border-t border-slate-700 px-6 py-4 text-white hover:bg-slate-700"
-        target={'_blank'}
+        target={"_blank"}
       >
         <FontAwesomeIcon size="lg" icon={faGithub} />
         <div className="text-sm font-medium">Fork on Github</div>

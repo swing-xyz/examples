@@ -1,5 +1,5 @@
 const prettierConfig = {
-  singleQuote: true,
+  singleQuote: false,
   semi: true,
   plugins: ["prettier-plugin-tailwindcss"],
   tailwindFunctions: ["clsx"],
