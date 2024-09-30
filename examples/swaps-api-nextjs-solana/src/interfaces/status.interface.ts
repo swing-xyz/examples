@@ -1,12 +1,5 @@
 export interface TransactionStatusAPIResponse {
-  type?:
-    | "swap"
-    | "deposit"
-    | "withdraw"
-    | "claim"
-    | "custom_contract"
-    | null
-    | undefined;
+  type?: "swap" | "approve" | "sign" | "claim" | "deposit" | "withdraw";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   status: "Pending" | "Success" | "Failed" | any;
   reason?: string;

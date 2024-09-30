@@ -7107,16 +7107,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@scure/bip39@npm:1.3.0":
-  version: 1.3.0
-  resolution: "@scure/bip39@npm:1.3.0"
-  dependencies:
-    "@noble/hashes": "npm:~1.4.0"
-    "@scure/base": "npm:~1.1.6"
-  checksum: 10/7d71fd58153de22fe8cd65b525f6958a80487bc9d0fbc32c71c328aeafe41fa259f989d2f1e0fa4fdfeaf83b8fcf9310d52ed9862987e46c2f2bfb9dd8cf9fc1
-  languageName: node
-  linkType: hard
-
 "@scure/bip39@npm:1.4.0":
   version: 1.4.0
   resolution: "@scure/bip39@npm:1.4.0"
@@ -7402,7 +7392,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/web3.js@npm:^1.78.0, @solana/web3.js@npm:^1.95.2, @solana/web3.js@npm:^1.95.3":
+"@solana/web3.js@npm:^1.78.0, @solana/web3.js@npm:^1.95.3":
   version: 1.95.3
   resolution: "@solana/web3.js@npm:1.95.3"
   dependencies:
@@ -7862,36 +7852,6 @@ __metadata:
     eventemitter3: "npm:^4.0.7"
     viem: "npm:^2.10.3"
   checksum: 10/94649985f9bdb7d9650a029105b83a9a6fbf3df54824669699ac453d834a1471f2d840c69c3f66969063ccd16d78205e5752a4d59affa3a38593b7d31db16cb1
-  languageName: node
-  linkType: hard
-
-"@swing.xyz/sdk@npm:^0.57.5":
-  version: 0.57.5
-  resolution: "@swing.xyz/sdk@npm:0.57.5"
-  dependencies:
-    "@cosmjs/cosmwasm-stargate": "npm:^0.32.4"
-    "@cosmjs/stargate": "npm:^0.32.4"
-    "@ethersproject/abi": "npm:^5.7.0"
-    "@ethersproject/bignumber": "npm:^5.7.0"
-    "@ethersproject/constants": "npm:^5.7.0"
-    "@ethersproject/contracts": "npm:^5.7.0"
-    "@ethersproject/hash": "npm:^5.7.0"
-    "@ethersproject/providers": "npm:^5.7.2"
-    "@ethersproject/signing-key": "npm:^5.7.0"
-    "@ethersproject/units": "npm:^5.7.0"
-    "@multiversx/sdk-core": "npm:^11.6.0"
-    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
-    "@multiversx/sdk-network-providers": "npm:^1.5.0"
-    "@sentry/browser": "npm:7.119.0"
-    "@solana/web3.js": "npm:^1.95.2"
-    "@ton/core": "npm:^0.56.3"
-    "@ton/crypto": "npm:^3.3.0"
-    "@ton/ton": "npm:^14.0.0"
-    ethers: "npm:^5.7.2"
-    eventemitter3: "npm:^4.0.7"
-    lodash.throttle: "npm:^4.1.1"
-    viem: "npm:^2.19.4"
-  checksum: 10/8d871a1b68463ea5fb76a26a64f12ab533680f1a0f8fb620e6e092965f59c98633c1135d21042e0b3082948464957f7b70a4aa59d41395357043bf3e7cc462e5
   languageName: node
   linkType: hard
 
@@ -8593,17 +8553,6 @@ __metadata:
     tweetnacl:
       optional: true
   checksum: 10/3b0ad3e48c38c705e20991fa688746d8ce4b0982dc3f8e56191af3c54695a0c51ddc4792984c8f3587e31f8732d2f55dc51b96b72b62ecfa8114d756099c6d7a
-  languageName: node
-  linkType: hard
-
-"@ton/core@npm:^0.56.3":
-  version: 0.56.3
-  resolution: "@ton/core@npm:0.56.3"
-  dependencies:
-    symbol.inspect: "npm:1.0.1"
-  peerDependencies:
-    "@ton/crypto": ">=3.2.0"
-  checksum: 10/5fe0284bc66789e4b408cce7d459d30d0f8477ce981337ef7bfe7beeee93eda575e8178338fb3d73d47cd8f78065ed84988b82db839b463a39e576be39831243
   languageName: node
   linkType: hard
 
@@ -19241,13 +19190,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.throttle@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "lodash.throttle@npm:4.1.1"
-  checksum: 10/9be9fb2ffd686c20543167883305542f4564062a5f712a40e8c6f2f0d9fd8254a6e9d801c2470b1b24e0cdf2ae83c1277b55aa0fb4799a2db6daf545f53820e1
-  languageName: node
-  linkType: hard
-
 "lodash.uniq@npm:^4.5.0":
   version: 4.5.0
   resolution: "lodash.uniq@npm:4.5.0"
@@ -25193,7 +25135,7 @@ __metadata:
     "@radix-ui/react-popover": "npm:^1.0.7"
     "@radix-ui/react-toast": "npm:^1.1.5"
     "@solana/web3.js": "npm:^1.91.8"
-    "@swing.xyz/sdk": "npm:^0.57.5"
+    "@swing.xyz/sdk": "npm:^0.60.0"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@thirdweb-dev/react": "npm:^4.4.17"
     "@thirdweb-dev/sdk": "npm:^4.0.44"
@@ -27039,28 +26981,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/8ef40085caf77a2414c6d5d8b14c49d086534f8300d0a47645722a062deede12a0b22d8d9a18597a25f8892e4c479e7b9ebb3f7387f58aff9854fb0508e30a3b
-  languageName: node
-  linkType: hard
-
-"viem@npm:^2.19.4":
-  version: 2.20.1
-  resolution: "viem@npm:2.20.1"
-  dependencies:
-    "@adraffy/ens-normalize": "npm:1.10.0"
-    "@noble/curves": "npm:1.4.0"
-    "@noble/hashes": "npm:1.4.0"
-    "@scure/bip32": "npm:1.4.0"
-    "@scure/bip39": "npm:1.3.0"
-    abitype: "npm:1.0.5"
-    isows: "npm:1.0.4"
-    webauthn-p256: "npm:0.0.5"
-    ws: "npm:8.17.1"
-  peerDependencies:
-    typescript: ">=5.0.4"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 10/6fb6c11449ca624c854e70ea5d92fb85880ffe7efa38996495cb0129d3da041cebf003f29923d51b6e16dc0d5f549fa619ebd3d4d5fb47aaf7ed088fd0ef1a3d
   languageName: node
   linkType: hard
 
