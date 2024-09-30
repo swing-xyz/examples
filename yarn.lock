@@ -7402,7 +7402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/web3.js@npm:^1.78.0, @solana/web3.js@npm:^1.95.2":
+"@solana/web3.js@npm:^1.78.0, @solana/web3.js@npm:^1.95.2, @solana/web3.js@npm:^1.95.3":
   version: 1.95.3
   resolution: "@solana/web3.js@npm:1.95.3"
   dependencies:
@@ -7786,6 +7786,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swing.xyz/cross-chain-api@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@swing.xyz/cross-chain-api@npm:0.3.0"
+  checksum: 10/ec98256c09fe5b20166db8f3bc10f785228a0661f973c03229955636c73394bcd68a9ec05dde21894937831d304593ce023648a36acdf6fdbb12b476439719a1
+  languageName: node
+  linkType: hard
+
 "@swing.xyz/design-system@npm:0.53.2":
   version: 0.53.2
   resolution: "@swing.xyz/design-system@npm:0.53.2"
@@ -7820,6 +7827,13 @@ __metadata:
   version: 0.6.0
   resolution: "@swing.xyz/platform-api@npm:0.6.0"
   checksum: 10/a63d52148bd44cf6edef02c1247883917d77eb6d15503de6981072f7f13ddb5d990d7cc9833cdb89cf624bee174fa8ac57cd35ccecd7a281000473bd92bbc2ee
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/platform-api@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@swing.xyz/platform-api@npm:0.9.0"
+  checksum: 10/50f88caabd058cbb9632f0b6f22a93674d2e067d7e97cc20f9426d12692004260088c466a4c2d8e55eed12499e05b07568ab13f8ac484ae422c937589a7e195e
   languageName: node
   linkType: hard
 
@@ -7878,6 +7892,32 @@ __metadata:
     lodash.throttle: "npm:^4.1.1"
     viem: "npm:^2.19.4"
   checksum: 10/8d871a1b68463ea5fb76a26a64f12ab533680f1a0f8fb620e6e092965f59c98633c1135d21042e0b3082948464957f7b70a4aa59d41395357043bf3e7cc462e5
+  languageName: node
+  linkType: hard
+
+"@swing.xyz/sdk@npm:^0.60.0":
+  version: 0.60.0
+  resolution: "@swing.xyz/sdk@npm:0.60.0"
+  dependencies:
+    "@cosmjs/cosmwasm-stargate": "npm:^0.32.4"
+    "@cosmjs/stargate": "npm:^0.32.4"
+    "@ethersproject/bignumber": "npm:^5.7.0"
+    "@ethersproject/providers": "npm:^5.7.2"
+    "@ethersproject/units": "npm:^5.7.0"
+    "@multiversx/sdk-core": "npm:^11.6.0"
+    "@multiversx/sdk-extension-provider": "npm:^2.0.7"
+    "@multiversx/sdk-network-providers": "npm:^1.5.0"
+    "@sentry/browser": "npm:7.119.0"
+    "@solana/web3.js": "npm:^1.95.3"
+    "@swing.xyz/cross-chain-api": "npm:^0.3.0"
+    "@swing.xyz/platform-api": "npm:^0.9.0"
+    "@ton/core": "npm:^0.58.1"
+    "@ton/crypto": "npm:^3.3.0"
+    "@ton/ton": "npm:^14.0.0"
+    ethers: "npm:^5.7.2"
+    eventemitter3: "npm:^4.0.7"
+    viem: "npm:^2.21.12"
+  checksum: 10/1e8c986c9691ca12468510a0030ebe1e6ce6902a412022e4d84b7ca8d2377c3c25e6fdbfe3baae9e949bc69f69ff752ce177b9e6bf7dfde4aa9b6b00fd2a6c9c
   languageName: node
   linkType: hard
 
@@ -8564,6 +8604,17 @@ __metadata:
   peerDependencies:
     "@ton/crypto": ">=3.2.0"
   checksum: 10/5fe0284bc66789e4b408cce7d459d30d0f8477ce981337ef7bfe7beeee93eda575e8178338fb3d73d47cd8f78065ed84988b82db839b463a39e576be39831243
+  languageName: node
+  linkType: hard
+
+"@ton/core@npm:^0.58.1":
+  version: 0.58.1
+  resolution: "@ton/core@npm:0.58.1"
+  dependencies:
+    symbol.inspect: "npm:1.0.1"
+  peerDependencies:
+    "@ton/crypto": ">=3.2.0"
+  checksum: 10/9d774db62bc83f37d597ee14670e35e1b9765f3921316b1016b8b83234b28b796843a0cbda0540b04eabf5f1c0c37acba095b556ac9116226d04578ed11d0be7
   languageName: node
   linkType: hard
 
@@ -25183,7 +25234,7 @@ __metadata:
     "@radix-ui/react-label": "npm:^2.0.2"
     "@radix-ui/react-popover": "npm:^1.0.7"
     "@radix-ui/react-toast": "npm:^1.1.5"
-    "@swing.xyz/sdk": "npm:^0.57.5"
+    "@swing.xyz/sdk": "npm:^0.60.0"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@thirdweb-dev/react": "npm:^4.4.17"
     "@thirdweb-dev/sdk": "npm:^4.0.44"
@@ -27010,6 +27061,28 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/6fb6c11449ca624c854e70ea5d92fb85880ffe7efa38996495cb0129d3da041cebf003f29923d51b6e16dc0d5f549fa619ebd3d4d5fb47aaf7ed088fd0ef1a3d
+  languageName: node
+  linkType: hard
+
+"viem@npm:^2.21.12":
+  version: 2.21.16
+  resolution: "viem@npm:2.21.16"
+  dependencies:
+    "@adraffy/ens-normalize": "npm:1.10.0"
+    "@noble/curves": "npm:1.4.0"
+    "@noble/hashes": "npm:1.4.0"
+    "@scure/bip32": "npm:1.4.0"
+    "@scure/bip39": "npm:1.4.0"
+    abitype: "npm:1.0.5"
+    isows: "npm:1.0.4"
+    webauthn-p256: "npm:0.0.5"
+    ws: "npm:8.17.1"
+  peerDependencies:
+    typescript: ">=5.0.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10/45d877a3507131872ea23f3766ce1c95e4504a642007d5298f69b52a3d153c1494568dc9901480f16f6a50489d5ec401c828101c27cbb0d9304f8d5d49f7c628
   languageName: node
   linkType: hard
 

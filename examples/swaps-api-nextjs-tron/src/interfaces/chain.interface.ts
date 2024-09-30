@@ -3,7 +3,7 @@ export interface Chain {
   slug: string;
   name: string;
   logo: string;
-  type: "solana" | "evm" | "bitcoin" | "ibc" | "multiversx";
+  type: "solana" | "evm" | "bitcoin" | "ibc" | "multiversx" | "tron" | "ton";
   singleChainSwap: boolean;
   singleChainStaking: boolean;
   txExplorer?: string | undefined;

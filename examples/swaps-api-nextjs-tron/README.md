@@ -6,6 +6,7 @@ This example is built with:
 - [@thirdweb-dev/react](https://portal.thirdweb.com/react)
 - [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
 - [TronLink Wallet Adapter](https://github.com/tronprotocol/tronwallet-adapter?tab=readme-ov-file#adapters)
+- [Tron React Hooks](https://github.com/web3-geek/tronwallet-adapter)
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
@@ -441,14 +442,13 @@ export interface SendTransactionApiResponse {
 
 > The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need later for checking the status of a transaction.
 
-### Sending a Tron Transaction to the Network
+### Sending a Tron Transaction to the Tron Network
 
-If you decided to perform a cross chain swap with Tron as the source chain, you'll need to sign the transaction using a wallet provider that supports Tron like [TronLink](https://www.tronlink.org/).
-,
+If you've decided to perform a cross chain swap using Tron as the source chain, you'll have to sign the transaction using a wallet provider that supports the Tron Network like [TronLink](https://www.tronlink.org/).
 
 > Remember, you'll have to call the `/send` endpoint via `sendTransactionRequest` before signing the transaction.
 
-We will sign the `txData` returned from the `/send` endpoint using the inbuilt **Tronlink Wallet Adapter** library that comes installed in the browser with the TronLink Wallet.
+We will sign the `txData` returned from the `/send` endpoint using the **Tronlink Wallet React Hooks** library and then broadcast the transaction to the rest of the network using the **Tronlink Wallet Adapter** that comes installed with TronLink in your browser.
 
 As a reminder, the `txData` from the `sendTransactionRequest` will look something like this:
 
@@ -460,53 +460,61 @@ As a reminder, the `txData` from the `sendTransactionRequest` will look somethin
         "to": "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63",
         "data": "0x301a3720000000000000000000000000eeeeeeeeeeee........",
         "value": "0x0e35fa931a0000",
+        "meta": {
+          "raw_data_hex": {
+            .....
+          }
+        }
         "gas": "0x06a02f"
     }
    ....
 }
 ```
 
-To sign a callData, you have to make a request to your users TronLink Wallet:
+> Note: You're only interested in the `meta` object in our `txData`.
+
+To sign a callData, you have to make a request to your TronLink Wallet and pass the `meta` object to the signer function. The `meta` object contains the necessary smart contract callData to be executed.
 
 ```typescript
-const transaction = await window.tronLink?.tronWeb.transactionBuilder.sendTrx(
-  txData.to, // Recipient address (in base58 format)
-  Number(txData.value), // Amount in SUN (1 TRX = 1,000,000 SUN)
-  window?.tronLink.tronWeb.defaultAddress.base58, // Sender's address (from TronLink)
-);
+// Create and sign the transaction
+const { wallet } = useWallet();
+
+const signedTx = await wallet.adapter.signTransaction(txData.meta!);
 ```
 
-For our next steps, we will read the raw transaction data by decoding the value of the `data` property in our `txData`:
+Next, we will send the transaction to the network:
 
 ```typescript
-const rawTx = Uint8Array.from(Buffer.from(txData.data as any, "hex"));
+const broadcast =
+  await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
 ```
 
-Next, we will create a transaction object by deserializing the raw transaction data. If it fails as a regular transaction, we attempt to deserialize it as a [Versioned Transaction](https://solana.com/docs/advanced/versions):
+Putting it all together:
 
 ```typescript
-let transaction: Transaction | VersionedTransaction;
-try {
-  // Attempt to deserialize the transaction as a regular transaction
-  transaction = Transaction.from(rawTx);
-} catch (error) {
-  // If the transaction is not a regular transaction, attempt to deserialize it as a versioned transaction
-  transaction = VersionedTransaction.deserialize(rawTx);
+// Update the sendTronTrans function
+async function sendTronTrans(
+  txData: TransactionData,
+): Promise<string | undefined> {
+  try {
+    if (!tronConnected || !wallet) {
+      throw new Error("Tron wallet is not connected");
+    }
+
+    // Create and sign the transaction
+    const signedTx = await wallet.adapter.signTransaction(txData.meta!);
+
+    // Broadcasting the transaction
+    const broadcast =
+      await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
+    console.log(`broadcast: ${broadcast?.result}`);
+
+    return signedTx.txID as string;
+  } catch (error) {
+    console.error("Error sending Tron transaction:", error);
+    throw new Error((error as Error).message);
+  }
 }
-```
-
-Next, we will proceed to sign and send the transaction over to the network.
-
-```typescript
-try {
-  // Attempt to deserialize the transaction as a regular transaction
-  transaction = Transaction.from(rawTx);
-} catch (error) {
-  // If the transaction is not a regular transaction, attempt to deserialize it as a versioned transaction
-  transaction = VersionedTransaction.deserialize(rawTx);
-}
-
-const response = await window.solana?.signAndSendTransaction(transaction);
 ```
 
 ## Polling Transaction Status
@@ -555,7 +563,7 @@ URL: [https://platform.swing.xyz/api/v1/projects/{projectId}/transactions/{trans
 | `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.                 |
 | `projectId` | `replug`                            | [Your project's ID](https://platform.swing.xyz/) |
 
-To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction is completed.
+To poll the `/status` endpoint, you will use `setTimeout()` to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction is completed.
 
 ```typescript
 // src/components/Swaps.tsx
@@ -600,7 +608,7 @@ async function pollTransactionStatus(transId: string, txHash: string) {
 }
 ```
 
-In our `startTransfer()` method, we will execute the `pollTransactionStatus()` right after our transaction is sent over the network
+In our `startTransfer()` method, you will run the `pollTransactionStatus()` immediately after our transaction has been sent to the network
 
 ```typescript
 // src/components/Swaps.tsx
