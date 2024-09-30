@@ -36,7 +36,7 @@ export interface TransactionDetails {
   from: string;
   to: string;
   data: string;
-  meta?: any;
+  meta?: object;
   value?: string;
   nonce?: number;
   txId?: string;

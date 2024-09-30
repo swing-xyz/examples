@@ -27,6 +27,7 @@ import { Route } from "interfaces/quote.interface";
 import { TransactionData } from "interfaces/approval.interface";
 
 import { useWallet } from "@tronweb3/tronwallet-adapter-react-hooks";
+import { TronLinkAdapterName } from "@tronweb3/tronwallet-adapters";
 
 const walletConfig = metamaskWallet();
 
@@ -94,10 +95,7 @@ const Swap = () => {
     connected: tronConnected,
     address: tronAddress,
     select,
-    connect: connectToTron,
     disconnect,
-    signMessage,
-    signTransaction,
   } = useWallet();
 
   const debounced = useDebouncedCallback((value) => {
@@ -189,18 +187,6 @@ const Swap = () => {
       });
     }
   }
-
-  const runTx = async (tx: any) => {
-    try {
-      const txObj = JSON.parse(tx);
-      const meta = txObj.meta;
-      const tronTx = await signTransaction(meta);
-      console.log("tx:", tronTx);
-      return tronTx.txID;
-    } catch (e) {
-      console.log("Tx running error:", e);
-    }
-  };
 
   async function getTransStatus(transId: string, txHash: string) {
     const transactionStatus = await swingServiceAPI?.getTransationStatusRequest(
@@ -315,8 +301,6 @@ const Swap = () => {
       if (!tronConnected || !wallet) {
         throw new Error("Tron wallet is not connected");
       }
-
-      console.log(txData.meta!);
 
       // Create and sign the transaction
       const signedTx = await wallet.adapter.signTransaction(txData.meta!);
@@ -689,7 +673,7 @@ const Swap = () => {
             <button
               className="flex items-center gap-1 rounded-xl bg-purple-300 p-2 text-xs font-bold ring-1 ring-purple-600"
               onClick={() =>
-                tronConnected ? disconnect() : select("TronLink" as any)
+                tronConnected ? disconnect() : select(TronLinkAdapterName)
               }
             >
               <span
@@ -808,7 +792,7 @@ const Swap = () => {
             </div>
           </div>
           <p className="m-0 p-0 px-6 text-sm text-zinc-950/[0.6]">
-            You'll receive: {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
+            You will receive: {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
           </p>
           <div className="px-6">
             <label htmlFor="wallet" className="mb-1 block font-semibold">
@@ -894,9 +878,5 @@ function formatUSD(amount: string) {
     currencyDisplay: "narrowSymbol",
   }).format(Number(amount));
 }
-
-// function shortentronAddress(address: string) {
-//   return address.slice(0, 4) + "..." + address.slice(-4);
-// }
 
 export default Swap;
