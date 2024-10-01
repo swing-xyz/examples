@@ -22,7 +22,7 @@ This example demonstrates how you can perform a cross-chain transaction between 
 
 In this example, we will be using thirdweb's SDK and **TronLink's Wallet Adapter** connector to connect to a user's Ethereum and Tron wallets, respectively. We will also demonstrate how to utilize Swing's SDK exported API functions, namely `crossChainAPI` and `platformAPI`, to build out a fully functionaly cross-chain application.
 
-The process/steps for performing a SOL to ETH transaction, and vice versa, are as follows:
+The process/steps for performing a TRX to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
 - Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens. (Optional for TRON > EVM Route)
@@ -82,7 +82,7 @@ The `SwingSDK` constructor accepts a `projectId` as a mandatory parameter and a 
 
 ## Getting a Quote
 
-To perform a swap between ETH and SOL, we first have to get a quote from Swing's Cross-Chain API.
+To perform a swap between ETH and TRX, we first have to get a quote from Swing's Cross-Chain API.
 
 URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz/v0/transfer/quote)
 
