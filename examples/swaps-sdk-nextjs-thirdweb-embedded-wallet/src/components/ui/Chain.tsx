@@ -6,14 +6,14 @@ export const SingleChain: FC<IChain> = ({ chain, onSelectChain }) => {
   return (
     <div
       key={chain.id}
-      className="mt-1 group hover:bg-slate-200 hover:rounded-md hover:cursor-pointer grayscale hover:grayscale-0 transition-all"
+      className="group mt-1 grayscale transition-all hover:cursor-pointer hover:rounded-md hover:bg-slate-200 hover:grayscale-0"
       onClick={() => onSelectChain({ chain, token: null })}
     >
-      <div className="group inline-flex justify-start items-center space-x-2 p-3">
+      <div className="group inline-flex items-center justify-start space-x-2 p-3">
         <img
           src={chain.logo}
           alt={chain.name}
-          className="rounded-full w-8 h-8"
+          className="h-8 w-8 rounded-full"
         />
         <h2>{chain.name}</h2>
       </div>

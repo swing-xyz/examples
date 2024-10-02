@@ -238,51 +238,51 @@ const Swap = () => {
   }
 
   return (
-    <div className="flex flex-col gap-3 items-center justify-center">
+    <div className="flex flex-col items-center justify-center gap-3">
       <h3 className="mt-5 text-sm">Bridge your MATIC to the Rapid Network</h3>
-      <div className="w-full flex border-2 rounded-xl border-zinc-100">
-        <div className="w-full flex justify-between items-center p-1">
-          <div className="flex mr-auto space-x-1 items-center hover:bg-zinc-300/[0.2] hover:rounded-lg hover:cursor-pointer p-3">
+      <div className="flex w-full rounded-xl border-2 border-zinc-100">
+        <div className="flex w-full items-center justify-between p-1">
+          <div className="mr-auto flex items-center space-x-1 p-3 hover:cursor-pointer hover:rounded-lg hover:bg-zinc-300/[0.2]">
             <img
               src={
                 "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/polygon/info/logo.png"
               }
               alt={""}
-              className="rounded-full w-7 h-7"
+              className="h-7 w-7 rounded-full"
             />
             <div className="flex flex-col">
-              <h5 className="text-gray-400 font-bold text-[9px]">From</h5>
-              <h5 className="font-bold text-[10px] capitalize">MATIC</h5>
+              <h5 className="text-[9px] font-bold text-gray-400">From</h5>
+              <h5 className="text-[10px] font-bold capitalize">MATIC</h5>
             </div>
           </div>
-          <div className="flex mx-auto justify-center p-3 group">
-            <LiaExchangeAltSolid className="rounded-2xl w-5 h-5 text-zinc-300 font-bold" />
+          <div className="group mx-auto flex justify-center p-3">
+            <LiaExchangeAltSolid className="h-5 w-5 rounded-2xl font-bold text-zinc-300" />
           </div>
-          <div className="flex ml-auto space-x-1 items-center hover:bg-zinc-300/[0.2] hover:rounded-lg hover:cursor-pointer p-3">
+          <div className="ml-auto flex items-center space-x-1 p-3 hover:cursor-pointer hover:rounded-lg hover:bg-zinc-300/[0.2]">
             <div className="flex flex-col">
-              <h5 className="text-gray-400 font-bold text-[9px] text-right">
+              <h5 className="text-right text-[9px] font-bold text-gray-400">
                 To
               </h5>
-              <h5 className="font-bold text-[10px] capitalize">USDC</h5>
+              <h5 className="text-[10px] font-bold capitalize">USDC</h5>
             </div>
             <img
               src={
                 "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/assets/usdc/0c7e4c2dc978757682eed00e438afa3eab3a97bdb63ad57abfbb9d79eb42f006.png"
               }
               alt={""}
-              className="rounded-full w-7 h-7"
+              className="h-7 w-7 rounded-full"
             />
           </div>
         </div>
       </div>
       <div className="flex w-full space-x-2">
         <div className="flex w-full">
-          <div className="w-full flex flex-col border-2 border-zinc-100 space-y-1 rounded-xl bg-zinc-950/[0.02] p-3">
+          <div className="flex w-full flex-col space-y-1 rounded-xl border-2 border-zinc-100 bg-zinc-950/[0.02] p-3">
             <h4 className="w-full text-[11px] font-bold text-zinc-300">Send</h4>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <input
                 aria-label="deposit"
-                className="border-none w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
+                className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
                 placeholder={"0"}
                 value={transferParams.amount}
                 onChange={(e) => {
@@ -299,14 +299,14 @@ const Swap = () => {
           </div>
         </div>
         <div className="flex w-full">
-          <div className="w-full flex flex-col border-2 border-zinc-100 space-y-1 rounded-xl bg-zinc-950/[0.02] p-3">
+          <div className="flex w-full flex-col space-y-1 rounded-xl border-2 border-zinc-100 bg-zinc-950/[0.02] p-3">
             <h4 className="w-full text-[11px] font-bold text-zinc-300">
               You get
             </h4>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <input
                 aria-label="receive"
-                className="border-none w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
+                className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
                 placeholder={"0"}
                 value={transferRoute?.quote?.amountUSD! ?? 0}
                 type="number"
@@ -326,7 +326,7 @@ const Swap = () => {
             )
           }
         >
-          <SelectTrigger className="w-[180px] bg-zinc-900 w-full">
+          <SelectTrigger className="w-[180px] w-full bg-zinc-900">
             <SelectValue placeholder="Select Route" className="bg-zinc-900" />
           </SelectTrigger>
           <SelectContent className="bg-zinc-900">
@@ -345,7 +345,7 @@ const Swap = () => {
 
       {isConnected ? (
         <Button
-          className={clsx("w-full flex items-center cursor-pointer", {
+          className={clsx("flex w-full cursor-pointer items-center", {
             "opacity-60": isLoading,
           })}
           disabled={isLoading}
@@ -358,7 +358,7 @@ const Swap = () => {
         </Button>
       ) : (
         <Button
-          className={clsx("w-full flex items-center cursor-pointer", {
+          className={clsx("flex w-full cursor-pointer items-center", {
             "opacity-60": isLoading,
           })}
           disabled={isLoading}

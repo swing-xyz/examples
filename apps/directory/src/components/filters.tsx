@@ -45,7 +45,7 @@ function Filter() {
   return (
     <div className="relative overflow-auto">
       <div className="flex items-center justify-between">
-        <h4 className="font-bold text-base">Filter</h4>
+        <h4 className="text-base font-bold">Filter</h4>
 
         <Button
           className={cn({
@@ -59,7 +59,7 @@ function Filter() {
             });
           }}
         >
-          <XCircle className="h-4 w-4 mr-2 text-muted" /> Clear
+          <XCircle className="text-muted mr-2 h-4 w-4" /> Clear
         </Button>
       </div>
 
@@ -74,7 +74,7 @@ function Filter() {
 
             return (
               <AccordionItem key={filterKey} value={filter}>
-                <AccordionTrigger className="text-sm px-3" iconSide="left">
+                <AccordionTrigger className="px-3 text-sm" iconSide="left">
                   {filter}
                 </AccordionTrigger>
 
@@ -87,7 +87,7 @@ function Filter() {
                       <label
                         key={optionValue}
                         htmlFor={optionValue}
-                        className="flex flex-row items-center space-x-3 space-y-0 rounded-md bg-secondary text-secondary-foreground p-3 hover:bg-secondary/60 cursor-pointer text-sm"
+                        className="bg-secondary text-secondary-foreground hover:bg-secondary/60 flex cursor-pointer flex-row items-center space-x-3 space-y-0 rounded-md p-3 text-sm"
                       >
                         <Checkbox
                           id={optionValue}
@@ -113,7 +113,7 @@ function Filter() {
                           }}
                         />
 
-                        <span className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex-grow font-normal">
+                        <span className="flex-grow text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                           {option}
                         </span>
                       </label>

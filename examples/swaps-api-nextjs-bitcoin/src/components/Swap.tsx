@@ -113,15 +113,15 @@ const Swap = () => {
   }, [recipientAddress]);
 
   useEffect(() => {
-    if(!xDefiConfig?.isInstalled!()) {
-      console.log('not installed')
+    if (!xDefiConfig?.isInstalled!()) {
+      console.log("not installed");
       toast({
         variant: "destructive",
         title: "xDefi Wallet not installed",
         description: "Please install xDefi wallet in your browser",
       });
     }
-  }, [])
+  }, []);
 
   async function connectWallet(chainId?: number) {
     try {
@@ -147,20 +147,21 @@ const Swap = () => {
     }
   }
 
-  async function getTransStatus(transId: string, txHash: string): Promise<TransactionStatusAPIResponse> {
+  async function getTransStatus(
+    transId: string,
+    txHash: string,
+  ): Promise<TransactionStatusAPIResponse> {
     try {
-
       const transactionStatus = await getTransationStatus({
         id: transId,
         txHash,
       });
-  
-      setTransStatus(transactionStatus);
-  
-      return transactionStatus!;
-    } catch(e) {
 
-      return { status: 'Submitted' }
+      setTransStatus(transactionStatus);
+
+      return transactionStatus!;
+    } catch (e) {
+      return { status: "Submitted" };
     }
   }
 
@@ -214,7 +215,6 @@ const Swap = () => {
     try {
       // Get a quote from the Swing API
       const quotes = await getQuoteRequest({
-
         fromChain: transferParams.fromChain,
         fromTokenAddress: transferParams.fromTokenAddress,
         fromUserAddress: transferParams.fromUserAddress,
@@ -312,13 +312,13 @@ const Swap = () => {
 
       let txResponse;
 
-      if (transfer?.tx.meta) { 
+      if (transfer?.tx.meta) {
         // For Bitcoin to ETH, the send endpoint will return an object called `meta`
-        
+
         const { from, recipient, amount, memo } = transfer.tx.meta;
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (window.xfi as any)?.bitcoin.request( 
+        (window.xfi as any)?.bitcoin.request(
           // Here, we're prompting a users wallet using xDEFI injected SDK
           {
             method: "transfer",
@@ -335,20 +335,20 @@ const Swap = () => {
           (error: any, result: any) => {
             console.log(error, result);
 
-            if(error) {
+            if (error) {
               toast({
                 variant: "destructive",
                 title: "Something went wrong!",
                 description:
                   "Swap error, please check your balance or swap config",
               });
-        
+
               setIsLoading(false);
-              setTransStatus(null)
+              setTransStatus(null);
             }
-            txResponse = result
+            txResponse = result;
             pollTransactionStatus(transfer.id.toString(), txResponse);
-            console.log(txResponse)
+            console.log(txResponse);
           },
         );
       } else {
@@ -357,7 +357,6 @@ const Swap = () => {
         const receipt = await txResponse?.wait();
         console.log("Transaction receipt:", receipt);
       }
-      
 
       // Wait for the transaction to be mined
     } catch (error) {
@@ -377,20 +376,20 @@ const Swap = () => {
   }
 
   return (
-    <div className="flex flex-col gap-y-4 lg:w-auto w-full px-5 py-7 bg-cyan-400 rounded-2xl border-8 border-cyan-200">
-      <div className="w-full flex flex-col sm:flex-row justify-center gap-3">
-        <div className="flex flex-col sm:flex-row lg:w-auto w-full items-center space-x-2 flex-2">
+    <div className="flex w-full flex-col gap-y-4 rounded-2xl border-8 border-cyan-200 bg-cyan-400 px-5 py-7 lg:w-auto">
+      <div className="flex w-full flex-col justify-center gap-3 sm:flex-row">
+        <div className="flex-2 flex w-full flex-col items-center space-x-2 sm:flex-row lg:w-auto">
           <div className="flex w-full">
-            <div className="w-full border-8 border-cyan-500 space-y-1 rounded-xl bg-zinc-900 p-3">
-              <div className="flex justify-between items-center">
+            <div className="w-full space-y-1 rounded-xl border-8 border-cyan-500 bg-zinc-900 p-3">
+              <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   <h4 className="w-full text-[11px] font-bold text-zinc-300">
                     Send
                   </h4>
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <input
                       aria-label="deposit"
-                      className="border-none text-white w-full h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
+                      className="m-0 h-auto w-full border-none bg-transparent p-0 text-white placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
                       placeholder={"0"}
                       defaultValue={transferParams.tokenAmount}
                       ref={sendInputRef}
@@ -411,35 +410,38 @@ const Swap = () => {
                   </div>
                   <img
                     src={transferParams.fromTokenIconUrl}
-                    className="w-6 h-6"
+                    className="h-6 w-6"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div className="p-1 bg-zinc-200 rounded-2xl">
-            <LiaExchangeAltSolid className="rounded-2xl w-8 h-8 font-bold text-zinc-400 cursor-pointer hover:text-zinc-950 transition-colors ease-in-out" onClick={() => switchTransferParams()} />
+          <div className="rounded-2xl bg-zinc-200 p-1">
+            <LiaExchangeAltSolid
+              className="h-8 w-8 cursor-pointer rounded-2xl font-bold text-zinc-400 transition-colors ease-in-out hover:text-zinc-950"
+              onClick={() => switchTransferParams()}
+            />
           </div>
           <div className="flex w-full">
-            <div className="lg:w-auto w-full border-8 border-cyan-500 space-y-1 rounded-xl bg-zinc-900 p-3">
-              <div className="flex justify-between items-center">
+            <div className="w-full space-y-1 rounded-xl border-8 border-cyan-500 bg-zinc-900 p-3 lg:w-auto">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <img
                     src={transferParams.toTokenIconUrl}
-                    className="w-6 h-6"
+                    className="h-6 w-6"
                   />
                   <div className="text-sm text-white">
                     {transferParams.toChain}
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <h4 className="w-full text-[11px] font-bold text-zinc-300 text-right">
+                  <h4 className="w-full text-right text-[11px] font-bold text-zinc-300">
                     You get
                   </h4>
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <input
                       aria-label="receive"
-                      className="border-none text-white text-right w-full h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
+                      className="m-0 h-auto w-full border-none bg-transparent p-0 text-right text-white placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
                       placeholder={"0"}
                       value={
                         convertWeiToEth(
@@ -468,16 +470,16 @@ const Swap = () => {
             {transferRoute ? (
               <Popover defaultOpen={false}>
                 <PopoverTrigger
-                  className="justify-center rounded-2xl py-2 px-3 text-sm font-semibold 
-                                            outline-2 outline-offset-2 transition-colors text-white hover:bg-gray-900
-                                            flex items-center cursor-pointer bg-zinc-600 
+                  className="flex cursor-pointer items-center justify-center rounded-2xl bg-zinc-600 
+                                            px-3 py-2 text-sm font-semibold text-white
+                                            outline-2 outline-offset-2 transition-colors hover:bg-gray-900 
                                             active:bg-gray-800 active:text-white/80"
                 >
                   {transStatus?.status ? "View Transaction" : "Start Transfer"}
                 </PopoverTrigger>
-                <PopoverContent className="rounded-2xl min-w-[300px]">
+                <PopoverContent className="min-w-[300px] rounded-2xl">
                   <div className="space-y-2">
-                    <div className="flex flex-col space-y-4 text-sm text-muted-foreground">
+                    <div className="text-muted-foreground flex flex-col space-y-4 text-sm">
                       <Label htmlFor="width" className="text-zinc-700">
                         Enter your {transferParams.toChain} wallet address
                       </Label>
@@ -494,7 +496,7 @@ const Swap = () => {
                         }}
                       />
                       {transStatus ? (
-                        <div className="flex flex-col w-full min-h-[30px] bg-zinc-700 text-white p-2 rounded">
+                        <div className="flex min-h-[30px] w-full flex-col rounded bg-zinc-700 p-2 text-white">
                           <h4 className="text-md">Transaction Processing</h4>
                           <div className="flex items-center text-zinc-200">
                             {transStatus.status}{" "}
@@ -514,7 +516,7 @@ const Swap = () => {
                       )}
                       <Button
                         className={clsx(
-                          "flex items-center cursor-pointer bg-zinc-600 rounded-xl",
+                          "flex cursor-pointer items-center rounded-xl bg-zinc-600",
                           {
                             "opacity-60": isLoading,
                           },
@@ -538,7 +540,7 @@ const Swap = () => {
             ) : (
               <Button
                 className={clsx(
-                  "flex items-center cursor-pointer bg-zinc-600 sm:rounded",
+                  "flex cursor-pointer items-center bg-zinc-600 sm:rounded",
                   {
                     "opacity-60": isLoading,
                   },
@@ -555,7 +557,7 @@ const Swap = () => {
           </>
         ) : (
           <Button
-            className={clsx("flex items-center cursor-pointer sm:rounded", {
+            className={clsx("flex cursor-pointer items-center sm:rounded", {
               "opacity-60": isLoading,
             })}
             disabled={isLoading}
@@ -565,9 +567,9 @@ const Swap = () => {
           </Button>
         )}
       </div>
-      <div className="flex bg-black min-w-full rounded-xl m-h-[20px] p-3 border-8 border-cyan-500">
-        <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="w-full bg-zinc-700 p-2 rounded">
+      <div className="m-h-[20px] flex min-w-full rounded-xl border-8 border-cyan-500 bg-black p-3">
+        <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="w-full rounded bg-zinc-700 p-2">
             <label className="block text-xs font-medium text-zinc-200">
               From
             </label>
@@ -576,7 +578,7 @@ const Swap = () => {
             </div>
           </div>
 
-          <div className="w-full bg-zinc-700 p-2 rounded">
+          <div className="w-full rounded bg-zinc-700 p-2">
             <label className="block text-xs font-medium text-zinc-200">
               To
             </label>
@@ -585,7 +587,7 @@ const Swap = () => {
             </div>
           </div>
 
-          <div className="w-full bg-zinc-700 p-2 rounded">
+          <div className="w-full rounded bg-zinc-700 p-2">
             <label className="block text-xs font-medium text-zinc-200">
               Gas Fee
             </label>
@@ -594,7 +596,7 @@ const Swap = () => {
             </div>
           </div>
 
-          <div className="w-full bg-zinc-700 p-2 rounded">
+          <div className="w-full rounded bg-zinc-700 p-2">
             <label className="block text-xs font-medium text-zinc-200">
               Total
             </label>

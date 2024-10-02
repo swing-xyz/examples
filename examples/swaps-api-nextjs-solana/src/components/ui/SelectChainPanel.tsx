@@ -18,10 +18,10 @@ export const SelectChainPanel = ({
 
   return (
     <Popover defaultOpen={false} open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger className="justify-center rounded-2xl flex items-center bg-zinc-600">
+      <PopoverTrigger className="flex items-center justify-center rounded-2xl bg-zinc-600">
         <img src={transferParams.chainIconUrl} className="w-7 rounded-full" />
       </PopoverTrigger>
-      <PopoverContent className="rounded-2xl min-w-[50px] max-h-96 overflow-scroll">
+      <PopoverContent className="max-h-96 min-w-[50px] overflow-scroll rounded-2xl">
         {chains.map(
           (chain) =>
             allowedChains.includes(chain.slug) && (

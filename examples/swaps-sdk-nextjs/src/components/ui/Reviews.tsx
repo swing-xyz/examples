@@ -110,7 +110,7 @@ function StarRating({ rating }: { rating: number }) {
         <StarIcon
           key={index}
           className={clsx(
-            "w-5 h-5",
+            "h-5 w-5",
             rating > index ? "fill-cyan-500" : "fill-gray-300",
           )}
         />
@@ -150,7 +150,7 @@ function Review({
   return (
     <figure
       className={clsx(
-        "p-6 bg-white shadow-md opacity-0 animate-fade-in rounded-3xl shadow-gray-900/5",
+        "animate-fade-in rounded-3xl bg-white p-6 opacity-0 shadow-md shadow-gray-900/5",
         className,
       )}
       style={{ animationDelay }}
@@ -217,7 +217,7 @@ function ReviewColumn({
   return (
     <div
       ref={columnRef}
-      className={clsx("py-4 space-y-8 animate-marquee", className)}
+      className={clsx("animate-marquee space-y-8 py-4", className)}
       // @ts-expect-error allow custom properties
       style={{ "--marquee-duration": duration }}
     >
@@ -276,8 +276,8 @@ function ReviewGrid() {
           />
         </>
       )}
-      <div className="absolute inset-x-0 top-0 h-32 pointer-events-none bg-gradient-to-b from-gray-50" />
-      <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none bg-gradient-to-t from-gray-50" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-50" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-gray-50" />
     </div>
   );
 }
@@ -287,7 +287,7 @@ export function Reviews() {
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="pt-20 pb-16 sm:pt-32 sm:pb-24"
+      className="pb-16 pt-20 sm:pb-24 sm:pt-32"
     >
       <Container>
         <h2

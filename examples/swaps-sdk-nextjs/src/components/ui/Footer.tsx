@@ -10,31 +10,31 @@ export function Footer() {
   return (
     <footer className="border-t border-gray-200">
       <Container>
-        <div className="flex flex-col items-start justify-between pt-16 pb-6 gap-y-12 lg:flex-row lg:items-center lg:py-16">
+        <div className="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16">
           <div>
             <div className="flex items-center text-gray-900">
-              <Logomark className="flex-none w-10 h-10 fill-cyan-500" />
+              <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
               <div className="ml-4">
                 <p className="text-base font-semibold">Altcoin</p>
                 <p className="mt-1 text-sm">Buy at the top.</p>
               </div>
             </div>
-            <nav className="flex gap-8 mt-11">
+            <nav className="mt-11 flex gap-8">
               <NavLinks />
             </nav>
           </div>
         </div>
-        <div className="flex flex-col items-center pt-8 pb-12 border-t border-gray-200 md:flex-row-reverse md:justify-between md:pt-6">
-          <form className="flex justify-center w-full md:w-auto">
+        <div className="flex flex-col items-center border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
+          <form className="flex w-full justify-center md:w-auto">
             <TextField
               type="email"
               aria-label="Email address"
               placeholder="Email address"
               autoComplete="email"
               required
-              className="min-w-0 w-60 shrink"
+              className="w-60 min-w-0 shrink"
             />
-            <Button type="submit" color="cyan" className="flex-none ml-4">
+            <Button type="submit" color="cyan" className="ml-4 flex-none">
               <span className="hidden lg:inline">Join our newsletter</span>
               <span className="lg:hidden">Join newsletter</span>
             </Button>

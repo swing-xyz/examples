@@ -74,7 +74,7 @@ function ConnectButtonMobile() {
     <>
       {isConnected ? (
         <Button
-          className="bg-[#06b6d4] block"
+          className="block bg-[#06b6d4]"
           onClick={async () => {
             await navigator.clipboard.writeText(walletAddress);
             alert("Wallet address copied to clipboard! 🚀");
@@ -98,7 +98,7 @@ function ConnectButton() {
     <>
       {isConnected ? (
         <Button
-          className="bg-[#06b6d4] hidden lg:block"
+          className="hidden bg-[#06b6d4] lg:block"
           onClick={async () => {
             await navigator.clipboard.writeText(walletAddress);
             alert("Wallet address copied to clipboard! 🚀");
@@ -126,11 +126,11 @@ export function Header() {
         <Container className="relative z-50 flex justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
             <Link href="/" aria-label="Home">
-              <h1 className="relative center align-middle font-bold text-xl italic bg-white px-5 py-2 rounded-full before:contents-[''] transition-all ease-in-out hover:before:absolute before:left-0 hover:before:left-2 before:top-0 hover:before:top-3 before:min-w-full before:h-full before:rounded-full before:-z-10 before:bg-purple-500">
+              <h1 className="center before:contents-[''] relative rounded-full bg-white px-5 py-2 align-middle text-xl font-bold italic transition-all ease-in-out before:left-0 before:top-0 before:-z-10 before:h-full before:min-w-full before:rounded-full before:bg-purple-500 hover:before:absolute hover:before:left-2 hover:before:top-3">
                 PowerSwap 🔥
               </h1>
             </Link>
-            <div className="hidden lg:flex items-center lg:gap-10">
+            <div className="hidden items-center lg:flex lg:gap-10">
               <NavLinks />
             </div>
           </div>
@@ -144,9 +144,9 @@ export function Header() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="w-6 h-6" />
+                        <ChevronUpIcon className="h-6 w-6" />
                       ) : (
-                        <MenuIcon className="w-6 h-6" />
+                        <MenuIcon className="h-6 w-6" />
                       )
                     }
                   </Popover.Button>
@@ -171,14 +171,14 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 px-6 pt-32 pb-6 origin-top shadow-2xl rounded-b-2xl bg-gray-50 shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
                         >
                           <div className="space-y-4">
                             <MobileNavLink href="#swap">Swap</MobileNavLink>
                             <MobileNavLink href="#stake">Stake</MobileNavLink>
                           </div>
 
-                          <div className="flex flex-col mt-4 space-y-4">
+                          <div className="mt-4 flex flex-col space-y-4">
                             <ConnectButtonMobile />
 
                             <Button

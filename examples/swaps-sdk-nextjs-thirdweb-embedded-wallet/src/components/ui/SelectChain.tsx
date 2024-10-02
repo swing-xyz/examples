@@ -53,16 +53,16 @@ export const SelectChain: FC<ISelectChain> = ({
   return (
     <div className="w-full">
       {selectedChain?.chain ? (
-        <div className="flex flex-col space-y-7 relative">
-          <div className="w-full flex items-center space-x-2 fixed bg-white z-10">
+        <div className="relative flex flex-col space-y-7">
+          <div className="fixed z-10 flex w-full items-center space-x-2 bg-white">
             <MdOutlineArrowBack
-              className="hover:cursor-pointer hover:bg-gray-300 transition-all ease-in-out bg-gray-200 rounded-2xl w-8 h-8 p-1"
+              className="h-8 w-8 rounded-2xl bg-gray-200 p-1 transition-all ease-in-out hover:cursor-pointer hover:bg-gray-300"
               onClick={clearChainAndToken}
             />
             <h3 className="mr-auto">Select Token</h3>
           </div>
 
-          <div className="h-[400px] scrollbar scrollbar-thumb-black overflow-y-auto p-3">
+          <div className="scrollbar scrollbar-thumb-black h-[400px] overflow-y-auto p-3">
             <div className="mt-10">
               {tokens?.map((token: Token, index: number) => (
                 <SingleToken
@@ -76,7 +76,7 @@ export const SelectChain: FC<ISelectChain> = ({
           </div>
         </div>
       ) : (
-        <div className="h-[400px] mt-4 scrollbar scrollbar-thumb-black overflow-y-auto p-3">
+        <div className="scrollbar scrollbar-thumb-black mt-4 h-[400px] overflow-y-auto p-3">
           {chains?.map((chain: Chain, index: number) => (
             <SingleChain
               key={index}

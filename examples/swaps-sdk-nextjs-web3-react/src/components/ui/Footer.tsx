@@ -9,23 +9,23 @@ export function Footer() {
   return (
     <footer className="w-full">
       <Container>
-        <div className="w-full flex justify-between">
-          <div className="w-full flex">
-            <div className="w-full flex justify-between items-center p-4">
-              <div className="flex min-w-5 min-h-5 rounded-4xl bg-zinc-700 p-2 gap-4">
-                <div className=" text-gray-700 rounded-4xl text-[9px] font-bold p2">
-                  <FiSun className="w-5 h-5" />
+        <div className="flex w-full justify-between">
+          <div className="flex w-full">
+            <div className="flex w-full items-center justify-between p-4">
+              <div className="rounded-4xl flex min-h-5 min-w-5 gap-4 bg-zinc-700 p-2">
+                <div className=" rounded-4xl p2 text-[9px] font-bold text-gray-700">
+                  <FiSun className="h-5 w-5" />
                 </div>
-                <div className="text-slate-300 rounded-4xl text-[9px] font-bold p2">
-                  <FaMoon className="w-5 h-5" />
+                <div className="rounded-4xl p2 text-[9px] font-bold text-slate-300">
+                  <FaMoon className="h-5 w-5" />
                 </div>
               </div>
-              <div className="flex min-w-5 min-h-5 rounded-4xl bg-zinc-700 p-2 gap-4">
-                <div className=" text-gray-700 rounded-4xl text-[9px] font-bold p2">
-                  <FiSettings className="w-4 h-4" />
+              <div className="rounded-4xl flex min-h-5 min-w-5 gap-4 bg-zinc-700 p-2">
+                <div className=" rounded-4xl p2 text-[9px] font-bold text-gray-700">
+                  <FiSettings className="h-4 w-4" />
                 </div>
-                <div className="text-gray-700 rounded-4xl text-[9px] font-bold p2">
-                  <FiMoreHorizontal className="w-5 h-5" />
+                <div className="rounded-4xl p2 text-[9px] font-bold text-gray-700">
+                  <FiMoreHorizontal className="h-5 w-5" />
                 </div>
               </div>
             </div>

@@ -18,7 +18,7 @@ export function Hero() {
                 [7, 3],
                 [10, 6],
               ]}
-              className="absolute inset-x-0 inset-y-[-50%] h-[200%] w-full skew-y-[-18deg] fill-black/40 stroke-black/50 mix-blend-overlay dark:fill-white/2.5 dark:stroke-white/5"
+              className="dark:fill-white/2.5 absolute inset-x-0 inset-y-[-50%] h-[200%] w-full skew-y-[-18deg] fill-black/40 stroke-black/50 mix-blend-overlay dark:stroke-white/5"
             />
           </div>
           <svg
@@ -31,12 +31,12 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-3xl pt-32 sm:pt-40 lg:pt-48 pb-12 sm:pb-20">
+      <div className="container mx-auto max-w-3xl pb-12 pt-32 sm:pb-20 sm:pt-40 lg:pt-48">
         <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+          <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-5xl">
             Swing Example Templates
           </h1>
-          <p className="mt-6 text-lg leading-8 text-muted">
+          <p className="text-muted mt-6 text-lg leading-8">
             Kickstart your Swing integration with ready-to-ship repositories.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">

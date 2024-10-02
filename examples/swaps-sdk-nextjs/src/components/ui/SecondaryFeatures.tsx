@@ -206,7 +206,7 @@ export function SecondaryFeatures() {
       className="py-20 sm:py-32"
     >
       <Container>
-        <div className="max-w-2xl mx-auto sm:text-center">
+        <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-medium tracking-tight text-gray-900">
             Now is the time to build your portfolio.
           </h2>
@@ -217,14 +217,14 @@ export function SecondaryFeatures() {
         </div>
         <ul
           role="list"
-          className="grid max-w-2xl grid-cols-1 gap-6 mx-auto mt-16 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3"
+          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3"
         >
           {features.map((feature) => (
             <li
               key={feature.name}
-              className="p-8 border border-gray-200 rounded-2xl"
+              className="rounded-2xl border border-gray-200 p-8"
             >
-              <feature.icon className="w-8 h-8" />
+              <feature.icon className="h-8 w-8" />
               <h3 className="mt-6 font-semibold text-gray-900">
                 {feature.name}
               </h3>

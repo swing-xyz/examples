@@ -34,10 +34,10 @@ function AppDemo() {
 
 export function Hero() {
   return (
-    <div className="py-20 overflow-hidden sm:py-32 lg:pb-32 xl:pb-36">
+    <div className="overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
       <Container>
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
-          <div className="relative z-10 max-w-2xl mx-auto lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
+          <div className="relative z-10 mx-auto max-w-2xl lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
             <h1 className="text-4xl font-medium tracking-tight text-gray-900">
               <div>Buy at the top.</div>
               <div>Sell at the bottom.</div>
@@ -53,13 +53,13 @@ export function Hero() {
             <AppDemo />
           </div>
 
-          <div className="relative mt-10 lg:mt-0 lg:col-span-7 xl:col-span-6">
-            <p className="text-sm font-semibold text-center text-gray-900 lg:text-left">
+          <div className="relative mt-10 lg:col-span-7 lg:mt-0 xl:col-span-6">
+            <p className="text-center text-sm font-semibold text-gray-900 lg:text-left">
               As featured in
             </p>
             <ul
               role="list"
-              className="flex flex-wrap justify-center max-w-xl mx-auto mt-8 gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"
+              className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"
             >
               {[
                 ["Forbes", logoForbes],

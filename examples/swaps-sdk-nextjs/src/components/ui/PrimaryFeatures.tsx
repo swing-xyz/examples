@@ -201,13 +201,13 @@ function InviteScreen({
             ].map((field) => (
               <div key={field.label}>
                 <div className="text-sm text-gray-500">{field.label}</div>
-                <div className="pb-2 mt-2 text-sm text-gray-900 border-b border-gray-200">
+                <div className="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
                   {field.value}
                 </div>
               </div>
             ))}
           </div>
-          <div className="px-3 py-2 mt-6 text-sm font-semibold text-center text-white rounded-lg bg-cyan-500">
+          <div className="mt-6 rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
             Invite person
           </div>
         </div>
@@ -294,7 +294,7 @@ function StocksScreen({
                 className="flex-none rounded-full"
                 style={{ backgroundColor: stock.color }}
               >
-                <stock.logo className="w-10 h-10" />
+                <stock.logo className="h-10 w-10" />
               </div>
               <div className="flex-auto text-sm text-gray-900">
                 {stock.name}
@@ -347,7 +347,7 @@ function InvestScreen({
                 value: (
                   <div className="flex">
                     $34.28
-                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+                    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                       <path
                         d="M17 15V7H9M17 7 7 17"
                         stroke="#06B6D4"
@@ -363,7 +363,7 @@ function InvestScreen({
             ].map((item) => (
               <div
                 key={item.label}
-                className="flex justify-between pb-4 border-b border-gray-100"
+                className="flex justify-between border-b border-gray-100 pb-4"
               >
                 <div className="text-sm text-gray-500">{item.label}</div>
                 <div className="text-sm font-semibold text-gray-900">
@@ -371,7 +371,7 @@ function InvestScreen({
                 </div>
               </div>
             ))}
-            <div className="px-3 py-2 text-sm font-semibold text-center text-white rounded-lg bg-cyan-500">
+            <div className="rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
               Buy shares
             </div>
           </div>
@@ -409,7 +409,7 @@ function FeaturesDesktop() {
   return (
     <Tab.Group
       as="div"
-      className="grid items-center grid-cols-12 gap-8 lg:gap-16 xl:gap-24"
+      className="grid grid-cols-12 items-center gap-8 lg:gap-16 xl:gap-24"
       selectedIndex={selectedIndex}
       onChange={onChange}
       vertical
@@ -418,7 +418,7 @@ function FeaturesDesktop() {
         {features.map((feature, featureIndex) => (
           <div
             key={feature.name}
-            className="relative transition-colors rounded-2xl hover:bg-gray-800/30"
+            className="relative rounded-2xl transition-colors hover:bg-gray-800/30"
           >
             {featureIndex === selectedIndex && (
               <motion.div
@@ -428,7 +428,7 @@ function FeaturesDesktop() {
               />
             )}
             <div className="relative z-10 p-8">
-              <feature.icon className="w-8 h-8" />
+              <feature.icon className="h-8 w-8" />
               <h3 className="mt-6 text-lg font-semibold text-white">
                 <Tab className="text-left [&:not(:focus-visible)]:focus:outline-none">
                   <span className="absolute inset-0 rounded-2xl" />
@@ -443,7 +443,7 @@ function FeaturesDesktop() {
         ))}
       </Tab.List>
       <div className="relative col-span-6">
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <CircleBackground color="#13B5C8" className="animate-spin-slower" />
         </div>
         <Tab.Panels as={Fragment}>
@@ -499,10 +499,10 @@ function FeaturesMobile() {
             key={featureIndex}
             // @ts-expect-error ignore
             ref={(ref) => (slideRefs.current[featureIndex] = ref)}
-            className="flex-none w-full px-4 snap-center sm:px-6"
+            className="w-full flex-none snap-center px-4 sm:px-6"
           >
-            <div className="relative px-5 py-6 overflow-hidden transform bg-gray-800 rounded-2xl">
-              <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+            <div className="relative transform overflow-hidden rounded-2xl bg-gray-800 px-5 py-6">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <CircleBackground
                   color="#13B5C8"
                   className={featureIndex % 2 === 1 ? "rotate-180" : undefined}
@@ -512,8 +512,8 @@ function FeaturesMobile() {
                 {/* @ts-expect-error ignore */}
                 <feature.screen />
               </PhoneFrame>
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gray-800/95 backdrop-blur sm:p-10">
-                <feature.icon className="w-8 h-8" />
+              <div className="absolute inset-x-0 bottom-0 bg-gray-800/95 p-6 backdrop-blur sm:p-10">
+                <feature.icon className="h-8 w-8" />
                 <h3 className="mt-6 text-sm font-semibold text-white sm:text-lg">
                   {feature.name}
                 </h3>
@@ -525,7 +525,7 @@ function FeaturesMobile() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center gap-3 mt-6">
+      <div className="mt-6 flex justify-center gap-3">
         {features.map((_, featureIndex) => (
           <button
             type="button"
@@ -555,10 +555,10 @@ export function PrimaryFeatures() {
     <section
       id="features"
       aria-label="Features for investing all your money"
-      className="py-20 bg-gray-900 sm:py-32"
+      className="bg-gray-900 py-20 sm:py-32"
     >
       <Container>
-        <div className="max-w-2xl mx-auto lg:mx-0 lg:max-w-3xl">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-3xl">
           <h2 className="text-3xl font-medium tracking-tight text-white">
             Everything you need. Buy it for yourself.
           </h2>
