@@ -25,7 +25,7 @@ export const SelectChainPanel = ({
   return (
     <Popover defaultOpen={false} open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger className="flex items-center justify-center rounded-2xl">
-        <img src={transferParams.chainIconUrl} className="w-7 rounded-full" />
+        <img src={transferParams.chainIconUrl} className="w-10 rounded-full" />
       </PopoverTrigger>
       <PopoverContent className="max-h-96 min-w-[50px] overflow-scroll rounded-2xl">
         {chains.map(

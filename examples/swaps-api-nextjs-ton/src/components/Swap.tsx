@@ -45,7 +45,7 @@ const defaultTransferParams: TransferParams = {
   fromChainIconUrl:
     "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png",
   fromChainDecimal: 18,
-  toTokenAddress: "0x0000000000000000000000000000000000000000",
+  toTokenAddress: "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
   toTokenSymbol: "TON",
   toNativeTokenSymbol: "TON",
   toChain: "ton",
@@ -54,7 +54,7 @@ const defaultTransferParams: TransferParams = {
   toChainIconUrl:
     "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/chains/ton/aec56042c817941739d7b668812bcaf092b42bd851355d3c901d033a7bf624d1.png",
   toUserAddress: "", // ton wallet address
-  toChainDecimal: 6,
+  toChainDecimal: 9,
 };
 
 const transactionPollingDuration = 10000;
@@ -299,7 +299,7 @@ const Swap = () => {
   ): Promise<string | undefined> {
     try {
       if (!tronConnected || !wallet) {
-        throw new Error("Tron wallet is not connected");
+        throw new Error("Ton wallet is not connected");
       }
 
       // Create and sign the transaction
@@ -312,7 +312,7 @@ const Swap = () => {
 
       return signedTx.txID as string;
     } catch (error) {
-      console.error("Error sending Tron transaction:", error);
+      console.error("Error sending Ton transaction:", error);
       throw new Error((error as Error).message);
     }
   }
@@ -571,7 +571,7 @@ const Swap = () => {
         })}
       >
         {transferParams.fromChain === "ton" ? (
-          <img src={transferParams.fromChainIconUrl} className="w-7" />
+          <img src={transferParams.fromChainIconUrl} className="w-10" />
         ) : (
           <SelectChainPanel
             onChainSelect={onEVMChainSelect}
@@ -596,12 +596,13 @@ const Swap = () => {
   function SelectToChainPanel() {
     return (
       <div
-        className={clsx("grow transform p-2", {
-          "cursor-pointer hover:bg-pink-900": transferParams.toChain !== "ton",
+        className={clsx("grow transform p-2 pr-0", {
+          "cursor-pointer hover:bg-sky-900 rounded-full":
+            transferParams.toChain !== "ton",
         })}
       >
         {transferParams.toChain === "ton" ? (
-          <img src={transferParams.toChainIconUrl} className="w-7" />
+          <img src={transferParams.toChainIconUrl} className="w-10" />
         ) : (
           <SelectChainPanel
             onChainSelect={onEVMChainSelect}
@@ -627,7 +628,7 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          "relative z-10 h-12 grow -skew-x-2 transform cursor-pointer bg-purple-500 p-2 hover:bg-gray-900",
+          "relative z-10 grow transform cursor-pointer bg-slate-500 p-2 hover:bg-gray-900 rounded-full",
         )}
       >
         <SelectTokenPanel
@@ -647,7 +648,7 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          "relative z-10 h-12 grow -skew-x-2 transform cursor-pointer bg-yellow-500 p-2 text-black hover:bg-gray-900",
+          "relative z-10 grow transform cursor-pointer bg-slate-500 p-2 hover:bg-gray-900 rounded-full",
         )}
       >
         <SelectTokenPanel
@@ -664,14 +665,14 @@ const Swap = () => {
   }
 
   return (
-    <div className="flex flex-row justify-center">
-      <div className="w-96 rounded-xl bg-white shadow-md lg:max-w-96">
-        <div className="mb-6 flex items-center justify-between px-6 py-4">
-          <h1 className="text-2xl font-bold">Tron Gate</h1>
+    <div className="relative flex flex-row justify-center">
+      <div className="rounded-4xl w-[35rem] bg-white shadow-md lg:max-w-[30rem]">
+        <div className="mb-6 flex items-center justify-between px-6 py-6">
+          <h1 className="text-2xl font-light">Ton Bridge</h1>
 
           <div className="flex items-center">
             <button
-              className="flex items-center gap-1 rounded-xl bg-purple-300 p-2 text-xs font-bold ring-1 ring-purple-600"
+              className="flex items-center gap-1 rounded-xl bg-sky-300 p-2 text-xs font-bold ring-1 ring-sky-600"
               onClick={() =>
                 tronConnected ? disconnect() : select(TronLinkAdapterName)
               }
@@ -679,11 +680,11 @@ const Swap = () => {
               <span
                 className={clsx("p4 h-4 w-4 rounded-full", {
                   "bg-red-500": !tronConnected,
-                  "bg-green-500": tronConnected,
+                  "bg-sky-500": tronConnected,
                 })}
               ></span>
               <span>
-                {tronConnected ? <>Tron Connected</> : <>Connect Tron</>}
+                {tronConnected ? <>Ton Connected</> : <>Connect Ton</>}
               </span>
             </button>
             <div className="h-5 w-5 cursor-pointer rounded-full">
@@ -691,38 +692,36 @@ const Swap = () => {
             </div>
           </div>
         </div>
-        <div className="space-y-5">
+        <div className="space-y-4 px-6">
           <div className="text-md flex justify-center gap-x-2 font-bold text-gray-200">
             {!isTransacting ? (
-              <div className="flex w-full   justify-between  bg-purple-200">
+              <div className="flex w-full justify-between bg-slate-100 rounded-full p-2">
                 <div
-                  className="flex items-center gap-x-2 px-3 text-sm
-                                        font-semibold text-white outline-2 outline-offset-2
+                  className="flex items-center gap-x-2 px-3 text-sm w-36
+                                        font-semibold text-white bg-slate-400 rounded-full outline-2 outline-offset-2
                                         transition-colors"
                 >
-                  <p className="text-black">SRC</p>
                   <SelectFromChainPanel />
                   <SelectFromTokenPanel />
                 </div>
                 <div
-                  className="group relative z-10 flex -skew-x-2 transform items-center bg-zinc-500
+                  className="group relative z-10 flex w-20 transform items-center bg-zinc-500 rounded-full
                                         p-1 px-3 text-sm font-semibold
-                                        text-white outline-2 outline-offset-2 transition-colors hover:bg-gray-900"
+                                        text-white outline-2 outline-offset-2 transition-colors hover:bg-gray-900 text-center"
                   onClick={() => {
                     switchTransferParams();
                   }}
                 >
-                  <TbSwitchHorizontal className="size-8 group-hover:cursor-pointer" />
+                  <TbSwitchHorizontal className="size-8 group-hover:cursor-pointer w-full" />
                 </div>
 
                 <div
-                  className="flex items-center gap-x-2 px-3 text-sm
+                  className="flex items-center w-36 gap-x-2 px-3 text-sm bg-slate-400 rounded-full
                                         font-semibold text-white outline-2 outline-offset-2
                                         transition-colors"
                 >
                   <SelectToTokenPanel />
                   <SelectToChainPanel />
-                  <p className="text-black">DEST</p>
                 </div>
               </div>
             ) : (
@@ -737,7 +736,7 @@ const Swap = () => {
               </div>
             )}
           </div>
-          <div className="flex items-center justify-between px-6">
+          <div className="flex items-center justify-between rounded-2xl bg-slate-100 px-2 py-2">
             <input
               aria-label="deposit"
               className="m-0 h-auto w-[50%] grow border-none bg-transparent p-0 text-3xl placeholder:m-0 placeholder:p-0 placeholder:text-3xl focus:border-none focus:ring-0"
@@ -760,7 +759,7 @@ const Swap = () => {
               />
             </div>
           </div>
-          <div className="flex items-center px-6">
+          <div className="flex items-center rounded-2xl bg-slate-100  px-2 py-2">
             <input
               aria-label="receive"
               disabled
@@ -791,10 +790,10 @@ const Swap = () => {
               />
             </div>
           </div>
-          <p className="m-0 p-0 px-6 text-sm text-zinc-950/[0.6]">
+          <p className="m-0 p-0 text-sm text-zinc-950/[0.6]">
             You will receive: {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
           </p>
-          <div className="px-6">
+          <div className="">
             <label htmlFor="wallet" className="mb-1 block font-semibold">
               Select Route <span className="text-red-500">*</span>
             </label>
@@ -816,7 +815,7 @@ const Swap = () => {
               ))}
             </select>
           </div>
-          <div className="px-6">
+          <div className="">
             <label htmlFor="wallet" className="mb-1 block font-semibold">
               Send to {transferParams.toChain} wallet{" "}
               <span className="text-red-500">*</span>
@@ -837,7 +836,7 @@ const Swap = () => {
               (connectionStatus === "connected" && !transferRoute)
             }
             className={clsx(
-              "mt-6 w-full rounded-xl bg-purple-800 px-2 py-4 font-semibold text-white transition-colors hover:bg-purple-600 ",
+              "mt-6 w-full rounded-xl bg-sky-400 px-2 py-4 font-semibold text-white transition-colors hover:bg-sky-600 ",
               {
                 "hover:bg-blue-200":
                   connectionStatus === "connected" && transferRoute,

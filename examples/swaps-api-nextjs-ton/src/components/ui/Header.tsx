@@ -71,9 +71,24 @@ export function Header() {
       <nav>
         <Container className="relative z-50 flex items-center justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
-            <Link href="/" aria-label="Home" className="text-2xl text-cyan-100">
-              Tron Cate
-            </Link>
+            <div className="flex space-x-2">
+              <img
+                src={
+                  "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/chains/ton/aec56042c817941739d7b668812bcaf092b42bd851355d3c901d033a7bf624d1.png"
+                }
+                alt=""
+                width={32}
+                height={24}
+              />
+              <Link
+                href="/"
+                aria-label="Home"
+                className="text-2xl text-cyan-100"
+              >
+                Ton Bridge
+              </Link>
+            </div>
+
             <div className="hidden lg:flex lg:gap-10">
               <NavLinks />
             </div>

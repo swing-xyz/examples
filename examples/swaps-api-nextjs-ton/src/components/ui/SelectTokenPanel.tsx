@@ -12,6 +12,9 @@ const allowedTokens = [
   "AVAX",
   "POL",
   "TON",
+  "jUSDC",
+  "USDC.e",
+  "jUSDT",
 ];
 
 export const SelectTokenPanel = ({
@@ -39,7 +42,7 @@ export const SelectTokenPanel = ({
 
   return (
     <Popover defaultOpen={false} open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger className="flex items-center justify-center rounded-2xl">
+      <PopoverTrigger className="flex w-full items-center justify-center rounded-2xl">
         <span>{transferParams.token}</span>
       </PopoverTrigger>
       <PopoverContent className="flex max-h-96 min-w-[50px] flex-col gap-y-2 overflow-scroll rounded-2xl">
@@ -47,7 +50,7 @@ export const SelectTokenPanel = ({
           id="width"
           defaultValue=""
           placeholder={"Search Token (e.g. USDC)"}
-          className="col-span-2 h-8 w-full rounded-xl border-none focus:border-2 focus:border-purple-300"
+          className="col-span-2 h-8 w-full rounded-xl border-none focus:border-2 focus:border-sky-300"
           onChange={(e) => {
             const tokenResults = tokens?.filter((token) =>
               token.symbol

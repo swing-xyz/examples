@@ -7,10 +7,7 @@ export function NavLinks() {
 
   return (
     <>
-      {[
-        ["Swap", "#"],
-        ["Documentation", "#"],
-      ].map(([label, href], index) => (
+      {[].map(([label, href], index) => (
         <Link
           key={label}
           href={href!}
