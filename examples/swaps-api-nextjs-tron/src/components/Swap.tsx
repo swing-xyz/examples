@@ -308,7 +308,7 @@ const Swap = () => {
       // Broadcasting the transaction
       const broadcast =
         await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
-      console.log(`broadcast: ${broadcast?.result}`);
+      console.log(`broadcast: ${broadcast?.result}`, signedTx.txID);
 
       return signedTx.txID as string;
     } catch (error) {
