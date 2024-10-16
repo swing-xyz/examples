@@ -8,6 +8,9 @@ import {
   useAddress,
   useSigner,
 } from "@thirdweb-dev/react";
+
+import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
+
 import { SwingServiceAPI } from "services/requests";
 import { convertEthToWei, convertWeiToEth } from "utils/ethToWei";
 import { useDebouncedCallback } from "use-debounce";
@@ -25,11 +28,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ISwingServiceAPI } from "interfaces/swing-service.interface";
 import { Route } from "interfaces/quote.interface";
 import { TransactionData } from "interfaces/approval.interface";
-
-import { useWallet } from "@tronweb3/tronwallet-adapter-react-hooks";
-import { TronLinkAdapterName } from "@tronweb3/tronwallet-adapters";
+import TonWeb from "tonweb";
 
 const walletConfig = metamaskWallet();
+const tonweb = new TonWeb();
 
 const defaultTransferParams: TransferParams = {
   tokenAmount: "1",
@@ -62,12 +64,13 @@ const transactionPollingDuration = 10000;
 const Swap = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isTransacting, setIsTransacting] = useState(false);
+  const [tonConnected, setTonConnected] = useState(false);
 
   const [transferParams, setTransferParams] = useState<TransferParams>(
     defaultTransferParams,
   );
 
-  const [tronWalletAddress, setTronWalletAddress] = useState<string>("");
+  const [tonWalletAddress, setTonWalletAddress] = useState<string>("");
 
   const [transferRoute, setTransferRoute] = useState<Route | null>(null);
   const [transStatus, setTransStatus] =
@@ -90,13 +93,8 @@ const Swap = () => {
   const { toast } = useToast();
   const sendInputRef = useRef<HTMLInputElement>(null);
 
-  const {
-    wallet,
-    connected: tronConnected,
-    address: tronAddress,
-    select,
-    disconnect,
-  } = useWallet();
+  const tonAddress = useTonAddress();
+  const [tonConnectUI] = useTonConnectUI();
 
   const debounced = useDebouncedCallback((value) => {
     setTransferParams((prev: TransferParams) => ({
@@ -110,14 +108,20 @@ const Swap = () => {
   // Replace the TronLink connection logic in useEffect
   useEffect(() => {
     setSwingServiceAPI(new SwingServiceAPI());
-    if (tronConnected && tronAddress) {
-      setTronWalletAddress(tronAddress);
+    if (tonConnected && tonAddress) {
+      setTonWalletAddress(tonAddress);
       setTransferParams((prev) => ({
         ...prev,
-        toUserAddress: tronAddress,
+        toUserAddress: tonAddress,
       }));
     }
-  }, [tronConnected, tronAddress]);
+  }, [tonConnected, tonAddress]);
+
+  useEffect(() => {
+    if (tonConnectUI) {
+      setTonConnected(true);
+    }
+  }, [tonConnectUI]);
 
   //Fetch chains and tokens whenever wallet address changes
   useEffect(() => {
@@ -294,25 +298,37 @@ const Swap = () => {
   }
 
   // Update the sendTronTrans function
-  async function sendTronTrans(
+  async function sendTonTrans(
     txData: TransactionData,
   ): Promise<string | undefined> {
     try {
-      if (!tronConnected || !wallet) {
-        throw new Error("Ton wallet is not connected");
+      if (!tonWalletAddress) {
+        throw new Error("TON wallet is not connected");
       }
 
-      // Create and sign the transaction
-      const signedTx = await wallet.adapter.signTransaction(txData.meta!);
+      const transaction = {
+        validUntil: Date.now() + 1000000, // Transaction is valid for about 16 minutes
+        messages: txData?.meta?.msgs.map((msg) => ({
+          address: msg.address,
+          amount: msg.amount,
+          payload: msg.payload,
+        }))!,
+      };
 
-      // Broadcasting the transaction
-      const broadcast =
-        await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
-      console.log(`broadcast: ${broadcast?.result}`);
+      const result = await tonConnectUI.sendTransaction(transaction);
+      console.log("Transaction sent:", result.boc);
 
-      return signedTx.txID as string;
+      // Convert the base64 BOC to a Buffer
+      const bocBuffer = Buffer.from(result.boc, "base64");
+
+      // Calculate the transaction hash using TonWeb utils.sha256
+      const txHash = await tonweb.utils.sha256(bocBuffer);
+
+      console.log("Transaction Hash:", Buffer.from(txHash).toString("hex"));
+
+      return Buffer.from(txHash).toString("hex");
     } catch (error) {
-      console.error("Error sending Ton transaction:", error);
+      console.error("Error sending TON transaction:", error);
       throw new Error((error as Error).message);
     }
   }
@@ -527,7 +543,7 @@ const Swap = () => {
       let txHash = "";
 
       if (transferParams.fromChain === "ton") {
-        const txId = await sendTronTrans(txData);
+        const txId = await sendTonTrans(txData);
         txHash = txId!;
       } else {
         const txResponse = await signer?.sendTransaction({
@@ -565,8 +581,8 @@ const Swap = () => {
   function SelectFromChainPanel() {
     return (
       <div
-        className={clsx("flex grow transform justify-center", {
-          "cursor-pointer p-2 hover:bg-gray-900":
+        className={clsx("flex transform justify-center", {
+          "cursor-pointer hover:bg-gray-900 rounded-full transition-opacity duration-300 hover:opacity-20":
             transferParams.fromChain !== "ton",
         })}
       >
@@ -576,6 +592,7 @@ const Swap = () => {
           <SelectChainPanel
             onChainSelect={onEVMChainSelect}
             chains={chains!}
+            className=""
             transferParams={
               transferParams.fromChain !== "ton"
                 ? {
@@ -596,8 +613,8 @@ const Swap = () => {
   function SelectToChainPanel() {
     return (
       <div
-        className={clsx("grow transform p-2 pr-0", {
-          "cursor-pointer hover:bg-sky-900 rounded-full":
+        className={clsx("transform", {
+          "cursor-pointer hover:bg-gray-900 rounded-full transition-opacity duration-300 hover:opacity-20 py-2 px-1":
             transferParams.toChain !== "ton",
         })}
       >
@@ -674,17 +691,20 @@ const Swap = () => {
             <button
               className="flex items-center gap-1 rounded-xl bg-sky-300 p-2 text-xs font-bold ring-1 ring-sky-600"
               onClick={() =>
-                tronConnected ? disconnect() : select(TronLinkAdapterName)
+                tonConnected
+                  ? tonConnectUI.disconnect().then(() => setTonConnected(false))
+                  : tonConnectUI.connectWallet()
               }
             >
               <span
                 className={clsx("p4 h-4 w-4 rounded-full", {
-                  "bg-red-500": !tronConnected,
-                  "bg-sky-500": tronConnected,
+                  "bg-red-500": !tonConnected,
+                  "bg-sky-500": tonConnected,
                 })}
               ></span>
               <span>
-                {tronConnected ? <>Ton Connected</> : <>Connect Ton</>}
+                {tonConnected}
+                {tonConnected ? <>Ton Connected</> : <>Connect Ton</>}
               </span>
             </button>
             <div className="h-5 w-5 cursor-pointer rounded-full">
@@ -695,9 +715,9 @@ const Swap = () => {
         <div className="space-y-4 px-6">
           <div className="text-md flex justify-center gap-x-2 font-bold text-gray-200">
             {!isTransacting ? (
-              <div className="flex w-full justify-between bg-slate-100 rounded-full p-2">
+              <div className="flex w-full justify-between bg-slate-100 rounded-full p-3">
                 <div
-                  className="flex items-center gap-x-2 px-3 text-sm w-36
+                  className="flex items-center gap-x-2 p-2 text-sm w-36
                                         font-semibold text-white bg-slate-400 rounded-full outline-2 outline-offset-2
                                         transition-colors"
                 >
@@ -716,7 +736,7 @@ const Swap = () => {
                 </div>
 
                 <div
-                  className="flex items-center w-36 gap-x-2 px-3 text-sm bg-slate-400 rounded-full
+                  className="flex items-center w-36 gap-x-2 px-1  text-sm bg-slate-400 rounded-full
                                         font-semibold text-white outline-2 outline-offset-2
                                         transition-colors"
                 >
@@ -742,7 +762,7 @@ const Swap = () => {
               className="m-0 h-auto w-[50%] grow border-none bg-transparent p-0 text-3xl placeholder:m-0 placeholder:p-0 placeholder:text-3xl focus:border-none focus:ring-0"
               placeholder={"0 " + transferParams.tokenSymbol}
               ref={sendInputRef}
-              disabled={!tronWalletAddress.length}
+              disabled={!tonWalletAddress.length}
               onChange={(e) => {
                 debounced(e.target.value);
                 setTransferRoute(null); // Reset transfer route
@@ -878,4 +898,18 @@ function formatUSD(amount: string) {
   }).format(Number(amount));
 }
 
+function formatTonTxHash(txHashBase64: string) {
+  const decodedBytes = atob(txHashBase64);
+
+  let hexString = "";
+  for (let i = 0; i < decodedBytes.length; i++) {
+    hexString += decodedBytes.charCodeAt(i).toString(16).padStart(2, "0");
+  }
+
+  return hexString;
+}
+
 export default Swap;
+function sha256(arg0: Promise<Uint8Array>) {
+  throw new Error("Function not implemented.");
+}
