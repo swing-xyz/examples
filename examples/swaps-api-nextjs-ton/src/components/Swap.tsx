@@ -898,18 +898,4 @@ function formatUSD(amount: string) {
   }).format(Number(amount));
 }
 
-function formatTonTxHash(txHashBase64: string) {
-  const decodedBytes = atob(txHashBase64);
-
-  let hexString = "";
-  for (let i = 0; i < decodedBytes.length; i++) {
-    hexString += decodedBytes.charCodeAt(i).toString(16).padStart(2, "0");
-  }
-
-  return hexString;
-}
-
 export default Swap;
-function sha256(arg0: Promise<Uint8Array>) {
-  throw new Error("Function not implemented.");
-}
