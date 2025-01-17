@@ -15,7 +15,7 @@ export const SelectRoute: FC<ISelectRoute> = ({
 
   return (
     <div className="w-full">
-      <div className="h-[400px] mt-4 scrollbar scrollbar-thumb-black overflow-y-auto p-3">
+      <div className="scrollbar scrollbar-thumb-black mt-4 h-[400px] overflow-y-auto p-3">
         {groupedRoutes?.map((route: TransferRoute, index: number) => (
           <Route key={index} route={route} onRouteSelected={onRouteSelected} />
         ))}

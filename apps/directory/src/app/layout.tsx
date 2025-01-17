@@ -12,12 +12,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <head />
 
       <body
-        className={`bg-background font-sans relative antialiased max-h-screen min-h-full ${GeistSans.variable} ${GeistMono.variable}`}
+        className={`bg-background relative max-h-screen min-h-full font-sans antialiased ${GeistSans.variable} ${GeistMono.variable}`}
       >
         <ThemeProvider>
           <Header />
 
-          <main className="max-w-6xl mx-auto">{children}</main>
+          <main className="mx-auto max-w-6xl">{children}</main>
 
           <Footer />
         </ThemeProvider>

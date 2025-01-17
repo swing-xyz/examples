@@ -562,8 +562,8 @@ const Swap = () => {
   function SelectFromChainPanel() {
     return (
       <div
-        className={clsx("bg-zinc-500 rounded-full", {
-          "hover:bg-gray-900 bg-zinc-500 cursor-pointer p-2":
+        className={clsx("rounded-full bg-zinc-500", {
+          "cursor-pointer bg-zinc-500 p-2 hover:bg-gray-900":
             transferParams.fromChain !== "solana",
         })}
       >
@@ -596,8 +596,8 @@ const Swap = () => {
   function SelectToChainPanel() {
     return (
       <div
-        className={clsx("p-2  rounded-xl", {
-          "bg-zinc-500 hover:bg-gray-900 cursor-pointer":
+        className={clsx("rounded-xl  p-2", {
+          "cursor-pointer bg-zinc-500 hover:bg-gray-900":
             transferParams.toChain !== "solana",
         })}
       >
@@ -631,7 +631,7 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          "p-2 rounded-xl bg-zinc-500 hover:bg-gray-900 cursor-pointer",
+          "cursor-pointer rounded-xl bg-zinc-500 p-2 hover:bg-gray-900",
         )}
       >
         <SelectTokenPanel
@@ -651,7 +651,7 @@ const Swap = () => {
     return (
       <div
         className={clsx(
-          "p-2  rounded-xl bg-zinc-500 hover:bg-gray-900 cursor-pointer",
+          "cursor-pointer  rounded-xl bg-zinc-500 p-2 hover:bg-gray-900",
         )}
       >
         <SelectTokenPanel
@@ -669,20 +669,20 @@ const Swap = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col xl:flex-row lg:gap-y-2 gap-y-5 justify-between items-center mb-3">
-        <p className="font-bold text-4xl text-gray-200">BRIDGE</p>
+      <div className="mb-3 flex flex-col items-center justify-between gap-y-5 lg:gap-y-2 xl:flex-row">
+        <p className="text-4xl font-bold text-gray-200">BRIDGE</p>
         <div className="flex gap-x-2">
-          <div className="flex gap-x-2 font-bold text-md text-gray-200">
+          <div className="text-md flex gap-x-2 font-bold text-gray-200">
             {!isTransacting ? (
               <div
-                className="justify-center rounded-2xl py-2 px-3 text-sm font-semibold
-                                        outline-2 outline-offset-2 transition-colors text-whit
-                                        flex items-center bg-zinc-600 gap-x-2"
+                className="text-whit flex items-center justify-center gap-x-2 rounded-2xl
+                                        bg-zinc-600 px-3 py-2 text-sm
+                                        font-semibold outline-2 outline-offset-2 transition-colors"
               >
                 <SelectFromChainPanel />
                 <SelectFromTokenPanel />
                 <div
-                  className="group p-1 bg-zinc-500 rounded-full hover:bg-gray-900"
+                  className="group rounded-full bg-zinc-500 p-1 hover:bg-gray-900"
                   onClick={switchTransferParams}
                 >
                   <TbSwitchHorizontal className="size-8 group-hover:cursor-pointer" />
@@ -694,38 +694,38 @@ const Swap = () => {
               </div>
             ) : (
               <div
-                className="group rounded-2xl py-2 px-3 text-sm font-semibold
-                                 outline-2 outline-offset-2 transition-colors text-white hover:bg-gray-900
-                                 flex items-center cursor-pointer bg-zinc-600
-                                 active:bg-gray-800 active:text-white/80 justify-between gap-x-2"
+                className="group flex cursor-pointer items-center justify-between gap-x-2
+                                 rounded-2xl bg-zinc-600 px-3 py-2 text-sm
+                                 font-semibold text-white outline-2 outline-offset-2
+                                 transition-colors hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
               >
                 <span>{transStatus?.status}</span>
-                <span className="w-5 h-5 bg-cyan-400 rounded-full"></span>
+                <span className="h-5 w-5 rounded-full bg-cyan-400"></span>
               </div>
             )}
           </div>
           <TransferHistoryPanel
             userAddress={transferParams.fromUserAddress}
             swingServiceAPI={swingServiceAPI!}
-            className="group rounded-2xl py-2 px-4 text-sm font-semibold hover:cursor-pointer
-                                        outline-2 outline-offset-2 transition-colors text-zinc-400
-                                        flex items-center bg-zinc-600 
-                                        active:bg-gray-800 active:text-zinc-400/80 gap-x-2"
+            className="group flex items-center gap-x-2 rounded-2xl bg-zinc-600 px-4
+                                        py-2 text-sm font-semibold text-zinc-400
+                                        outline-2 outline-offset-2 transition-colors 
+                                        hover:cursor-pointer active:bg-gray-800 active:text-zinc-400/80"
           />
         </div>
       </div>
 
-      <div className="w-full flex flex-col bg-cyan-100 min-h-[20vh] ring-1 ring-cyan-100 space-y-1 rounded-xl  p-3 mb-3">
-        <div className="flex flex-col xl:flex-row lg:gap-y-2 gap-y-5 justify-between items-center mb-3">
+      <div className="mb-3 flex min-h-[20vh] w-full flex-col space-y-1 rounded-xl bg-cyan-100 p-3  ring-1 ring-cyan-100">
+        <div className="mb-3 flex flex-col items-center justify-between gap-y-5 lg:gap-y-2 xl:flex-row">
           <h4 className="text-xl font-bold text-zinc-700">SEND</h4>
-          <div className="flex gap-x-2 font-bold text-md text-gray-200">
+          <div className="text-md flex gap-x-2 font-bold text-gray-200">
             {transferParams.fromChain === "solana" && (
               <>
                 <button
-                  className="group rounded-2xl py-2 px-3 text-sm font-semibold
-                                 outline-2 outline-offset-2 transition-colors text-white hover:bg-gray-900
-                                 flex items-center cursor-pointer bg-zinc-600
-                                 active:bg-gray-800 active:text-white/80 justify-between gap-x-2"
+                  className="group flex cursor-pointer items-center justify-between gap-x-2
+                                 rounded-2xl bg-zinc-600 px-3 py-2 text-sm
+                                 font-semibold text-white outline-2 outline-offset-2
+                                 transition-colors hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
                   onClick={connectToPhantom}
                 >
                   <span>
@@ -733,16 +733,16 @@ const Swap = () => {
                       ? "Connect SOL Wallet"
                       : shortenSolanaAddress(solWalletAddress)}
                   </span>
-                  <span className="w-5 h-5 bg-purple-400 rounded-full"></span>
+                  <span className="h-5 w-5 rounded-full bg-purple-400"></span>
                 </button>
               </>
             )}
           </div>
         </div>
-        <div className="flex grow justify-between items-center">
+        <div className="flex grow items-center justify-between">
           <input
             aria-label="deposit"
-            className="border-none w-[50%] p-2 h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-4xl m-0 text-4xl"
+            className="m-0 h-auto w-[50%] border-none bg-transparent p-2 text-4xl placeholder:m-0 placeholder:p-0 placeholder:text-4xl focus:border-none focus:ring-0"
             placeholder={"0 " + transferParams.tokenSymbol}
             ref={sendInputRef}
             disabled={!solWalletAddress.length}
@@ -752,7 +752,7 @@ const Swap = () => {
             }}
             type="number"
           />
-          <div className="flex gap-x-1 items-center rounded-xl hover:cursor-pointer">
+          <div className="flex items-center gap-x-1 rounded-xl hover:cursor-pointer">
             <h4 className="w-full text-4xl font-bold text-zinc-700">
               {transferParams.tokenSymbol}
             </h4>
@@ -763,15 +763,15 @@ const Swap = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center">
-          <p className="text-xs p-0 m-0 text-zinc-950/[0.6] grow"></p>
+        <div className="flex items-center justify-between">
+          <p className="m-0 grow p-0 text-xs text-zinc-950/[0.6]"></p>
         </div>
       </div>
 
-      <div className="relative w-full p-0 m-0 hidden xl:block">
-        <div className="w-full flex justify-center absolute -top-10">
+      <div className="relative m-0 hidden w-full p-0 xl:block">
+        <div className="absolute -top-10 flex w-full justify-center">
           <div
-            className="bg-slate-100 p-3 rounded-full ring-4 ring-purple-200 text-slate-300 hover:text-slate-900"
+            className="rounded-full bg-slate-100 p-3 text-slate-300 ring-4 ring-purple-200 hover:text-slate-900"
             onClick={switchTransferParams}
           >
             <TbSwitchVertical className="size-10 hover:cursor-pointer" />
@@ -779,16 +779,16 @@ const Swap = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-col bg-purple-200 min-h-[20vh] ring-1 ring-purple-200 space-y-2 rounded-xl  p-3 mb-3">
-        <div className="flex flex-col xl:flex-row lg:gap-y-2 gap-y-5 justify-between items-center mb-3">
+      <div className="mb-3 flex min-h-[20vh] w-full flex-col space-y-2 rounded-xl bg-purple-200 p-3  ring-1 ring-purple-200">
+        <div className="mb-3 flex flex-col items-center justify-between gap-y-5 lg:gap-y-2 xl:flex-row">
           <h4 className="text-xl font-bold text-zinc-700">RECEIVE</h4>
-          <div className="flex gap-x-2 font-bold text-md text-gray-200">
+          <div className="text-md flex gap-x-2 font-bold text-gray-200">
             {transferParams.toChain === "solana" && (
               <button
-                className="group rounded-2xl py-2 px-3 text-sm font-semibold
-                                 outline-2 outline-offset-2 transition-colors text-white hover:bg-gray-900
-                                 flex items-center cursor-pointer bg-zinc-600
-                                 active:bg-gray-800 active:text-white/80 justify-between gap-x-2"
+                className="group flex cursor-pointer items-center justify-between gap-x-2
+                                 rounded-2xl bg-zinc-600 px-3 py-2 text-sm
+                                 font-semibold text-white outline-2 outline-offset-2
+                                 transition-colors hover:bg-gray-900 active:bg-gray-800 active:text-white/80"
                 onClick={connectToPhantom}
               >
                 <span>
@@ -796,16 +796,16 @@ const Swap = () => {
                     ? "Connect SOL Wallet"
                     : shortenSolanaAddress(solWalletAddress)}
                 </span>
-                <span className="w-5 h-5 bg-purple-400 rounded-full"></span>
+                <span className="h-5 w-5 rounded-full bg-purple-400"></span>
               </button>
             )}
           </div>
         </div>
-        <div className="flex grow justify-between items-center">
+        <div className="flex grow items-center justify-between">
           <input
             aria-label="receive"
             disabled
-            className="border-none w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-4xl m-0 text-4xl"
+            className="m-0 h-auto w-[50%] border-none bg-transparent text-4xl placeholder:m-0 placeholder:p-0 placeholder:text-4xl focus:border-none focus:ring-0"
             placeholder={"0 SOL"}
             type="number"
             value={
@@ -822,7 +822,7 @@ const Swap = () => {
               }));
             }}
           />
-          <div className="flex gap-x-1 items-center rounded-xl hover:cursor-pointer">
+          <div className="flex items-center gap-x-1 rounded-xl hover:cursor-pointer">
             <h4 className="w-full text-4xl font-bold text-zinc-700">
               {transferParams.toTokenSymbol}
             </h4>
@@ -833,58 +833,58 @@ const Swap = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center">
-          <p className="text-md p-0 m-0 text-zinc-950/[0.6]">
+        <div className="flex items-center justify-between">
+          <p className="text-md m-0 p-0 text-zinc-950/[0.6]">
             {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
           </p>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 w-full gap-3 min-h-[150px] mb-3">
+      <div className="mb-3 grid min-h-[150px] w-full gap-3 lg:grid-cols-3">
         <div
           className={clsx(
-            "flex flex-col grow bg-pink-300 rounded-xl p-3 transition-all ease-in-out",
+            "flex grow flex-col rounded-xl bg-pink-300 p-3 transition-all ease-in-out",
             {
-              "hover:bg-pink-200 hover:cursor-pointer": !transferRoute,
+              "hover:cursor-pointer hover:bg-pink-200": !transferRoute,
             },
           )}
         >
-          <h4 className={clsx("w-full font-bold text-zinc-700 grow")}>
+          <h4 className={clsx("w-full grow font-bold text-zinc-700")}>
             BEST ROUTE
           </h4>
           {!transferRoute ? (
-            <div className="font-medium text-xl">NO ROUTE FOUND</div>
+            <div className="text-xl font-medium">NO ROUTE FOUND</div>
           ) : (
-            <div className="font-medium text-xl">
+            <div className="text-xl font-medium">
               {transferRoute.quote.integration.toUpperCase()}
             </div>
           )}
         </div>
         <div
           className={clsx(
-            "flex flex-col grow bg-zinc-300 rounded-xl p-3 transition-all ease-in-out",
+            "flex grow flex-col rounded-xl bg-zinc-300 p-3 transition-all ease-in-out",
           )}
         >
-          <h4 className={clsx("w-full font-bold text-zinc-700 grow")}>
+          <h4 className={clsx("w-full grow font-bold text-zinc-700")}>
             GAS FEE
           </h4>
-          <div className="font-medium text-xl">
+          <div className="text-xl font-medium">
             {formatUSD(transferRoute?.gasUSD! ?? 0)}
           </div>
         </div>
         <div
           className={clsx(
-            "flex flex-col grow bg-cyan-200 rounded-xl p-3 transition-all ease-in-out",
+            "flex grow flex-col rounded-xl bg-cyan-200 p-3 transition-all ease-in-out",
           )}
         >
-          <h4 className={clsx("w-full font-bold text-zinc-700 grow")}>TOTAL</h4>
-          <div className="font-medium text-xl">
+          <h4 className={clsx("w-full grow font-bold text-zinc-700")}>TOTAL</h4>
+          <div className="text-xl font-medium">
             {formatUSD(transferRoute?.quote?.amountUSD! ?? 0)}
           </div>
         </div>
       </div>
 
-      <div className="flex justify-between w-full gap-3 min-h-[150px]">
+      <div className="flex min-h-[150px] w-full justify-between gap-3">
         <button
           disabled={
             (connectionStatus === "connected" && isLoading) ||
@@ -892,7 +892,7 @@ const Swap = () => {
             (connectionStatus === "connected" && !transferRoute)
           }
           className={clsx(
-            "flex flex-col justify-center grow rounded-xl p-3 bg-zinc-300 transition-all ease-in-out hover:cursor-pointer",
+            "flex grow flex-col justify-center rounded-xl bg-zinc-300 p-3 transition-all ease-in-out hover:cursor-pointer",
             {
               "hover:bg-blue-200":
                 connectionStatus === "connected" && transferRoute,

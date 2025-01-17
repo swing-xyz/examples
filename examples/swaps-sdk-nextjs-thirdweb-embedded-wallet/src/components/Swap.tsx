@@ -425,41 +425,41 @@ const Swap = () => {
   return (
     <div
       id="#altcoin"
-      className="w-full max-w-4xl p-5 m-auto space-y-4 bg-white rounded-4xl lg:ml-auto md:w-[20rem] sm:w-[20rem] lg:w-[21rem]"
+      className="rounded-4xl m-auto w-full max-w-4xl space-y-4 bg-white p-5 sm:w-[20rem] md:w-[20rem] lg:ml-auto lg:w-[21rem]"
     >
       <div className="flex flex-col space-y-3">
-        <div className="w-full flex justify-between items-center">
+        <div className="flex w-full items-center justify-between">
           <div className="text-lg font-bold italic">PowerSwap 🔥</div>
-          <div className="flex min-w-5 min-h-5 rounded-4xl bg-gray-100">
-            <div className="bg-black text-white rounded-4xl text-[9px] font-bold px-2 py-1.5">
+          <div className="rounded-4xl flex min-h-5 min-w-5 bg-gray-100">
+            <div className="rounded-4xl bg-black px-2 py-1.5 text-[9px] font-bold text-white">
               Swap
             </div>
-            <div className=" text-gray-500 rounded-4xl text-[9px] font-bold px-2 py-1.5">
+            <div className=" rounded-4xl px-2 py-1.5 text-[9px] font-bold text-gray-500">
               Stake
             </div>
           </div>
         </div>
 
-        <div className="w-full flex border-2 rounded-xl border-zinc-100">
-          <div className="w-full flex justify-between items-center p-1">
+        <div className="flex w-full rounded-xl border-2 border-zinc-100">
+          <div className="flex w-full items-center justify-between p-1">
             <div
-              className="flex mr-auto space-x-1 items-center hover:bg-zinc-300/[0.2] hover:rounded-lg hover:cursor-pointer p-3"
+              className="mr-auto flex items-center space-x-1 p-3 hover:cursor-pointer hover:rounded-lg hover:bg-zinc-300/[0.2]"
               onClick={openSendDialog}
             >
               <img
                 src={fromChain?.logo}
                 alt={fromChain?.name}
-                className="rounded-full w-7 h-7"
+                className="h-7 w-7 rounded-full"
               />
               <div className="flex flex-col">
-                <h5 className="text-gray-400 font-bold text-[9px]">From</h5>
-                <h5 className="font-bold text-[10px] capitalize">
+                <h5 className="text-[9px] font-bold text-gray-400">From</h5>
+                <h5 className="text-[10px] font-bold capitalize">
                   {fromChain?.name}
                 </h5>
               </div>
             </div>
             <div
-              className="flex mx-auto justify-center p-3 group hover:rounded-full hover:bg-zinc-100 hover:cursor-pointer"
+              className="group mx-auto flex justify-center p-3 hover:cursor-pointer hover:rounded-full hover:bg-zinc-100"
               onClick={() => {
                 const tempToChain = { ...toChain! };
                 setToChain(fromChain);
@@ -478,141 +478,141 @@ const Swap = () => {
                 }
               }}
             >
-              <LiaExchangeAltSolid className="rounded-2xl w-5 h-5 text-zinc-300 group-hover:text-zinc-600 font-bold" />
+              <LiaExchangeAltSolid className="h-5 w-5 rounded-2xl font-bold text-zinc-300 group-hover:text-zinc-600" />
             </div>
             <div
-              className="flex ml-auto space-x-1 items-center hover:bg-zinc-300/[0.2] hover:rounded-lg hover:cursor-pointer p-3"
+              className="ml-auto flex items-center space-x-1 p-3 hover:cursor-pointer hover:rounded-lg hover:bg-zinc-300/[0.2]"
               onClick={openReceiveDialog}
             >
               <div className="flex flex-col">
-                <h5 className="text-gray-400 font-bold text-[9px] text-right">
+                <h5 className="text-right text-[9px] font-bold text-gray-400">
                   To
                 </h5>
-                <h5 className="font-bold text-[10px] capitalize">
+                <h5 className="text-[10px] font-bold capitalize">
                   {toChain?.name}
                 </h5>
               </div>
               <img
                 src={toChain?.logo}
                 alt={toChain?.name}
-                className="rounded-full w-7 h-7"
+                className="h-7 w-7 rounded-full"
               />
             </div>
           </div>
         </div>
 
-        <div className="w-full flex flex-col border-2 border-zinc-100 space-y-1 rounded-xl bg-zinc-950/[0.02] p-3">
+        <div className="flex w-full flex-col space-y-1 rounded-xl border-2 border-zinc-100 bg-zinc-950/[0.02] p-3">
           <h4 className="w-full text-[11px] font-bold text-zinc-700">
             Deposit
           </h4>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <input
               aria-label="deposit"
-              className="border-none w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
+              className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
               placeholder={"0"}
               disabled={!isConnected}
               onChange={(e) => debounced(e.target.value)}
               type="number"
             />
             <div
-              className="flex items-center space-x-1 bg-white p-2 rounded-xl hover:cursor-pointer"
+              className="flex items-center space-x-1 rounded-xl bg-white p-2 hover:cursor-pointer"
               onClick={openSendDialog}
             >
               <img
                 src={fromToken?.logo ?? ""}
                 alt={fromToken?.symbol ?? defaultTransferParams.fromChain}
-                className="rounded-full w-4 h-4"
+                className="h-4 w-4 rounded-full"
               />
-              <p className="text-zinc-800 text-xs">
+              <p className="text-xs text-zinc-800">
                 {fromToken?.symbol ?? <>USDC</>}
               </p>
-              <MdOutlineArrowDropDown className="rounded-2xl w-5 h-5 text-zinc-300 font-bold" />
+              <MdOutlineArrowDropDown className="h-5 w-5 rounded-2xl font-bold text-zinc-300" />
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <p className="text-xs p-0 m-0 text-zinc-950/[0.6]">
+          <div className="flex items-center justify-between">
+            <p className="m-0 p-0 text-xs text-zinc-950/[0.6]">
               {!transferRoute ? <>$0</> : <>{}</>}
             </p>
-            <p className="text-[10px] p-0 m-0 text-zinc-950/[0.6]">
+            <p className="m-0 p-0 text-[10px] text-zinc-950/[0.6]">
               {Number(fromTokenBalance).toFixed(3)}{" "}
               {fromToken?.symbol ?? <>USDC</>} available
             </p>
           </div>
         </div>
 
-        <div className="w-full flex flex-col border-2 border-zinc-100 space-y-2 rounded-xl bg-zinc-950/[0.02] p-3">
+        <div className="flex w-full flex-col space-y-2 rounded-xl border-2 border-zinc-100 bg-zinc-950/[0.02] p-3">
           <h4 className="w-full text-[11px] font-bold text-zinc-700">
             Receive
           </h4>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <input
               aria-label="receive"
               disabled
-              className="border-none w-[50%] h-auto bg-transparent focus:border-none focus:ring-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg p-0 m-0"
+              className="m-0 h-auto w-[50%] border-none bg-transparent p-0 placeholder:m-0 placeholder:p-0 placeholder:text-lg focus:border-none focus:ring-0"
               placeholder={"0"}
               type="number"
               value={receiveAmount}
             />
             <div
-              className="flex items-center space-x-1 bg-white p-2 rounded-xl hover:cursor-pointer"
+              className="flex items-center space-x-1 rounded-xl bg-white p-2 hover:cursor-pointer"
               onClick={openReceiveDialog}
             >
               <img
                 src={toToken?.logo ?? ""}
                 alt={toToken?.symbol ?? defaultTransferParams.fromChain}
-                className="rounded-full w-4 h-4"
+                className="h-4 w-4 rounded-full"
               />
-              <p className="text-zinc-800 text-xs">
+              <p className="text-xs text-zinc-800">
                 {toToken?.symbol ?? <>USDC</>}
               </p>
-              <MdOutlineArrowDropDown className="rounded-2xl w-5 h-5 text-zinc-300 font-bold" />
+              <MdOutlineArrowDropDown className="h-5 w-5 rounded-2xl font-bold text-zinc-300" />
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <p className="text-xs p-0 m-0 text-zinc-950/[0.6]">
+          <div className="flex items-center justify-between">
+            <p className="m-0 p-0 text-xs text-zinc-950/[0.6]">
               {!transferRoute || receiveAmount === "0" ? (
                 <>$0</>
               ) : (
                 <>{formatUSD(toTokenLocalAmount)}</>
               )}
             </p>
-            <p className="text-[10px] p-0 m-0 text-zinc-950/[0.6]">
+            <p className="m-0 p-0 text-[10px] text-zinc-950/[0.6]">
               {Number(toTokenBalance).toFixed(3)} {toToken?.symbol ?? <>USDC</>}{" "}
               available
             </p>
           </div>
         </div>
 
-        <div className="w-full flex flex-col justify-between border-2 border-zinc-100 space-y-2 rounded-xl">
-          <div className="flex justify-between items-center border-b">
+        <div className="flex w-full flex-col justify-between space-y-2 rounded-xl border-2 border-zinc-100">
+          <div className="flex items-center justify-between border-b">
             <div className="mr-auto flex items-center gap-1 px-2 py-1">
-              <MdOutlineArrowForward className="w-3 h-3" />
+              <MdOutlineArrowForward className="h-3 w-3" />
               <p className="text-[10px] font-bold">To address</p>
             </div>
-            <div className="flex items-center space-x-1 bg-white p-2 rounded-xl">
+            <div className="flex items-center space-x-1 rounded-xl bg-white p-2">
               {!isConnected ? (
                 <>-</>
               ) : (
-                <div className="flex space-x-1 bg-green-200 font-bold rounded-full text-[9px] text-green-600 px-2 py-1">
+                <div className="flex space-x-1 rounded-full bg-green-200 px-2 py-1 text-[9px] font-bold text-green-600">
                   <p>{shortenAddress(walletAddress)}</p>
-                  <MdCheckCircle className="w-3 h-3" />
+                  <MdCheckCircle className="h-3 w-3" />
                 </div>
               )}
             </div>
           </div>
-          <div className="flex justify-between items-center border-b my-0/!">
+          <div className="my-0/! flex items-center justify-between border-b">
             <div className="mr-auto flex items-center gap-1 px-2 py-0">
-              <MdOutlineTransform className="w-3 h-3" />
+              <MdOutlineTransform className="h-3 w-3" />
               <p className="text-[10px] font-bold">Route</p>
             </div>
-            <div className="flex items-center space-x-1 bg-white p-2 rounded-xl">
+            <div className="flex items-center space-x-1 rounded-xl bg-white p-2">
               {!quotes.length ? (
                 <>-</>
               ) : (
                 <div
-                  className="flex items-center w-full space-x-1 bg-red-200 font-bold rounded-full text-[10px] text-red-600 px-2 py-1 hover:cursor-pointer"
+                  className="flex w-full items-center space-x-1 rounded-full bg-red-200 px-2 py-1 text-[10px] font-bold text-red-600 hover:cursor-pointer"
                   onClick={() => {
                     openSelectRouteModal(modalContext, {
                       title: "Select Route",
@@ -633,26 +633,26 @@ const Swap = () => {
                       )?.logo
                     }
                     alt={transferRoute?.quote?.integration}
-                    className="rounded-full w-3 h-3"
+                    className="h-3 w-3 rounded-full"
                   />
                   <p className="capitalize">
                     ⚡{transferRoute?.quote?.integration}
                   </p>
-                  <MdOutlineArrowDropDown className="w-4 h-4" />
+                  <MdOutlineArrowDropDown className="h-4 w-4" />
                 </div>
               )}
             </div>
           </div>
-          <div className="flex justify-between items-center border-b my-0/!">
+          <div className="my-0/! flex items-center justify-between border-b">
             <div className="mr-auto flex items-center gap-1 px-2 py-0">
-              <MdOutlineTimelapse className="w-3 h-3" />
+              <MdOutlineTimelapse className="h-3 w-3" />
               <p className="text-[10px] font-bold">Transfer Time</p>
             </div>
-            <div className="flex items-center space-x-1 bg-white p-2 rounded-xl">
+            <div className="flex items-center space-x-1 rounded-xl bg-white p-2">
               {!transferRoute ? (
                 <>-</>
               ) : (
-                <div className="flex space-x-1 font-bold rounded-full text-[10px] px-2 py-1">
+                <div className="flex space-x-1 rounded-full px-2 py-1 text-[10px] font-bold">
                   <p className="capitalize">
                     ~{transferRoute?.duration} mins 🔥
                   </p>
@@ -660,16 +660,16 @@ const Swap = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between items-center my-0/!">
+          <div className="my-0/! flex items-center justify-between">
             <div className="mr-auto flex items-center gap-1 px-2 py-0">
-              <MdLocalGasStation className="w-3 h-3 text-green-500" />
+              <MdLocalGasStation className="h-3 w-3 text-green-500" />
               <p className="text-[10px] font-bold">Fees</p>
             </div>
-            <div className="flex items-center space-x-1 bg-white p-2 rounded-xl">
+            <div className="flex items-center space-x-1 rounded-xl bg-white p-2">
               {!transferRoute ? (
                 <>-</>
               ) : (
-                <div className="flex space-x-1 font-bold rounded-full text-[10px] px-2 py-1">
+                <div className="flex space-x-1 rounded-full px-2 py-1 text-[10px] font-bold">
                   <p className="capitalize">
                     {formatUSD(transferRoute.gasUSD)}
                   </p>
@@ -683,7 +683,7 @@ const Swap = () => {
       <div className="">
         {isConnected ? (
           <Button
-            className={clsx("flex items-center cursor-pointer w-full mt-4", {
+            className={clsx("mt-4 flex w-full cursor-pointer items-center", {
               "opacity-60": isLoading,
             })}
             disabled={isLoading || !(fromTokenBalance >= transferParams.amount)}
@@ -698,7 +698,7 @@ const Swap = () => {
           </Button>
         ) : (
           <Button
-            className={clsx("flex items-center cursor-pointer w-full", {
+            className={clsx("flex w-full cursor-pointer items-center", {
               "opacity-60": isLoading,
             })}
             disabled={isLoading || !swingSDK?.isReady}

@@ -15,8 +15,8 @@ export default function StakePage() {
     <Provider>
       <Sidebar />
 
-      <main className="container relative flex flex-col w-full min-h-screen overflow-y-auto">
-        <div className="flex justify-end p-6 space-x-4">
+      <main className="container relative flex min-h-screen w-full flex-col overflow-y-auto">
+        <div className="flex justify-end space-x-4 p-6">
           <ConnectWallet />
 
           <Button className="space-x-2" variant="outline" asChild>
@@ -30,7 +30,7 @@ export default function StakePage() {
           </Button>
         </div>
 
-        <div className="flex items-center justify-center h-full">
+        <div className="flex h-full items-center justify-center">
           <Stake
             title="Stake with MetaWallet"
             projectId="example-staking-widget-nextjs"

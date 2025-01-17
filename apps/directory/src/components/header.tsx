@@ -4,14 +4,14 @@ import { Button } from "./ui/button";
 
 export function Header() {
   return (
-    <header className="absolute top-0 inset-x-0 flex justify-between items-center h-20 p-4 max-w-6xl mx-auto z-10">
+    <header className="absolute inset-x-0 top-0 z-10 mx-auto flex h-20 max-w-6xl items-center justify-between p-4">
       <a href="https://swing.xyz" target="_blank">
         <SwingLogo className="h-7" />
       </a>
 
       <nav className="flex items-center gap-5">
         <a
-          className="text-sm font-medium hover:opacity-90 hidden sm:block"
+          className="hidden text-sm font-medium hover:opacity-90 sm:block"
           href="https://developers.swing.xyz"
           target="_blank"
         >
@@ -20,7 +20,7 @@ export function Header() {
 
         <Button className="hidden sm:inline-flex" variant="outline" asChild>
           <a href="https://github.com/swing-xyz/examples" target="__blank">
-            <GithubIcon className="w-4 h-4 mr-2" /> Fork on Github
+            <GithubIcon className="mr-2 h-4 w-4" /> Fork on Github
           </a>
         </Button>
 

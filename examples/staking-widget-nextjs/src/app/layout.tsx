@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head />
 
-      <body className="relative flex max-h-screen min-h-full text-white bg-slate-900">
+      <body className="relative flex max-h-screen min-h-full bg-slate-900 text-white">
         {children}
       </body>
     </html>

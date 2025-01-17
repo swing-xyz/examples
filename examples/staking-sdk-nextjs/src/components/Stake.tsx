@@ -95,7 +95,7 @@ export function Stake() {
   }
 
   return (
-    <div className="container grid gap-4 pt-5 pb-20">
+    <div className="container grid gap-4 pb-20 pt-5">
       <div className="grid grid-cols-5">
         <div>Provider</div>
         <div>Chain</div>
@@ -169,7 +169,7 @@ export function Stake() {
         <DialogContent className="max-w-4xl">
           <DialogHeader>
             {transferParams ? (
-              <DialogTitle className="flex items-center gap-4 mb-8">
+              <DialogTitle className="mb-8 flex items-center gap-4">
                 <div>Stake</div>
 
                 <NameLogo
@@ -198,7 +198,7 @@ export function Stake() {
           </DialogHeader>
 
           {quote?.routes.length ? (
-            <div className="grid items-center grid-cols-[minmax(50px,_100px)_2fr_3fr_3fr_160px] gap-4">
+            <div className="grid grid-cols-[minmax(50px,_100px)_2fr_3fr_3fr_160px] items-center gap-4">
               <div>Provider</div>
               <div>Fees</div>
               <div>Gas</div>
@@ -274,7 +274,7 @@ export function Stake() {
                 <label className="block text-sm font-medium text-gray-700">
                   Error
                 </label>{" "}
-                <div className="text-red-500 capitalize">{error}</div>
+                <div className="capitalize text-red-500">{error}</div>
               </div>
             ) : null}
           </div>
@@ -287,7 +287,7 @@ export function Stake() {
 function NameLogo({ logo, name }: { logo?: string; name: string }) {
   return (
     <div className="flex items-center gap-2">
-      <Avatar className="w-5 h-5">
+      <Avatar className="h-5 w-5">
         <AvatarImage src={logo} alt={name} />
         <AvatarFallback>{name.slice(0, 1)}</AvatarFallback>
       </Avatar>

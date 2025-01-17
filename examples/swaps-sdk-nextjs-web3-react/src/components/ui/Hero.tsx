@@ -13,25 +13,25 @@ const SwapSDK = dynamic(() => import("../Swap"), {
 
 export function Hero() {
   return (
-    <div className="py-20 overflow-hidden sm:py-32 lg:pb-32 xl:pb-36">
+    <div className="overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
       <Container>
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 -z-10">
+        <div className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2">
           <CircleBackground
             color="#a29bfe"
-            className="hidden lg:block animate-spin-slower"
+            className="animate-spin-slower hidden lg:block"
           />
         </div>
-        <div className="flex flex-col justify-center items-center mb-10 gap-5">
-          <p className="bg-gray-800 rounded-3xl w-auto px-3 py-2 font-bold text-[11px]">
+        <div className="mb-10 flex flex-col items-center justify-center gap-5">
+          <p className="w-auto rounded-3xl bg-gray-800 px-3 py-2 text-[11px] font-bold">
             RapidPay API V3 is live 🎉
           </p>
 
-          <h1 className="text-xl md:text-2xl lg:text-4xl font-medium tracking-tight text-gray-900">
+          <h1 className="text-xl font-medium tracking-tight text-gray-900 md:text-2xl lg:text-4xl">
             <div>Quickly bridge MATIC to USDC 🚀</div>
           </h1>
         </div>
 
-        <div className="w-full flex justify-center items-center">
+        <div className="flex w-full items-center justify-center">
           <Tabs defaultValue="deposit" className="lg:w-[40%]">
             <TabsList className="grid w-full grid-cols-2 bg-zinc-900">
               <TabsTrigger value="deposit">Bridge</TabsTrigger>

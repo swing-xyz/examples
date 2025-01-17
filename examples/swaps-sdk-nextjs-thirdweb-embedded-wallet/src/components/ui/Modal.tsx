@@ -45,16 +45,16 @@ export const Modal: React.FC<IModal> = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md max-h-[60vh] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <div className="flex justify-between items-center">
+                <Dialog.Panel className="max-h-[60vh] w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <div className="flex items-center justify-between">
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900 flex-1 text-center"
+                      className="flex-1 text-center text-lg font-medium leading-6 text-gray-900"
                     >
                       {title}
                     </Dialog.Title>
                     <MdOutlineClose
-                      className="hover:cursor-pointer hover:bg-gray-300 transition-all ease-in-out bg-gray-200 rounded-2xl w-8 h-8 p-1 flex-none"
+                      className="h-8 w-8 flex-none rounded-2xl bg-gray-200 p-1 transition-all ease-in-out hover:cursor-pointer hover:bg-gray-300"
                       onClick={closeModal}
                     />
                   </div>

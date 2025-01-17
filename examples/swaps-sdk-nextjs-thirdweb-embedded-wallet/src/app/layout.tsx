@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head />
 
-      <body className="relative bg-gradient-to-b to-purple-300 via-purple-200 from-purple-100 w-full min-h-[100vh] flex flex-col justify-between">
+      <body className="relative flex min-h-[100vh] w-full flex-col justify-between bg-gradient-to-b from-purple-100 via-purple-200 to-purple-300">
         <Backdrop />
         <main className="mb-auto">{children}</main>
 

@@ -186,7 +186,7 @@ const Swap = () => {
   return (
     <div
       id="#altcoin"
-      className="w-full max-w-2xl p-5 m-auto space-y-4 bg-white border rounded-md lg:ml-auto lg:w-80"
+      className="m-auto w-full max-w-2xl space-y-4 rounded-md border bg-white p-5 lg:ml-auto lg:w-80"
     >
       <div className="text-lg font-bold">Swap for $ALTCOIN</div>
 
@@ -197,12 +197,12 @@ const Swap = () => {
         >
           Amount
         </label>
-        <div className="relative flex items-center mt-1">
+        <div className="relative mt-1 flex items-center">
           <input
             type="number"
             name="amount"
             id="amount"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="0.0"
             value={transferParams.amount}
             onChange={(e) => {
@@ -220,7 +220,7 @@ const Swap = () => {
       <div>
         {isConnected ? (
           <Button
-            className={clsx("flex items-center cursor-pointer", {
+            className={clsx("flex cursor-pointer items-center", {
               "opacity-60": isLoading,
             })}
             disabled={isLoading}
@@ -233,7 +233,7 @@ const Swap = () => {
           </Button>
         ) : (
           <Button
-            className={clsx("flex items-center cursor-pointer", {
+            className={clsx("flex cursor-pointer items-center", {
               "opacity-60": isLoading,
             })}
             disabled={isLoading}
@@ -244,7 +244,7 @@ const Swap = () => {
         )}
 
         {transferRoute && (
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          <div className="mt-4 grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 From
@@ -300,7 +300,7 @@ const Swap = () => {
               <label className="block text-sm font-medium text-gray-700">
                 Error
               </label>{" "}
-              <div className="text-red-500 capitalize">
+              <div className="capitalize text-red-500">
                 {status?.status === "FAILED" ? status.error : error}
               </div>
             </div>

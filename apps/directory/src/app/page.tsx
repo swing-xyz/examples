@@ -44,7 +44,7 @@ export default function Directory() {
       <Hero />
 
       <div id="templates" className="container">
-        <div className="flex flex-col min-[960px]:flex-row gap-10 py-16 sm:py-20">
+        <div className="flex flex-col gap-10 py-16 sm:py-20 min-[960px]:flex-row">
           <div className="min-[960px]:w-56">
             <Suspense>
               <Filters />
