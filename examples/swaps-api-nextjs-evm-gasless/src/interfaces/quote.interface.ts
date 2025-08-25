@@ -67,7 +67,7 @@ interface Token {
   logoURI: string;
 }
 
-interface Chain {
+export interface Chain {
   chainId: number;
   name: string;
   slug: string;

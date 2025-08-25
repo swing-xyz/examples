@@ -8,6 +8,12 @@ import {
   TransactionStatusAPIResponse,
   TransactionStatusParams,
 } from "interfaces/status.interface";
+import {
+  AllowanceQueryParams,
+  AllowanceAPIResponse,
+  ApproveQueryParams,
+  ApproveAPIResponse,
+} from "interfaces/allowance.interface";
 
 const baseUrl = "https://swap.prod.swing.xyz/v0";
 const projectId = "replug";
@@ -18,7 +24,7 @@ export const getQuoteRequest = async (
   try {
     const response = await axios.get<QuoteAPIResponse>(
       `${baseUrl}/transfer/quote`,
-      { params: { ...queryParams, projectId } },
+      { params: { ...queryParams, projectId, mode: "gasless", debug: true } },
     );
     return response.data;
   } catch (error) {
@@ -50,7 +56,7 @@ export const sendTransactionRequest = async (
   try {
     const response = await axios.post<SendTransactionApiResponse>(
       `${baseUrl}/transfer/send`,
-      { ...payload, projectId },
+      { ...payload, projectId, mode: "gasless" },
       {
         headers: {
           "Content-Type": "application/json",
@@ -60,6 +66,36 @@ export const sendTransactionRequest = async (
     return response.data;
   } catch (error) {
     console.error("Error sending transaction:", error);
+    throw error;
+  }
+};
+
+export const getAllowanceRequest = async (
+  queryParams: AllowanceQueryParams,
+): Promise<AllowanceAPIResponse> => {
+  try {
+    const response = await axios.get<AllowanceAPIResponse>(
+      `${baseUrl}/transfer/allowance`,
+      { params: { ...queryParams, projectId } },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching allowance:", error);
+    throw error;
+  }
+};
+
+export const getApproveRequest = async (
+  queryParams: ApproveQueryParams,
+): Promise<ApproveAPIResponse> => {
+  try {
+    const response = await axios.get<ApproveAPIResponse>(
+      `${baseUrl}/transfer/approve`,
+      { params: { ...queryParams, projectId } },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching approve transaction:", error);
     throw error;
   }
 };

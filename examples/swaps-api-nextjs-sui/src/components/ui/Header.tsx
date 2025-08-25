@@ -67,33 +67,29 @@ function MobileNavLink({
 
 export function Header() {
   return (
-    <header className="bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-sm border-b border-purple-500/20">
+    <header>
       <nav>
         <Container className="relative z-50 flex items-center justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
-            <Link href="/" aria-label="Home" className="text-2xl font-bold">
-              <span className="text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text">
-                🚀 Swing
-                <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text">
-                  Bridge
-                </span>
-              </span>
+            <Link href="/" aria-label="Home" className="text-2xl text-cyan-500">
+              SolBridge
             </Link>
+            <div className="hidden lg:flex lg:gap-10">
+              <NavLinks />
+            </div>
           </div>
-          <div className="hidden lg:flex lg:gap-10">
-            <NavLinks />
-          </div>
+
           <div className="flex items-center gap-6">
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-white p-2 hover:bg-purple-500/20 hover:stroke-purple-300 active:stroke-cyan-400 [&:not(:focus-visible)]:focus:outline-none"
+                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-zinc-50 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
+                        <ChevronUpIcon className="h-6 w-6 stroke-zinc-900" />
                       ) : (
                         <MenuIcon className="h-6 w-6" />
                       )
@@ -108,7 +104,7 @@ export function Header() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
-                          className="fixed inset-0 z-0 bg-gray-900/80 backdrop-blur"
+                          className="fixed inset-0 z-0 bg-gray-300/60 backdrop-blur"
                         />
                         <Popover.Panel
                           static
@@ -120,22 +116,25 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-xl border-b border-purple-500/30 px-6 pb-6 pt-32 shadow-2xl shadow-purple-500/20"
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
                         >
                           <div className="space-y-4">
                             <MobileNavLink href="#">Swap</MobileNavLink>
-                            <MobileNavLink href="#">API</MobileNavLink>
-                            <MobileNavLink href="#">Docs</MobileNavLink>
+                            <MobileNavLink href="#">Governance</MobileNavLink>
+                            <MobileNavLink href="#">Research</MobileNavLink>
+                            <MobileNavLink href="#">
+                              Documentation
+                            </MobileNavLink>
                           </div>
 
                           <div className="mt-4 flex flex-col space-y-4">
                             <Button
-                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-bitcoin"
-                              className="space-x-2 text-white"
+                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-solana"
+                              className="space-x-2 text-zinc-900"
                               variant="outline"
                             >
                               <FontAwesomeIcon size="lg" icon={faGithub} />
-                              <span>Fork on Github</span>
+                              <span className="">Fork on Github</span>
                             </Button>
                           </div>
                         </Popover.Panel>
@@ -147,7 +146,7 @@ export function Header() {
             </Popover>
 
             <Button
-              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-evm-gasless"
+              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-solana"
               className="hidden space-x-2 text-white lg:block"
               variant="outline"
             >
