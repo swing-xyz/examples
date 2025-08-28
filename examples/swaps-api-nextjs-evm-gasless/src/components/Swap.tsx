@@ -338,6 +338,7 @@ const Swap = () => {
 
           // Brief wait for any network state changes
           await new Promise((resolve) => setTimeout(resolve, 500));
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (switchError: any) {
           console.error("Chain switch error:", switchError);
           toast({
@@ -444,16 +445,16 @@ const Swap = () => {
       let txResponse;
 
       if (
-        transfer?.tx.meta &&
-        "domain" in transfer?.tx.meta &&
-        transfer?.tx.meta.domain &&
-        "types" in transfer?.tx.meta &&
-        transfer?.tx.meta.types &&
-        "value" in transfer?.tx.meta &&
-        transfer?.tx.meta.value
+        transfer?.tx?.meta &&
+        "domain" in transfer.tx.meta &&
+        transfer.tx.meta.domain &&
+        "types" in transfer.tx.meta &&
+        transfer.tx.meta.types &&
+        "value" in transfer.tx.meta &&
+        transfer.tx.meta.value
       ) {
         // For gasless transactions, the send endpoint returns EIP-712 typed data in meta
-        const tx = JSON.stringify(transfer.tx);
+        const tx = JSON.stringify(transfer.tx!);
         const txInfo = JSON.parse(tx);
         const txObj = txInfo.meta;
 
@@ -503,6 +504,8 @@ const Swap = () => {
 
           // Poll transaction status with the signature
           pollTransactionStatus(transfer.id.toString(), signature);
+
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (signError: any) {
           console.error("Signing error:", signError);
 
@@ -702,7 +705,7 @@ const Swap = () => {
                           defaultValue={walletAddress!}
                           placeholder={walletAddress!}
                           className="col-span-2 h-12 rounded-xl bg-gray-800/50 border border-purple-400/30 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-300"
-                          onChange={(e) => {
+                          onChange={() => {
                             setTransferParams((prev) => ({
                               ...prev,
                               toUserAddress: walletAddress!,
