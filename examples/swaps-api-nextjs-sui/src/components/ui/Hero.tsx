@@ -3,10 +3,7 @@
 import React from "react";
 import { Container } from "./Container";
 
-import sols from "images/logos/sols.png";
-
 import SwapSDK from "../Swap";
-import Image from "next/image";
 
 export function Hero() {
   return (

@@ -13,7 +13,6 @@ import { convertEthToWei, convertWeiToEth } from "utils/ethToWei";
 import { useDebouncedCallback } from "use-debounce";
 import { useToast } from "components/ui/use-toast";
 import { TransactionStatusAPIResponse } from "interfaces/status.interface";
-import { AxiosError } from "axios";
 import { Chain } from "interfaces/chain.interface";
 import { Token } from "interfaces/token.interface";
 import { SelectTokenPanel } from "./ui/SelectTokenPanel";
@@ -931,10 +930,6 @@ function formatUSD(amount: string) {
     currency: "USD",
     currencyDisplay: "narrowSymbol",
   }).format(Number(amount));
-}
-
-function shortenSuiAddress(address: string) {
-  return address.slice(0, 4) + "..." + address.slice(-4);
 }
 
 export default Swap;
