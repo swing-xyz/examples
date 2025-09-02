@@ -1,6 +1,6 @@
 {
-  "name": "swaps-api-nextjs-ton",
-  "demo": "https://swaps-api-nextjs-ton.vercel.app/",
+  "name": "swaps-api-nextjs-evm-gasless",
+  "demo": "https://swaps-api-nextjs-evm-gasless.vercel.app/",
   "keywords": [
     "api",
     "swaps",
@@ -26,11 +26,9 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-toast": "^1.1.5",
-    "@swing.xyz/sdk": "^0.60.0",
     "@tailwindcss/forms": "^0.5.7",
     "@thirdweb-dev/react": "^4.4.17",
     "@thirdweb-dev/sdk": "^4.0.44",
-    "@tonconnect/ui-react": "^2.0.9",
     "axios": "^1.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -41,8 +39,7 @@
     "react-dom": "18.2.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "ton-core": "^0.53.0",
-    "tonweb": "^0.0.66",
+    "thirdweb": "^5.105.37",
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {

@@ -154,6 +154,36 @@ export function Stake() {
                 >
                   Stake Now
                 </Button>
+                <Button
+                  className="w-40"
+                  variant="outline"
+                  disabled={isLoading}
+                  onClick={async () => {
+                    const fromUserAddress = await connectWallet(contract.chain);
+                    if (!fromUserAddress) return;
+
+                    setIsLoading(true);
+
+                    const params = {
+                      amount: "1",
+                      fromChain: contract.chain.slug,
+                      fromToken: contract.inputToken.symbol,
+                      fromUserAddress,
+                      toChain: contract.chain.slug,
+                      toToken: contract.outputToken?.symbol,
+                      toUserAddress: fromUserAddress,
+                      type: "withdraw",
+                    };
+                    setTransferParams(params);
+
+                    const quoteResponse = await swingSDK.getQuote(params);
+
+                    setQuote(quoteResponse);
+                    setIsLoading(false);
+                  }}
+                >
+                  Withdraw
+                </Button>
               </div>
             );
           })

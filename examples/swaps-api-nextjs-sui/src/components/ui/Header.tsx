@@ -71,24 +71,9 @@ export function Header() {
       <nav>
         <Container className="relative z-50 flex items-center justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
-            <div className="flex space-x-2">
-              <img
-                src={
-                  "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/chains/ton/aec56042c817941739d7b668812bcaf092b42bd851355d3c901d033a7bf624d1.png"
-                }
-                alt=""
-                width={32}
-                height={24}
-              />
-              <Link
-                href="/"
-                aria-label="Home"
-                className="text-2xl text-cyan-100"
-              >
-                Ton Bridge
-              </Link>
-            </div>
-
+            <Link href="/" aria-label="Home" className="text-2xl text-cyan-500">
+              SuiBridge
+            </Link>
             <div className="hidden lg:flex lg:gap-10">
               <NavLinks />
             </div>
@@ -135,6 +120,8 @@ export function Header() {
                         >
                           <div className="space-y-4">
                             <MobileNavLink href="#">Swap</MobileNavLink>
+                            <MobileNavLink href="#">Governance</MobileNavLink>
+                            <MobileNavLink href="#">Research</MobileNavLink>
                             <MobileNavLink href="#">
                               Documentation
                             </MobileNavLink>
@@ -142,7 +129,7 @@ export function Header() {
 
                           <div className="mt-4 flex flex-col space-y-4">
                             <Button
-                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-ton"
+                              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-sui"
                               className="space-x-2 text-zinc-900"
                               variant="outline"
                             >
@@ -159,7 +146,7 @@ export function Header() {
             </Popover>
 
             <Button
-              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-ton"
+              href="https://github.com/swing-xyz/examples/tree/main/examples/swaps-api-nextjs-sui"
               className="hidden space-x-2 text-white lg:block"
               variant="outline"
             >

@@ -1,31 +1,29 @@
-# Cross-chain Swaps using the Swing API in Next.js For Tron
+# Cross-chain Swaps using the Swing API in Next.js for Sui
 
 This example is built with:
 
 - [@swing.xyz/sdk](https://developers.swing.xyz/reference/sdk)
-- [@thirdweb-dev/react](https://portal.thirdweb.com/react)
-- [@thirdweb-dev/sdk](https://portal.thirdweb.com/typescript)
-- [@tonconnect/ui-react](https://github.com/ton-connect/sdk)
-- [Ton Core](https://github.com/ton-core/ton)
+- [@mysten/sui.js](https://github.com/MystenLabs/sui/tree/main/sdk/typescript)
+- [@mysten/dapp-kit](https://github.com/MystenLabs/sui/tree/main/apps/dapp-kit)
 - [Next.js App Router](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
 ## Demo
 
-View the live demo [https://swaps-api-nextjs-ton.vercel.app](https://swaps-api-nextjs-ton.vercel.app/)
+Run locally and open http://localhost:3000
 
 ## Swing Integration
 
-> The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) and [Platform API](https://developers.swing.xyz/reference/api/platform/a2glq2e1w44ad-project-configuration) can be found in [src/components/Swap.tsx](./src/components/Swap.tsx)
+> The implementation of Swing's [Cross-chain API](https://developers.swing.xyz/reference/api) and [Platform API](https://developers.swing.xyz/reference/api/platform/a2glq2e1w44ad-project-configuration) can be found in `src/components/Swap.tsx`.
 
-This example demonstrates how you can perform a cross-chain transaction between the Ton and Ethereum chains using Swing's Cross-Chain and Platform APIs via Swing's SDK.
+This example demonstrates how you can perform a cross-chain transaction between the Sui and EVM chains (e.g., Ethereum) using Swing's Cross-Chain and Platform APIs via Swing's SDK.
 
-In this example, we will be using thirdweb's SDK and **Ton Connect React** connector to connect to a user's Ethereum and Ton wallets, respectively. We will also demonstrate how to utilize Swing's SDK exported API functions, namely `crossChainAPI` and `platformAPI`, to build out a fully functionaly cross-chain application.
+In this example, we use `@mysten/dapp-kit` to connect to a user's Sui wallet and a standard EVM wallet provider for EVM chains. We will also demonstrate how to utilize Swing's SDK exported API functions, namely `crossChainAPI` and `platformAPI`, to build out a fully functional cross-chain application.
 
-The process/steps for performing a TRX to ETH transaction, and vice versa, are as follows:
+The process/steps for performing a SUI to ETH transaction, and vice versa, are as follows:
 
 - Getting a [quote](https://developers.swing.xyz/reference/api/cross-chain/1169f8cbb6937-request-a-transfer-quote) and selecting the best route
-- Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens. (Optional for TON > EVM Route)
+- Sending a [token approval](https://developers.swing.xyz/reference/api/contract-calls/approval) request for ERC20 Tokens. (Optional for native coin routes and non-EVM sources such as Sui)
 - Sending a [transaction](https://developers.swing.xyz/reference/api/cross-chain/d83d0d65028dc-send-transfer)
 
 > Although not essential for performing a swap transaction, providing your users with real-time updates on the transaction's status by polling the [status](https://developers.swing.xyz/reference/api/cross-chain/6b61efd1b798a-transfer-status) can significantly enhance the user experience.
@@ -41,7 +39,7 @@ yarn install
 Next, launch the development server by running the following command:
 
 ```bash
-yarn dev --filter=swaps-api-nextjs-ton
+yarn dev --filter=swaps-api-nextjs-sui
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
@@ -82,24 +80,24 @@ The `SwingSDK` constructor accepts a `projectId` as a mandatory parameter and a 
 
 ## Getting a Quote
 
-To perform a swap between ETH and TRX, we first have to get a quote from Swing's Cross-Chain API.
+To perform a swap between SUI and ETH, we first have to get a quote from Swing's Cross-Chain API.
 
 URL: [https://swap.prod.swing.xyz/v0/transfer/quote](https://swap.prod.swing.xyz/v0/transfer/quote)
 
 **Parameters**:
 
-| Property           | Example                                          | Description                                             |
-| ------------------ | ------------------------------------------------ | ------------------------------------------------------- |
-| `tokenAmount`      | 1000000000000000000                              | Amount of the source token being sent (in wei for ETH). |
-| `fromChain`        | `ethereum`                                       | Source Chain slug                                       |
-| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb       | Sender's wallet address                                 |
-| `fromTokenAddress` | 0x0000000000000000000000000000000000000000       | Source Token Address                                    |
-| `tokenSymbol`      | `ETH`                                            | Source Token slug                                       |
-| `toTokenAddress`   | 0x0000000000000000000000000000000000000000       | Destination Token Address.                              |
-| `toTokenSymbol`    | `TON`                                            | Destination Token slug                                  |
-| `toChain`          | `ton`                                            | Destination Chain slug                                  |
-| `toUserAddress`    | UQC1MtPyfhfFRtWBgZpATMo07mSlwzT8F0W2_RUKiOVCK9_d | Receiver's wallet address                               |
-| `projectId`        | `replug`                                         | [Your project's ID](https://platform.swing.xyz/)        |
+| Property           | Example                                    | Description                                                             |
+| ------------------ | ------------------------------------------ | ----------------------------------------------------------------------- |
+| `tokenAmount`      | 1000000000                                 | Amount of the source token being sent (in MIST for SUI, or wei for ETH) |
+| `fromChain`        | `sui`                                      | Source Chain slug                                                       |
+| `fromUserAddress`  | 0x6c4d...e1a2                              | Sender's wallet address (Sui/EVM format depending on source)            |
+| `fromTokenAddress` | `0x2::sui::SUI`                            | Source Token Address or coin type (Sui uses coin type)                  |
+| `tokenSymbol`      | `SUI`                                      | Source Token symbol                                                     |
+| `toTokenAddress`   | 0x0000000000000000000000000000000000000000 | Destination Token Address (ETH native address for EVM)                  |
+| `toTokenSymbol`    | `ETH`                                      | Destination Token symbol                                                |
+| `toChain`          | `ethereum`                                 | Destination Chain slug                                                  |
+| `toUserAddress`    | 0x018c15DA1239B84b08283799B89045CD476BBbBb | Receiver's wallet address                                               |
+| `projectId`        | `replug`                                   | [Your project's ID](https://platform.swing.xyz/)                        |
 
 Navigating to our `src/services/requests.ts` file, you will find our method for getting a quote from Swing's Cross-Chain API called `getQuoteRequest()`.
 
@@ -143,70 +141,100 @@ Each `Route` contains a `gasFee`, `bridgeFee` and the amount of tokens the desti
 Here's an example response that contains the route data:
 
 ```json
-{
-  "routes": [
+"routes": [
     {
-      "duration": 1,
-      "gas": "8213770000000",
-      "quote": {
-        "integration": "orbiter",
-        "type": "swap",
-        "bridgeFee": "1842845",
-        "bridgeFeeInNativeToken": "0",
-        "amount": "48157155",
-        "decimals": 6,
-        "amountUSD": "48.157",
-        "bridgeFeeUSD": "1.842",
-        "bridgeFeeInNativeTokenUSD": "0",
-        "fees": [
-          {
-            "type": "bridge",
-            "amount": "1842845",
-            "amountUSD": "1.842",
-            "chainSlug": "ton",
-            "tokenSymbol": "jUSDC",
-            "tokenAddress": "EQB-MPwrd1G6WKNkLz_VnV6WqBDd142KMQv-g1O-8QUA3728",
-            "decimals": 6,
-            "deductedFromSourceToken": true
+          "duration": 1,
+          "gas": "5780346820809249",
+          "quote": {
+              "integration": "mayan-finance",
+              "type": "swap",
+              "mode": "regular",
+              "bridgeFee": "3014309889366041",
+              "bridgeFeeInNativeToken": "0",
+              "amount": "1549736845026079",
+              "decimals": 18,
+              "amountUSD": "7.052",
+              "bridgeFeeUSD": "13.716",
+              "bridgeFeeInNativeTokenUSD": "0",
+              "executionTime": 1138,
+              "priceImpact": "-66.033",
+              "fees": [
+                  {
+                      "type": "bridge",
+                      "amount": "3014309889366041",
+                      "amountUSD": "13.716",
+                      "chainSlug": "ethereum",
+                      "tokenSymbol": "ETH",
+                      "tokenAddress": "0x0000000000000000000000000000000000000000",
+                      "decimals": 18,
+                      "deductedFromSourceToken": true
+                  },
+                  {
+                      "type": "gas",
+                      "amount": "5780346820809249",
+                      "amountUSD": "0.02000",
+                      "chainSlug": "sui",
+                      "tokenSymbol": "sui",
+                      "tokenAddress": "0x0000000000000000000000000000000000000000000000000000000000000002",
+                      "decimals": 18,
+                      "deductedFromSourceToken": false
+                  },
+                  {
+                      "type": "partner",
+                      "amount": "0",
+                      "amountUSD": "0",
+                      "chainSlug": "ethereum",
+                      "tokenSymbol": "USDC",
+                      "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                      "decimals": 6,
+                      "deductedFromSourceToken": false
+                  }
+              ]
           },
-          {
-            "type": "gas",
-            "amount": "8213770000000",
-            "amountUSD": "0.02138",
-            "chainSlug": "arbitrum",
-            "tokenSymbol": "ETH",
-            "tokenAddress": "0x0000000000000000000000000000000000000000",
-            "decimals": 18,
-            "deductedFromSourceToken": false
+          "route": [
+              {
+                  "bridge": "mayan-finance",
+                  "bridgeTokenAddress": "0x2::sui::SUI",
+                  "steps": [
+                      "allowance",
+                      "approve",
+                      "send"
+                  ],
+                  "path": [
+                      {
+                          "fromToken": {
+                              "address": "0x2::sui::SUI",
+                              "symbol": "SUI",
+                              "decimals": 9,
+                              "chainSlug": "sui",
+                              "logoURI": "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/assets/sui/0beaf5f2701b3d57daadb0f83f8dae77c23658aeca1d5958402657122b0fa02f.png",
+                              "name": "SUI"
+                          },
+                          "toToken": {
+                              "address": "0x0000000000000000000000000000000000000000",
+                              "symbol": "ETH",
+                              "decimals": 18,
+                              "chainSlug": "ethereum",
+                              "logoURI": "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/solana/assets/7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs/eth.jpg",
+                              "name": "ETH"
+                          },
+                          "fromChain": "sui",
+                          "toChain": "ethereum",
+                          "distribution": {
+                              "mayan-finance": 1
+                          },
+                          "integration": "mayan-finance",
+                          "amount": "6000000000"
+                      }
+                  ]
+              }
+          ],
+          "distribution": {
+              "mayan-finance": 1
           },
-          {
-            "type": "partner",
-            "amount": "0",
-            "amountUSD": "0",
-            "chainSlug": "arbitrum",
-            "tokenSymbol": "USDC.e",
-            "tokenAddress": "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
-            "decimals": 6,
-            "deductedFromSourceToken": true
-          }
-        ]
-      },
-      "route": [
-        {
-          "bridge": "orbiter",
-          "bridgeTokenAddress": "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
-          "steps": ["allowance", "approve", "send"],
-          "name": "USDC.e",
-          "part": 100
-        }
-      ],
-      "distribution": {
-        "orbiter": 1
-      },
-      "gasUSD": "0.02138"
-    }
-  ]
-}
+          "gasUSD": "0.02000"
+      }
+]
 ```
 
 Navigating to our `src/components/Swap.tsx` file, you'll find our `defaultTransferParams` object which will store the default transaction config for our example:
@@ -224,34 +252,35 @@ const defaultTransferParams: TransferParams = {
   fromChainIconUrl:
     "https://raw.githubusercontent.com/polkaswitch/assets/master/blockchains/ethereum/info/logo.png",
   fromChainDecimal: 18,
-  toTokenAddress: "11111111111111111111111111111111",
-  toTokenSymbol: "TRX",
-  toNativeTokenSymbol: "TRX",
-  toChain: "ton",
+  toTokenAddress: "0x2::sui::SUI",
+  toTokenSymbol: "SUI",
+  toNativeTokenSymbol: "SUI",
+  toChain: "sui",
   toTokenIconUrl:
-    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
+    "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/assets/sui/0beaf5f2701b3d57daadb0f83f8dae77c23658aeca1d5958402657122b0fa02f.png",
   toChainIconUrl:
-    "https://raw.githubusercontent.com/Pymmdrza/Cryptocurrency_Logos/mainx/SVG/sol.svg",
-  toUserAddress: "", //ton wallet address
+    "https://s3.ap-northeast-1.amazonaws.com/platform.swing.xyz/assets/sui/0beaf5f2701b3d57daadb0f83f8dae77c23658aeca1d5958402657122b0fa02f.png",
+  toUserAddress:
+    "0x308e0f34cd38d6e28912367abe9d044664396aa2569b274198bbb09a8302c030", // sui wallet address
   toChainDecimal: 9,
 };
 ```
 
-## Sending a Token Approval Request for ERC20 Tokens (Optional for TON > EVM Route)
+## Sending a Token Approval Request for ERC20 Tokens (EVM only)
 
-If you're attempting to bridge an ERC20 token from a user's wallet to TON, you need to prompt the user to approve the required amount of tokens to be bridged.
+If you're attempting to bridge an ERC20 token from a user's wallet to Sui, you need to prompt the user to approve the required amount of tokens to be bridged.
 
 Navigating to our `src/components/Swap.tsx` file, inside our `startTransfer()` method, you will find our implementation of the `getAllowanceRequest()` and `getApprovalTxDataRequest()` methods. Before approving, you have to perform two checks:
 
 - First, we will check if we're performing a native currency swap by comparing the values of `tokenSymbol` and `fromNativeTokenSymbol` on the source chain. If we're not dealing with a native currency swap, we then proceed to ask for an allowance.
 - Next, we will check if an allowance has already been made by Swing on a user's wallet by calling the `getAllowanceRequest()` method. If no approved allowance is found, we will then proceed to make an approval request by calling the `getApprovalTxDataRequest()` method.
 
-Since the `/approval` and `/approve` endpoints are specific to EVM chains, we have to check that source chain via `fromChain` is anything but `ton`. Skipping this check will result in the `/approval` endpoint returning an error to the user:
+Since the `/approval` and `/approve` endpoints are specific to EVM chains, we have to check that the source chain via `fromChain` is anything but `sui`. Skipping this check will result in the `/approval` endpoint returning an error to the user:
 
 ```json
 {
   "statusCode": 400,
-  "message": "Non-evm is not supported for approval method: ton",
+  "message": "Non-evm is not supported for approval method: sui",
   "error": "Bad Request"
 }
 ```
@@ -261,7 +290,7 @@ Let's execute these steps:
 ```typescript
 if (
   transferParams.tokenSymbol !== transferParams.fromNativeTokenSymbol &&
-  transferParams.fromChain !== "ton"
+  transferParams.fromChain !== "sui"
 ) {
   const checkAllowance = await getAllowanceRequest({
     bridge: transferRoute.quote.integration,
@@ -347,23 +376,23 @@ URL: [https://swap.prod.swing.xyz/v0/transfer/send](https://swap.prod.swing.xyz/
 
 **Parameters**:
 
-| Key                | Example                                          | Description                                             |
-| ------------------ | ------------------------------------------------ | ------------------------------------------------------- |
-| `fromChain`        | ethereum                                         | The blockchain where the transaction originates.        |
-| `fromTokenAddress` | 0x0000000000000000000000000000000000000000       | Source Token Address                                    |
-| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb       | Sender's wallet address                                 |
-| `tokenSymbol`      | ETH                                              | Source Token slug                                       |
-| `toTokenAddress`   | 0x0000000000000000000000000000000000000000       | Destination Token Address.                              |
-| `toChain`          | ton                                              | Destination Source slug                                 |
-| `toTokenAmount`    | 4000000                                          | Amount of the destination token being received.         |
-| `toTokenSymbol`    | TON                                              | Destination Chain slug                                  |
-| `toUserAddress`    | TV6ybRmqiUK6a7JVMRwPg2cDDkLqgR5MaZ               | Receiver's wallet address                               |
-| `tokenAmount`      | 1000000000000000000                              | Amount of the source token being sent (in wei for ETH). |
-| `type`             | swap                                             | Type of transaction.                                    |
-| `projectId`        | `replug`                                         | [Your project's ID](https://platform.swing.xyz/)        |
-| `route`            | see `Route` in`src/interfaces/send.interface.ts` | Selected Route                                          |
+| Key                | Example                                                            | Description                                             |
+| ------------------ | ------------------------------------------------------------------ | ------------------------------------------------------- |
+| `fromChain`        | ethereum                                                           | The blockchain where the transaction originates.        |
+| `fromTokenAddress` | 0x0000000000000000000000000000000000000000                         | Source Token Address                                    |
+| `fromUserAddress`  | 0x018c15DA1239B84b08283799B89045CD476BBbBb                         | Sender's wallet address                                 |
+| `tokenSymbol`      | ETH                                                                | Source Token slug                                       |
+| `toTokenAddress`   | 0x2::sui::SUI                                                      | Destination Token Address.                              |
+| `toChain`          | sui                                                                | Destination Source slug                                 |
+| `toTokenAmount`    | 4000000                                                            | Amount of the destination token being received.         |
+| `toTokenSymbol`    | SUI                                                                | Destination Chain slug                                  |
+| `toUserAddress`    | 0x308e0f34cd38d6e28912367abe9d044664396aa2569b274198bbb09a8302c030 | Receiver's wallet address                               |
+| `tokenAmount`      | 1000000000000000000                                                | Amount of the source token being sent (in wei for ETH). |
+| `type`             | swap                                                               | Type of transaction.                                    |
+| `projectId`        | `replug`                                                           | [Your project's ID](https://platform.swing.xyz/)        |
+| `route`            | see `Route` in`src/interfaces/send.interface.ts`                   | Selected Route                                          |
 
-Since performing a swap will change the state of a user's wallet, the next step of this transaction must be done via a `Smart Contract` Transaction and not via Swing's Cross-Chain API. The response received from the `sendTransactionRequest` endpoint provides us with the necessary `txData/callData` needed to be passed on to a user's wallet to sign the transaction.
+Since performing a swap will change the state of a user's wallet, the next step of this transaction must be done via a wallet-signed transaction and not via Swing's Cross-Chain API. The response received from the `sendTransactionRequest` endpoint provides us with the necessary `txData/callData` needed to be passed on to a user's wallet to sign the transaction.
 
 The `txData` from the `sendTransactionRequest` will look something like this:
 
@@ -450,80 +479,44 @@ export interface SendTransactionApiResponse {
 
 > The `sendTransactionRequest` will return and `id` whilst the `txResponse` will contain a `txHash` which we will need later for checking the status of a transaction.
 
-### Sending a Ton Transaction to the Ton Network
+### Sending a Sui Transaction to the Network
 
-If you've decided to perform a cross chain swap using Ton as the source chain, you'll have to sign the transaction using a wallet provider that supports the Ton Network like [Ton Keeper](https://tonkeeper.com/).
+If you perform a cross-chain swap with Sui as the source chain, you'll sign the transaction using a Sui-compatible wallet (e.g., via `@mysten/dapp-kit`).
 
 > Remember, you'll have to call the `/send` endpoint via `sendTransactionRequest` before signing the transaction.
 
-We will sign the `txData` returned from the `/send` endpoint using the **Ton Connect React** library.
+In `src/components/Swap.tsx`, we normalize the `txData.data` from the `/send` response which may be hex-encoded or base64-encoded bytes, construct a `TransactionBlock`, and then sign and execute:
 
-As a reminder, the `txData` from the `sendTransactionRequest` will look something like this:
+```typescript
+import { TransactionBlock } from "@mysten/sui.js/transactions";
 
-```json
-{
-   ....
-    "tx": {
-        "from": "0x018c15DA1239B84b08283799B89045CD476BBbBb",
-        "to": "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63",
-        "data": "0x301a3720000000000000000000000000eeeeeeeeeeee........",
-        "value": "0x0e35fa931a0000",
-        "meta": {
-          "raw_data_hex": {
-            .....
-          }
-        }
-        "gas": "0x06a02f"
-    }
-   ....
+function hexToBytes(hex: string): Uint8Array {
+  const clean = hex.startsWith("0x") ? hex.slice(2) : hex;
+  const bytes = new Uint8Array(clean.length / 2);
+  for (let i = 0; i < clean.length; i += 2)
+    bytes[i / 2] = parseInt(clean.substr(i, 2), 16);
+  return bytes;
 }
-```
 
-> Note: You're only interested in the `meta` object in our `txData`.
-
-To sign a callData, you have to make a request to your Ton Wallet and pass the `meta` object to the signer function. The `meta` object contains the necessary smart contract callData to be executed.
-
-```typescript
-// Create and sign the transaction
-const { wallet } = useWallet();
-
-const signedTx = await wallet.adapter.signTransaction(txData.meta!);
-```
-
-Next, we will send the transaction to the network:
-
-```typescript
-const broadcast =
-  await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
-```
-
-Putting it all together:
-
-```typescript
-// Update the sendTonTrans function
-async function sendTronTrans(
-  txData: TransactionData,
-): Promise<string | undefined> {
-  try {
-    if (!tronConnected || !wallet) {
-      throw new Error("Tron wallet is not connected");
-    }
-
-    // Create and sign the transaction
-    const signedTx = await wallet.adapter.signTransaction(txData.meta!);
-
-    // Broadcasting the transaction
-    const broadcast =
-      await window?.tronLink?.tronWeb.trx.sendRawTransaction(signedTx);
-    console.log(`broadcast: ${broadcast?.result}`);
-
-    return signedTx.txID as string;
-  } catch (error) {
-    console.error("Error sending Tron transaction:", error);
-    throw new Error((error as Error).message);
-  }
+function base64ToBytes(b64: string): Uint8Array {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
 }
+
+const raw = txData.data as string; // from Swing /send response
+const isHex = /^[0-9a-fA-F]+$/.test(raw.replace(/^0x/, ""));
+const bytes = isHex ? hexToBytes(raw) : base64ToBytes(raw);
+const txb = TransactionBlock.from(bytes);
+
+const result = await wallet.signAndExecuteTransactionBlock({
+  transactionBlock: txb,
+});
+const txHash = result.digest;
 ```
+
+The UI uses `ConnectButton` from `@mysten/dapp-kit` to connect a Sui wallet.
 
 ## Polling Transaction Status
 
@@ -571,7 +564,7 @@ URL: [https://platform.swing.xyz/api/v1/projects/{projectId}/transactions/{trans
 | `txHash`    | 0x3b2a04e2d16489bcbbb10960a248..... | The transaction hash identifier.                 |
 | `projectId` | `replug`                            | [Your project's ID](https://platform.swing.xyz/) |
 
-To poll the `/status` endpoint, you will use `setTimeout()` to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction is completed.
+To poll the `/status` endpoint, we'll be using `setTimeout()` to to retry `getTransationStatus()` over a period of time. We will define a function, `pollTransactionStatus()`, which will recursively call `getTransStatus()` until the transaction is completed.
 
 ```typescript
 // src/components/Swaps.tsx
@@ -616,19 +609,19 @@ async function pollTransactionStatus(transId: string, txHash: string) {
 }
 ```
 
-In our `startTransfer()` method, you will run the `pollTransactionStatus()` immediately after our transaction has been sent to the network
+In our `startTransfer()` method, we will execute the `pollTransactionStatus()` right after our transaction is sent over the network
 
 ```typescript
-// src/components/Swaps.tsx
+// src/components/Swap.tsx
 
 let txHash = "";
 
-if (transferParams.fromChain === "tron") {
-  const hash = await sendSolTrans({
+if (transferParams.fromChain === "sui") {
+  const hash = await sendSuiTrans({
     ...txData,
     from: transferParams.fromUserAddress,
   });
-  txHash = hash!;
+  txHash = hash!; // Sui digest
 } else {
   const txResponse = await signer?.sendTransaction({
     data: txData.data,
@@ -637,8 +630,6 @@ if (transferParams.fromChain === "tron") {
     value: txData.value,
     gasLimit: txData.gasLimit,
   });
-  // Wait for the transaction to be mined
-
   const receipt = await txResponse?.wait();
   console.log("Transaction receipt:", receipt);
   txHash = txResponse?.hash!;
